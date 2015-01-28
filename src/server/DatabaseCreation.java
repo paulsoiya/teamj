@@ -1,3 +1,5 @@
+package server;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -10,7 +12,7 @@ public class DatabaseCreation {
     * Create the professional database
     * Create Tables Player, Team, GameLog, and Stats
     */
-   public static void createProfessionalDatabase() {
+   public void createProfessionalDatabase() {
       Connection c = null;
       Statement stmt = null;
 
