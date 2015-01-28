@@ -1,0 +1,5 @@
+# ignore build folder, professional.db and individual.db
+/*
+!/src
+!build.xml
+!/lib
