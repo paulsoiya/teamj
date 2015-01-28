@@ -75,4 +75,10 @@ public class DatabaseCreation {
          System.err.println(e.getClass().getName() + ": " + e.getMessage());
       }
    }
+   /*
+    * Create the individual database
+    */
+   public void createIndividualDatabase() {
+
+   }
 }
