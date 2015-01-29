@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="Server" basedir="." default="main">
+<project name="CST316 Sports" basedir=".">
     
     <property name="src.dir"     value="src"/>
     
@@ -8,11 +8,17 @@
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir"     value="lib"/>
     
-    <property name="main-class"  value="server/ServerSetup"/>
+    <property name="main-class-ui" value="ui.RegistrationMain"/>
+    <property name="main-class-server"  value="server/ServerSetup"/>
     
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
+    
+    <target name="targets">
+        <echo message="Run UI: ant run-ui"/>
+        <echo message="Create databases: ant run-server"/>
+    </target>
     
     <target name="clean">
         <delete dir="${build.dir}"/>
@@ -32,8 +38,17 @@
         </jar>
     </target>
     
-    <target name="run" depends="jar">
-        <java fork="true" classname="${main-class}">
+    <target name="run-ui" depends="jar">
+        <java fork="true" classname="${main-class-ui}">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-server" depends="jar">
+        <java fork="true" classname="${main-class-server}">
             <classpath>
                 <path refid="classpath"/>
                 <path location="${jar.dir}/${ant.project.name}.jar"/>
@@ -42,7 +57,5 @@
     </target>
     
     <target name="clean-build" depends="clean,jar"/>
-    
-    <target name="main" depends="clean,run"/>
     
 </project>
