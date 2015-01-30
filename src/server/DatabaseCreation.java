@@ -79,6 +79,59 @@ public class DatabaseCreation {
     * Create the individual database
     */
    public void createIndividualDatabase() {
-
+       Connection c = null;
+       Statement stmt = null;
+       
+       try {
+           Class.forName("org.sqlite.JDBC");
+           c = DriverManager.getConnection("jdbc:sqlite:individual.db");
+           c.createStatement().execute("PRAGMA foreign_keys = ON");
+           stmt = c.createStatement();
+           
+           String sql = "CREATE TABLE User(" +
+           "UserID         INTEGER    PRIMARY KEY   AUTOINCREMENT," +
+           "Email          TEXT," +
+           "Password       TEXT," +
+           "FirstName      TEXT," +
+           "LastName       TEXT);";
+           stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE Sport(" +
+           "SportID       INT    PRIMARY KEY," +
+           "SportName     TEXT," +
+           "Picture       TEXT);";
+           stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE GameLog(" +
+           "GameID         INT    PRIMARY KEY," +
+           "UserID         INT," +
+           "Date           TEXT," +
+           "Team           INT," +
+           "Opponent       INT," +
+           "Score          TEXT," +
+           "FOREIGN KEY(UserID) REFERENCES User(UserID));";
+           stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE Stats(" +
+           "StatsID        INT    PRIMARY KEY," +
+           "GameID         INT," +
+           "UserID         INT," +
+           "RecYds         INT," +
+           "RecTDs         INT," +
+           "RecAtt         INT," +
+           "RushYds        INT," +
+           "RushTDs        INT," +
+           "RushAtt        INT," +
+           "PassYds        INT," +
+           "PassTDs        INT," +
+           "PassAtt        INT," +
+           "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
+           "FOREIGN KEY(UserID) REFERENCES User(UserID));";
+           stmt.executeUpdate(sql);
+           stmt.close();
+           c.close();
+       } catch (Exception e) {
+           System.err.println(e.getClass().getName() + ": " + e.getMessage());
+       }
    }
 }
