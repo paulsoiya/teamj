@@ -32,9 +32,6 @@
 
 package layoutsample;
 
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -103,7 +100,7 @@ public class LayoutSample extends Application {
 		// the
 		// one you aren't using
 		border.setRight(addFlowPane());
-		// border.setRight(addTilePane());
+		//border.setRight(addTilePane());
 
 		// To see only the grid in the center, comment out the following
 		// statement
@@ -166,15 +163,15 @@ public class LayoutSample extends Application {
 		vbox.setPadding(new Insets(10)); // Set all sides to 10
 		vbox.setSpacing(8); // Gap between nodes
 
-		Text title = new Text("Data");
-		title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		Text title = new Text("Account Name");
+		title.setFont(Font.font("Arial", FontWeight.BOLD, 26));
 		vbox.getChildren().add(title);
 
-		Hyperlink options[] = new Hyperlink[] { new Hyperlink("Sales"),
-				new Hyperlink("Marketing"), new Hyperlink("Distribution"),
-				new Hyperlink("Costs") };
+		Hyperlink options[] = new Hyperlink[] { new Hyperlink("Sports"),
+				new Hyperlink("Recent Games"), new Hyperlink("Friends")};
+		
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			// Add offset to left side to indent from title
 			VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
 			vbox.getChildren().add(options[i]);
@@ -229,42 +226,11 @@ public class LayoutSample extends Application {
 		grid.setPadding(new Insets(0, 10, 0, 10));
 
 		// Category in column 2, row 1
-		Text category = new Text("Sales:");
+		Text category = new Text("Home Page Text:");
 		category.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		grid.add(category, 1, 0);
 
-		// Title in column 3, row 1
-		Text chartTitle = new Text("Current Year");
-		chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		grid.add(chartTitle, 2, 0);
-
-		// Subtitle in columns 2-3, row 2
-		Text chartSubtitle = new Text("Goods and Services");
-		grid.add(chartSubtitle, 1, 1, 2, 1);
-
-		// House icon in column 1, rows 1-2
-		ImageView imageHouse = new ImageView(new Image(
-				LayoutSample.class.getResourceAsStream("graphics/house.png")));
-		grid.add(imageHouse, 0, 0, 1, 2);
-
-		// Left label in column 1 (bottom), row 3
-		Text goodsPercent = new Text("Goods\n80%");
-		GridPane.setValignment(goodsPercent, VPos.BOTTOM);
-		grid.add(goodsPercent, 0, 2);
-
-		// Chart in columns 2-3, row 3
-		ImageView imageChart = new ImageView(
-				new Image(
-						LayoutSample.class
-								.getResourceAsStream("graphics/piechart.png")));
-		grid.add(imageChart, 1, 2, 2, 1);
-
-		// Right label in column 4 (top), row 3
-		Text servicesPercent = new Text("Services\n20%");
-		GridPane.setValignment(servicesPercent, VPos.TOP);
-		grid.add(servicesPercent, 3, 2);
-
-		// grid.setGridLinesVisible(true);
+		//grid.setGridLinesVisible(true);
 		return grid;
 	}
 
@@ -279,11 +245,10 @@ public class LayoutSample extends Application {
 		flow.setHgap(4);
 		flow.setPrefWrapLength(170); // preferred width allows for two columns
 		flow.setStyle("-fx-background-color: DAE6F3;");
-
-
+		
 		Image soccerTile = new Image(
 				LayoutSample.class.getResourceAsStream("graphics/soccer.png"));
-
+		
 		ImageView imageView = new ImageView(soccerTile);
 		Button button1 = new Button("Soccer", imageView);
 		button1.setContentDisplay(ContentDisplay.LEFT);
@@ -314,14 +279,6 @@ public class LayoutSample extends Application {
 		button4.setContentDisplay(ContentDisplay.LEFT);
 		flow.getChildren().add(button4);
 
-		/*
-		 * ImageView pages[] = new ImageView[8]; for (int i=0; i<8; i++) {
-		 * pages[i] = new ImageView( new
-		 * Image(LayoutSample.class.getResourceAsStream(
-		 * "graphics/chart_"+(i+1)+".png"))); flow.getChildren().add(pages[i]);
-		 * }
-		 */
-
 		return flow;
 	}
 
@@ -336,14 +293,40 @@ public class LayoutSample extends Application {
 		tile.setHgap(4);
 		tile.setPrefColumns(2);
 		tile.setStyle("-fx-background-color: DAE6F3;");
+		
+		Image soccerTile = new Image(
+				LayoutSample.class.getResourceAsStream("graphics/soccer.png"));
+		
+		ImageView imageView = new ImageView(soccerTile);
+		Button button1 = new Button("Soccer", imageView);
+		button1.setContentDisplay(ContentDisplay.LEFT);
+		tile.getChildren().add(button1);
 
-		ImageView pages[] = new ImageView[8];
-		for (int i = 0; i < 8; i++) {
-			pages[i] = new ImageView(new Image(
-					LayoutSample.class.getResourceAsStream("graphics/chart_"
-							+ (i + 1) + ".png")));
-			tile.getChildren().add(pages[i]);
-		}
+		final Image footballTile = new Image(
+				LayoutSample.class.getResourceAsStream("graphics/football.png"));
+
+		ImageView imageView2 = new ImageView(footballTile);
+		Button button2 = new Button("Football", imageView2);
+		button2.setContentDisplay(ContentDisplay.LEFT);
+		tile.getChildren().add(button2);
+
+		final Image basketballTile = new Image(
+				LayoutSample.class
+						.getResourceAsStream("graphics/basketball.png"));
+
+		ImageView imageView3 = new ImageView(basketballTile);
+		Button button3 = new Button("Basketball", imageView3);
+		button3.setContentDisplay(ContentDisplay.LEFT);
+		tile.getChildren().add(button3);
+
+		final Image baseballTile = new Image(
+				LayoutSample.class.getResourceAsStream("graphics/baseball.png"));
+
+		ImageView imageView4 = new ImageView(baseballTile);
+		Button button4 = new Button("Baseball", imageView4);
+		button4.setContentDisplay(ContentDisplay.LEFT);
+		tile.getChildren().add(button4);
+
 
 		return tile;
 	}
@@ -357,13 +340,13 @@ public class LayoutSample extends Application {
 
 		AnchorPane anchorpane = new AnchorPane();
 
-		Button buttonSave = new Button("Save");
-		Button buttonCancel = new Button("Cancel");
+		Button buttonA = new Button("More Buttons");
+		Button buttonB = new Button("Even More Buttons");
 
 		HBox hb = new HBox();
 		hb.setPadding(new Insets(0, 10, 10, 10));
 		hb.setSpacing(10);
-		hb.getChildren().addAll(buttonSave, buttonCancel);
+		hb.getChildren().addAll(buttonA, buttonB);
 
 		anchorpane.getChildren().addAll(grid, hb);
 		// Anchor buttons to bottom right, anchor grid to top
@@ -373,4 +356,6 @@ public class LayoutSample extends Application {
 
 		return anchorpane;
 	}
+	
+
 }
