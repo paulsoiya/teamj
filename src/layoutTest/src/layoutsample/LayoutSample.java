@@ -36,7 +36,6 @@ package layoutsample;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -52,7 +51,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -65,9 +63,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * Sample application that shows examples of the different layout panes provided
- * by the JavaFX layout API. The resulting UI is for demonstration purposes only
- * and is not interactive.
+ * Basic Concept of layout taken from the JavaFX Oracle website "Working With Layouts in JavaFX".
+ * Other Properties taken from the JavaFX Ensemble open source.
+ * http://docs.oracle.com/javafx/2/layout/style_css.htm
+ * Joni Gordon is the author of the article
  */
 public class LayoutSample extends Application {
 
@@ -92,21 +91,7 @@ public class LayoutSample extends Application {
 		// Add a stack to the HBox in the top region
 		addStackPane(hbox);
 
-		// To see only the grid in the center, uncomment the following statement
-		// comment out the setCenter() call farther down
-		// border.setCenter(addGridPane());
-
-		// Choose either a TilePane or FlowPane for right region and comment out
-		// the
-		// one you aren't using
 		border.setRight(addFlowPane());
-		//border.setRight(addTilePane());
-
-		// To see only the grid in the center, comment out the following
-		// statement
-		// If both setCenter() calls are executed, the anchor pane from the
-		// second
-		// call replaces the grid from the first call
 		border.setCenter(addAnchorPane(addGridPane()));
 
 		Scene scene = new Scene(border);
@@ -116,7 +101,7 @@ public class LayoutSample extends Application {
 	}
 
 	/*
-	 * Creates an HBox with two buttons for the top region
+	 * Creates an HBox for the top region
 	 */
 
 	private HBox addHBox() {
@@ -140,15 +125,6 @@ public class LayoutSample extends Application {
 		tb2.setToggleGroup(group);
 		tb3.setToggleGroup(group);
 
-		/*
-		 * Button buttonHome = new Button("Home"); buttonHome.setPrefSize(100,
-		 * 20); buttonHome.setAlignment(Pos.CENTER);
-		 * 
-		 * Button buttonHistory = new Button("History");
-		 * buttonHistory.setPrefSize(100, 20);
-		 * buttonHistory.setAlignment(Pos.TOP_CENTER);
-		 */
-
 		hbox.getChildren().addAll(tb1, tb2, tb3);
 
 		return hbox;
@@ -162,20 +138,24 @@ public class LayoutSample extends Application {
 		VBox vbox = new VBox();
 		vbox.setPadding(new Insets(10)); // Set all sides to 10
 		vbox.setSpacing(8); // Gap between nodes
+		vbox.setStyle("-fx-border-color: black");
 
 		Text title = new Text("Account Name");
 		title.setFont(Font.font("Arial", FontWeight.BOLD, 26));
 		vbox.getChildren().add(title);
-
-		Hyperlink options[] = new Hyperlink[] { new Hyperlink("Sports"),
-				new Hyperlink("Recent Games"), new Hyperlink("Friends")};
 		
-
-		for (int i = 0; i < 3; i++) {
-			// Add offset to left side to indent from title
-			VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
-			vbox.getChildren().add(options[i]);
-		}
+		Hyperlink sportsHyperlink = new Hyperlink("Sports");
+		sportsHyperlink.setStyle("-fx-font-size: 20");
+		
+		Hyperlink recentGamesHyperlink = new Hyperlink("Recent Games");
+		recentGamesHyperlink.setStyle("-fx-font-size: 20");
+		
+		Hyperlink friendsHyperlink = new Hyperlink("Friends");
+		friendsHyperlink.setStyle("-fx-font-size: 20");
+		
+		vbox.getChildren().add(sportsHyperlink);
+		vbox.getChildren().add(recentGamesHyperlink);
+		vbox.getChildren().add(friendsHyperlink);
 
 		return vbox;
 	}
@@ -247,18 +227,18 @@ public class LayoutSample extends Application {
 		flow.setStyle("-fx-background-color: DAE6F3;");
 		
 		Image soccerTile = new Image(
-				LayoutSample.class.getResourceAsStream("graphics/soccer.png"));
+				LayoutSample.class.getResourceAsStream("graphics/football.png"));
 		
 		ImageView imageView = new ImageView(soccerTile);
-		Button button1 = new Button("Soccer", imageView);
+		Button button1 = new Button("Football", imageView);
 		button1.setContentDisplay(ContentDisplay.LEFT);
 		flow.getChildren().add(button1);
 
 		final Image footballTile = new Image(
-				LayoutSample.class.getResourceAsStream("graphics/football.png"));
+				LayoutSample.class.getResourceAsStream("graphics/soccer.png"));
 
 		ImageView imageView2 = new ImageView(footballTile);
-		Button button2 = new Button("Football", imageView2);
+		Button button2 = new Button("Soccer", imageView2);
 		button2.setContentDisplay(ContentDisplay.LEFT);
 		flow.getChildren().add(button2);
 
@@ -283,55 +263,6 @@ public class LayoutSample extends Application {
 	}
 
 	/*
-	 * Creates a horizontal (default) tile pane with eight icons in four rows
-	 */
-	private TilePane addTilePane() {
-
-		TilePane tile = new TilePane();
-		tile.setPadding(new Insets(5, 0, 5, 0));
-		tile.setVgap(4);
-		tile.setHgap(4);
-		tile.setPrefColumns(2);
-		tile.setStyle("-fx-background-color: DAE6F3;");
-		
-		Image soccerTile = new Image(
-				LayoutSample.class.getResourceAsStream("graphics/soccer.png"));
-		
-		ImageView imageView = new ImageView(soccerTile);
-		Button button1 = new Button("Soccer", imageView);
-		button1.setContentDisplay(ContentDisplay.LEFT);
-		tile.getChildren().add(button1);
-
-		final Image footballTile = new Image(
-				LayoutSample.class.getResourceAsStream("graphics/football.png"));
-
-		ImageView imageView2 = new ImageView(footballTile);
-		Button button2 = new Button("Football", imageView2);
-		button2.setContentDisplay(ContentDisplay.LEFT);
-		tile.getChildren().add(button2);
-
-		final Image basketballTile = new Image(
-				LayoutSample.class
-						.getResourceAsStream("graphics/basketball.png"));
-
-		ImageView imageView3 = new ImageView(basketballTile);
-		Button button3 = new Button("Basketball", imageView3);
-		button3.setContentDisplay(ContentDisplay.LEFT);
-		tile.getChildren().add(button3);
-
-		final Image baseballTile = new Image(
-				LayoutSample.class.getResourceAsStream("graphics/baseball.png"));
-
-		ImageView imageView4 = new ImageView(baseballTile);
-		Button button4 = new Button("Baseball", imageView4);
-		button4.setContentDisplay(ContentDisplay.LEFT);
-		tile.getChildren().add(button4);
-
-
-		return tile;
-	}
-
-	/*
 	 * Creates an anchor pane using the provided grid and an HBox with buttons
 	 * 
 	 * @param grid Grid to anchor to the top of the anchor pane
@@ -351,7 +282,6 @@ public class LayoutSample extends Application {
 		anchorpane.getChildren().addAll(grid, hb);
 		// Anchor buttons to bottom right, anchor grid to top
 		AnchorPane.setBottomAnchor(hb, 8.0);
-		AnchorPane.setRightAnchor(hb, 5.0);
 		AnchorPane.setTopAnchor(grid, 10.0);
 
 		return anchorpane;
