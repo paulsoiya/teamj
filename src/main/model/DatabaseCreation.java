@@ -69,10 +69,15 @@ public class DatabaseCreation {
             "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
             "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
          stmt.executeUpdate(sql);
-         stmt.close();
-         c.close();
       } catch (Exception e) {
          System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      } finally {
+         try {
+            stmt.close();
+            c.close();
+         } catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+         }
       }
    }
    /*
@@ -128,10 +133,15 @@ public class DatabaseCreation {
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
-           stmt.close();
-           c.close();
        } catch (Exception e) {
            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+       } finally {
+           try {
+               stmt.close();
+               c.close();
+           } catch (Exception e){
+               System.err.println(e.getClass().getName() + ": " + e.getMessage());
+           }
        }
    }
 }

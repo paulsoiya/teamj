@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="CST316 Sports" basedir=".">
     
-    <property name="src.dir"     value="src"/>
+    <property name="src.dir"     value="src/main"/>
     
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir"     value="lib"/>
     
-    <property name="main-class-ui" value="ui.LoginMain"/>
-    <property name="main-class-server"  value="server/ServerSetup"/>
+    <property name="main-class-ui" value="view.LoginMain"/>
+    <property name="main-class-server"  value="model.ServerSetup"/>
     
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
