@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="CST316 Sports" basedir=".">
+<project name="CST316 Sports" basedir="."   xmlns:fx="javafx:com.sun.javafx.tools.ant">
     
     <property name="src.dir"     value="src/main"/>
-    
+	<property name="src.fx"     value="src"/>
+	
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir"     value="lib"/>
+
+	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
+	        uri="javafx:com.sun.javafx.tools.ant"
+	        classpath="${lib.dir}/ant-javafx.jar"/>
+
+	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
-    <property name="main-class-ui" value="view.LoginMain"/>
+    <property name="main-class-ui" value="view.RegistrationMain"/>
     <property name="main-class-server"  value="model.ServerSetup"/>
     
+	
+
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
@@ -57,5 +66,68 @@
     </target>
     
     <target name="clean-build" depends="clean,jar"/>
-    
+
+	<target name="fx-compile">
+		<delete dir="build" />
+			<mkdir dir="build/src" />
+			<mkdir dir="build/libs" />
+			<mkdir dir="build/classes" />
+		
+			<!-- Copy project-libs references -->
+			<copy todir="build/libs">
+				<fileset dir="${lib.dir}">
+				</fileset>
+			</copy>
+		
+			<!-- Copy project references -->
+		
+			<!-- Copy project sources itself -->
+			<copy todir="build/src">
+				<fileset dir="${src.fx}">
+					<include name="**/*"/>
+				</fileset>
+			</copy>
+		
+			<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
+				<classpath>
+					<fileset dir="build/libs">
+						<include name="*"/>
+					</fileset>
+				</classpath>
+			</javac>
+		
+			<!-- Copy over none Java-Files -->
+			<copy todir="build/classes">
+			<fileset dir="${src.fx}">
+				<exclude name="**/*.java"/>
+			</fileset>
+			</copy>
+		
+		
+	</target>
+
+
+	<target name="fx-deploy">
+
+	<fx:jar destfile="dist/application.jar">
+	    <!-- Details about application -->
+	    <fx:application name="CST316 Sports"
+	            mainClass="main.view.Main"/>
+
+	    <!-- Define what auxilary resources are needed -->
+	    <fx:resources>
+	        <fx:fileset dir="dist" includes="lib/*.jar"/>
+	    </fx:resources>
+
+	    <!-- What to include into result jar file?
+	         Everything in the build tree -->
+	    <fileset dir="build/classes"/>
+
+	    <!-- Customize jar manifest (optional) -->
+	    <manifest>
+	        <attribute name="Implementation-Vendor" value="Samples Team"/>
+	        <attribute name="Implementation-Version" value="1.0"/>
+	    </manifest>
+	</fx:jar>
+    </target>
 </project>

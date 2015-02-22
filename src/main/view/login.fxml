@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.view.LoginController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -28,7 +28,7 @@
             <TextField alignment="TOP_CENTER" promptText="Username / Email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <PasswordField alignment="TOP_CENTER" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" text="Sign Up" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+            <Button onAction="#changeToRegistration" mnemonicParsing="false" text="Sign Up" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" text="Quick Compare" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
          </children>
       </GridPane>
