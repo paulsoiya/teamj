@@ -72,6 +72,7 @@
 			<mkdir dir="build/src" />
 			<mkdir dir="build/libs" />
 			<mkdir dir="build/classes" />
+            <mkdir dir="build/dist" />
 		
 			<!-- Copy project-libs references -->
 			<copy todir="build/libs">
@@ -109,14 +110,14 @@
 
 	<target name="fx-deploy">
 
-	<fx:jar destfile="dist/application.jar">
+	<fx:jar destfile="build/dist/application.jar">
 	    <!-- Details about application -->
 	    <fx:application name="CST316 Sports"
 	            mainClass="main.view.Main"/>
 
 	    <!-- Define what auxilary resources are needed -->
 	    <fx:resources>
-	        <fx:fileset dir="dist" includes="lib/*.jar"/>
+	        <fx:fileset dir="build/dist" includes="lib/*.jar"/>
 	    </fx:resources>
 
 	    <!-- What to include into result jar file?
