@@ -6,7 +6,7 @@
 	
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="jar.dir"     value="${build.dir}/dist"/>
     <property name="lib.dir"     value="lib"/>
 
 	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
@@ -47,13 +47,8 @@
         </jar>
     </target>
     
-    <target name="run-ui" depends="jar">
-        <java fork="true" classname="${main-class-ui}">
-            <classpath>
-                <path refid="classpath"/>
-                <path location="${jar.dir}/${ant.project.name}.jar"/>
-            </classpath>
-        </java>
+    <target name="run-ui" depends="fx-deploy">
+        <java jar="build/dist/application.jar" fork="true"/>
     </target>
     
     <target name="run-server" depends="jar">
@@ -108,7 +103,7 @@
 	</target>
 
 
-	<target name="fx-deploy">
+	<target name="fx-deploy" depends="fx-compile">
 
 	<fx:jar destfile="build/dist/application.jar">
 	    <!-- Details about application -->
