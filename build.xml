@@ -17,7 +17,7 @@
 	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
     <property name="main-class-ui" value="view.RegistrationMain"/>
-    <property name="main-class-server"  value="model.ServerSetup"/>
+    <property name="main-class-server"  value="main.model.ServerSetup"/>
     
 	
 
@@ -132,10 +132,9 @@
         <mkdir dir="${tests.dir}"/>
         <junit printsummary="yes" haltonfailure="yes">
             <classpath>
-                <pathelement location="${classes.dir}"/>
-                <pathelement location="${build.tests}"/>
+                <pathelement path="${classes.dir}/main/tests"/>
                 <pathelement location="${lib.dir}/junit-4.10.jar"/>
-                <pathelement path="${src.dir}/tests"/>
+                <pathelement location="${src.dir}/tests"/>
             </classpath>
             
             <formatter type="plain"/>
