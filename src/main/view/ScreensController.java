@@ -58,6 +58,7 @@ import javafx.util.Duration;
 /**
  *
  * @author Angie
+ * @modified Paul Soiya 
  */
 public class ScreensController  extends StackPane {
     //Holds the screens to be displayed

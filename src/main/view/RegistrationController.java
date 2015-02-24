@@ -18,6 +18,9 @@ public class RegistrationController
 
 	ScreensController controller;
 	
+	public RegistrationController(){
+		controller = new ScreensController();
+	}
 	
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
@@ -32,9 +35,13 @@ public class RegistrationController
 		
 	}
   
+	/**
+	 * Changes the current FXML page to the login.fxml
+	 * @param e
+	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(Main.loginFxml);
+		controller.setScreen(Main.loginName);
 	}
 	/*
 	@FXML

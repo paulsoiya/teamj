@@ -34,6 +34,11 @@ public class LoginController
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Changes the current FXML page to register.fxml
+	 * @param e
+	 */
   
 	@FXML
 	private void changeToRegistration(ActionEvent e){
