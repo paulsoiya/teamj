@@ -9,6 +9,11 @@
     <property name="jar.dir"     value="${build.dir}/dist"/>
     <property name="lib.dir"     value="lib"/>
     <property name="tests.dir"    value="${build.dir}/tests"/>
+    
+    <path id="junit.class.path">
+        <pathelement location="lib/junit-4.10.jar" />
+        <pathelement location="${build.dir}" />
+    </path>
 
 	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
 	        uri="javafx:com.sun.javafx.tools.ant"
@@ -131,17 +136,16 @@
     <target name="run-tests" >
         <mkdir dir="${tests.dir}"/>
         <junit printsummary="yes" haltonfailure="yes">
+            <classpath refid="junit.class.path" />
             <classpath>
-                <pathelement path="${classes.dir}/main/tests"/>
-                <pathelement location="${lib.dir}/junit-4.10.jar"/>
-                <pathelement location="${src.dir}/tests"/>
+                <pathelement location="${classes.dir}/main.tests"/>
             </classpath>
             
             <formatter type="plain"/>
             <formatter type="xml"/>
             
             <batchtest fork="yes" todir="${tests.dir}">
-                <fileset dir="${src.dir}/tests">
+                <fileset dir="${build.dir}/tests">
                     <include name="**/*Test*.java"/>
                 </fileset>
             </batchtest>

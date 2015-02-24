@@ -5,12 +5,12 @@ import java.io.File;
 import org.junit.Test;
 
 public class ServerSetupTest {
-
-   @Test
-   public void DatabaseCreationTest() {
-       File proDB = new File("teamj/professional.db");
-       assertTrue(proDB.exists());
-       File indDB = new File("teamj/individual.db");
-       assertTrue(indDB.exists());
-   } 
+    
+    @Test
+    public void DatabaseCreationTest() {
+        File proDB = new File("professional.db");
+        File indDB = new File("individual.db");
+        assertTrue(proDB.exists());
+        assertTrue(indDB.exists());
+    }
 }
