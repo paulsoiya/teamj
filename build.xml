@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="CST316 Sports" basedir="."   xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<project name="CST316 Sports" basedir="."   xmlns:fx="javafx:com.sun.javafx.tools.ant" xmlns:jacoco="antlib:org.jacoco.ant">
     
     <property name="src.dir"     value="src/main"/>
 	<property name="src.fx"     value="src"/>
@@ -9,15 +9,20 @@
     <property name="jar.dir"     value="${build.dir}/dist"/>
     <property name="lib.dir"     value="lib"/>
     <property name="tests.dir"    value="${build.dir}/tests"/>
-    
+
     <path id="junit.class.path">
         <pathelement location="lib/junit-4.10.jar" />
         <pathelement location="${build.dir}" />
     </path>
 
-	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
 	        uri="javafx:com.sun.javafx.tools.ant"
 	        classpath="${lib.dir}/ant-javafx.jar"/>
+    
+            
+    <taskdef resource="org/jacoco/ant/antlib.xml"
+            uri="antlib:org.jacoco.ant"
+            classpath="${lib.dir}/jacocoant.jar"/>
 
 	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
@@ -135,21 +140,46 @@
     
     <target name="run-tests" >
         <mkdir dir="${tests.dir}"/>
-        <junit printsummary="yes" haltonfailure="yes">
-            <classpath refid="junit.class.path" />
-            <classpath>
-                <pathelement location="${classes.dir}/main.tests"/>
-            </classpath>
+        <jacoco:coverage>
+            <junit printsummary="withOutAndErr" haltonfailure="yes">
+                <classpath refid="junit.class.path" />
+                <classpath>
+                    <pathelement location="${classes.dir}/main.tests"/>
+                </classpath>
             
-            <formatter type="plain"/>
-            <formatter type="xml"/>
+                <formatter type="plain"/>
+                <formatter type="xml"/>
             
-            <batchtest fork="yes" todir="${tests.dir}">
-                <fileset dir="${build.dir}/tests">
-                    <include name="**/*Test*.java"/>
-                </fileset>
-            </batchtest>
-        </junit>
+                <batchtest fork="yes" todir="${tests.dir}">
+                    <fileset dir="${build.dir}/tests">
+                        <include name="**/*Test*.java"/>
+                    </fileset>
+                </batchtest>
+            </junit>
+        </jacoco:coverage>
+        <!-- Generate a report on the results. -->
+        <junitreport todir="${tests.dir}">
+            <fileset dir="${tests.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" styledir="." todir="${tests.dir}" />
+        </junitreport>
+        <jacoco:report>
+            <executiondata>
+                <file file="jacoco.exec"/>
+            </executiondata>
+            <structure name="CST316 Example">
+            <classfiles>
+                <fileset dir="${classes.dir}"/>
+            </classfiles>
+            <sourcefiles encoding="UTF-8">
+                <fileset dir="${src.dir}"/>
+            </sourcefiles>
+            </structure>
+            <html destdir="${tests .dir}"/>
+            <xml destfile="${tests.dir}/jacoco.xml"/>
+            <csv destfile="${tests.dir}/jacoco.csv"/>
+        </jacoco:report>
     </target>
 
 </project>
