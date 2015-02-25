@@ -4,7 +4,7 @@
  * @author Paul Soiya II (psoiya@asu.edu)
  * @version Feb 21, 2015
  */
-package main.view;
+package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;

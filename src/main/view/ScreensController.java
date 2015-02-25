@@ -38,7 +38,7 @@
  * holder.
  */ 
 
-package main.view;
+package view;
 
 import java.util.HashMap;
 

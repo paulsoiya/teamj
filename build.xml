@@ -13,8 +13,10 @@
     <property name="tests.jacoco.dir" value="${tests.dir}/jacoco"/>
     
     <path id="junit.class.path">
-        <pathelement location="lib/junit-4.10.jar" />
-        <pathelement location="${build.dir}" />
+        <pathelement location="${classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
     </path>
 
 	<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"      
@@ -28,7 +30,7 @@
 	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
     <property name="main-class-ui" value="view.RegistrationMain"/>
-    <property name="main-class-server"  value="main.model.ServerSetup"/>
+    <property name="main-class-server"  value="model.ServerSetup"/>
     
 	
 
@@ -111,8 +113,6 @@
 				<exclude name="**/*.java"/>
 			</fileset>
 			</copy>
-		
-		
 	</target>
 
 
@@ -141,13 +141,14 @@
     </target>
     
     <target name="run-tests" >
+        <delete dir="${test.junit.dir}"/>
+        <delete dir="${test.jacoco.dir}"/>
         <mkdir dir="${tests.junit.dir}"/>
         <mkdir dir="${tests.jacoco.dir}"/>
         <jacoco:coverage>
         <junit printsummary="withOutAndErr" haltonfailure="no" fork="on">
-            <classpath refid="junit.class.path" />
             <classpath>
-                <pathelement location="${classes.dir}/main.tests"/>
+                <path refid="junit.class.path" />
             </classpath>
             <formatter type="xml"/>
             <batchtest todir="${tests.junit.dir}">
