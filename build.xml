@@ -39,6 +39,7 @@
     <target name="targets">
         <echo message="Run UI: ant run-ui"/>
         <echo message="Create databases: ant run-server"/>
+        <echo message="Run Tests: ant run-tests"/>
     </target>
     
     <target name="clean">
@@ -143,14 +144,14 @@
         <mkdir dir="${tests.junit.dir}"/>
         <mkdir dir="${tests.jacoco.dir}"/>
         <jacoco:coverage>
-        <junit printsummary="withOutAndErr" haltonfailure="yes" fork="on">
+        <junit printsummary="withOutAndErr" haltonfailure="no" fork="on">
             <classpath refid="junit.class.path" />
             <classpath>
                 <pathelement location="${classes.dir}/main.tests"/>
             </classpath>
             <formatter type="xml"/>
             <batchtest todir="${tests.junit.dir}">
-                <fileset dir="${tests.junit.dir}">
+                <fileset dir="${src.dir}">
                     <include name="**/*Test*.java"/>
                 </fileset>
             </batchtest>
