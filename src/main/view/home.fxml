@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.view.RegistrationController">
+   
+   <top>
+      <HBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" styleClass="complete-button" text="Button" />
+         </children></HBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
+            <Button mnemonicParsing="false" onAction="#changeToLogin" styleClass="navigation-button" text="Friends" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
+         </children>
+      </VBox>
+   </left>
+   
+     <stylesheets>
+    <URL value="@MainTheme.css" />
+  </stylesheets>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="227.0" style="-fx-background-color: #fff;" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="270.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: #fff;" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="285.0" style="-fx-background-color: #fff;" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="288.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
