@@ -4,7 +4,7 @@
  * @author Paul Soiya II (psoiya@asu.edu)
  * @version Feb 21, 2015
  */
-package view;
+package main.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +44,11 @@ public class LoginController
 	private void changeToRegistration(ActionEvent e){
 		controller.setScreen(Main.registrationName);
 	}
+                    
+    @FXML
+    private void changeToHome(ActionEvent e){
+       controller.setScreen(Main.homeName);
+    }
 	/*
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
