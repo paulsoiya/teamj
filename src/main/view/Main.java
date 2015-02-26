@@ -13,7 +13,13 @@ public class Main extends Application {
 	public static final String loginFxml = "login.fxml";
     public static final String homeName = "home";
     public static final String homeFxml = "home.fxml";
-	
+    public static final String statsName = "stats";
+    public static final String statsFxml = "stats.fxml";
+    public static final String sportName = "sport";
+    public static final String sportFxml = "sport.fxml";
+	public static final String gameName = "games";
+    public static final String gameFxml = "games.fxml";
+    
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -24,6 +30,9 @@ public class Main extends Application {
 		container.loadScreen(registrationName, registrationFxml);
 		container.loadScreen(loginName, loginFxml);
         container.loadScreen(homeName, homeFxml);
+        container.loadScreen(statsName, statsFxml);
+        container.loadScreen(sportName, sportFxml);
+        container.loadScreen(gameName, gameFxml);
 		container.setScreen(loginName);
 
 		Group root = new Group();

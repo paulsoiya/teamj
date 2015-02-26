@@ -17,7 +17,7 @@
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" onAction="#changeToLogin" styleClass="navigation-button" text="Friends" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
          </children>
       </VBox>
@@ -59,7 +59,7 @@
             </Label>
             <ChoiceBox prefHeight="26.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox prefHeight="26.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#changeToHome" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </center>
