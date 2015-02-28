@@ -43,6 +43,16 @@ public class RegistrationController
 	private void changeToLogin(ActionEvent e){
 		controller.setScreen(Main.loginName);
 	}
+                    
+    /**
+     * Changes the current FXML page to the login.fxml
+     * @param e
+     */
+    @FXML
+    private void changeToHome(ActionEvent e){
+         controller.setScreen(Main.homeName);
+    }
+                    
 	/*
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){

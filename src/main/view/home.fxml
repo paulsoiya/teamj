@@ -16,7 +16,7 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToEdit" styleClass="navigation-button" text="Edit Account" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />

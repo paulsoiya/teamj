@@ -46,5 +46,14 @@ public class HomeController
     private void changeToSport(ActionEvent e){
          controller.setScreen(Main.sportName);
     }
+                    
+    /**
+     * Changes the current FXML page to games.fxml
+     * @param e
+     */
+    @FXML
+    private void changeToEdit(ActionEvent e){
+         controller.setScreen(Main.editName);
+    }
 }
 
