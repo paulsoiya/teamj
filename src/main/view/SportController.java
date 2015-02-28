@@ -31,10 +31,10 @@ public class SportController
     /**
      * Changes the current FXML page to home.fxml
      * @param e
-
+     */
     @FXML
     private void changeToHome() {
         controller.setScreen(Main.homeName);
-    }*/
+    }
 }
 

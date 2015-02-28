@@ -36,5 +36,14 @@ public class GameController
     private void changeToStats() {
         controller.setScreen(Main.statsName);
     }
+    
+    /**
+     * Changes the current FXML page to stats.fxml
+     * @param e
+     */
+    @FXML
+    private void changeToHome() {
+        controller.setScreen(Main.homeName);
+    }
 }
 

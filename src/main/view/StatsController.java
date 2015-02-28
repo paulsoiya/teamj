@@ -28,5 +28,14 @@ public class StatsController
 		// TODO Auto-generated method stub
 		
 	}
+                    
+    /**
+     * Changes the current FXML page to home.fxml
+     * @param e
+     */
+    @FXML
+    private void changeToHome() {
+        controller.setScreen(Main.homeName);
+    }
 }
 
