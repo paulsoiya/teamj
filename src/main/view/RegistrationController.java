@@ -43,6 +43,7 @@ public class RegistrationController
 	private void changeToLogin(ActionEvent e){
 		controller.setScreen(Main.loginName);
 	}
+<<<<<<< HEAD
                     
     /**
      * Changes the current FXML page to the login.fxml
@@ -54,10 +55,16 @@ public class RegistrationController
     }
                     
 	/*
+=======
+	
+	/**
+	 * Changes the current FXML page to the quickCompare.fxml
+	 * @param e
+	 */
+>>>>>>> development
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen();
+		controller.setScreen(Main.quickCompareName);
 	}
-	*/
 	
 }

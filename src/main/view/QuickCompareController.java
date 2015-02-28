@@ -1,8 +1,8 @@
 /**
- * Controller for the Registration FXML page
+ * Controller for the QuickCompare FXML page
  * 
  * @author Paul Soiya II (psoiya@asu.edu)
- * @version Feb 21, 2015
+ * @version Feb 27, 2015
  */
 package main.view;
 
@@ -13,20 +13,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 
-public class LoginController 
+public class QuickCompareController 
 				implements Initializable, ControlledScreen{
 
 	ScreensController controller;
 	
-	public LoginController(){
+	public QuickCompareController(){
 		controller = new ScreensController();
 	}
 	
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
-		
 		controller = screenPage;
-		
 	}
 
 	@Override
@@ -36,31 +34,31 @@ public class LoginController
 	}
 	
 	/**
-	 * Changes the current FXML page to register.fxml
+	 * Changes the current FXML page to the register.fxml
 	 * @param e
 	 */
 	@FXML
-	private void changeToRegistration(ActionEvent e){
+	private void changeToRegister(ActionEvent e){
 		controller.setScreen(Main.registrationName);
 	}
 	
+  
 	/**
-	 * Changes the current FXML page to home.fxml
+	 * Changes the current FXML page to the login.fxml
 	 * @param e
-	 */                
-    @FXML
-    private void changeToHome(ActionEvent e){
-       controller.setScreen(Main.homeName);
-    }
+	 */
+	@FXML
+	private void changeToLogin(ActionEvent e){
+		controller.setScreen(Main.loginName);
+	}
 
 	/**
-	 * Changes the current FXML page to register.fxml
+	 * Changes the current FXML page to the quickCompare.fxml
 	 * @param e
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
 		controller.setScreen(Main.quickCompareName);
 	}
-
 	
 }
