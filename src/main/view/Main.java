@@ -13,6 +13,8 @@ public class Main extends Application {
 	public static final String loginFxml = "login.fxml";
     public static final String homeName = "home";
     public static final String homeFxml = "home.fxml";
+    public static final String quickCompareName = "quickcompare";
+    public static final String quickCompareFxml = "quickCompare.fxml";
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -24,6 +26,7 @@ public class Main extends Application {
 		container.loadScreen(registrationName, registrationFxml);
 		container.loadScreen(loginName, loginFxml);
         container.loadScreen(homeName, homeFxml);
+        container.loadScreen(quickCompareName, quickCompareFxml);
 		container.setScreen(loginName);
 
 		Group root = new Group();

@@ -39,21 +39,28 @@ public class LoginController
 	 * Changes the current FXML page to register.fxml
 	 * @param e
 	 */
-  
 	@FXML
 	private void changeToRegistration(ActionEvent e){
 		controller.setScreen(Main.registrationName);
 	}
-                    
+	
+	/**
+	 * Changes the current FXML page to home.fxml
+	 * @param e
+	 */                
     @FXML
     private void changeToHome(ActionEvent e){
        controller.setScreen(Main.homeName);
     }
-	/*
+
+	/**
+	 * Changes the current FXML page to register.fxml
+	 * @param e
+	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen();
+		controller.setScreen(Main.quickCompareName);
 	}
-	*/
+
 	
 }
