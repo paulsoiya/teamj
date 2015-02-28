@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.view.RegistrationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.view.GameController">
    
    <top>
       <HBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
@@ -16,8 +16,8 @@
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" onAction="#changeToLogin" styleClass="navigation-button" text="Friends" />
+            <Button mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Recent Games" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
          </children>
       </VBox>
@@ -31,7 +31,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button layoutX="414.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: orange;" text="+" />
+                  <Button layoutX="414.0" layoutY="-2.0" mnemonicParsing="false" onAction="#changeToStats" style="-fx-background-color: orange;" text="+" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

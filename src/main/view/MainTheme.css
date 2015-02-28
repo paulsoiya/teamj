@@ -15,13 +15,3 @@
 	-fx-border-color:#e8e8e8;
 	-fx-background-color:#fff;
 }
-
-.complete-button{
-/* Oval 44: */
-background: #259B24;
-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.16), 0px 2px 5px 0px rgba(0,0,0,0.26);
-background: #259B24;
-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.16), 0px 2px 5px 0px rgba(0,0,0,0.26);
-/* Shape: */
-background: #FFFFFF;
-}
