@@ -1,4 +1,4 @@
-package tests;
+package main.tests;
 
 import static org.junit.Assert.*;
 import main.view.ScreensController;
