@@ -23,7 +23,7 @@ public class DatabaseCreation {
          stmt = c.createStatement();
 
          String sql = "CREATE TABLE Team(" +
-            "TeamID         INT    PRIMARY KEY," +
+            "TeamID         TEXT    PRIMARY KEY," +
             "TeamName       TEXT," +
             "Logo           TEXT," +
             "PrimaryColor   TEXT," +
@@ -31,15 +31,15 @@ public class DatabaseCreation {
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE Player(" +
-            "PlayerID       INT    PRIMARY KEY," +
+            "PlayerID       TEXT    PRIMARY KEY," +
             "PlayerName     TEXT," +
-            "Team           INT," +
+            "Team           TEXT," +
             "Picture        TEXT," +
-            "Height         TEXT," +
+            "Height         INT," +
             "Weight         INT," +
             "BirthDate      TEXT," +
             "College        TEXT," +
-            "Age            INT," +
+            "Number         INT," +
             "FOREIGN KEY(Team) REFERENCES Team(TeamID));";
          stmt.executeUpdate(sql);
 

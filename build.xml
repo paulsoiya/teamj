@@ -31,6 +31,7 @@
     
     <property name="main-class-ui" value="view.RegistrationMain"/>
     <property name="main-class-server"  value="main.model.ServerSetup"/>
+    <property name="main-class-build" value="main.model.BuildProfessionalDB"/>
     
 	
 
@@ -42,6 +43,7 @@
         <echo message="Run UI: ant run-ui"/>
         <echo message="Create databases: ant run-server"/>
         <echo message="Run Tests: ant run-tests"/>
+        <echo message="Build Professional DB: and run-buildDB"/>
     </target>
     
     <target name="clean">
@@ -68,6 +70,15 @@
     
     <target name="run-server" depends="jar">
         <java fork="true" classname="${main-class-server}">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.dir}/${ant.project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-buildDB" depends="jar">
+        <java fork="true" classname="${main-class-build}">
             <classpath>
                 <path refid="classpath"/>
                 <path location="${jar.dir}/${ant.project.name}.jar"/>
