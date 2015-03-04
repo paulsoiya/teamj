@@ -3,7 +3,7 @@ public class QB extends UserAthlete {
 
 	int passAtt = 0;
 	int passComp = 0;
-	double compPercent = 0;
+	int compPercent = 0;
 	int passYards = 0;
 	int rushYards = 0;
 	int passTD = 0;
@@ -18,7 +18,7 @@ public class QB extends UserAthlete {
 		super(name, team, position, playerNum);
 	}
 	
-	public QB(String name, String team, String position, int playerNum, int passAtt, int passComp, double compPercent, int passYards,
+	public QB(String name, String team, String position, int playerNum, int passAtt, int passComp, int compPercent, int passYards,
 			int rushYards, int passTD, int rushTD, int intThrown) {
 		super(name, team, position, playerNum);
 		this.passAtt = passAtt;
@@ -47,8 +47,8 @@ public class QB extends UserAthlete {
 		this.passComp = passComp;
 	}
 	
-	public double getCompPercent() {
-		return ((double)passComp/(double)passAtt);
+	public int getCompPercent() {
+		return (passComp/passAtt);
 	}
 	
 	public void setCompPercent(int compPercent) {
