@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.view.GameController">
+   
+   <top>
+      <HBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
+            <Button mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Recent Games" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
+            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
+         </children>
+      </VBox>
+   </left>
+   
+     <stylesheets>
+    <URL value="@MainTheme.css" />
+  </stylesheets>
+   <center>
+      <SplitPane dividerPositions="0.07262569832402235" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button layoutX="414.0" layoutY="-2.0" mnemonicParsing="false" onAction="#changeToStats" style="-fx-background-color: orange;" text="+" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="-1.0" prefHeight="328.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Week" />
+                      <TableColumn prefWidth="75.0" text="Date" />
+                        <TableColumn prefWidth="162.0" text="Oppenent" />
+                        <TableColumn prefWidth="135.0" text="Score" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
