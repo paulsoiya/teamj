@@ -140,7 +140,7 @@ public class BuildProfessionalDB {
                                 }
                             }
                             try {
-                                TimeUnit.SECONDS.sleep(1);
+                                TimeUnit.SECONDS.sleep(2);
                             } catch (InterruptedException e) {
                                 //TODO
                             }
@@ -170,7 +170,7 @@ public class BuildProfessionalDB {
 	  public static void main(String[] args) {
 		  teamPrint();
           try {
-              TimeUnit.SECONDS.sleep(1);
+              TimeUnit.SECONDS.sleep(2);
           } catch (InterruptedException e) {
               //TODO
           }
