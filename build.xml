@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="CST316 Sports" basedir="."   xmlns:fx="javafx:com.sun.javafx.tools.ant" xmlns:jacoco="antlib:org.jacoco.ant">
     
-    <property name="src.dir"     value="src/main"/>
+    <property name="src.dir"     value="src"/>
 	<property name="src.fx"     value="src"/>
 	
     <property name="build.dir"         value="build"/>
     <property name="classes.dir"       value="${build.dir}/classes"/>
-    <property name="junit.classes.dir" value="${classes.dir}/main"/>
+    <property name="junit.classes.dir" value="${classes.dir}"/>
     <property name="jar.dir"           value="${build.dir}/dist"/>
     <property name="lib.dir"           value="lib"/>
     <property name="tests.dir"         value="${build.dir}/tests"/>
@@ -31,8 +31,8 @@
 	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
     <property name="main-class-ui" value="view.RegistrationMain"/>
-    <property name="main-class-server"  value="main.model.ServerSetup"/>
-    <property name="main-class-build" value="main.model.BuildProfessionalDB"/>
+    <property name="main-class-server"  value="model.ServerSetup"/>
+    <property name="main-class-build" value="model.BuildProfessionalDB"/>
     
 	
 
@@ -133,7 +133,7 @@
 	<fx:jar destfile="build/dist/application.jar">
 	    <!-- Details about application -->
 	    <fx:application name="CST316 Sports"
-	            mainClass="main.view.Main"/>
+	            mainClass="view.Main"/>
 
 	    <!-- Define what auxilary resources are needed -->
 	    <fx:resources>
