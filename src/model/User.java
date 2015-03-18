@@ -1,14 +1,13 @@
-package view;
+package model;
+import java.util.Date;
 
 public class User {
 
 	private String email;
-	
 	private String password;
-	
 	private String firstName;
-	
 	private String lastName;
+	private Date dateOfBirth;
 	
 	public User() { }
 
@@ -52,6 +51,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	
 	
