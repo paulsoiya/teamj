@@ -98,7 +98,8 @@ public class DatabaseCreation {
            "Email          VARCHAR(512)," +
            "Password       VARCHAR(16)," +
            "FirstName      VARCHAR(32)," +
-           "LastName       VARCHAR(32));";
+           "LastName       VARCHAR(32)," + 
+           "BirthDate	   DATE);";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
