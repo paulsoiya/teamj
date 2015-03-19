@@ -88,39 +88,39 @@ public class DatabaseCreation {
        Statement stmt = null;
        
        try {
-           Class.forName("org.sqlite.JDBC");
-           c = DriverManager.getConnection("jdbc:sqlite:individual.db");
-           c.createStatement().execute("PRAGMA foreign_keys = ON");
+           Class.forName("com.mysql.jdbc.Driver");
+           c = DriverManager.getConnection("jdbc:mysql://localhost:3306/individual?" +
+                   "user=root&password=password");
            stmt = c.createStatement();
            
            String sql = "CREATE TABLE User(" +
-           "UserID         INTEGER    PRIMARY KEY   AUTOINCREMENT," +
-           "Email          TEXT," +
-           "Password       TEXT," +
-           "FirstName      TEXT," +
-           "LastName       TEXT);";
+           "UserID         INT(11)    PRIMARY KEY   AUTO_INCREMENT," +
+           "Email          VARCHAR(512)," +
+           "Password       VARCHAR(16)," +
+           "FirstName      VARCHAR(32)," +
+           "LastName       VARCHAR(32));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
-           "SportID       INT    PRIMARY KEY," +
-           "SportName     TEXT," +
-           "Picture       TEXT);";
+           "SportID       INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
+           "SportName     VARCHAR(64)," +
+           "Picture       VARCHAR(512));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE GameLog(" +
-           "GameID         INT    PRIMARY KEY," +
-           "UserID         INT," +
-           "Date           TEXT," +
-           "Team           INT," +
-           "Opponent       INT," +
-           "Score          TEXT," +
+           "GameID         INT(11)    PRIMARY KEY AUTO_INCREMENT," +
+           "UserID         INT(11)," +
+           "Date           DATE," +
+           "Team           INT(11)," +
+           "Opponent       INT(11)," +
+           "Score          VARCHAR(512)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Stats(" +
-           "StatsID        INT    PRIMARY KEY," +
-           "GameID         INT," +
-           "UserID         INT," +
+           "StatsID        INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
+           "GameID         INT(11)," +
+           "UserID         INT(11)," +
            "RecYds         INT," +
            "RecTDs         INT," +
            "RecAtt         INT," +
