@@ -1,5 +1,7 @@
 package model;
-import java.util.Date;
+
+import java.time.LocalDate;
+
 
 public class User {
 
@@ -7,17 +9,18 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private Date dateOfBirth;
+	private LocalDate dob;
 	
 	public User() { }
 
 	public User(String email, String password, String firstName,
-			String lastName){
+			String lastName, LocalDate dob){
 		
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.dob = dob;
 	}
 	
 	
@@ -53,12 +56,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public LocalDate getDob() {
+		return dob;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
 	
 	
