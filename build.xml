@@ -211,8 +211,9 @@
             <sourceLanguage name="java" version="1.8"/>
             <ruleset>rulesets/java/design.xml</ruleset>
             <ruleset>java-basic</ruleset>
-            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html">
-                <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
+            <auxclasspath refid="class.path"/>
+            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" toConsole="true">
+                <param name="linkPrefix" value="http://pmd.sourceforge.net/pmd-5.2.3/xref/"/>
             </formatter>
             <fileset dir="${src.dir}">
                 <include name="/*.java"/>
