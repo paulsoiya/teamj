@@ -4,16 +4,18 @@
     <property name="src.dir"     value="src"/>
 	<property name="src.fx"     value="src"/>
 	
-    <property name="build.dir"         value="build"/>
-    <property name="classes.dir"       value="${build.dir}/classes"/>
-    <property name="junit.classes.dir" value="${classes.dir}"/>
-    <property name="jar.dir"           value="${build.dir}/dist"/>
-    <property name="lib.dir"           value="lib"/>
-    <property name="tests.dir"         value="${build.dir}/tests"/>
-    <property name="tests.junit.dir"   value="${tests.dir}/junit"/>
-    <property name="tests.jacoco.dir"  value="${tests.dir}/jacoco"/>
+    <property name="build.dir"          value="build"/>
+    <property name="classes.dir"        value="${build.dir}/classes"/>
+    <property name="junit.classes.dir"  value="${classes.dir}"/>
+    <property name="jar.dir"            value="${build.dir}/dist"/>
+    <property name="lib.dir"            value="lib"/>
+    <property name="tests.dir"          value="${build.dir}/tests"/>
+    <property name="tests.junit.dir"    value="${tests.dir}/junit"/>
+    <property name="tests.jacoco.dir"   value="${tests.dir}/jacoco"/>
+    <property name="tests.pmd.dir"      value="${tests.dir}/pmd"/>
+    <property name="tests.findbugs.dir" value="${tests.dir}/findbugs"/>
     
-    <path id="junit.class.path">
+    <path id="class.path">
         <pathelement location="${junit.classes.dir}"/>
         <fileset dir="${lib.dir}">
             <include name="**/*.jar"/>
@@ -27,6 +29,14 @@
     <taskdef resource="org/jacoco/ant/antlib.xml"
             uri="antlib:org.jacoco.ant"
             classpath="${lib.dir}/jacocoant.jar"/>
+            
+    <taskdef name="pmd"
+            classname="net.sourceforge.pmd.ant.PMDTask"
+            classpathref="class.path"/>
+            
+    <taskdef name="findbugs"
+            classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+            classpath="${lib.dir}/findbugs-ant.jar"/>
 
 	<property name="javafx" value="${lib.dir}/jfxrt.jar"/>
     
@@ -157,10 +167,12 @@
         <delete dir="${test.jacoco.dir}"/>
         <mkdir dir="${tests.junit.dir}"/>
         <mkdir dir="${tests.jacoco.dir}"/>
+        <mkdir dir="${tests.pmd.dir}"/>
+        <mkdir dir="${tests.findbugs.dir}"/>
         <jacoco:coverage>
         <junit printsummary="withOutAndErr" haltonfailure="no" fork="on">
             <classpath>
-                <path refid="junit.class.path" />
+                <path refid="class.path" />
             </classpath>
             <formatter type="xml"/>
             <batchtest todir="${tests.junit.dir}">
@@ -193,6 +205,28 @@
             <xml destfile="${tests.jacoco.dir}/jacoco.xml"/>
             <csv destfile="${tests.jacoco.dir}/jacoco.csv"/>
         </jacoco:report>
+
+        
+        <pmd shortFilenames="true">
+            <sourceLanguage name="java" version="1.8"/>
+            <ruleset>rulesets/java/design.xml</ruleset>
+            <ruleset>java-basic</ruleset>
+            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html">
+                <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
+            </formatter>
+            <fileset dir="${src.dir}">
+                <include name="/*.java"/>
+            </fileset>
+        </pmd>
+        
+        
+        <findbugs home="lib"
+            output="xml"
+            outputFile="${tests.findbugs.dir}/findbugs.xml" >
+            <auxClasspath refid="class.path"/>
+            <sourcePath path="${src.dir}" />
+            <class location="${classes.dir}" />
+        </findbugs>
     </target>
 
 </project>
