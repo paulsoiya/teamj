@@ -107,7 +107,7 @@
             <mkdir dir="build/dist" />
 		
 			<!-- Copy project-libs references -->
-			<copy todir="build/libs">
+			<copy todir="build/dist/libs">
 				<fileset dir="${lib.dir}">
 				</fileset>
 			</copy>
@@ -123,7 +123,7 @@
 		
 			<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
 				<classpath>
-					<fileset dir="build/libs">
+					<fileset dir="build/dist/libs">
 						<include name="*"/>
 					</fileset>
 				</classpath>
@@ -147,13 +147,14 @@
 
 	    <!-- Define what auxilary resources are needed -->
 	    <fx:resources>
-	        <fx:fileset dir="build/dist" includes="lib/*.jar"/>
+	        <fx:fileset dir="build/dist" includes="application.jar"/>
+            <fx:fileset dir="." includes="${lib.dir}/**" type="jar"/>
+            <fx:fileset dir="." includes="."/>
 	    </fx:resources>
 
 	    <!-- What to include into result jar file?
 	         Everything in the build tree -->
-	    <fileset dir="lib">
-            <include name="mysql*.jar"/>
+	    <fileset dir="build/dist">
         </fileset>
         <fileset dir="build/classes">
             <exclude name="**/*.java"/>
@@ -163,6 +164,8 @@
 	    <manifest>
 	        <attribute name="Implementation-Vendor" value="Samples Team"/>
 	        <attribute name="Implementation-Version" value="1.0"/>
+            <attribute name="Main-Class" value="$view.Main"/>
+            <attribute name="Class-Path" value="libs/*.jar" />
 	    </manifest>
 	</fx:jar>
     </target>
