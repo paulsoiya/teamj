@@ -12,12 +12,11 @@ import java.sql.SQLException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.sqlite.SQLiteConfig;
 
 public class BuildProfessionalDB {
 	
-	private static final String DB_URL = "jdbc:sqlite:professional.db";  
-	private static final String DRIVER = "org.sqlite.JDBC";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/individual?user=root&password=password";  
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
 	private static String readAll(Reader rd) throws IOException {
 	    StringBuilder sb = new StringBuilder();
@@ -159,11 +158,11 @@ public class BuildProfessionalDB {
 		public static Connection getConnection() throws ClassNotFoundException {  
 			Class.forName(DRIVER);  
 			Connection connection = null;  
-			try {  
-				SQLiteConfig config = new SQLiteConfig();  
-			    config.enforceForeignKeys(true);  
-			    connection = DriverManager.getConnection(DB_URL,config.toProperties());  
-			} catch (SQLException ex) {}  
+			try {
+			    connection = DriverManager.getConnection(DB_URL);
+			} catch (SQLException ex) {
+            //TODO
+            }
 			return connection;  
 		}
 

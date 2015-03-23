@@ -152,7 +152,12 @@
 
 	    <!-- What to include into result jar file?
 	         Everything in the build tree -->
-	    <fileset dir="build/classes"/>
+	    <fileset dir="lib">
+            <include name="mysql*.jar"/>
+        </fileset>
+        <fileset dir="build/classes">
+            <exclude name="**/*.java"/>
+        </fileset>
 
 	    <!-- Customize jar manifest (optional) -->
 	    <manifest>
