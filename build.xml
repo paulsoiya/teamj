@@ -164,19 +164,28 @@
 	    </manifest>
 	</fx:jar>
     
-    <jar destfile="build/dist/application.jar" filesetmanifest="skip">
-        <zipgroupfileset dir="build/dist" includes="*.jar"/>
-        <zipgroupfileset dir="build/dist/lib" includes="*.jar"/>
-        
+    <jar jarfile="build/dist/lib/external-libs.jar">
+        <zipgroupfileset dir="lib/" excludes="META-INF/**/*">
+            <include name="**/*.jar"/>
+        </zipgroupfileset>
+    </jar>
+    <sleep seconds="1"/>
+    <jar jarfile="build/dist/application.jar">
+        <fileset dir="build/dist" includes="**/*.*"/>
+        <zipfileset src="build/dist/lib/external-libs.jar">
+            <exclude name="META-INF/**/*"/>
+        </zipfileset>
+        <zipfileset src="build/dist/temp-application.jar">
+            <exclude name="META-INF/**/*"/>
+        </zipfileset>
         <manifest>
+            <attribute name="Implementation-Vendor" value="CST316 Team J"/>
+            <attribute name="Implementation-Version" value="1.0"/>
             <attribute name="Main-Class" value="view.Main"/>
         </manifest>
     </jar>
     
-    <zip destfile="build/dist/application.jar">
-        <zipfileset src="build/dist/temp-application.jar"
-        excludes="META-INF/**/*"/>
-    </zip>
+    <delete file="build/dist/lib/external-libs.jar"/>
     <delete file="build/dist/temp-application.jar"/>
     </target>
     
