@@ -102,12 +102,11 @@
 	<target name="fx-compile">
 		<delete dir="build" />
 			<mkdir dir="build/src" />
-			<mkdir dir="build/libs" />
 			<mkdir dir="build/classes" />
             <mkdir dir="build/dist" />
 		
 			<!-- Copy project-libs references -->
-			<copy todir="build/dist/libs">
+			<copy todir="build/dist/lib">
 				<fileset dir="${lib.dir}">
 				</fileset>
 			</copy>
@@ -123,7 +122,7 @@
 		
 			<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
 				<classpath>
-					<fileset dir="build/dist/libs">
+					<fileset dir="build/dist/lib">
 						<include name="*"/>
 					</fileset>
 				</classpath>
@@ -140,16 +139,14 @@
 
 	<target name="fx-deploy" depends="fx-compile">
 
-	<fx:jar destfile="build/dist/application.jar">
+	<fx:jar destfile="build/dist/temp-application.jar">
 	    <!-- Details about application -->
 	    <fx:application name="CST316 Sports"
 	            mainClass="view.Main"/>
 
 	    <!-- Define what auxilary resources are needed -->
 	    <fx:resources>
-	        <fx:fileset dir="build/dist" includes="application.jar"/>
-            <fx:fileset dir="." includes="${lib.dir}/**" type="jar"/>
-            <fx:fileset dir="." includes="."/>
+            <fx:fileset dir="lib" includes="*.jar"/>
 	    </fx:resources>
 
 	    <!-- What to include into result jar file?
@@ -162,12 +159,25 @@
 
 	    <!-- Customize jar manifest (optional) -->
 	    <manifest>
-	        <attribute name="Implementation-Vendor" value="Samples Team"/>
+	        <attribute name="Implementation-Vendor" value="CST316 Team J"/>
 	        <attribute name="Implementation-Version" value="1.0"/>
-            <attribute name="Main-Class" value="$view.Main"/>
-            <attribute name="Class-Path" value="libs/*.jar" />
 	    </manifest>
 	</fx:jar>
+    
+    <jar destfile="build/dist/application.jar" filesetmanifest="skip">
+        <zipgroupfileset dir="build/dist" includes="*.jar"/>
+        <zipgroupfileset dir="build/dist/lib" includes="*.jar"/>
+        
+        <manifest>
+            <attribute name="Main-Class" value="view.Main"/>
+        </manifest>
+    </jar>
+    
+    <zip destfile="build/dist/application.jar">
+        <zipfileset src="build/dist/temp-application.jar"
+        excludes="META-INF/**/*"/>
+    </zip>
+    <delete file="build/dist/temp-application.jar"/>
     </target>
     
     <target name="run-tests" >
@@ -219,9 +229,12 @@
             <sourceLanguage name="java" version="1.8"/>
             <ruleset>rulesets/java/design.xml</ruleset>
             <ruleset>java-basic</ruleset>
-            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html">
+            <ruleset>java-naming</ruleset>
+            <ruleset>java-empty</ruleset>
+            <formatter type="html" toFile="${tests.pmd.dir}/pmd.html">
                 <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
             </formatter>
+            <auxclasspath refid="class.path"/>
             <fileset dir="${src.dir}">
                 <include name="/*.java"/>
             </fileset>
