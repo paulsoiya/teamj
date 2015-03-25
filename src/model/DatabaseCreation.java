@@ -20,8 +20,17 @@ public class DatabaseCreation {
           c = DriverManager.getConnection("jdbc:mysql://localhost:3306/professional?" +
                                           "user=root&password=password");
          stmt = c.createStatement();
+         
+         String sql = "drop table if exists Stats;";
+         stmt.executeUpdate(sql);
+         sql = "drop table if exists GameLog;";
+         stmt.executeUpdate(sql);
+         sql = "drop table if exists Player;";
+         stmt.executeUpdate(sql);
+         sql = "drop table if exists Team;";
+         stmt.executeUpdate(sql);
 
-         String sql = "CREATE TABLE Team(" +
+         sql = "CREATE TABLE Team(" +
             "TeamID         VARCHAR(4)    PRIMARY KEY," +
             "TeamName       VARCHAR(64)," +
             "Logo           VARCHAR(512)," +
@@ -92,7 +101,16 @@ public class DatabaseCreation {
                    "user=root&password=password");
            stmt = c.createStatement();
            
-           String sql = "CREATE TABLE User(" +
+           String sql = "drop table if exists Stats;";
+           stmt.executeUpdate(sql);
+           sql = "drop table if exists GameLog;";
+           stmt.executeUpdate(sql);
+           sql = "drop table if exists Sport;";
+           stmt.executeUpdate(sql);
+           sql = "drop table if exists User;";
+           stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE User(" +
            "UserID         INT(11)    PRIMARY KEY   AUTO_INCREMENT," +
            "Email          VARCHAR(512)," +
            "Password       VARCHAR(16)," +
