@@ -45,8 +45,8 @@ public class DatabaseCreation {
          sql = "CREATE TABLE GameLog(" +
             "GameID         VARCHAR(64)    PRIMARY KEY," +
             "Date           VARCHAR(32)," +
-            "Team           INT," +
-            "Opponent       INT," +
+            "Team           VARCHAR(4)," +
+            "Opponent       VARCHAR(4)," +
             "Score          VARCHAR(16)," +
             "FOREIGN KEY(Team) REFERENCES Team(TeamID)," +
             "FOREIGN KEY(Opponent) REFERENCES Team(TeamID));";
@@ -54,8 +54,8 @@ public class DatabaseCreation {
 
          sql = "CREATE TABLE Stats(" +
             "StatsID        INT    PRIMARY KEY    AUTO_INCREMENT," +
-            "GameID         INT," +
-            "PlayerID       INT," +
+            "GameID         VARCHAR(64)," +
+            "PlayerID       VARCHAR(128)," +
             "RecYds         INT," +
             "RecTDs         INT," +
             "RecAtt         INT," +

@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class BuildProfessionalDB {
 	
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/individual?user=root&password=password";  
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/professional?user=root&password=password";  
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
 	private static String readAll(Reader rd) throws IOException {
@@ -193,9 +193,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -225,9 +225,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -258,9 +258,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -293,9 +293,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -326,9 +326,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -359,9 +359,9 @@ public class BuildProfessionalDB {
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
                             stmt.setString(2, player.get("id").toString());
-                            stmt.setString(3, player.get("yds").toString());
-                            stmt.setString(4, player.get("td").toString());
-                            stmt.setString(5, player.getString("att").toString());
+                            stmt.setString(3, player.get("yds").toInteger());
+                            stmt.setString(4, player.get("td").toInteger());
+                            stmt.setString(5, player.getString("att").toInteger());
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -381,7 +381,7 @@ public class BuildProfessionalDB {
                         c = getConnection();
                         c.setAutoCommit(false);
                         
-                        String sql = "INSERT INTO GameLog (GameID, Date, Team, Oppenent, Score) " +
+                        String sql = "INSERT INTO GameLog (GameID, Date, Team, Opponent, Score) " +
                         "VALUES (?,?,?,?,?)";
                         stmt = c.prepareStatement(sql);
                         stmt.setString(1, game.get("id").toString());
