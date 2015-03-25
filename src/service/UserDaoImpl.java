@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 					+ "',' " + user.getDob().getYear() + "-"
 					+ user.getDob().getMonthValue() + "-"
 					+ user.getDob().getDayOfMonth() + "')";
-			System.out.println(sql);
+			
 			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 
 			rs = stmt.getGeneratedKeys();
