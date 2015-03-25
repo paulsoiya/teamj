@@ -43,7 +43,7 @@ public class DatabaseCreation {
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE GameLog(" +
-            "GameID         INT    PRIMARY KEY," +
+            "GameID         VARCHAR(64)    PRIMARY KEY," +
             "Date           VARCHAR(32)," +
             "Team           INT," +
             "Opponent       INT," +
@@ -53,7 +53,7 @@ public class DatabaseCreation {
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE Stats(" +
-            "StatsID        INT    PRIMARY KEY," +
+            "StatsID        INT    PRIMARY KEY    AUTO_INCREMENT," +
             "GameID         INT," +
             "PlayerID       INT," +
             "RecYds         INT," +
