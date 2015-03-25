@@ -1,7 +1,6 @@
 package service;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -11,28 +10,26 @@ import model.User;
  * User Dao 
  * 
  * @author Paul Soiya II
- * @version March 19, 2015
+ * @version March 24, 2015
  */
 public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int createUser(User user) {
-		Connection con = null;
+		Connection con = DaoFactory.createConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
 		int autoId = -1;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(DaoFactory.CONNECTION_URL);
 			stmt = con.createStatement();
-
-			String sql = "INSERT INTO Users "
+			String sql = "INSERT INTO User "
 					+ "(Email, Password, FirstName, LastName, BirthDate) "
-					+ "VALUES(" + user.getEmail() + "," + user.getPassword()
-					+ "," + user.getFirstName() + "," + user.getLastName()
-					+ ", " + user.getDob().getYear() + "-"
+					+ "VALUES('" + user.getEmail() + "','" + user.getPassword()
+					+ "','" + user.getFirstName() + "','" + user.getLastName()
+					+ "',' " + user.getDob().getYear() + "-"
 					+ user.getDob().getMonthValue() + "-"
-					+ user.getDob().getDayOfMonth() + ")";
+					+ user.getDob().getDayOfMonth() + "')";
+			System.out.println(sql);
 			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 
 			rs = stmt.getGeneratedKeys();
@@ -46,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 		} finally {
 			try {
 				stmt.close();
-				con.close();
+				DaoFactory.closeConnection(con);
 			} catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
 						+ e.getMessage());
@@ -64,6 +61,12 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User findUser(int id) {
 
+		return null;
+	}
+
+	@Override
+	public User findUser(String email) {
+		
 		return null;
 	}
 
