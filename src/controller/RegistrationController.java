@@ -81,8 +81,7 @@ public class RegistrationController
     	
     	int userId = usrDao.createUser(usr);
     	
-    	System.out.println("userId = " + userId);
-    	//controller.setScreen(view.Main.homeName);
+    	controller.setScreen(view.Main.homeName);
     }
                     
 	
