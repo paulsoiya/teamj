@@ -240,10 +240,10 @@
             <ruleset>java-basic</ruleset>
             <ruleset>java-naming</ruleset>
             <ruleset>java-empty</ruleset>
-            <formatter type="html" toFile="${tests.pmd.dir}/pmd.html">
-                <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
-            </formatter>
             <auxclasspath refid="class.path"/>
+            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" toConsole="true">
+                <param name="linkPrefix" value="http://pmd.sourceforge.net/pmd-5.2.3/xref/"/>
+            </formatter>
             <fileset dir="${src.dir}">
                 <include name="/*.java"/>
             </fileset>
