@@ -9,14 +9,33 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import service.*;
 
 public class RegistrationController 
 				implements Initializable, view.ControlledScreen{
 
 	view.ScreensController controller;
+	
+	@FXML
+	private TextField firstNameTxt;
+	@FXML
+	private TextField lastNameTxt;
+	@FXML
+	private DatePicker dobPicker;
+	@FXML
+	private TextField emailTxt;
+	@FXML
+	private PasswordField passwordTxt;
+	@FXML
+	private PasswordField confirmPasswordTxt;
+	
 	
 	public RegistrationController(){
 		controller = new view.ScreensController();
@@ -50,7 +69,18 @@ public class RegistrationController
      */
     @FXML
     private void changeToHome(ActionEvent e){
-         controller.setScreen(view.Main.homeName);
+    	
+    	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    	UserDao usrDao = daoFact.getUserDao();
+    	
+    	User usr = new User(emailTxt.getText(),
+    						passwordTxt.getText(),
+    						firstNameTxt.getText(),
+    						lastNameTxt.getText(),
+    						dobPicker.getValue());
+    	
+    	usrDao.createUser(usr);
+    	controller.setScreen(view.Main.homeName);
     }
                     
 	

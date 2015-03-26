@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import service.*;
 
 public class LoginController 
 				implements Initializable, view.ControlledScreen{
@@ -50,6 +51,9 @@ public class LoginController
 	 */                
     @FXML
     private void changeToHome(ActionEvent e){
+       DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+       UserDao usrDao = daoFact.getUserDao();
+       usrDao.findUser("testemail1@asu.edu");
        controller.setScreen(view.Main.homeName);
     }
 

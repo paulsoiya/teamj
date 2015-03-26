@@ -102,12 +102,11 @@
 	<target name="fx-compile">
 		<delete dir="build" />
 			<mkdir dir="build/src" />
-			<mkdir dir="build/libs" />
 			<mkdir dir="build/classes" />
             <mkdir dir="build/dist" />
 		
 			<!-- Copy project-libs references -->
-			<copy todir="build/libs">
+			<copy todir="build/dist/lib">
 				<fileset dir="${lib.dir}">
 				</fileset>
 			</copy>
@@ -123,7 +122,7 @@
 		
 			<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
 				<classpath>
-					<fileset dir="build/libs">
+					<fileset dir="build/dist/lib">
 						<include name="*"/>
 					</fileset>
 				</classpath>
@@ -140,26 +139,54 @@
 
 	<target name="fx-deploy" depends="fx-compile">
 
-	<fx:jar destfile="build/dist/application.jar">
+	<fx:jar destfile="build/dist/temp-application.jar">
 	    <!-- Details about application -->
 	    <fx:application name="CST316 Sports"
 	            mainClass="view.Main"/>
 
 	    <!-- Define what auxilary resources are needed -->
 	    <fx:resources>
-	        <fx:fileset dir="build/dist" includes="lib/*.jar"/>
+            <fx:fileset dir="lib" includes="*.jar"/>
 	    </fx:resources>
 
 	    <!-- What to include into result jar file?
 	         Everything in the build tree -->
-	    <fileset dir="build/classes"/>
+	    <fileset dir="build/dist">
+        </fileset>
+        <fileset dir="build/classes">
+            <exclude name="**/*.java"/>
+        </fileset>
 
 	    <!-- Customize jar manifest (optional) -->
 	    <manifest>
-	        <attribute name="Implementation-Vendor" value="Samples Team"/>
+	        <attribute name="Implementation-Vendor" value="CST316 Team J"/>
 	        <attribute name="Implementation-Version" value="1.0"/>
 	    </manifest>
 	</fx:jar>
+    
+    <jar jarfile="build/dist/lib/external-libs.jar">
+        <zipgroupfileset dir="lib/" excludes="META-INF/**/*">
+            <include name="**/mysql*.jar"/>
+        </zipgroupfileset>
+    </jar>
+    <sleep seconds="1"/>
+    <jar jarfile="build/dist/application.jar">
+        <fileset dir="build/dist" includes="**/*.*"/>
+        <zipfileset src="build/dist/lib/external-libs.jar">
+            <exclude name="META-INF/**/*"/>
+        </zipfileset>
+        <zipfileset src="build/dist/temp-application.jar">
+            <exclude name="META-INF/**/*"/>
+        </zipfileset>
+        <manifest>
+            <attribute name="Implementation-Vendor" value="CST316 Team J"/>
+            <attribute name="Implementation-Version" value="1.0"/>
+            <attribute name="Main-Class" value="view.Main"/>
+        </manifest>
+    </jar>
+    
+    <delete file="build/dist/lib/external-libs.jar"/>
+    <delete file="build/dist/temp-application.jar"/>
     </target>
     
     <target name="run-tests" >
@@ -211,6 +238,8 @@
             <sourceLanguage name="java" version="1.8"/>
             <ruleset>rulesets/java/design.xml</ruleset>
             <ruleset>java-basic</ruleset>
+            <ruleset>java-naming</ruleset>
+            <ruleset>java-empty</ruleset>
             <auxclasspath refid="class.path"/>
             <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" toConsole="true">
                 <param name="linkPrefix" value="http://pmd.sourceforge.net/pmd-5.2.3/xref/"/>
