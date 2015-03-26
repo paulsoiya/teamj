@@ -189,7 +189,7 @@
     <delete file="build/dist/temp-application.jar"/>
     </target>
     
-    <target name="run-tests" >
+    <target name="run-tests" depends="fx-compile">
         <delete dir="${test.junit.dir}"/>
         <delete dir="${test.jacoco.dir}"/>
         <mkdir dir="${tests.junit.dir}"/>

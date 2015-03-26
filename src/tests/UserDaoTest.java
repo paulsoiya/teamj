@@ -49,13 +49,13 @@ public class UserDaoTest {
 	@Test
 	public void testCreateUser() {
         assertTrue(dao.createUser(user1));
-        assertFalse(dao.createUser(user1));
+        assertTrue(dao.createUser(user2));
 	}
 	
 	@Test
 	public void testDeleteUser(){
 		assertTrue(dao.deleteUser(user1.getEmail()));
-		assertFalse(dao.deleteUser(user1.getEmail()));
+        assertTrue(dao.deleteUser(user2.getEmail()));
 	}
 
 }

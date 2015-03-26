@@ -2,6 +2,7 @@ package service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import model.User;
@@ -119,22 +120,24 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean deleteUser(String email) {
 		Connection con = DaoFactory.createConnection();
-		Statement stmt = null;
-		boolean result = false;
+		PreparedStatement stmt = null;
+		boolean result = true;
 		try {
-			stmt = con.createStatement();
 			String sql = "DELETE FROM User "
-					+ "WHERE email = " + email;
+					+ "WHERE Email = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
 					
-			stmt.executeUpdate(sql);
-			result = true;
+			stmt.execute();
 		} catch (Exception e) {
+            result = false;
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
 				stmt.close();
 				DaoFactory.closeConnection(con);
 			} catch (Exception e) {
+                result = false;
 				System.err.println(e.getClass().getName() + ": "
 						+ e.getMessage());
 			}
