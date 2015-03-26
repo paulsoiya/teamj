@@ -15,11 +15,11 @@ import model.User;
 public class UserDaoImpl implements UserDao {
 
 	@Override
-	public int createUser(User user) {
+	public boolean createUser(User user) {
 		Connection con = DaoFactory.createConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
-		int autoId = -1;
+		boolean result = true;
 		try {
 			stmt = con.createStatement();
 			String sql = "INSERT INTO User "
@@ -30,33 +30,58 @@ public class UserDaoImpl implements UserDao {
 					+ user.getDob().getMonthValue() + "-"
 					+ user.getDob().getDayOfMonth() + "')";
 			
-			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-
-			rs = stmt.getGeneratedKeys();
-
-			if (rs.next()) {
-				autoId = rs.getInt(1);
-			}
+			stmt.executeUpdate(sql);
 
 		} catch (Exception e) {
+            result = false;
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
 				stmt.close();
 				DaoFactory.closeConnection(con);
 			} catch (Exception e) {
+                result = false;
 				System.err.println(e.getClass().getName() + ": "
 						+ e.getMessage());
 			}
 		}
-		return autoId;
+		return result;
 	}
 
 	@Override
 	public boolean updateUser(User user) {
+        Connection con = DaoFactory.createConnection();
+        Statement stmt = null;
+        ResultSet rs = null;
+        boolean result = true;
+        try {
+            stmt = con.createStatement();
+            String sql = "INSERT INTO User "
+            + "(Email, Password, FirstName, LastName, BirthDate) "
+            + "VALUES('" + user.getEmail() + "','" + user.getPassword()
+            + "','" + user.getFirstName() + "','" + user.getLastName()
+            + "',' " + user.getDob().getYear() + "-"
+            + user.getDob().getMonthValue() + "-"
+            + user.getDob().getDayOfMonth() + "')";
+            
+            stmt.executeUpdate(sql);
+            
+        } catch (Exception e) {
+            result = false;
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                stmt.close();
+                DaoFactory.closeConnection(con);
+            } catch (Exception e) {
+                result = false;
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
 
-		return false;
-	}
 
 	@Override
 	public User findUser(int id) {
@@ -65,9 +90,30 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User findUser(String email) {
-		
-		return null;
+	public int findUser(String email) {
+        Connection con = DaoFactory.createConnection();
+        Statement stmt = null;
+        ResultSet rs = null;
+        int id = -1;
+        try {
+        stmt = con.createStatement();
+        
+        String sql = "SELECT UserID FROM User WHERE Email='" + email + "';";
+        rs = stmt.executeQuery(sql);
+        if(rs.next())
+            id = rs.getInt(1);
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                stmt.close();
+                DaoFactory.closeConnection(con);
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+		return id;
 	}
 
 }

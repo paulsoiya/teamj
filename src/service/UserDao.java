@@ -9,7 +9,7 @@ public interface UserDao {
 	 * @param user
 	 * @return	the auto increment id of the new user
 	 */
-	public int createUser(User user);
+	public boolean createUser(User user);
 	
 	/**
 	 * Updates a user in the User table
@@ -30,6 +30,6 @@ public interface UserDao {
 	 * @param email
 	 * @return	the User object
 	 */
-	public User findUser(String email);
+	public int findUser(String email);
 	
 }

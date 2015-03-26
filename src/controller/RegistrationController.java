@@ -79,8 +79,7 @@ public class RegistrationController
     						lastNameTxt.getText(),
     						dobPicker.getValue());
     	
-    	int userId = usrDao.createUser(usr);
-    	
+    	usrDao.createUser(usr);
     	controller.setScreen(view.Main.homeName);
     }
                     

@@ -48,8 +48,8 @@ public class UserDaoTest {
 
 	@Test
 	public void testCreateUser() {
-		assertTrue(dao.createUser(user1) > 0);
-		assertFalse(dao.createUser(user1) > 0);
+        dao.createUser(user1);
+        dao.createUser(user2);
 	}
 
 }
