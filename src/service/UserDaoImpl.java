@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.sql.SQLException;
 
 import model.User;
 
@@ -17,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean createUser(User user) {
-		Connection con = DaoFactory.createConnection();
+		Connection con = DaoFactory.createConnectionIndividual();
 		Statement stmt = null;
 		ResultSet rs = null;
 		boolean result = true;
@@ -51,7 +52,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean updateUser(User user) {
-        Connection con = DaoFactory.createConnection();
+        Connection con = DaoFactory.createConnectionIndividual();
         Statement stmt = null;
         ResultSet rs = null;
         boolean result = true;
@@ -92,7 +93,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int findUser(String email) {
-        Connection con = DaoFactory.createConnection();
+        Connection con = DaoFactory.createConnectionIndividual();
         Statement stmt = null;
         ResultSet rs = null;
         int id = -1;
@@ -119,7 +120,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean deleteUser(String email) {
-		Connection con = DaoFactory.createConnection();
+		Connection con = DaoFactory.createConnectionIndividual();
 		PreparedStatement stmt = null;
 		boolean result = true;
 		try {
@@ -144,5 +145,28 @@ public class UserDaoImpl implements UserDao {
 		}
 		return result;
 	}
+    
+    @Override
+    public boolean loginUser(String email, String password) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean result = true;
+        String storedPassword = null;
+        try {
+            String sql = "SELECT Password FROM User WHERE UserID = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, findUser(email));
+            rs = stmt.executeQuery();
+            if(rs.next())
+                storedPassword = rs.getString(1);
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        return passwordMatch(password, storedPassword);
+    }
 
+    private boolean passwordMatch(String pass1, String pass2) {
+        return pass1.equals(pass2);
+    }
 }

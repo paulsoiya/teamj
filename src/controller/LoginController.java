@@ -12,12 +12,22 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import service.*;
 
 public class LoginController 
 				implements Initializable, view.ControlledScreen{
 
 	view.ScreensController controller;
+                    
+    @FXML
+    private TextField emailTxt;
+    @FXML
+    private PasswordField passwordTxt;
+    @FXML
+    private Label incorrectLabel;
 	
 	public LoginController(){
 		controller = new view.ScreensController();
@@ -51,10 +61,12 @@ public class LoginController
 	 */                
     @FXML
     private void changeToHome(ActionEvent e){
-       DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
        UserDao usrDao = daoFact.getUserDao();
-       usrDao.findUser("testemail1@asu.edu");
-       controller.setScreen(view.Main.homeName);
+        if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText()) == true) {
+           controller.setScreen(view.Main.homeName);
+        } else
+            incorrectLabel.setText("Invail Email or Password.");
     }
 
 	/**

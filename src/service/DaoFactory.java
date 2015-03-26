@@ -2,6 +2,7 @@ package service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Dao factory for the SQLite database
@@ -12,27 +13,42 @@ import java.sql.DriverManager;
 public class DaoFactory extends AbstractDaoFactory {
 
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+	public static final String CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+    public static final String CONNECTION_URL_PRO = "jdbc:mysql://localhost:3306/professional?user=root&password=password";
 
-	public static Connection createConnection(){
+	public static Connection createConnectionIndividual(){
 		Connection con = null;
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(DaoFactory.CONNECTION_URL);
+			con = DriverManager.getConnection(DaoFactory.CONNECTION_URL_IND);
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
 		
 		return con;
 	}
+    
+    public static Connection createConnectionProfessional(){
+        Connection con = null;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(DaoFactory.CONNECTION_URL_PRO);
+            
+        }catch(Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        
+        return con;
+    }
 	
 	public static void closeConnection(Connection con){
 		try{
 			con.close();
 		}catch(Exception e){
-			e.printStackTrace();
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
 	}
 	

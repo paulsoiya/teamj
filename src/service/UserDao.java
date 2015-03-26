@@ -38,5 +38,12 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean deleteUser(String email);
+    
+    /**
+     * Finds a user and logs them in if password is correct
+     * @param email
+     * @return true if passwords match
+     */
+    public boolean loginUser(String email, String password);
 	
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -16,22 +17,24 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="186.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="187.0" minHeight="10.0" prefHeight="147.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="187.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField alignment="TOP_CENTER" promptText="Username / Email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <PasswordField alignment="TOP_CENTER" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#changeToHome" prefHeight="26.0" prefWidth="200.0" text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#changeToRegistration" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: orange;" text="Sign Up" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" onAction="#changeToQuickCompare" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: green;" text="Quick Compare" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="197.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="emailTxt" alignment="TOP_CENTER" promptText="Username / Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="passwordTxt" alignment="TOP_CENTER" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#changeToHome" prefHeight="26.0" prefWidth="200.0" text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#changeToRegistration" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: orange;" text="Sign Up" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#changeToQuickCompare" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: green;" text="Quick Compare" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" prefHeight="16.0" prefWidth="197.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="incorrectLabel" alignment="CENTER" prefHeight="16.0" prefWidth="208.0" textFill="#d31f07" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

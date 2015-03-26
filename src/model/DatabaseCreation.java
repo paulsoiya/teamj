@@ -77,14 +77,16 @@ public class DatabaseCreation {
             "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
             "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
          stmt.executeUpdate(sql);
+         stmt.close();
+         c.close();
       } catch (Exception e) {
          System.err.println(e.getClass().getName() + ": " + e.getMessage());
       } finally {
          try {
-            stmt.close();
-            c.close();
-         } catch (Exception e){
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            if(c != null)
+                c.close();
+         } catch (SQLException se){
+            se.printStackTrace();
          }
       }
    }
@@ -111,8 +113,8 @@ public class DatabaseCreation {
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE User(" +
-           "UserID         INT(11)    PRIMARY KEY   AUTO_INCREMENT," +
-           "Email          VARCHAR(512)," +
+           "UserID         INT(11)       PRIMARY KEY    AUTO_INCREMENT," +
+           "Email          VARCHAR(512)  UNIQUE," +
            "Password       VARCHAR(16)," +
            "FirstName      VARCHAR(32)," +
            "LastName       VARCHAR(32)," + 
@@ -151,14 +153,16 @@ public class DatabaseCreation {
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
+           stmt.close();
+           c.close();
        } catch (Exception e) {
            System.err.println(e.getClass().getName() + ": " + e.getMessage());
        } finally {
            try {
-               stmt.close();
-               c.close();
-           } catch (Exception e){
-               System.err.println(e.getClass().getName() + ": " + e.getMessage());
+               if(c != null)
+                   c.close();
+           } catch (SQLException se){
+               se.printStackTrace();
            }
        }
    }

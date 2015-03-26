@@ -10,7 +10,7 @@ public class SportDaoImpl implements SportDao{
 
 	@Override
 	public boolean addSport(Sport sport) {
-		Connection con = DaoFactory.createConnection();
+		Connection con = DaoFactory.createConnectionIndividual();
 		Statement stmt = null;
 		boolean result = false;
 		try {
@@ -38,7 +38,7 @@ public class SportDaoImpl implements SportDao{
 
 	@Override
 	public boolean deleteSport(String sportName) {
-		Connection con = DaoFactory.createConnection();
+		Connection con = DaoFactory.createConnectionIndividual();
 		Statement stmt = null;
 		boolean result = false;
 		try {
