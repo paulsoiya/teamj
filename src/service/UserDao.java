@@ -45,5 +45,7 @@ public interface UserDao {
      * @return true if passwords match
      */
     public boolean loginUser(String email, String password);
+    
+    public boolean passwordMatch(String pass1, String pass2);
 	
 }

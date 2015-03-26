@@ -57,5 +57,13 @@ public class UserDaoTest {
 		assertTrue(dao.deleteUser(user1.getEmail()));
         assertTrue(dao.deleteUser(user2.getEmail()));
 	}
+    
+    @Test
+    public void testPasswordMatch() {
+        assertTrue(dao.passwordMatch("password", "password"));
+        assertFalse(dao.passwordMatch("null", null));
+        assertFalse(dao.passwordMatch("password", "pass"));
+        assertFalse(dao.passwordMatch(null, "password"));
+    }
 
 }

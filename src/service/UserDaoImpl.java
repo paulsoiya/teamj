@@ -165,8 +165,11 @@ public class UserDaoImpl implements UserDao {
         }
         return passwordMatch(password, storedPassword);
     }
-
-    private boolean passwordMatch(String pass1, String pass2) {
+    
+    @Override
+    public boolean passwordMatch(String pass1, String pass2) {
+        if (pass1 == null || pass2 == null)
+            return false;
         return pass1.equals(pass2);
     }
 }
