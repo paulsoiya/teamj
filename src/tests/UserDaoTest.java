@@ -51,5 +51,11 @@ public class UserDaoTest {
         assertTrue(dao.createUser(user1));
         assertFalse(dao.createUser(user1));
 	}
+	
+	@Test
+	public void testDeleteUser(){
+		assertTrue(dao.deleteUser(user1.getEmail()));
+		assertFalse(dao.deleteUser(user1.getEmail()));
+	}
 
 }

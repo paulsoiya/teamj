@@ -32,4 +32,11 @@ public interface UserDao {
 	 */
 	public int findUser(String email);
 	
+	/**
+	 * Deletes a user with the specified email
+	 * @param email
+	 * @return
+	 */
+	public boolean deleteUser(String email);
+	
 }

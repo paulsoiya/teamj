@@ -9,7 +9,14 @@ public interface SportDao {
 	 * @param sport
 	 * @return	the auto increment id of the new sport
 	 */
-	public int addSport(Sport sport);
+	public boolean addSport(Sport sport);
+	
+	/**
+	 * Deletes a sport specified by name
+	 * @param sportName
+	 * @return
+	 */
+	public boolean deleteSport(String sportName);
 	
 	
 }
