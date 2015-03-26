@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ServerSetupTest {
     
     @Test
-    public void DatabaseCreationTest() {
+    public void testDatabaseCreation() {
         File proDB = new File("professional.db");
         File indDB = new File("individual.db");
         assertTrue(proDB.exists());
