@@ -65,7 +65,4 @@ public class SportDaoImpl implements SportDao{
 		return result;
 	}
 
-
-
-	
 }
