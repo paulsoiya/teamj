@@ -196,7 +196,7 @@
         <mkdir dir="${tests.jacoco.dir}"/>
         <mkdir dir="${tests.pmd.dir}"/>
         <mkdir dir="${tests.findbugs.dir}"/>
-        <jacoco:coverage>
+        <jacoco:coverage destfile="lib/jacoco.exec">
         <junit printsummary="withOutAndErr" haltonfailure="no" fork="on">
             <classpath>
                 <path refid="class.path" />
@@ -218,7 +218,7 @@
         
         <jacoco:report>
             <executiondata>
-                <file file="${lib.dir}/jacoco.exec"/>
+                <file file="lib/jacoco.exec"/>
             </executiondata>
             <structure name="CST316 Example">
                 <classfiles>

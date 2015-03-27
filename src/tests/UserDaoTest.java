@@ -47,19 +47,19 @@ public class UserDaoTest {
 	}
 
 	@Test
-	public void testCreateUser() {
+	public void createUserTest() {
         assertTrue(dao.createUser(user1));
         assertTrue(dao.createUser(user2));
 	}
 	
 	@Test
-	public void testDeleteUser(){
+	public void deleteUserTest(){
 		assertTrue(dao.deleteUser(user1.getEmail()));
         assertTrue(dao.deleteUser(user2.getEmail()));
 	}
     
     @Test
-    public void testPasswordMatch() {
+    public void PasswordMatchTest() {
         assertTrue(dao.passwordMatch("password", "password"));
         assertFalse(dao.passwordMatch("null", null));
         assertFalse(dao.passwordMatch("password", "pass"));
