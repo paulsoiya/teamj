@@ -1,5 +1,6 @@
 package service;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -9,18 +10,19 @@ import model.Sport;
 public class SportDaoImpl implements SportDao{
 
 	@Override
-	public boolean addSport(Sport sport) {
+	public boolean createSport(Sport sport) {
 		Connection con = DaoFactory.createConnectionIndividual();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		boolean result = false;
 		try {
-			stmt = con.createStatement();
 			String sql = "INSERT INTO User "
 					+ "(SportName, Picture) "
-					+ "VALUES('" + sport.getName() + "','" + sport.getPicture() + "')";
-			
-			stmt.executeUpdate(sql);
-
+					+ "VALUES(?,?)";
+		
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, sport.getName());
+			stmt.setString(2, sport.getPicture());
+			stmt.execute();
 			result = true;
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -39,14 +41,15 @@ public class SportDaoImpl implements SportDao{
 	@Override
 	public boolean deleteSport(String sportName) {
 		Connection con = DaoFactory.createConnectionIndividual();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		boolean result = false;
 		try {
-			stmt = con.createStatement();
 			String sql = "DELETE FROM Sport "
-					+ "WHERE SportName = " + sportName;
-					
-			stmt.executeUpdate(sql);
+					+ "WHERE SportName = ?";
+			
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, sportName);
+			stmt.execute();
 			result = true;
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -61,6 +64,8 @@ public class SportDaoImpl implements SportDao{
 		}
 		return result;
 	}
+
+
 
 	
 }
