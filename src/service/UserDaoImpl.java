@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import model.User;
 
@@ -15,24 +16,27 @@ import model.User;
  * @version March 24, 2015
  */
 public class UserDaoImpl implements UserDao {
+    
+    public User currentUser = new User("", "", "", "", null);
 
 	@Override
 	public boolean createUser(User user) {
 		Connection con = DaoFactory.createConnectionIndividual();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		boolean result = true;
 		try {
-			stmt = con.createStatement();
-			String sql = "INSERT INTO User "
-					+ "(Email, Password, FirstName, LastName, BirthDate) "
-					+ "VALUES('" + user.getEmail() + "','" + user.getPassword()
-					+ "','" + user.getFirstName() + "','" + user.getLastName()
-					+ "',' " + user.getDob().getYear() + "-"
+			String sql = "INSERT INTO User (Email, Password, FirstName, LastName, BirthDate)"
+					+ "VALUES(?, ?, ?, ?, ?)";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getFirstName());
+            stmt.setString(4, user.getLastName());
+            stmt.setString(5, user.getDob().getYear() + "-"
 					+ user.getDob().getMonthValue() + "-"
-					+ user.getDob().getDayOfMonth() + "')";
-			
-			stmt.executeUpdate(sql);
+					+ user.getDob().getDayOfMonth());
+			stmt.execute();
 
 		} catch (Exception e) {
             result = false;
@@ -53,20 +57,21 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public boolean updateUser(User user) {
         Connection con = DaoFactory.createConnectionIndividual();
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
         boolean result = true;
         try {
-            stmt = con.createStatement();
-            String sql = "INSERT INTO User "
-            + "(Email, Password, FirstName, LastName, BirthDate) "
-            + "VALUES('" + user.getEmail() + "','" + user.getPassword()
-            + "','" + user.getFirstName() + "','" + user.getLastName()
-            + "',' " + user.getDob().getYear() + "-"
-            + user.getDob().getMonthValue() + "-"
-            + user.getDob().getDayOfMonth() + "')";
-            
-            stmt.executeUpdate(sql);
+            String sql = "UPDATE User set Password =?, FirstName=?, LastName=?, BirthDate=?"
+            + "WHERE email=?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, user.getPassword());
+            stmt.setString(2, user.getFirstName());
+            stmt.setString(3, user.getLastName());
+            stmt.setString(4, user.getDob().getYear() + "-"
+                           + user.getDob().getMonthValue() + "-"
+                           + user.getDob().getDayOfMonth());
+            stmt.setString(5, user.getEmail());
+            stmt.executeUpdate();
             
         } catch (Exception e) {
             result = false;
@@ -84,26 +89,25 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
-
 	@Override
-	public User findUser(int id) {
-
-		return null;
-	}
-
-	@Override
-	public int findUser(String email) {
+	public User findUser(String email) {
         Connection con = DaoFactory.createConnectionIndividual();
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
-        int id = -1;
+        User user = new User("" , "", "", "", null);
         try {
-        stmt = con.createStatement();
-        
-        String sql = "SELECT UserID FROM User WHERE Email='" + email + "';";
-        rs = stmt.executeQuery(sql);
-        if(rs.next())
-            id = rs.getInt(1);
+            String sql = "SELECT * FROM User WHERE Email=?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
+            while(rs.next()) {
+                String pwd = rs.getString("Password");
+                String fname = rs.getString("FirstName");
+                String lname = rs.getString("LastName");
+                LocalDate dob = rs.getDate("BirthDate").toLocalDate();
+                user = new User(email, pwd, fname, lname, dob);
+            }
+            
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
@@ -115,7 +119,7 @@ public class UserDaoImpl implements UserDao {
                                    + e.getMessage());
             }
         }
-		return id;
+		return user;
 	}
 	
 	@Override
@@ -151,15 +155,20 @@ public class UserDaoImpl implements UserDao {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        boolean result = true;
         String storedPassword = null;
         try {
-            String sql = "SELECT Password FROM User WHERE UserID = ?";
+            String sql = "SELECT Password FROM User WHERE Email = ?";
             stmt = con.prepareStatement(sql);
-            stmt.setInt(1, findUser(email));
+            stmt.setString(1, email);
             rs = stmt.executeQuery();
-            if(rs.next())
-                storedPassword = rs.getString(1);
+            while(rs.next()) {
+                storedPassword = rs.getString("Password");
+                currentUser.setEmail(rs.getString("Email"));
+                currentUser.setPassword(rs.getString("Password"));
+                currentUser.setFirstName(rs.getString("FirstName"));
+                currentUser.setLastName(rs.getString("LastName"));
+                currentUser.setDob(rs.getDate("BirthDate").toLocalDate());
+            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }

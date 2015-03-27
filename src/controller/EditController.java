@@ -23,6 +23,8 @@ public class EditController
 				implements Initializable, view.ControlledScreen{
 
 	view.ScreensController controller;
+    
+    public User currentUser;
 	
 	@FXML
 	private TextField firstNameTxt;
@@ -39,31 +41,16 @@ public class EditController
 	
 	public EditController(){
 		controller = new view.ScreensController();
-		
-		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-    	UserDao usrDao = daoFact.getUserDao();
-		
-    	User usr = usrDao.findUser(1); // add in email
-    	
-    	firstNameTxt.setText(usr.getFirstName());
-    	lastNameTxt.setText(usr.getLastName());
-    	dobPicker.setValue(usr.getDob());
-    	emailTxt.setText(usr.getEmail());
-    	passwordTxt.setText(usr.getPassword());
-    	confirmPasswordTxt.setText(usr.getPassword());
-    	
 	}
 	
 	@Override
 	public void setScreenParent(view.ScreensController screenPage) {
-		
 		controller = screenPage;
-		
-	}
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+        //TODO
 	}
     
     /**
@@ -72,27 +59,18 @@ public class EditController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.homeName);
-    }
-    
-    /**
-     * Changes the current FXML page to home.fxml
-     * @param e
-     */
-    @FXML
-    private void updateUser() {
-    	
-    	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-    	UserDao usrDao = daoFact.getUserDao();
-    	
-    	User usr = new User(emailTxt.getText(),
-    						passwordTxt.getText(),
-    						firstNameTxt.getText(),
-    						lastNameTxt.getText(),
-    						dobPicker.getValue());
-    	
-    	usrDao.updateUser(usr);
-    	controller.setScreen(view.Main.homeName);
+        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+        UserDao usrDao = daoFact.getUserDao();
+        
+        if(usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
+            User updateUsr = new User(emailTxt.getText(),
+                            passwordTxt.getText(),
+                            firstNameTxt.getText(),
+                            lastNameTxt.getText(),
+                            dobPicker.getValue());
+            if(usrDao.updateUser(updateUsr))
+                controller.setScreen(view.Main.homeName);
+        }
     }
 }
 

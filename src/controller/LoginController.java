@@ -63,7 +63,7 @@ public class LoginController
     private void changeToHome(ActionEvent e){
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
        UserDao usrDao = daoFact.getUserDao();
-        if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText()) == true) {
+        if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
            controller.setScreen(view.Main.homeName);
         } else
             incorrectLabel.setText("Invail Email or Password.");

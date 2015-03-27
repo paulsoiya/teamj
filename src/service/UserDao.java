@@ -17,20 +17,13 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean updateUser(User user);
-
-	/**
-	 * Finds a user in the User table from an id
-	 * @param id
-	 * @return	the User object
-	 */
-	public User findUser(int id);
 	
 	/**
 	 * Finds the user with the email address matching the parameter
 	 * @param email
 	 * @return	the User object
 	 */
-	public int findUser(String email);
+	public User findUser(String email);
 	
 	/**
 	 * Deletes a user with the specified email

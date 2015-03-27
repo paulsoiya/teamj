@@ -31,7 +31,7 @@
          <children>
             <TextField fx:id="emailTxt" alignment="TOP_CENTER" promptText="Username / Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <PasswordField fx:id="passwordTxt" alignment="TOP_CENTER" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#changeToHome" prefHeight="26.0" prefWidth="200.0" text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#changeToHome" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: grey;" text="Login" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" onAction="#changeToRegistration" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: red;" text="Sign Up" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#changeToQuickCompare" prefHeight="26.0" prefWidth="199.0" style="-fx-background-color: blue;" text="Quick Compare" textFill="#fcf8f8" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="197.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="6" />
