@@ -15,7 +15,7 @@ public class SportDaoImpl implements SportDao{
 		PreparedStatement stmt = null;
 		boolean result = false;
 		try {
-			String sql = "INSERT INTO User "
+			String sql = "INSERT INTO Sport "
 					+ "(SportName, Picture) "
 					+ "VALUES(?,?)";
 		
