@@ -17,13 +17,13 @@ import model.User;
  */
 public class UserDaoImpl implements UserDao {
     
-    public User currentUser = new User("", "", "", "", null);
+    public User currentUser = new User();
 
 	@Override
 	public boolean createUser(User user) {
 		Connection con = DaoFactory.createConnectionIndividual();
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		ResultSet rs;
 		boolean result = true;
 		try {
 			String sql = "INSERT INTO User (Email, Password, FirstName, LastName, BirthDate)"
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUser(User user) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
+        ResultSet rs;
         boolean result = true;
         try {
             String sql = "UPDATE User set Password =?, FirstName=?, LastName=?, BirthDate=?"
@@ -93,19 +93,20 @@ public class UserDaoImpl implements UserDao {
 	public User findUser(String email) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        User user = new User("" , "", "", "", null);
+        ResultSet rs;
+        User user = new User();
         try {
             String sql = "SELECT * FROM User WHERE Email=?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             while(rs.next()) {
+                int id = rs.getInt("UserId");
                 String pwd = rs.getString("Password");
                 String fname = rs.getString("FirstName");
                 String lname = rs.getString("LastName");
                 LocalDate dob = rs.getDate("BirthDate").toLocalDate();
-                user = new User(email, pwd, fname, lname, dob);
+                user = new User(id, email, pwd, fname, lname, dob);
             }
             
         } catch (Exception e) {
@@ -154,23 +155,32 @@ public class UserDaoImpl implements UserDao {
     public boolean loginUser(String email, String password) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
+        ResultSet rs;
         String storedPassword = null;
         try {
-            String sql = "SELECT Password FROM User WHERE Email = ?";
+            String sql = "SELECT * FROM User WHERE Email = ?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             rs = stmt.executeQuery();
             while(rs.next()) {
-                storedPassword = rs.getString("Password");
+                currentUser.setId(rs.getInt("UserID"));
                 currentUser.setEmail(rs.getString("Email"));
-                currentUser.setPassword(rs.getString("Password"));
+                storedPassword = rs.getString("Password");
+                currentUser.setPassword(storedPassword);
                 currentUser.setFirstName(rs.getString("FirstName"));
                 currentUser.setLastName(rs.getString("LastName"));
                 currentUser.setDob(rs.getDate("BirthDate").toLocalDate());
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                stmt.close();
+                DaoFactory.closeConnection(con);
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
         }
         return passwordMatch(password, storedPassword);
     }

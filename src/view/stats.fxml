@@ -57,17 +57,17 @@
             <Label text="Score" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="124.0" text="Opponent" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label text="Your Score" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField prefHeight="26.0" prefWidth="58.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" />
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="opponentTxt" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="yourScore" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="theirScore" prefHeight="26.0" prefWidth="58.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="6" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="113.0" text="Attempts:" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="113.0" text="Yards" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="119.0" text="Total Touchdowns:" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="119.0" text="Touchdowns:" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <TextField fx:id="attemptsTxt" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="yardsTxt" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <TextField fx:id="touchdownTxt" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <TextField fx:id="weekTxt" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

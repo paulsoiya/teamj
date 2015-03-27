@@ -130,10 +130,10 @@ public class DatabaseCreation {
            sql = "CREATE TABLE GameLog(" +
            "GameID         INT(11)    PRIMARY KEY AUTO_INCREMENT," +
            "UserID         INT(11)," +
+           "Week           INT(4)," +
            "Date           DATE," +
-           "Team           INT(11)," +
-           "Opponent       INT(11)," +
-           "Score          VARCHAR(512)," +
+           "Opponent       VARCHAR(64)," +
+           "Score          VARCHAR(8)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
