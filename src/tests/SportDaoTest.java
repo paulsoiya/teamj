@@ -42,7 +42,7 @@ public class SportDaoTest {
 	public void testCreateUser() {
 		assertTrue(dao.createSport(sport1));
 		//give the wrong password to the connection so it can fail
-		DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+		DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
 
 		assertFalse(dao.createSport(sport2));
 
@@ -52,7 +52,7 @@ public class SportDaoTest {
 	public void testDeleteUser(){
 		assertFalse(dao.deleteSport(sport1.getName()));
 		//set the right password so the connection will succeed and the delete will work
-		DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+		DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
 		assertTrue(dao.deleteSport(sport1.getName()));
 	}
 
