@@ -69,7 +69,7 @@ public class EditController
                             lastNameTxt.getText(),
                             dobPicker.getValue());
             if(usrDao.updateUser(updateUsr))
-                controller.setScreen(view.Main.homeName);
+                controller.setScreen(view.Main.HOME_NAME);
         }
     }
 }

@@ -60,7 +60,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(view.Main.loginName);
+		controller.setScreen(view.Main.LOGIN_NAME);
 	}
                     
     /**
@@ -80,7 +80,7 @@ public class RegistrationController
     						dobPicker.getValue());
     	
     	usrDao.createUser(usr);
-    	controller.setScreen(view.Main.homeName);
+    	controller.setScreen(view.Main.HOME_NAME);
     }
                     
 	
@@ -90,7 +90,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.quickCompareName);
+		controller.setScreen(view.Main.COMPARE_NAME);
 	}
 	
 }

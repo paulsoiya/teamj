@@ -40,7 +40,7 @@ public class GameController
      */
     @FXML
     private void changeToStats() {
-        controller.setScreen(view.Main.statsName);
+        controller.setScreen(view.Main.STATS_NAME);
     }
     
     /**
@@ -49,7 +49,7 @@ public class GameController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.homeName);
+        controller.setScreen(view.Main.HOME_NAME);
     }
 }
 

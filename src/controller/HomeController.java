@@ -41,7 +41,7 @@ public class HomeController
 	 */
 	@FXML
 	private void changeToGames(ActionEvent e){
-		controller.setScreen(view.Main.gameName);
+		controller.setScreen(view.Main.GAME_NAME);
 	}
                     
     /**
@@ -50,7 +50,7 @@ public class HomeController
      */
     @FXML
     private void changeToSport(ActionEvent e){
-         controller.setScreen(view.Main.sportName);
+         controller.setScreen(view.Main.SPORT_NAME);
     }
                     
     /**
@@ -59,7 +59,7 @@ public class HomeController
      */
     @FXML
     private void changeToEdit(ActionEvent e){
-         controller.setScreen(view.Main.editName);
+         controller.setScreen(view.Main.EDIT_NAME);
     }
 }
 

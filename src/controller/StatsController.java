@@ -78,7 +78,7 @@ public class StatsController
                             datePicker.getValue());
         
         if(gameDao.addGame(game))
-            controller.setScreen(view.Main.homeName);
+            controller.setScreen(view.Main.HOME_NAME);
     }
 }
 

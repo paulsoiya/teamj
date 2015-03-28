@@ -52,7 +52,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e){
-		controller.setScreen(view.Main.registrationName);
+		controller.setScreen(view.Main.REG_NAME);
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class LoginController
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
        UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
-           controller.setScreen(view.Main.homeName);
+           controller.setScreen(view.Main.HOME_NAME);
         } else
             incorrectLabel.setText("Invail Email or Password.");
     }
@@ -75,7 +75,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.quickCompareName);
+		controller.setScreen(view.Main.COMPARE_NAME);
 	}
 
 	
