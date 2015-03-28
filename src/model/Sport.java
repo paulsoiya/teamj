@@ -1,12 +1,12 @@
 package model;
 
 public class Sport {
-	private int id;
+	private int sportId;
 	private String name;
 	private String picture;
 	
-	public Sport(int id, String name, String picture){
-		this.id = id;
+	public Sport(int sportId, String name, String picture){
+		this.sportId = sportId;
 		this.name = name;
 		this.picture = picture;
 	}
@@ -16,12 +16,12 @@ public class Sport {
 		this.picture = picture;
 	}
 
-	public int getId() {
-		return id;
+	public int getSportId() {
+		return sportId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSportId(int id) {
+		this.sportId = id;
 	}
 
 	public String getName() {
