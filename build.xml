@@ -232,7 +232,6 @@
             <xml destfile="${tests.jacoco.dir}/jacoco.xml"/>
             <csv destfile="${tests.jacoco.dir}/jacoco.csv"/>
         </jacoco:report>
-
         
         <pmd shortFilenames="true">
             <sourceLanguage name="java" version="1.8"/>
@@ -241,12 +240,13 @@
             <ruleset>java-naming</ruleset>
             <ruleset>java-empty</ruleset>
             <auxclasspath refid="class.path"/>
-            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" toConsole="true"/>
+            <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" >
+	      <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
+	    </formatter>
             <fileset dir="${src.dir}">
-                <include name="/*.java"/>
+                <include name="**/*.java"/>
             </fileset>
         </pmd>
-        
         
         <findbugs home="lib"
             output="xml"
@@ -256,5 +256,4 @@
             <class location="${classes.dir}" />
         </findbugs>
     </target>
-
 </project>
