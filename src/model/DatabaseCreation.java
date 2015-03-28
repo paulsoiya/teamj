@@ -123,8 +123,11 @@ public class DatabaseCreation {
            
            sql = "CREATE TABLE Sport(" +
            "SportID       INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
+           "UserID        INT(11)," +
            "SportName     VARCHAR(64)," +
-           "Picture       VARCHAR(512));";
+           "Position      VARCHAR(4)," +
+           "FavoriteTeam  VARCHAR(64)," +
+           "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE GameLog(" +

@@ -30,8 +30,8 @@ public class SportDaoTest {
 		daoFact = DaoFactory.getDaoFactory();
 
 		this.dao = daoFact.getSportDao();
-		this.sport1 = new Sport("Football", "");
-		this.sport2 = new Sport("Baseball", "");
+		this.sport1 = new Sport(1, "Football", "", "");
+		this.sport2 = new Sport(1, "Baseball", "", "");
 	}
 
 	@After

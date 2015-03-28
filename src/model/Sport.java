@@ -2,18 +2,26 @@ package model;
 
 public class Sport {
 	private int sportId;
+    private int userId;
 	private String name;
-	private String picture;
+    private String position;
+    private String favoriteTeam;
 	
-	public Sport(int sportId, String name, String picture){
+	public Sport(int sportId, int userId, String name, String position,
+                 String favoriteTeam) {
 		this.sportId = sportId;
+        this.userId = userId;
 		this.name = name;
-		this.picture = picture;
+		this.position = position;
+        this.favoriteTeam = favoriteTeam;
+        
 	}
 	
-	public Sport(String name, String picture){
+	public Sport(int userId, String name, String position, String favoriteTeam) {
+        this.userId = userId;
 		this.name = name;
-		this.picture = picture;
+		this.position = position;
+        this.favoriteTeam = favoriteTeam;
 	}
 
 	public int getSportId() {
@@ -23,6 +31,14 @@ public class Sport {
 	public void setSportId(int sportId) {
 		this.sportId = sportId;
 	}
+    
+    public int getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
 	public String getName() {
 		return name;
@@ -32,12 +48,20 @@ public class Sport {
 		this.name = name;
 	}
 
-	public String getPicture() {
-		return picture;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setPosition(String position) {
+		this.position = position;
 	}
+    
+    public String getFavoriteTeam() {
+        return favoriteTeam;
+    }
+    
+    public void setFavoriteTeam(String favoriteTeam) {
+        this.favoriteTeam = favoriteTeam;
+    }
 	
 }
