@@ -194,4 +194,8 @@ public class ScreensController  extends StackPane {
     	return this.session.getUserEmail();
     }
     
+    public boolean isSessionValid(){
+    	return this.session.isSessionValid();
+    }
+    
 }

@@ -9,15 +9,18 @@ public class UserSession {
 
 	private int userId;
 	private String userEmail;
-	private static final int INVALID_ID_VALUE = -1;
+	private boolean sessionValid;
+	public static final int INVALID_ID_VALUE = -1;
 	
 	public UserSession() { 
 		//set the default value of userId to the invalid value
 		this.userId = INVALID_ID_VALUE;
+		this.userEmail = null;
+		this.sessionValid = false;
 		
 	}
 	
-	public UserSession(int userId, String userEmail){
+	public UserSession(int userId, String userEmail, boolean sessionValid){
 		this.userId = userId;
 		this.userEmail = userEmail;
 	}
@@ -37,5 +40,14 @@ public class UserSession {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+
+	public boolean isSessionValid() {
+		return sessionValid;
+	}
+
+	public void setSessionValid(boolean sessionValid) {
+		this.sessionValid = sessionValid;
+	}
+	
 	
 }
