@@ -99,12 +99,12 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, email);
             resultSet = stmt.executeQuery();
             while(resultSet.next()) {
-                int id = resultSet.getInt("UserId");
+                int userId = resultSet.getInt("UserId");
                 String pwd = resultSet.getString("Password");
                 String fname = resultSet.getString("FirstName");
                 String lname = resultSet.getString("LastName");
                 LocalDate dob = resultSet.getDate("BirthDate").toLocalDate();
-                user = new User(id, email, pwd, fname, lname, dob);
+                user = new User(userId, email, pwd, fname, lname, dob);
             }
             
         } catch (Exception e) {
