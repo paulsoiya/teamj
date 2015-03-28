@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 
 public class SportController
@@ -18,10 +20,18 @@ public class SportController
 
 	view.ScreensController controller;
 	
-	public SportController(){
-		controller = new view.ScreensController();
-	}
+	@FXML
+	private ChoiceBox<String> sportCB;
+	@FXML
+	private ChoiceBox<String> positionCB;
+	@FXML
+	private ChoiceBox<String> favTeamCB;
 	
+	public SportController() {
+		controller = new view.ScreensController();
+	
+	}
+
 	@Override
 	public void setScreenParent(view.ScreensController screenPage) {
 		
@@ -31,7 +41,25 @@ public class SportController
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+
+		sportCB.setItems(FXCollections.observableArrayList("Football"));
+		positionCB
+				.setItems(FXCollections.observableArrayList("QB", "RB", "WR"));
+		favTeamCB.setItems(FXCollections.observableArrayList(
+				"Arizona Cardinals", "Atlanta Falcons", "Baltimore Ravens",
+				"Buffalo Bills", "Carolina Panthers", "Chicago Bears",
+				"Cincinnati Bengals", "Cleveland Browns", "Dallas Cowboys",
+				"Denver Broncos", "Detroit Lions", "Green Bay Packers",
+				"Houston Texans", "Indianapolis Colts", "Jacksonville Jaguars",
+				"Kansas City Chiefs", "Miami Dolphins", "Minnesota Vikings",
+				"New England Patriots", "New Orleans Saints",
+				"New York Giants", "New York Jets", "Oakland Raiders",
+				"Philadelphia Eagles", "Pittsburgh Steelers",
+				"Saint Louis Rams", "San Diego Chargers",
+				"San Francisco 49ers", "Seattle Seahawks",
+				"Tampa Bay Buccaneers", "Tennessee Titans",
+				"Washington Redskins"));
+
 	}
                     
     /**
