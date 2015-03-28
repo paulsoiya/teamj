@@ -11,3 +11,4 @@
 .settings
 .classpath
 /bin
+lib/jacoco.exec
