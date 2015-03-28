@@ -243,6 +243,10 @@
             <formatter type="html" toFile="${tests.pmd.dir}/pmd_report_fromant.html" >
 	      <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
 	    </formatter>
+            <formatter type="xml" toFile="${tests.pmd.dir}/pmd_report_fromant.xml" >
+	      <param name="linkPrefix" value="http://pmd.sourceforge.net/xref/"/>
+	    </formatter>
+
             <fileset dir="${src.dir}">
                 <include name="**/*.java"/>
             </fileset>
