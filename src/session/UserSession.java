@@ -20,9 +20,10 @@ public class UserSession {
 		
 	}
 	
-	public UserSession(int userId, String userEmail, boolean sessionValid){
+	public UserSession(int userId, String userEmail){
 		this.userId = userId;
 		this.userEmail = userEmail;
+		this.sessionValid = true;
 	}
 
 	public int getUserId() {
