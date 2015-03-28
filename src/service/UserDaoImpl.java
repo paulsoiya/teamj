@@ -23,7 +23,6 @@ public class UserDaoImpl implements UserDao {
 	public boolean createUser(User user) {
 		Connection con = DaoFactory.createConnectionIndividual();
 		PreparedStatement stmt = null;
-		ResultSet rs;
 		boolean result = true;
 		try {
 			String sql = "INSERT INTO User (Email, Password, FirstName, LastName, BirthDate)"
@@ -58,7 +57,6 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUser(User user) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs;
         boolean result = true;
         try {
             String sql = "UPDATE User set Password =?, FirstName=?, LastName=?, BirthDate=?"
@@ -93,19 +91,19 @@ public class UserDaoImpl implements UserDao {
 	public User findUser(String email) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs;
+        ResultSet resultSet;
         User user = new User();
         try {
             String sql = "SELECT * FROM User WHERE Email=?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                int id = rs.getInt("UserId");
-                String pwd = rs.getString("Password");
-                String fname = rs.getString("FirstName");
-                String lname = rs.getString("LastName");
-                LocalDate dob = rs.getDate("BirthDate").toLocalDate();
+            resultSet = stmt.executeQuery();
+            while(resultSet.next()) {
+                int id = resultSet.getInt("UserId");
+                String pwd = resultSet.getString("Password");
+                String fname = resultSet.getString("FirstName");
+                String lname = resultSet.getString("LastName");
+                LocalDate dob = resultSet.getDate("BirthDate").toLocalDate();
                 user = new User(id, email, pwd, fname, lname, dob);
             }
             
@@ -155,21 +153,21 @@ public class UserDaoImpl implements UserDao {
     public boolean loginUser(String email, String password) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        ResultSet rs;
+        ResultSet resultSet;
         String storedPassword = null;
         try {
             String sql = "SELECT * FROM User WHERE Email = ?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
-            rs = stmt.executeQuery();
-            while(rs.next()) {
-                currentUser.setId(rs.getInt("UserID"));
-                currentUser.setEmail(rs.getString("Email"));
-                storedPassword = rs.getString("Password");
+            resultSet = stmt.executeQuery();
+            while(resultSet.next()) {
+                currentUser.setId(resultSet.getInt("UserID"));
+                currentUser.setEmail(resultSet.getString("Email"));
+                storedPassword = resultSet.getString("Password");
                 currentUser.setPassword(storedPassword);
-                currentUser.setFirstName(rs.getString("FirstName"));
-                currentUser.setLastName(rs.getString("LastName"));
-                currentUser.setDob(rs.getDate("BirthDate").toLocalDate());
+                currentUser.setFirstName(resultSet.getString("FirstName"));
+                currentUser.setLastName(resultSet.getString("LastName"));
+                currentUser.setDob(resultSet.getDate("BirthDate").toLocalDate());
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
