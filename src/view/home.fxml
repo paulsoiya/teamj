@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    
    <top>
       <HBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
@@ -30,20 +30,20 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="215.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="30.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="518.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0" minWidth="10.0" prefWidth="500.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="0.0" prefWidth="30.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="86.0" minHeight="0.0" prefHeight="21.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="117.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="324.0" minHeight="0.0" prefHeight="291.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="536.0" minHeight="10.0" prefHeight="224.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="218.0" minHeight="0.0" prefHeight="218.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="227.0" style="-fx-background-color: #fff;" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="114.0" fitWidth="173.0">
+                  <ImageView fitHeight="263.0" fitWidth="399.0">
                      <image>
                         <Image url="@../resources/football_button.png" />
                      </image>
