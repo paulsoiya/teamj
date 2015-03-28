@@ -20,8 +20,8 @@ public class Sport {
 		return sportId;
 	}
 
-	public void setSportId(int id) {
-		this.sportId = id;
+	public void setSportId(int sportId) {
+		this.sportId = sportId;
 	}
 
 	public String getName() {
