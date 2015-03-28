@@ -49,13 +49,15 @@ public class UserDaoTest {
 	@Test
 	public void createUserTest() {
         assertTrue(dao.createUser(user1));
-        assertTrue(dao.createUser(user2));
+        DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+        assertFalse(dao.createUser(user2));
 	}
 	
 	@Test
 	public void deleteUserTest(){
-		assertTrue(dao.deleteUser(user1.getEmail()));
-        assertTrue(dao.deleteUser(user2.getEmail()));
+		assertFalse(dao.deleteUser(user1.getEmail()));
+		DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+        assertTrue(dao.deleteUser(user1.getEmail()));
 	}
     
     @Test

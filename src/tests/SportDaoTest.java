@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SportDaoTest {
+	private AbstractDaoFactory daoFact;
 	private SportDao dao;
 	private Sport sport1;
 	private Sport sport2;
@@ -26,7 +27,7 @@ public class SportDaoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		AbstractDaoFactory daoFact = DaoFactory.getDaoFactory();
+		daoFact = DaoFactory.getDaoFactory();
 
 		this.dao = daoFact.getSportDao();
 		this.sport1 = new Sport("Football", "");
@@ -39,14 +40,20 @@ public class SportDaoTest {
 
 	@Test
 	public void testCreateUser() {
-        assertTrue(dao.createSport(sport1));
-        assertTrue(dao.createSport(sport2));
+		assertTrue(dao.createSport(sport1));
+		//give the wrong password to the connection so it can fail
+		DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+
+		assertFalse(dao.createSport(sport2));
+
 	}
 	
 	@Test
 	public void testDeleteUser(){
+		assertFalse(dao.deleteSport(sport1.getName()));
+		//set the right password so the connection will succeed and the delete will work
+		DaoFactory.CONNECTION_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
 		assertTrue(dao.deleteSport(sport1.getName()));
-		assertTrue(dao.deleteSport(sport2.getName()));
 	}
 
 }
