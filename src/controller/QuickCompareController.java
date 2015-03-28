@@ -39,7 +39,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToRegister(ActionEvent e){
-		controller.setScreen(view.Main.registrationName);
+		controller.setScreen(view.Main.REG_NAME);
 	}
 	
   
@@ -49,7 +49,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(view.Main.loginName);
+		controller.setScreen(view.Main.LOGIN_NAME);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.quickCompareName);
+		controller.setScreen(view.Main.COMPARE_NAME);
 	}
 	
 }

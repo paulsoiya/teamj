@@ -40,7 +40,7 @@ public class SportController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.homeName);
+        controller.setScreen(view.Main.HOME_NAME);
     }
 }
 

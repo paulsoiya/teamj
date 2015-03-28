@@ -59,7 +59,7 @@ public class UserDaoTest {
 	}
     
     @Test
-    public void PasswordMatchTest() {
+    public void passwordMatchTest() {
         assertTrue(dao.passwordMatch("password", "password"));
         assertFalse(dao.passwordMatch("null", null));
         assertFalse(dao.passwordMatch("password", "pass"));
