@@ -42,6 +42,7 @@ package view;
 
 import java.util.HashMap;
 
+import session.UserSession;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -64,9 +65,11 @@ public class ScreensController  extends StackPane {
     //Holds the screens to be displayed
 
     private HashMap<String, Node> screens = new HashMap<>();
+    private UserSession session;
     
     public ScreensController() {
         super();
+        session = new UserSession();
     }
 
     //Add the screen to the collection
@@ -166,4 +169,29 @@ public class ScreensController  extends StackPane {
             return true;
         }
     }
+
+	public UserSession getSession() {
+		return session;
+	}
+
+	public void setSession(UserSession session) {
+		this.session = session;
+	}
+    
+    public void setSessionUserId(int userId){
+    	this.session.setUserId(userId);
+    }
+    
+    public int getSessionUserId(){
+    	return this.session.getUserId();
+    }
+    
+    public void setSessionUserEmail(String userEmail){
+    	this.session.setUserEmail(userEmail);
+    }
+    
+    public String getSessionUserEmail(String userEmail){
+    	return this.session.getUserEmail();
+    }
+    
 }
