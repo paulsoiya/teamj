@@ -12,11 +12,27 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.collections.FXCollections;
+import model.Game;
+import service.*;
 
 public class GameController
 				implements Initializable, view.ControlledScreen{
 
 	view.ScreensController controller;
+                    
+    @FXML
+    private TableColumn weekCol;
+    @FXML
+    private TableColumn dateCol;
+    @FXML
+    private TableColumn opponentCol;
+    @FXML
+    private TableColumn scoreCol;
+    @FXML
+    private TableView table;
 	
 	public GameController(){
 		controller = new view.ScreensController();
@@ -24,14 +40,24 @@ public class GameController
 	
 	@Override
 	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
+        controller = screenPage;
 		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+        
+        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+        GameDao gameDao = daoFact.getGameDao();
+        
+        Game[] games = new Game[20];
+        games = gameDao.findGames(controller.getSessionUserId());
+        
+        for(int i=0; i < games.length; i++) {
+            System.out.println(games[i].getOpponent());
+        }
+        
+        table.setItems(FXCollections.observableArrayList(games));
 	}
                     
     /**

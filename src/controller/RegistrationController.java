@@ -84,6 +84,7 @@ public class RegistrationController
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(emailTxt.getText());
             controller.setScreen(view.Main.HOME_NAME);
+            System.out.println(currentUser.getId());
         }
     }
                     

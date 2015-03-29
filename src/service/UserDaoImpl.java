@@ -40,8 +40,10 @@ public class UserDaoImpl implements UserDao {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
-				stmt.close();
-				DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
 			} catch (Exception e) {
                 result = false;
 				System.err.println(e.getClass().getName() + ": "
@@ -74,8 +76,10 @@ public class UserDaoImpl implements UserDao {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
             try {
-                stmt.close();
-                DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
             } catch (Exception e) {
                 result = false;
                 System.err.println(e.getClass().getName() + ": "
@@ -109,8 +113,10 @@ public class UserDaoImpl implements UserDao {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
             try {
-                stmt.close();
-                DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
             } catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": "
                                    + e.getMessage());
@@ -136,8 +142,10 @@ public class UserDaoImpl implements UserDao {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
-				stmt.close();
-				DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
 			} catch (Exception e) {
                 result = false;
 				System.err.println(e.getClass().getName() + ": "
@@ -159,14 +167,18 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, email);
             resultSet = stmt.executeQuery();
             if(resultSet.next()) {
+                stmt.close();
+                DaoFactory.closeConnection(con);
                 storedPassword = resultSet.getString("Password");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
             try {
-                stmt.close();
-                DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
             } catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": "
                                    + e.getMessage());

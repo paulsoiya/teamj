@@ -24,11 +24,13 @@ public class SportDaoImpl implements SportDao{
 			stmt.execute();
 			result = true;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
-				stmt.close();
-				DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
 			} catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
 						+ e.getMessage());
@@ -54,8 +56,10 @@ public class SportDaoImpl implements SportDao{
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		} finally {
 			try {
-				stmt.close();
-				DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
 			} catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
 						+ e.getMessage());

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import java.sql.ResultSet;
 
 import model.Game;
 
@@ -40,8 +42,10 @@ public class GameDaoImpl implements GameDao {
                                 + e.getMessage());
     } finally {
         try {
-            stmt.close();
-            DaoFactory.closeConnection(con);
+            if (stmt != null) {
+                stmt.close();
+                DaoFactory.closeConnection(con);
+            }
         } catch (Exception e) {
             result = false;
             System.err.println(e.getClass().getName() + ": "
@@ -68,8 +72,10 @@ public class GameDaoImpl implements GameDao {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
             try {
-                stmt.close();
-                DaoFactory.closeConnection(con);
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
             } catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": "
                                    + e.getMessage());
@@ -77,5 +83,54 @@ public class GameDaoImpl implements GameDao {
         }
         return result;
     }
-
+    
+    @Override
+    public Game[] findGames(int userId) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        Game games[] = null;
+        int length = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM GameLog"
+            +"WHERE UserID = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            resultSet = stmt.executeQuery();
+            if(resultSet.next())
+                length = resultSet.getInt("RECORDCOUNT");
+            
+            games = new Game[length];
+            sql = "SELECT * FROM GameLog "
+            + "WHERE UserID = ?";
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            resultSet = stmt.executeQuery();
+            
+            while(resultSet.next()) {
+                for(int i=0; i < length; i++) {
+                    int week = resultSet.getInt("Week");
+                    String opp = resultSet.getString("Opponent");
+                    String score = resultSet.getString("Score");
+                    LocalDate date = resultSet.getDate("Date").toLocalDate();
+                    games[i] = new Game(userId, week, opp, score, date);
+                }
+            }
+            
+        } catch (Exception exc) {
+            System.err.println(exc.getClass().getName() + ":" + exc.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return games;
+    }
 }

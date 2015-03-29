@@ -36,12 +36,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="-1.0" prefHeight="328.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="table" layoutX="-1.0" prefHeight="328.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="155.0" text="Week" />
-                      <TableColumn prefWidth="233.0" text="Date" />
-                        <TableColumn prefWidth="474.0" text="Oppenent" />
-                        <TableColumn prefWidth="185.0" text="Score" />
+                      <TableColumn fx:id="weekCol" prefWidth="155.0" text="Week" />
+                      <TableColumn fx:id="dateCol" prefWidth="233.0" text="Date" />
+                        <TableColumn fx:id="opponentCol" prefWidth="474.0" text="Oppenent" />
+                        <TableColumn fx:id="scoreCol" prefWidth="185.0" text="Score" />
                     </columns>
                   </TableView>
                </children>
