@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import model.User;
-import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -19,10 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import service.*;
 
-public class RegistrationController 
-				implements Initializable, view.ControlledScreen{
+public class RegistrationController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
 	
 	@FXML
 	private TextField firstNameTxt;
@@ -39,14 +37,7 @@ public class RegistrationController
 	
 	
 	public RegistrationController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -61,7 +52,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		MainNavigator.loadScreen(MainNavigator.LOGIN_FXML);
+		controller.loadScreen(controller.LOGIN_FXML);
 	}
                     
     /**
@@ -84,7 +75,7 @@ public class RegistrationController
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(emailTxt.getText());
-            MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+            controller.loadScreen(controller.HOME_FXML);
             System.out.println(currentUser.getId());
         }
     }
@@ -96,7 +87,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		MainNavigator.loadScreen(MainNavigator.COMPARE_FXML);
+		controller.loadScreen(controller.COMPARE_FXML);
 	}
 	
 }

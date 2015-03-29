@@ -18,13 +18,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import model.User;
-import view.MainNavigator;
 import service.*;
 
-public class LoginController 
-				implements Initializable, view.ControlledScreen{
+public class LoginController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TextField emailTxt;
@@ -37,14 +35,7 @@ public class LoginController
     private BorderPane mainPane;
 	
 	public LoginController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -59,7 +50,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e){
-        MainNavigator.loadScreen(MainNavigator.REG_FXML);
+        controller.loadScreen(controller.REG_FXML);
 	}
 	
 	/**
@@ -71,7 +62,7 @@ public class LoginController
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
        UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
-            MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+            controller.loadScreen(controller.HOME_FXML);
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
@@ -85,7 +76,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		MainNavigator.loadScreen(MainNavigator.COMPARE_FXML);
+		controller.loadScreen(controller.COMPARE_FXML);
 	}
                     
     /**

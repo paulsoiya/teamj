@@ -8,17 +8,16 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import view.MainNavigator;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 
-public class SportController
-				implements Initializable, view.ControlledScreen{
+public class SportController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
 	
 	@FXML
 	private ChoiceBox<String> sportCB;
@@ -28,15 +27,8 @@ public class SportController
 	private ChoiceBox<String> favTeamCB;
 	
 	public SportController() {
-		controller = new view.ScreensController();
+		controller = new view.MainNavigator();
 	
-	}
-
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
 	}
 
 	@Override
@@ -68,7 +60,7 @@ public class SportController
      */
     @FXML
     private void changeToHome() {
-        MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+        controller.loadScreen(controller.HOME_FXML);
     }
 }
 

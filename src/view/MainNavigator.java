@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 import controller.*;
+import session.UserSession;
 /**
  * Utility class for controlling navigation between vistas.
  *
@@ -27,7 +28,12 @@ public class MainNavigator {
     
     /** The main application layout controller. */
     private static LoginController mainController;
+    private UserSession session;
     
+    public MainNavigator() {
+        super();
+        session = new UserSession();
+    }
     /**
      * Stores the main controller for later use in navigation tasks.
      *
@@ -61,6 +67,34 @@ public class MainNavigator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public UserSession getSession() {
+        return session;
+    }
+    
+    public void setSession(UserSession session) {
+        this.session = session;
+    }
+    
+    public void setSessionUserId(int userId){
+        this.session.setUserId(userId);
+    }
+    
+    public int getSessionUserId(){
+        return this.session.getUserId();
+    }
+    
+    public void setSessionUserEmail(String userEmail){
+        this.session.setUserEmail(userEmail);
+    }
+    
+    public String getSessionUserEmail(String userEmail){
+        return this.session.getUserEmail();
+    }
+    
+    public boolean isSessionValid(){
+        return this.session.isSessionValid();
     }
     
 }

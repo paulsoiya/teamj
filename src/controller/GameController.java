@@ -16,13 +16,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import model.Game;
-import view.MainNavigator;
 import service.*;
 
-public class GameController
-				implements Initializable, view.ControlledScreen{
+public class GameController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TableColumn weekCol;
@@ -36,13 +34,7 @@ public class GameController
     private TableView table;
 	
 	public GameController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-        controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -67,7 +59,7 @@ public class GameController
      */
     @FXML
     private void changeToStats() {
-        MainNavigator.loadScreen(MainNavigator.STATS_FXML);
+        controller.loadScreen(controller.STATS_FXML);
     }
     
     /**
@@ -76,7 +68,7 @@ public class GameController
      */
     @FXML
     private void changeToHome() {
-        MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+        controller.loadScreen(controller.HOME_FXML);
     }
 }
 

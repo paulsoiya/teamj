@@ -8,7 +8,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import view.MainNavigator;
+
 import model.User;
 import service.DaoFactory;
 import service.UserDao;
@@ -19,10 +19,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class EditController
-				implements Initializable, view.ControlledScreen{
+public class EditController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
     
     public User currentUser;
 	
@@ -40,13 +39,8 @@ public class EditController
 	private PasswordField confirmPasswordTxt;
 	
 	public EditController(){
-		controller = new view.ScreensController();
+		controller = new view.MainNavigator();
 	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		controller = screenPage;
-    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +63,7 @@ public class EditController
                             lastNameTxt.getText(),
                             dobPicker.getValue());
             if(usrDao.updateUser(updateUsr))
-                MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+                controller.loadScreen(controller.HOME_FXML);
         }
     }
 }

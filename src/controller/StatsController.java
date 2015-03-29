@@ -10,7 +10,7 @@ import model.Game;
 import model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
-import view.MainNavigator;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -20,10 +20,9 @@ import javafx.collections.*;
 import javafx.event.ActionEvent;
 import service.*;
 
-public class StatsController
-				implements Initializable, view.ControlledScreen{
+public class StatsController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TextField weekTxt;
@@ -43,14 +42,7 @@ public class StatsController
     private TextField touchdownTxt;
 	
 	public StatsController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -74,7 +66,7 @@ public class StatsController
                             datePicker.getValue());
         
         if(gameDao.addGame(game))
-            MainNavigator.loadScreen(MainNavigator.HOME_FXML);
+            controller.loadScreen(controller.HOME_FXML);
     }
 }
 

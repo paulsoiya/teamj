@@ -8,25 +8,16 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 
-public class HomeController
-				implements Initializable, view.ControlledScreen{
+public class HomeController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
 	
 	public HomeController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -41,7 +32,7 @@ public class HomeController
 	 */
 	@FXML
 	private void changeToGames(ActionEvent e){
-		MainNavigator.loadScreen(MainNavigator.GAME_FXML);
+		controller.loadScreen(controller.GAME_FXML);
 	}
                     
     /**
@@ -50,7 +41,7 @@ public class HomeController
      */
     @FXML
     private void changeToSport(ActionEvent e){
-         MainNavigator.loadScreen(MainNavigator.SPORT_FXML);
+         controller.loadScreen(controller.SPORT_FXML);
     }
                     
     /**
@@ -59,7 +50,7 @@ public class HomeController
      */
     @FXML
     private void changeToEdit(ActionEvent e){
-         MainNavigator.loadScreen(MainNavigator.EDIT_FXML);
+         controller.loadScreen(controller.EDIT_FXML);
     }
 }
 
