@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import model.User;
 import service.*;
 
 public class LoginController 
@@ -65,6 +66,9 @@ public class LoginController
        UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
            controller.setScreen(view.Main.HOME_NAME);
+            User currentUser = usrDao.findUser(emailTxt.getText());
+            controller.setSessionUserId(currentUser.getId());
+            controller.setSessionUserEmail(currentUser.getEmail());
         } else
             incorrectLabel.setText("Invail Email or Password.");
     }

@@ -16,12 +16,11 @@ public class SportDaoImpl implements SportDao{
 		boolean result = false;
 		try {
 			String sql = "INSERT INTO Sport "
-					+ "(SportName, Picture) "
-					+ "VALUES(?,?)";
+					+ "(SportName) "
+					+ "VALUES(?)";
 		
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, sport.getName());
-			stmt.setString(2, sport.getPicture());
 			stmt.execute();
 			result = true;
 		} catch (Exception e) {

@@ -79,8 +79,12 @@ public class RegistrationController
     						lastNameTxt.getText(),
     						dobPicker.getValue());
     	
-    	usrDao.createUser(usr);
-    	controller.setScreen(view.Main.HOME_NAME);
+        if (usrDao.createUser(usr)) {
+            User currentUser = usrDao.findUser(emailTxt.getText());
+            controller.setSessionUserId(currentUser.getId());
+            controller.setSessionUserEmail(emailTxt.getText());
+            controller.setScreen(view.Main.HOME_NAME);
+        }
     }
                     
 	

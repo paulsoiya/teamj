@@ -24,8 +24,6 @@ public class StatsController
 				implements Initializable, view.ControlledScreen{
 
 	view.ScreensController controller;
-    
-    public User currentUser = new User();
                     
     @FXML
     private TextField weekTxt;
@@ -70,9 +68,7 @@ public class StatsController
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
         
-        System.out.println(currentUser.getEmail());
-        
-        Game game = new Game(currentUser.getId(), Integer.parseInt(weekTxt.getText()),
+        Game game = new Game(controller.getSessionUserId(), Integer.parseInt(weekTxt.getText()),
                             opponentTxt.getText(),
                             yourScore.getText() + "-" + theirScore.getText(),
                             datePicker.getValue());

@@ -16,8 +16,6 @@ import model.User;
  * @version March 24, 2015
  */
 public class UserDaoImpl implements UserDao {
-    
-    public User currentUser = new User();
 
 	@Override
 	public boolean createUser(User user) {
@@ -156,18 +154,12 @@ public class UserDaoImpl implements UserDao {
         ResultSet resultSet;
         String storedPassword = null;
         try {
-            String sql = "SELECT * FROM User WHERE Email = ?";
+            String sql = "SELECT Password FROM User WHERE Email = ?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             resultSet = stmt.executeQuery();
-            while(resultSet.next()) {
-                currentUser.setId(resultSet.getInt("UserID"));
-                currentUser.setEmail(resultSet.getString("Email"));
+            if(resultSet.next()) {
                 storedPassword = resultSet.getString("Password");
-                currentUser.setPassword(storedPassword);
-                currentUser.setFirstName(resultSet.getString("FirstName"));
-                currentUser.setLastName(resultSet.getString("LastName"));
-                currentUser.setDob(resultSet.getDate("BirthDate").toLocalDate());
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
