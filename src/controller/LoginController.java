@@ -11,11 +11,14 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import model.User;
+import view.MainNavigator;
 import service.*;
 
 public class LoginController 
@@ -29,6 +32,9 @@ public class LoginController
     private PasswordField passwordTxt;
     @FXML
     private Label incorrectLabel;
+    /** Holder of a switchable vista. */
+    @FXML
+    private BorderPane mainPane;
 	
 	public LoginController(){
 		controller = new view.ScreensController();
@@ -53,7 +59,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e){
-		controller.setScreen(view.Main.REG_NAME);
+        MainNavigator.loadScreen(MainNavigator.REG_FXML);
 	}
 	
 	/**
@@ -65,7 +71,7 @@ public class LoginController
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
        UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
-           controller.setScreen(view.Main.HOME_NAME);
+            MainNavigator.loadScreen(MainNavigator.HOME_FXML);
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
@@ -79,8 +85,17 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.COMPARE_NAME);
+		MainNavigator.loadScreen(MainNavigator.COMPARE_FXML);
 	}
+                    
+    /**
+     * Replaces the vista displayed in the vista holder with a new vista.
+     *
+     * @param node the vista node to be swapped in.
+     */
+     public void setScreen(Node node) {
+         mainPane.getChildren().setAll(node);
+     }
 
 	
 }

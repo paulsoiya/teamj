@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import model.User;
+import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -60,7 +61,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(view.Main.LOGIN_NAME);
+		MainNavigator.loadScreen(MainNavigator.LOGIN_FXML);
 	}
                     
     /**
@@ -83,7 +84,7 @@ public class RegistrationController
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(emailTxt.getText());
-            controller.setScreen(view.Main.HOME_NAME);
+            MainNavigator.loadScreen(MainNavigator.HOME_FXML);
             System.out.println(currentUser.getId());
         }
     }
@@ -95,7 +96,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.COMPARE_NAME);
+		MainNavigator.loadScreen(MainNavigator.COMPARE_FXML);
 	}
 	
 }

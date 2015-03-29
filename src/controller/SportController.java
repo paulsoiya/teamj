@@ -8,7 +8,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -68,7 +68,7 @@ public class SportController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.HOME_NAME);
+        MainNavigator.loadScreen(MainNavigator.HOME_FXML);
     }
 }
 

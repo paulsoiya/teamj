@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import model.Game;
+import view.MainNavigator;
 import service.*;
 
 public class GameController
@@ -66,7 +67,7 @@ public class GameController
      */
     @FXML
     private void changeToStats() {
-        controller.setScreen(view.Main.STATS_NAME);
+        MainNavigator.loadScreen(MainNavigator.STATS_FXML);
     }
     
     /**
@@ -75,7 +76,7 @@ public class GameController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.HOME_NAME);
+        MainNavigator.loadScreen(MainNavigator.HOME_FXML);
     }
 }
 

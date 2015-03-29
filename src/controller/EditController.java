@@ -8,7 +8,7 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import view.MainNavigator;
 import model.User;
 import service.DaoFactory;
 import service.UserDao;
@@ -69,7 +69,7 @@ public class EditController
                             lastNameTxt.getText(),
                             dobPicker.getValue());
             if(usrDao.updateUser(updateUsr))
-                controller.setScreen(view.Main.HOME_NAME);
+                MainNavigator.loadScreen(MainNavigator.HOME_FXML);
         }
     }
 }
