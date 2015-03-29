@@ -50,4 +50,32 @@ public class GameDaoImpl implements GameDao {
     }
     return result;
     }
+    
+    @Override
+    public boolean deleteGame(int gameId) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        boolean result = false;
+        try {
+            String sql = "DELETE FROM GameLog "
+            + "WHERE GameID = ?";
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, gameId);
+            stmt.execute();
+            result = true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                stmt.close();
+                DaoFactory.closeConnection(con);
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
+
 }

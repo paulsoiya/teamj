@@ -10,4 +10,11 @@ public interface GameDao {
      * @return true if successfully entered
      */
     public boolean addGame(Game game);
+    
+    /**
+     * Creats a new game in the Game Table
+     * @param gameD
+     * @return true if successfully deleted
+     */
+    public boolean deleteGame(int gameId);
 }
