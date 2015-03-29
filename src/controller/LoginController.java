@@ -66,6 +66,7 @@ public class LoginController implements Initializable {
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
+            System.out.println(controller.getSessionUserId());
         } else
             incorrectLabel.setText("Invail Email or Password.");
     }

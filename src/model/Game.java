@@ -31,6 +31,13 @@ public class Game {
 		this.score = score;
 		this.date = date;
 	}
+    
+    public Game(int userID, LocalDate date, String opponent, String score) {
+        this.week = week;
+        this.date = date;
+        this.opponent = opponent;
+        this.score = score;
+    }
 	
 	
 	public int getGameID() {

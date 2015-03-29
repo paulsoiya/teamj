@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.time.LocalDate;
 import model.Game;
 import service.*;
 
@@ -32,6 +34,13 @@ public class GameController implements Initializable {
     private TableColumn scoreCol;
     @FXML
     private TableView table;
+    
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    GameDao gameDao = daoFact.getGameDao();
+    
+    Game[] games = new Game[20];
+ 
 	
 	public GameController(){
 		controller = new view.MainNavigator();
@@ -40,15 +49,15 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         
-        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-        GameDao gameDao = daoFact.getGameDao();
-        
-        Game[] games = new Game[20];
-        games = gameDao.findGames(controller.getSessionUserId());
-        
-        for(int i=0; i < games.length; i++) {
-            System.out.println(games[i].getOpponent());
-        }
+        games = gameDao.findGames(9);
+        weekCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, Integer>("week"));
+        dateCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, LocalDate>("date"));
+        opponentCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, String>("opponent"));
+        scoreCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, String>("score"));
         
         table.setItems(FXCollections.observableArrayList(games));
 	}
@@ -60,6 +69,10 @@ public class GameController implements Initializable {
     @FXML
     private void changeToStats() {
         controller.loadScreen(controller.STATS_FXML);
+        
+        for(int i=0; i < games.length; i++) {
+            System.out.println(games[i].getWeek());
+        }
     }
     
     /**

@@ -92,17 +92,15 @@ public class GameDaoImpl implements GameDao {
         Game games[] = null;
         int length = 0;
         try {
-            String sql = "SELECT COUNT(*) FROM GameLog"
-            +"WHERE UserID = ?";
+            String sql = "SELECT COUNT(UserID) AS total FROM GameLog WHERE UserID=?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
             resultSet = stmt.executeQuery();
             if(resultSet.next())
-                length = resultSet.getInt("RECORDCOUNT");
+                length = resultSet.getInt("total");
             
             games = new Game[length];
-            sql = "SELECT * FROM GameLog "
-            + "WHERE UserID = ?";
+            sql = "SELECT * FROM GameLog WHERE UserID=?";
             
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
@@ -114,7 +112,7 @@ public class GameDaoImpl implements GameDao {
                     String opp = resultSet.getString("Opponent");
                     String score = resultSet.getString("Score");
                     LocalDate date = resultSet.getDate("Date").toLocalDate();
-                    games[i] = new Game(userId, week, opp, score, date);
+                    games[i] = new Game(week, date, opp, score);
                 }
             }
             
