@@ -49,7 +49,7 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         
-        games = gameDao.findGames(9);
+        games = gameDao.findGames(controller.getSessionUserId());
         weekCol.setCellValueFactory(
                     new PropertyValueFactory<Game, Integer>("week"));
         dateCol.setCellValueFactory(
@@ -70,9 +70,7 @@ public class GameController implements Initializable {
     private void changeToStats() {
         controller.loadScreen(controller.STATS_FXML);
         
-        for(int i=0; i < games.length; i++) {
-            System.out.println(games[i].getWeek());
-        }
+        System.out.println(controller.getSessionUserId());
     }
     
     /**

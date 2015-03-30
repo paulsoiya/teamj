@@ -32,7 +32,7 @@ public class MainNavigator {
     
     public MainNavigator() {
         super();
-        session = new UserSession();
+        session = UserSession.getInstance();
     }
     /**
      * Stores the main controller for later use in navigation tasks.
@@ -64,6 +64,8 @@ public class MainNavigator {
         try {
             mainController.setScreen(FXMLLoader.load(
                                     MainNavigator.class.getResource(fxml)));
+            
+            mainController.setSessionUser();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,10 +73,6 @@ public class MainNavigator {
     
     public UserSession getSession() {
         return session;
-    }
-    
-    public void setSession(UserSession session) {
-        this.session = session;
     }
     
     public void setSessionUserId(int userId){

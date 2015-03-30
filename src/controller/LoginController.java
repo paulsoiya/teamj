@@ -33,6 +33,9 @@ public class LoginController implements Initializable {
     /** Holder of a switchable vista. */
     @FXML
     private BorderPane mainPane;
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    UserDao usrDao = daoFact.getUserDao();
 	
 	public LoginController(){
 		controller = new view.MainNavigator();
@@ -59,14 +62,9 @@ public class LoginController implements Initializable {
 	 */                
     @FXML
     private void changeToHome(ActionEvent e){
-        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-       UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
             controller.loadScreen(controller.HOME_FXML);
-            User currentUser = usrDao.findUser(emailTxt.getText());
-            controller.setSessionUserId(currentUser.getId());
-            controller.setSessionUserEmail(currentUser.getEmail());
-            System.out.println(controller.getSessionUserId());
+            
         } else
             incorrectLabel.setText("Invail Email or Password.");
     }
@@ -88,6 +86,16 @@ public class LoginController implements Initializable {
      public void setScreen(Node node) {
          mainPane.getChildren().setAll(node);
      }
+    
+    /**
+     *
+     */
+    public void setSessionUser() {
+        User currentUser = usrDao.findUser(emailTxt.getText());
+        controller.setSessionUserId(currentUser.getId());
+        controller.setSessionUserEmail(currentUser.getEmail());
+        System.out.println(controller.getSessionUserId());
+    }
 
 	
 }
