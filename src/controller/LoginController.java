@@ -64,6 +64,10 @@ public class LoginController implements Initializable {
     private void changeToHome(ActionEvent e){
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
             controller.loadScreen(controller.HOME_FXML);
+            User currentUser = usrDao.findUser(emailTxt.getText());
+            controller.setSessionUserId(currentUser.getId());
+            controller.setSessionUserEmail(currentUser.getEmail());
+            System.out.println(currentUser.getId());
             
         } else
             incorrectLabel.setText("Invail Email or Password.");
@@ -86,16 +90,4 @@ public class LoginController implements Initializable {
      public void setScreen(Node node) {
          mainPane.getChildren().setAll(node);
      }
-    
-    /**
-     *
-     */
-    public void setSessionUser() {
-        User currentUser = usrDao.findUser(emailTxt.getText());
-        controller.setSessionUserId(currentUser.getId());
-        controller.setSessionUserEmail(currentUser.getEmail());
-        System.out.println(controller.getSessionUserId());
-    }
-
-	
 }

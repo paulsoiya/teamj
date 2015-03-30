@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import model.Game;
 import service.*;
+import session.*;
 
 public class GameController implements Initializable {
 
@@ -35,6 +36,8 @@ public class GameController implements Initializable {
     @FXML
     private TableView table;
     
+    private UserSession session = UserSession.getInstance();
+    
     
     DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
     GameDao gameDao = daoFact.getGameDao();
@@ -49,7 +52,7 @@ public class GameController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         
-        games = gameDao.findGames(controller.getSessionUserId());
+        games = gameDao.findGames(session.getUserId());
         weekCol.setCellValueFactory(
                     new PropertyValueFactory<Game, Integer>("week"));
         dateCol.setCellValueFactory(

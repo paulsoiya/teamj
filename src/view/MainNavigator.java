@@ -64,8 +64,6 @@ public class MainNavigator {
         try {
             mainController.setScreen(FXMLLoader.load(
                                     MainNavigator.class.getResource(fxml)));
-            
-            mainController.setSessionUser();
         } catch (IOException e) {
             e.printStackTrace();
         }
