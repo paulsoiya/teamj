@@ -71,4 +71,9 @@ public class DaoFactory extends AbstractDaoFactory {
     public StatsDao getStatsDao() {
         return new StatsDaoImpl();
     }
+    
+    @Override
+    public CompareDao getCompareDao() {
+        return new CompareDaoImpl();
+    }
 }

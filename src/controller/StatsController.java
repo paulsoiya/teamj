@@ -62,6 +62,7 @@ public class StatsController implements Initializable {
         GameDao gameDao = daoFact.getGameDao();
         StatsDao statsDao = daoFact.getStatsDao();
         SportDao sportDao = daoFact.getSportDao();
+        CompareDao compareDao = daoFact.getCompareDao();
         try {
             //Load Game info
             int week = Integer.parseInt(weekTxt.getText());
@@ -78,8 +79,11 @@ public class StatsController implements Initializable {
             int attempts = Integer.parseInt(attemptsTxt.getText());
             Stats stats = new Stats(gameId, controller.getSessionUserId(),
                                     yards, touchdown, attempts);
+            
             if (statsDao.addStats(stats))
-                controller.loadScreen(controller.HOME_FXML);
+                controller.loadScreen(controller.COMPARE);
+            
+            compareDao.playerComparison(stats);
         }
         catch (NumberFormatException e) {
             //TODO
