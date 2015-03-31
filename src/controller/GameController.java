@@ -15,8 +15,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 import model.Game;
 import service.*;
 import session.*;
@@ -42,7 +45,7 @@ public class GameController implements Initializable {
     DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
     GameDao gameDao = daoFact.getGameDao();
     
-    Game[] games = new Game[20];
+    List<Game> games = new ArrayList<Game>();
  
 	
 	public GameController(){
@@ -61,8 +64,13 @@ public class GameController implements Initializable {
                     new PropertyValueFactory<Game, String>("opponent"));
         scoreCol.setCellValueFactory(
                     new PropertyValueFactory<Game, String>("score"));
+        ObservableList<Game> data = FXCollections.observableArrayList();
         
-        table.setItems(FXCollections.observableArrayList(games));
+        for(int i=0; i < games.size(); i++) {
+            data.add(games.get(i));
+        }
+        
+        table.setItems(data);
 	}
                     
     /**
@@ -72,8 +80,6 @@ public class GameController implements Initializable {
     @FXML
     private void changeToStats() {
         controller.loadScreen(controller.STATS_FXML);
-        
-        System.out.println(controller.getSessionUserId());
     }
     
     /**

@@ -59,14 +59,20 @@ public class StatsController implements Initializable {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
-        
-        Game game = new Game(controller.getSessionUserId(), Integer.parseInt(weekTxt.getText()),
-                            opponentTxt.getText(),
-                            yourScore.getText() + "-" + theirScore.getText(),
-                            datePicker.getValue());
-        
-        if(gameDao.addGame(game))
+        System.out.println(weekTxt.getText());
+        try {
+            int week = Integer.parseInt(weekTxt.getText());
+            Game game = new Game(controller.getSessionUserId(), week,
+                                 opponentTxt.getText(),
+                                 yourScore.getText() + "-" + theirScore.getText(),
+                                 datePicker.getValue());
+            gameDao.addGame(game);
             controller.loadScreen(controller.HOME_FXML);
+            System.out.println(week);
+        }
+        catch (NumberFormatException e) {
+            //TODO
+        }
     }
 }
 

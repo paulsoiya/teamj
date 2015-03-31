@@ -32,7 +32,7 @@ public class Game {
 		this.date = date;
 	}
     
-    public Game(int userID, LocalDate date, String opponent, String score) {
+    public Game(int week, LocalDate date, String opponent, String score) {
         this.week = week;
         this.date = date;
         this.opponent = opponent;
