@@ -1,3 +1,9 @@
+/**
+ * GameDao
+ *
+ * @author Taylor Scott (tdscott2@asu.edu)
+ * @version Mar 26, 2015
+ */
 package service;
 
 import model.Game;

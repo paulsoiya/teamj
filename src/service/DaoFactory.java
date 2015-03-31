@@ -62,8 +62,13 @@ public class DaoFactory extends AbstractDaoFactory {
         return new GameDaoImpl();
     }
 	
-	public SportDao getSportDao(){
+    @Override
+	public SportDao getSportDao() {
 		return new SportDaoImpl();
 	}
-
+    
+    @Override
+    public StatsDao getStatsDao() {
+        return new StatsDaoImpl();
+    }
 }

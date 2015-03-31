@@ -1,3 +1,9 @@
+/**
+ * GameDao Implementation
+ *
+ * @author Taylor Scott (tdscott2@asu.edu)
+ * @version Mar 26, 2015
+ */
 package service;
 
 import java.sql.Connection;
@@ -13,12 +19,6 @@ import java.util.ArrayList;
 
 import model.Game;
 
-/**
- * Game Dao
- *
- * @author tdscott10
- * @version March 26, 2015
- */
 public class GameDaoImpl implements GameDao {
 
     @Override
