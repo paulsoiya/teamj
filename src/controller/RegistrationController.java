@@ -76,7 +76,6 @@ public class RegistrationController implements Initializable {
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(emailTxt.getText());
             controller.loadScreen(controller.HOME_FXML);
-            System.out.println(currentUser.getId());
         }
     }
                     

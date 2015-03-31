@@ -142,19 +142,21 @@ public class GameDaoImpl implements GameDao {
     }
     
     @Override
-    public int FindGameID(Game game) {
+    public int findGameID(Game game) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
-        int result = true;
+        ResultSet resultSet;
+        int result = -1;
         try {
-            String sql = "SELECT GameID FROM GameLog WHERE (UserID = ?"
-            + "AND Week = ? AND Opponent = ?)"
-            + "VALUES(?, ?, ?)";
+            String sql = "SELECT GameID FROM GameLog WHERE UserID = ? "
+            + "AND Week = ? AND Opponent = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, game.getUserID());
             stmt.setInt(2, game.getWeek());
             stmt.setString(3, game.getOpponent());
-            result = stmt.executeQuery();
+            resultSet = stmt.executeQuery();
+            if(resultSet.next())
+                result = resultSet.getInt("GameID");
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
                                + e.getMessage());

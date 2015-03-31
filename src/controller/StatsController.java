@@ -2,12 +2,13 @@
  * Controller for the Stats FXML page
  *
  * @author Taylor Scott (tdscott2@asu.edu)
- * @version Mar 16, 2015
+ * @version Mar 31, 2015
  */
 package controller;
 
 import model.Game;
 import model.User;
+import model.Stats;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,14 +60,26 @@ public class StatsController implements Initializable {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
+        StatsDao statsDao = daoFact.getStatsDao();
+        SportDao sportDao = daoFact.getSportDao();
         try {
+            //Load Game info
             int week = Integer.parseInt(weekTxt.getText());
             Game game = new Game(controller.getSessionUserId(), week,
                                  opponentTxt.getText(),
                                  yourScore.getText() + "-" + theirScore.getText(),
                                  datePicker.getValue());
             gameDao.addGame(game);
-            controller.loadScreen(controller.HOME_FXML);
+            
+            //Load Stats
+            int gameId = gameDao.findGameID(game);
+            int yards = Integer.parseInt(yardsTxt.getText());
+            int touchdown = Integer.parseInt(touchdownTxt.getText());
+            int attempts = Integer.parseInt(attemptsTxt.getText());
+            Stats stats = new Stats(gameId, controller.getSessionUserId(),
+                                    yards, touchdown, attempts);
+            if (statsDao.addStats(stats))
+                controller.loadScreen(controller.HOME_FXML);
         }
         catch (NumberFormatException e) {
             //TODO

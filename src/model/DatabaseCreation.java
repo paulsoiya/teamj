@@ -144,15 +144,9 @@ public class DatabaseCreation {
            "StatsID        INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
            "GameID         INT(11)," +
            "UserID         INT(11)," +
-           "RecYds         INT," +
-           "RecTDs         INT," +
-           "RecAtt         INT," +
-           "RushYds        INT," +
-           "RushTDs        INT," +
-           "RushAtt        INT," +
-           "PassYds        INT," +
-           "PassTDs        INT," +
-           "PassAtt        INT," +
+           "Yds            INT," +
+           "TDs            INT," +
+           "Att            INT," +
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);

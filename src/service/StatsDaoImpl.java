@@ -22,31 +22,20 @@ import model.Stats;
 public class StatsDaoImpl implements StatsDao {
 
     @Override
-    public boolean addStats(Stats stats, String position) {
+    public boolean addStats(Stats stats) {
     Connection con = DaoFactory.createConnectionIndividual();
     PreparedStatement stmt = null;
     boolean result = true;
-    String pos = "";
     try {
-        switch (position) {
-            case "QB" : pos = "Pass";
-                break;
-            case "RB" : pos = "Rush";
-                break;
-            case "WR" : pos = "Rec";
-                break;
-            default : result = false;
-                break;
-        }
         String sql = "INSERT INTO Stats (GameID, UserID, "
-        + "pos + 'Yds', pos + 'Tds', pos + 'Att') "
+        + "Yds, Tds, Att) "
         + "VALUES(?, ?, ?, ?, ?)";
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, stats.getGameID());
         stmt.setInt(2, stats.getUserID());
-        stmt.setString(3, stats.getYards());
-        stmt.setString(4, game.getTouchdowns());
-        stmt.setString(5, game.getAttempts());
+        stmt.setInt(3, stats.getYards());
+        stmt.setInt(4, stats.getTouchdowns());
+        stmt.setInt(5, stats.getAttempts());
         stmt.execute();
     } catch(Exception e) {
         result = false;

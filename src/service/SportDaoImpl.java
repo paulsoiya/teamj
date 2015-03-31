@@ -75,14 +75,17 @@ public class SportDaoImpl implements SportDao{
     public String findPositionFootball(int userId) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
+        ResultSet resultSet;
         String result = "";
         try {
-            String sql = "SELECT Position "
-            + "WHERE UserID = ? AND Sport = ?";
+            String sql = "SELECT Position FROM Sport "
+            + "WHERE UserID = ? AND SportName = ?";
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, userId);
+            stmt.setInt(1, userId);
             stmt.setString(2, "Football");
-            result = stmt.executeQuery();
+            resultSet = stmt.executeQuery();
+            if (resultSet.next())
+                result = resultSet.getString("UserID");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {
