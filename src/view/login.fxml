@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -36,11 +36,6 @@
             <Button mnemonicParsing="false" onAction="#changeToQuickCompare" prefHeight="26.0" prefWidth="501.0" style="-fx-background-color: blue;" text="Quick Compare" textFill="#fcf8f8" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7" />
             <Label alignment="CENTER" prefHeight="16.0" prefWidth="501.0" text="OR" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label fx:id="incorrectLabel" alignment="CENTER" prefHeight="16.0" prefWidth="208.0" textFill="#d31f07" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ImageView fitHeight="349.0" fitWidth="500.0" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@../resources/sc_1x.png" />
-               </image>
-            </ImageView>
          </children>
       </GridPane>
    </center>

@@ -7,24 +7,26 @@ package session;
  */
 public class UserSession {
 
+    private static UserSession instance = null;
 	private int userId;
 	private String userEmail;
 	private boolean sessionValid;
 	public static final int INVALID_ID_VALUE = -1;
 	
-	public UserSession() { 
+	private UserSession() {
 		//set the default value of userId to the invalid value
 		this.userId = INVALID_ID_VALUE;
 		this.userEmail = null;
 		this.sessionValid = false;
 		
 	}
-	
-	public UserSession(int userId, String userEmail){
-		this.userId = userId;
-		this.userEmail = userEmail;
-		this.sessionValid = true;
-	}
+    
+    public static UserSession getInstance() {
+        if (instance == null) {
+            instance = new UserSession();
+        }
+        return instance;
+    }
 
 	public int getUserId() {
 		return userId;

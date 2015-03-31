@@ -18,10 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import service.*;
 
-public class RegistrationController 
-				implements Initializable, view.ControlledScreen{
+public class RegistrationController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
 	
 	@FXML
 	private TextField firstNameTxt;
@@ -38,14 +37,7 @@ public class RegistrationController
 	
 	
 	public RegistrationController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -60,7 +52,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(view.Main.LOGIN_NAME);
+		controller.loadScreen(controller.LOGIN_FXML);
 	}
                     
     /**
@@ -83,7 +75,7 @@ public class RegistrationController
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(emailTxt.getText());
-            controller.setScreen(view.Main.HOME_NAME);
+            controller.loadScreen(controller.HOME_FXML);
             System.out.println(currentUser.getId());
         }
     }
@@ -95,7 +87,7 @@ public class RegistrationController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.COMPARE_NAME);
+		controller.loadScreen(controller.COMPARE_FXML);
 	}
 	
 }

@@ -15,13 +15,18 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 import model.Game;
 import service.*;
+import session.*;
 
-public class GameController
-				implements Initializable, view.ControlledScreen{
+public class GameController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TableColumn weekCol;
@@ -33,31 +38,39 @@ public class GameController
     private TableColumn scoreCol;
     @FXML
     private TableView table;
+    
+    private UserSession session = UserSession.getInstance();
+    
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    GameDao gameDao = daoFact.getGameDao();
+    
+    List<Game> games = new ArrayList<Game>();
+ 
 	
 	public GameController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-        controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         
-        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-        GameDao gameDao = daoFact.getGameDao();
+        games = gameDao.findGames(session.getUserId());
+        weekCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, Integer>("week"));
+        dateCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, LocalDate>("date"));
+        opponentCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, String>("opponent"));
+        scoreCol.setCellValueFactory(
+                    new PropertyValueFactory<Game, String>("score"));
+        ObservableList<Game> data = FXCollections.observableArrayList();
         
-        Game[] games = new Game[20];
-        games = gameDao.findGames(controller.getSessionUserId());
-        
-        for(int i=0; i < games.length; i++) {
-            System.out.println(games[i].getOpponent());
+        for(int i=0; i < games.size(); i++) {
+            data.add(games.get(i));
         }
         
-        table.setItems(FXCollections.observableArrayList(games));
+        table.setItems(data);
 	}
                     
     /**
@@ -66,7 +79,7 @@ public class GameController
      */
     @FXML
     private void changeToStats() {
-        controller.setScreen(view.Main.STATS_NAME);
+        controller.loadScreen(controller.STATS_FXML);
     }
     
     /**
@@ -75,7 +88,7 @@ public class GameController
      */
     @FXML
     private void changeToHome() {
-        controller.setScreen(view.Main.HOME_NAME);
+        controller.loadScreen(controller.HOME_FXML);
     }
 }
 

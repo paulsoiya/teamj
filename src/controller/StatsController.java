@@ -20,10 +20,9 @@ import javafx.collections.*;
 import javafx.event.ActionEvent;
 import service.*;
 
-public class StatsController
-				implements Initializable, view.ControlledScreen{
+public class StatsController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TextField weekTxt;
@@ -43,14 +42,7 @@ public class StatsController
     private TextField touchdownTxt;
 	
 	public StatsController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -67,14 +59,20 @@ public class StatsController
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
-        
-        Game game = new Game(controller.getSessionUserId(), Integer.parseInt(weekTxt.getText()),
-                            opponentTxt.getText(),
-                            yourScore.getText() + "-" + theirScore.getText(),
-                            datePicker.getValue());
-        
-        if(gameDao.addGame(game))
-            controller.setScreen(view.Main.HOME_NAME);
+        System.out.println(weekTxt.getText());
+        try {
+            int week = Integer.parseInt(weekTxt.getText());
+            Game game = new Game(controller.getSessionUserId(), week,
+                                 opponentTxt.getText(),
+                                 yourScore.getText() + "-" + theirScore.getText(),
+                                 datePicker.getValue());
+            gameDao.addGame(game);
+            controller.loadScreen(controller.HOME_FXML);
+            System.out.println(week);
+        }
+        catch (NumberFormatException e) {
+            //TODO
+        }
     }
 }
 

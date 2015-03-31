@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import java.sql.ResultSet;
+import java.util.List;
+import java.util.ArrayList;
 
 import model.Game;
 
@@ -85,38 +87,43 @@ public class GameDaoImpl implements GameDao {
     }
     
     @Override
-    public Game[] findGames(int userId) {
+    public List<Game> findGames(int userId) {
         Connection con = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
         ResultSet resultSet;
-        Game games[] = null;
+        List<Game> games = null;
         int length = 0;
         try {
-            String sql = "SELECT COUNT(*) FROM GameLog"
-            +"WHERE UserID = ?";
+            String sql = "SELECT COUNT(UserID) AS total FROM GameLog WHERE UserID=?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
             resultSet = stmt.executeQuery();
             if(resultSet.next())
-                length = resultSet.getInt("RECORDCOUNT");
+                length = resultSet.getInt("total");
             
-            games = new Game[length];
-            sql = "SELECT * FROM GameLog "
-            + "WHERE UserID = ?";
+            games = new ArrayList<Game>();
+            sql = "SELECT * FROM GameLog WHERE UserID=?";
             
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
             resultSet = stmt.executeQuery();
             
-            while(resultSet.next()) {
-                for(int i=0; i < length; i++) {
-                    int week = resultSet.getInt("Week");
-                    String opp = resultSet.getString("Opponent");
-                    String score = resultSet.getString("Score");
-                    LocalDate date = resultSet.getDate("Date").toLocalDate();
-                    games[i] = new Game(userId, week, opp, score, date);
+            List<Integer> week = new ArrayList<Integer>();
+            List<String> opp = new ArrayList<String>();
+            List<String> score = new ArrayList<String>();
+            List<LocalDate> date = new ArrayList<LocalDate>();
+            Game[] game = new Game[length];
+            
+            for(int i=0; i < length; i++) {
+                while(resultSet.next()) {
+                    week.add(resultSet.getInt("Week"));
+                    date.add(resultSet.getDate("Date").toLocalDate());
+                    opp.add(resultSet.getString("Opponent"));
+                    score.add(resultSet.getString("Score"));
                 }
+                games.add(new Game(week.get(i), date.get(i), opp.get(i), score.get(i)));
             }
+ 
             
         } catch (Exception exc) {
             System.err.println(exc.getClass().getName() + ":" + exc.getMessage());

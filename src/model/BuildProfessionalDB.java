@@ -62,7 +62,7 @@ public class BuildProfessionalDB {
 								try {
 									c = getConnection();
 									c.setAutoCommit(false);
-									String sql = "UPDATE Team (TeamID, TeamName) " +
+									String sql = "INSERT Team (TeamID, TeamName) " +
 											"VALUES (?,?)";
 									stmt = c.prepareStatement(sql);
 									stmt.setString(1, jsonOBject.getString("id").toString());
@@ -119,7 +119,7 @@ public class BuildProfessionalDB {
                             try {
                                 c = getConnection();
                                 c.setAutoCommit(false);
-                                String sql = "UPDATE Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, College, Number) " +
+                                String sql = "INSERT Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, College, Number) " +
                                 "VALUES (?,?,?,?,?,?,?,?)";
                                 stmt = c.prepareStatement(sql);
                                 stmt.setString(1, player.get("id").toString());
@@ -186,7 +186,7 @@ public class BuildProfessionalDB {
                         c = getConnection();
                         c.setAutoCommit(false);
                         
-                        String sql = "UPDATE GameLog (GameID, Date, Team, Opponent, Score) " +
+                        String sql = "INSERT GameLog (GameID, Date, Team, Opponent, Score) " +
                         "VALUES (?,?,?,?,?)";
                         stmt = c.prepareStatement(sql);
                         stmt.setString(1, game.get("id").toString());
@@ -216,7 +216,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "UPDATE Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -248,7 +248,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "UPDATE Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -281,7 +281,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "Update Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -314,7 +314,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "Update Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -347,7 +347,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "UPDATE Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -380,7 +380,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "UPDATE Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
+                            String sql = "INSERT Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);

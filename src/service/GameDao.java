@@ -1,6 +1,7 @@
 package service;
 
 import model.Game;
+import java.util.List;
 
 public interface GameDao {
 
@@ -23,5 +24,5 @@ public interface GameDao {
      * @param userId
      * @return array of games for the user
      */
-    public Game[] findGames(int userId);
+    public List<Game> findGames(int userId);
 }

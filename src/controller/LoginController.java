@@ -11,17 +11,18 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import model.User;
 import service.*;
 
-public class LoginController 
-				implements Initializable, view.ControlledScreen{
+public class LoginController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
                     
     @FXML
     private TextField emailTxt;
@@ -29,16 +30,15 @@ public class LoginController
     private PasswordField passwordTxt;
     @FXML
     private Label incorrectLabel;
+    /** Holder of a switchable vista. */
+    @FXML
+    private BorderPane mainPane;
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    UserDao usrDao = daoFact.getUserDao();
 	
 	public LoginController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		
-		controller = screenPage;
-		
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e){
-		controller.setScreen(view.Main.REG_NAME);
+        controller.loadScreen(controller.REG_FXML);
 	}
 	
 	/**
@@ -62,13 +62,13 @@ public class LoginController
 	 */                
     @FXML
     private void changeToHome(ActionEvent e){
-        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-       UserDao usrDao = daoFact.getUserDao();
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
-           controller.setScreen(view.Main.HOME_NAME);
+            controller.loadScreen(controller.HOME_FXML);
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
+            System.out.println(currentUser.getId());
+            
         } else
             incorrectLabel.setText("Invail Email or Password.");
     }
@@ -79,8 +79,15 @@ public class LoginController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.COMPARE_NAME);
+		controller.loadScreen(controller.COMPARE_FXML);
 	}
-
-	
+                    
+    /**
+     * Replaces the vista displayed in the vista holder with a new vista.
+     *
+     * @param node the vista node to be swapped in.
+     */
+     public void setScreen(Node node) {
+         mainPane.getChildren().setAll(node);
+     }
 }

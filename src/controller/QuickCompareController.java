@@ -8,23 +8,17 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 
-public class QuickCompareController 
-				implements Initializable, view.ControlledScreen{
+public class QuickCompareController implements Initializable {
 
-	view.ScreensController controller;
+	view.MainNavigator controller;
 	
 	public QuickCompareController(){
-		controller = new view.ScreensController();
-	}
-	
-	@Override
-	public void setScreenParent(view.ScreensController screenPage) {
-		controller = screenPage;
+		controller = new view.MainNavigator();
 	}
 
 	@Override
@@ -39,7 +33,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToRegister(ActionEvent e){
-		controller.setScreen(view.Main.REG_NAME);
+		controller.loadScreen(controller.REG_FXML);
 	}
 	
   
@@ -49,7 +43,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e){
-		controller.setScreen(view.Main.LOGIN_NAME);
+		controller.loadScreen(controller.LOGIN_FXML);
 	}
 
 	/**
@@ -58,7 +52,7 @@ public class QuickCompareController
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e){
-		controller.setScreen(view.Main.COMPARE_NAME);
+		controller.loadScreen(controller.COMPARE_FXML);
 	}
 	
 }
