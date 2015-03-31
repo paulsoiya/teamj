@@ -16,9 +16,9 @@ public class DatabaseCreation {
       Statement stmt = null;
 
       try {
-         Class.forName("com.mysql.jdbc.Driver");
-          c = DriverManager.getConnection("jdbc:mysql://localhost:3306/professional?" +
-                                          "user=root&password=password");
+         Class.forName("org.sqlite.JDBC");
+         c = DriverManager.getConnection("jdbc:sqlite:professional.db");
+         c.createStatement().execute("PRAGMA foreign_keys = ON");
          stmt = c.createStatement();
          
          String sql = "drop table if exists Stats;";
@@ -31,40 +31,40 @@ public class DatabaseCreation {
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE Team(" +
-            "TeamID         VARCHAR(4)    PRIMARY KEY," +
-            "TeamName       VARCHAR(64)," +
-            "Logo           VARCHAR(512)," +
-            "PrimaryColor   VARCHAR(32)," +
-            "SecondaryColor VARCHAR(32));";
+            "TeamID         TEXT    PRIMARY KEY," +
+            "TeamName       TEXT," +
+            "Logo           TEXT," +
+            "PrimaryColor   TEXT," +
+            "SecondaryColor TEXT);";
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE Player(" +
-            "PlayerID       VARCHAR(128)    PRIMARY KEY," +
-            "PlayerName     VARCHAR(128)," +
-            "Team           VARCHAR(4)," +
-            "Picture        VARCHAR(512)," +
+            "PlayerID       TEXT    PRIMARY KEY," +
+            "PlayerName     TEXT," +
+            "Team           TEXT," +
+            "Picture        TEXT," +
             "Height         INT," +
             "Weight         INT," +
-            "BirthDate      VARCHAR(32)," +
-            "College        VARCHAR(64)," +
+            "BirthDate      TEXT," +
+            "College        TEXT," +
             "Number         INT," +
             "FOREIGN KEY(Team) REFERENCES Team(TeamID));";
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE GameLog(" +
-            "GameID         VARCHAR(64)    PRIMARY KEY," +
-            "Date           VARCHAR(32)," +
-            "Team           VARCHAR(4)," +
-            "Opponent       VARCHAR(4)," +
-            "Score          VARCHAR(16)," +
+            "GameID         TEXT    PRIMARY KEY," +
+            "Date           TEXT," +
+            "Team           TEXT," +
+            "Opponent       TEXT," +
+            "Score          TEXT," +
             "FOREIGN KEY(Team) REFERENCES Team(TeamID)," +
             "FOREIGN KEY(Opponent) REFERENCES Team(TeamID));";
          stmt.executeUpdate(sql);
 
          sql = "CREATE TABLE Stats(" +
-            "StatsID        INT    PRIMARY KEY    AUTO_INCREMENT," +
-            "GameID         VARCHAR(64)," +
-            "PlayerID       VARCHAR(128)," +
+            "StatsID        INTEGER    PRIMARY KEY    AUTOINCREMENT," +
+            "GameID         TEXT," +
+            "PlayerID       TEXT," +
             "RecYds         INT," +
             "RecTDs         INT," +
             "RecAtt         INT," +
@@ -98,9 +98,9 @@ public class DatabaseCreation {
        Statement stmt = null;
        
        try {
-           Class.forName("com.mysql.jdbc.Driver");
-           c = DriverManager.getConnection("jdbc:mysql://localhost:3306/individual?" +
-                   "user=root&password=password");
+           Class.forName("org.sqlite.JDBC");
+           c = DriverManager.getConnection("jdbc:sqlite:individual.db");
+           c.createStatement().execute("PRAGMA foreign_keys = ON");
            stmt = c.createStatement();
            
            String sql = "drop table if exists Stats;";
@@ -113,37 +113,37 @@ public class DatabaseCreation {
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE User(" +
-           "UserID         INT(11)       PRIMARY KEY    AUTO_INCREMENT," +
-           "Email          VARCHAR(512)  UNIQUE," +
-           "Password       VARCHAR(16)," +
-           "FirstName      VARCHAR(32)," +
-           "LastName       VARCHAR(32)," + 
+           "UserID         INTEGER       PRIMARY KEY    AUTOINCREMENT," +
+           "Email          TEXT  UNIQUE," +
+           "Password       TEXT," +
+           "FirstName      TEXT," +
+           "LastName       TEXT," +
            "BirthDate	   DATE);";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
-           "SportID       INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
-           "UserID        INT(11)," +
-           "SportName     VARCHAR(64)," +
-           "Position      VARCHAR(4)," +
-           "FavoriteTeam  VARCHAR(64)," +
+           "SportID       INTEGER    PRIMARY KEY	AUTOINCREMENT," +
+           "UserID        INT," +
+           "SportName     TEXT," +
+           "Position      TEXT," +
+           "FavoriteTeam  TEXT," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE GameLog(" +
-           "GameID         INT(11)    PRIMARY KEY AUTO_INCREMENT," +
-           "UserID         INT(11)," +
-           "Week           INT(4)," +
+           "GameID         INTEGER    PRIMARY KEY AUTOINCREMENT," +
+           "UserID         INT," +
+           "Week           INT," +
            "Date           DATE," +
-           "Opponent       VARCHAR(64)," +
-           "Score          VARCHAR(8)," +
+           "Opponent       TEXT," +
+           "Score          TEXT," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Stats(" +
-           "StatsID        INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
-           "GameID         INT(11)," +
-           "UserID         INT(11)," +
+           "StatsID        INTEGER    PRIMARY KEY	AUTOINCREMENT," +
+           "GameID         INT," +
+           "UserID         INT," +
            "RecYds         INT," +
            "RecTDs         INT," +
            "RecAtt         INT," +

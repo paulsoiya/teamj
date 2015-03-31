@@ -167,7 +167,7 @@
     
     <jar jarfile="build/dist/lib/external-libs.jar">
         <zipgroupfileset dir="lib/" excludes="META-INF/**/*">
-            <include name="**/mysql*.jar"/>
+            <include name="**/sqlite*.jar"/>
         </zipgroupfileset>
     </jar>
     <sleep seconds="1"/>
