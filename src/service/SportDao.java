@@ -18,5 +18,11 @@ public interface SportDao {
 	 */
 	public boolean deleteSport(String sportName);
 	
+    /**
+     * Find Position for Football by userId
+     * @param userId
+     * @return String position
+     */
+    public String findPositionFootball(int userId);
 	
 }

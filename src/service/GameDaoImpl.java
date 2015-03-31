@@ -140,4 +140,36 @@ public class GameDaoImpl implements GameDao {
         }
         return games;
     }
+    
+    @Override
+    public int FindGameID(Game game) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        int result = true;
+        try {
+            String sql = "SELECT GameID FROM GameLog WHERE (UserID = ?"
+            + "AND Week = ? AND Opponent = ?)"
+            + "VALUES(?, ?, ?)";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, game.getUserID());
+            stmt.setInt(2, game.getWeek());
+            stmt.setString(3, game.getOpponent());
+            result = stmt.executeQuery();
+        } catch(Exception e) {
+            System.err.println(e.getClass().getName() + ": "
+                               + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
+
 }

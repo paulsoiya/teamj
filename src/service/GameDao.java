@@ -31,4 +31,11 @@ public interface GameDao {
      * @return array of games for the user
      */
     public List<Game> findGames(int userId);
+    
+    /**
+     * Finds gameId for a Game
+     * @param game
+     * @return gameId
+     */
+    public int findGameID(Game game);
 }

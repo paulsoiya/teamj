@@ -59,7 +59,6 @@ public class StatsController implements Initializable {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
-        System.out.println(weekTxt.getText());
         try {
             int week = Integer.parseInt(weekTxt.getText());
             Game game = new Game(controller.getSessionUserId(), week,
@@ -68,7 +67,6 @@ public class StatsController implements Initializable {
                                  datePicker.getValue());
             gameDao.addGame(game);
             controller.loadScreen(controller.HOME_FXML);
-            System.out.println(week);
         }
         catch (NumberFormatException e) {
             //TODO
