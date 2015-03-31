@@ -65,7 +65,7 @@ public class StatsController implements Initializable {
             Game game = new Game(controller.getSessionUserId(), week,
                                  opponentTxt.getText(),
                                  yourScore.getText() + "-" + theirScore.getText(),
-                                 datePicker.getValue());
+                                 datePicker.getValue().toString());
             gameDao.addGame(game);
             controller.loadScreen(controller.HOME_FXML);
             System.out.println(week);

@@ -103,11 +103,13 @@
 	<target name="fx-compile">
 		<delete dir="build" />
 			<mkdir dir="build/src" />
+            <mkdir dir="build/lib"/>
 			<mkdir dir="build/classes" />
             <mkdir dir="build/dist" />
+            <mkdir dir="build/dist/temp"/>
 		
 			<!-- Copy project-libs references -->
-			<copy todir="build/dist/lib">
+			<copy todir="build/lib">
 				<fileset dir="${lib.dir}">
 				</fileset>
 			</copy>
@@ -123,7 +125,7 @@
 		
 			<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
 				<classpath>
-					<fileset dir="build/dist/lib">
+					<fileset dir="build/lib">
 						<include name="*"/>
 					</fileset>
 				</classpath>
@@ -140,7 +142,7 @@
 
 	<target name="fx-deploy" depends="fx-compile">
 
-	<fx:jar destfile="build/dist/temp-application.jar">
+	<fx:jar destfile="build/dist/temp/temp-application.jar">
 	    <!-- Details about application -->
 	    <fx:application name="CST316 Sports"
 	            mainClass="view.Main"/>
@@ -165,18 +167,18 @@
 	    </manifest>
 	</fx:jar>
     
-    <jar jarfile="build/dist/lib/external-libs.jar">
-        <zipgroupfileset dir="lib/" excludes="META-INF/**/*">
+    <jar jarfile="build/dist/temp/external-libs.jar">
+        <zipgroupfileset dir="build/lib" excludes="META-INF/**/*">
             <include name="**/sqlite*.jar"/>
         </zipgroupfileset>
     </jar>
     <sleep seconds="1"/>
     <jar jarfile="build/dist/application.jar">
-        <fileset dir="build/dist" includes="**/*.*"/>
-        <zipfileset src="build/dist/lib/external-libs.jar">
+        <fileset dir="build/dist/" includes="**/*.*"/>
+        <zipfileset src="build/dist/temp/external-libs.jar">
             <exclude name="META-INF/**/*"/>
         </zipfileset>
-        <zipfileset src="build/dist/temp-application.jar">
+        <zipfileset src="build/dist/temp/temp-application.jar">
             <exclude name="META-INF/**/*"/>
         </zipfileset>
         <manifest>
@@ -187,7 +189,7 @@
     </jar>
     
     <delete file="build/dist/lib/external-libs.jar"/>
-    <delete file="build/dist/temp-application.jar"/>
+    <delete file="build/dist/lib/temp-application.jar"/>
     </target>
     
     <target name="run-tests" depends="fx-compile">

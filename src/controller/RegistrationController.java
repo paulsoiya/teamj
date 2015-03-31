@@ -69,7 +69,7 @@ public class RegistrationController implements Initializable {
     						passwordTxt.getText(),
     						firstNameTxt.getText(),
     						lastNameTxt.getText(),
-    						dobPicker.getValue());
+    						dobPicker.getValue().toString());
     	
         if (usrDao.createUser(usr)) {
             User currentUser = usrDao.findUser(emailTxt.getText());

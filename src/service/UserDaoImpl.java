@@ -30,9 +30,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(2, user.getPassword());
             stmt.setString(3, user.getFirstName());
             stmt.setString(4, user.getLastName());
-            stmt.setString(5, user.getDob().getYear() + "-"
-					+ user.getDob().getMonthValue() + "-"
-					+ user.getDob().getDayOfMonth());
+            stmt.setString(5, user.getDob());
 			stmt.execute();
 
 		} catch (Exception e) {
@@ -65,9 +63,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, user.getPassword());
             stmt.setString(2, user.getFirstName());
             stmt.setString(3, user.getLastName());
-            stmt.setString(4, user.getDob().getYear() + "-"
-                           + user.getDob().getMonthValue() + "-"
-                           + user.getDob().getDayOfMonth());
+            stmt.setString(4, user.getDob());
             stmt.setString(5, user.getEmail());
             stmt.executeUpdate();
             
@@ -105,7 +101,7 @@ public class UserDaoImpl implements UserDao {
                 String pwd = resultSet.getString("Password");
                 String fname = resultSet.getString("FirstName");
                 String lname = resultSet.getString("LastName");
-                LocalDate dob = resultSet.getDate("BirthDate").toLocalDate();
+                String dob = resultSet.getString("BirthDate");
                 user = new User(userId, email, pwd, fname, lname, dob);
             }
             

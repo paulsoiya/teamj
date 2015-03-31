@@ -118,7 +118,7 @@ public class DatabaseCreation {
            "Password       TEXT," +
            "FirstName      TEXT," +
            "LastName       TEXT," +
-           "BirthDate	   DATE);";
+           "BirthDate	   TEXT);";
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
@@ -134,7 +134,7 @@ public class DatabaseCreation {
            "GameID         INTEGER    PRIMARY KEY AUTOINCREMENT," +
            "UserID         INT," +
            "Week           INT," +
-           "Date           DATE," +
+           "Date           TEXT," +
            "Opponent       TEXT," +
            "Score          TEXT," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
