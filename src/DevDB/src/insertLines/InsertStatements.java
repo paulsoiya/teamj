@@ -74,7 +74,7 @@ public class InsertStatements {
 
 		for (int x = 1; x <= playerName.length; x++) {
 			System.out
-					.println("INSERT INTO Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, Number) "
+					.println("INSERT INTO Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, College, Number) "
 							+ "VALUES ("
 							+ x
 							+ ", '"

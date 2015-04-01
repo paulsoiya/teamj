@@ -1,0 +1,70 @@
+PlayerID: 1	PlayerName: Marshawn Lynch  	Team: Seahawks	Height: 5	Weight: 335	BirthDate: January 22, 1984  	College: ASU	Number: 24	
+PlayerID: 2	PlayerName: Russell Wilson  	Team: Seahawks	Height: 5.5	Weight: 244	BirthDate: February 15, 1988  	College: BSU	Number: 25	
+PlayerID: 3	PlayerName: Doug Baldwin  	Team: Seahawks	Height: 5	Weight: 245	BirthDate: March 31 1987  	College: FSU	Number: 45	
+PlayerID: 4	PlayerName: Frank Gore  	Team: 49ers	Height: 6.1	Weight: 234	BirthDate: April 21, 1979  	College: CAL	Number: 98	
+PlayerID: 5	PlayerName: Collin Kapernick  	Team: 49ers	Height: 6.4	Weight: 321	BirthDate: May 10, 1989  	College: LSU	Number: 16	
+PlayerID: 6	PlayerName: Michael Crabtree  	Team: 49ers	Height: 6.9	Weight: 196	BirthDate: June 21, 1978  	College: ALA	Number: 5	
+PlayerID: 7	PlayerName: Andre Ellington  	Team: Cardinals	Height: 5	Weight: 345	BirthDate: July 14, 1986  	College: ARK	Number: 8	
+PlayerID: 8	PlayerName: Carson Palmer  	Team: Cardinals	Height: 5.4	Weight: 272	BirthDate: August 31, 1982  	College: UoA	Number: 7	
+PlayerID: 9	PlayerName: Larry Fitzgerald  	Team: Cardinals	Height: 6.6	Weight: 251	BirthDate: September 21, 1990  	College: ORE	Number: 9	
+PlayerID: 10	PlayerName: Eddie Lacy  	Team: Packers	Height: 6.1	Weight: 179	BirthDate: October 5, 1981  	College: WAS	Number: 15	
+PlayerID: 11	PlayerName: Aaron Rodgers  	Team: Packers	Height: 6	Weight: 256	BirthDate: November 3, 1980  	College: OSU	Number: 32	
+PlayerID: 12	PlayerName: Jordy Nelson  	Team: Packers	Height: 5.4	Weight: 289	BirthDate: December 20, 1983  	College: MSU	Number: 20	
+PlayerID: 13	PlayerName: Mark Ingram  	Team: Saints	Height: 5.1	Weight: 180	BirthDate: January 1, 1985  	College: MIN	Number: 21	
+PlayerID: 14	PlayerName: Drew Brees  	Team: Saints	Height: 5.9	Weight: 301	BirthDate: February 9, 1989  	College: USC	Number: 78	
+PlayerID: 15	PlayerName: Jimmy Graham  	Team: Saints	Height: 6.4	Weight: 304	BirthDate: March 15 1977  	College: UCLA	Number: 14	
+PlayerID: 16	PlayerName: Broncos RB  	Team: Broncos	Height: 5.1	Weight: 279	BirthDate: April 18, 1984  	College: STAN	Number: 10	
+PlayerID: 17	PlayerName: Peyton Manning  	Team: Broncos	Height: 6.9	Weight: 183	BirthDate: May 12, 1990  	College: ISU	Number: 2	
+PlayerID: 18	PlayerName: Demarius Thomas  	Team: Broncos	Height: 5.9	Weight: 290	BirthDate: June 14, 1976  	College: TCU	Number: 19	
+PlayerID: 19	PlayerName: Demarco Murray  	Team: Cowboys	Height: 5.5	Weight: 320	BirthDate: July 13, 1989  	College: ASU	Number: 65	
+PlayerID: 20	PlayerName: Tony Romo  	Team: Cowboys	Height: 6.8	Weight: 348	BirthDate: August 17, 1989  	College: ASU	Number: 37	
+PlayerID: 21	PlayerName: Dez Bryant  	Team: Cowboys	Height: 5.8	Weight: 215	BirthDate: September 13, 1980  	College: CAL	Number: 96	
+------------- Stats Table---------------
+StatsID: 1	PlayerID: 1  	RecYds: 1425	RecTDs: 13	RecAtt: 192	RushYds: 1174  	RushTDs: 12	RushAtt: 178	PassYds: 4460	PassTDs: 34	PassAtt: 82	
+StatsID: 2	PlayerID: 2  	RecYds: 91	RecTDs: 4	RecAtt: 57	RushYds: 837  	RushTDs: 30	RushAtt: 29	PassYds: 4003	PassTDs: 26	PassAtt: 207	
+StatsID: 3	PlayerID: 3  	RecYds: 304	RecTDs: 23	RecAtt: 144	RushYds: 1317  	RushTDs: 23	RushAtt: 83	PassYds: 2305	PassTDs: 36	PassAtt: 328	
+StatsID: 4	PlayerID: 4  	RecYds: 861	RecTDs: 6	RecAtt: 62	RushYds: 1370  	RushTDs: 8	RushAtt: 159	PassYds: 4436	PassTDs: 17	PassAtt: 13	
+StatsID: 5	PlayerID: 5  	RecYds: 468	RecTDs: 9	RecAtt: 1	RushYds: 846  	RushTDs: 8	RushAtt: 193	PassYds: 3033	PassTDs: 1	PassAtt: 201	
+StatsID: 6	PlayerID: 6  	RecYds: 2152	RecTDs: 17	RecAtt: 141	RushYds: 165  	RushTDs: 21	RushAtt: 75	PassYds: 1000	PassTDs: 2	PassAtt: 60	
+StatsID: 7	PlayerID: 7  	RecYds: 235	RecTDs: 12	RecAtt: 10	RushYds: 47  	RushTDs: 28	RushAtt: 1	PassYds: 2244	PassTDs: 46	PassAtt: 43	
+StatsID: 8	PlayerID: 8  	RecYds: 724	RecTDs: 0	RecAtt: 43	RushYds: 230  	RushTDs: 22	RushAtt: 84	PassYds: 5298	PassTDs: 12	PassAtt: 409	
+StatsID: 9	PlayerID: 9  	RecYds: 1039	RecTDs: 7	RecAtt: 6	RushYds: 1828  	RushTDs: 9	RushAtt: 183	PassYds: 4271	PassTDs: 1	PassAtt: 113	
+StatsID: 10	PlayerID: 10  	RecYds: 1068	RecTDs: 1	RecAtt: 81	RushYds: 1341  	RushTDs: 7	RushAtt: 173	PassYds: 2010	PassTDs: 9	PassAtt: 138	
+StatsID: 11	PlayerID: 11  	RecYds: 1452	RecTDs: 6	RecAtt: 192	RushYds: 1207  	RushTDs: 7	RushAtt: 164	PassYds: 2697	PassTDs: 0	PassAtt: 346	
+StatsID: 12	PlayerID: 12  	RecYds: 1437	RecTDs: 14	RecAtt: 132	RushYds: 1271  	RushTDs: 24	RushAtt: 5	PassYds: 372	PassTDs: 43	PassAtt: 152	
+StatsID: 13	PlayerID: 13  	RecYds: 1324	RecTDs: 27	RecAtt: 182	RushYds: 1221  	RushTDs: 11	RushAtt: 92	PassYds: 4592	PassTDs: 44	PassAtt: 458	
+StatsID: 14	PlayerID: 14  	RecYds: 320	RecTDs: 8	RecAtt: 147	RushYds: 1090  	RushTDs: 0	RushAtt: 46	PassYds: 2771	PassTDs: 29	PassAtt: 423	
+StatsID: 15	PlayerID: 15  	RecYds: 1222	RecTDs: 19	RecAtt: 23	RushYds: 903  	RushTDs: 32	RushAtt: 164	PassYds: 111	PassTDs: 23	PassAtt: 224	
+StatsID: 16	PlayerID: 16  	RecYds: 341	RecTDs: 27	RecAtt: 183	RushYds: 159  	RushTDs: 34	RushAtt: 192	PassYds: 4973	PassTDs: 20	PassAtt: 46	
+StatsID: 17	PlayerID: 17  	RecYds: 706	RecTDs: 1	RecAtt: 79	RushYds: 2149  	RushTDs: 14	RushAtt: 121	PassYds: 906	PassTDs: 53	PassAtt: 381	
+StatsID: 18	PlayerID: 18  	RecYds: 672	RecTDs: 23	RecAtt: 125	RushYds: 370  	RushTDs: 33	RushAtt: 191	PassYds: 232	PassTDs: 21	PassAtt: 272	
+StatsID: 19	PlayerID: 19  	RecYds: 1194	RecTDs: 23	RecAtt: 191	RushYds: 556  	RushTDs: 19	RushAtt: 161	PassYds: 2070	PassTDs: 32	PassAtt: 53	
+StatsID: 20	PlayerID: 20  	RecYds: 2122	RecTDs: 23	RecAtt: 161	RushYds: 916  	RushTDs: 24	RushAtt: 44	PassYds: 1087	PassTDs: 51	PassAtt: 273	
+StatsID: 21	PlayerID: 21  	RecYds: 473	RecTDs: 14	RecAtt: 166	RushYds: 1589  	RushTDs: 4	RushAtt: 74	PassYds: 1196	PassTDs: 43	PassAtt: 387	
+------------------ User Info ----------------
+UserID: 1	Email: E.Hawks@gmail.com  	Password: pass1	Name: Elliott Hawks	
+UserID: 2	Email: B.Lee@gmail.com  	Password: pass2	Name: Bruce Lee	
+UserID: 3	Email: J.Wayne@gmail.com  	Password: pass3	Name: John Wayne	
+UserID: 4	Email: Kim.Kay@gmail.com  	Password: pass4	Name: Kim Kardashian	
+------------- Stats Table---------------
+StatsID: 1	PlayerID: 1  	RecYds: 423	RecTDs: 21	RecAtt: 152	RushYds: 1865  	RushTDs: 27	RushAtt: 48	PassYds: 1958	PassTDs: 13	PassAtt: 351	
+StatsID: 2	PlayerID: 2  	RecYds: 396	RecTDs: 9	RecAtt: 95	RushYds: 42  	RushTDs: 13	RushAtt: 189	PassYds: 2683	PassTDs: 52	PassAtt: 289	
+StatsID: 3	PlayerID: 3  	RecYds: 1695	RecTDs: 24	RecAtt: 194	RushYds: 761  	RushTDs: 24	RushAtt: 18	PassYds: 644	PassTDs: 39	PassAtt: 492	
+StatsID: 4	PlayerID: 4  	RecYds: 2322	RecTDs: 6	RecAtt: 54	RushYds: 2175  	RushTDs: 1	RushAtt: 37	PassYds: 960	PassTDs: 39	PassAtt: 118	
+StatsID: 5	PlayerID: 5  	RecYds: 2168	RecTDs: 26	RecAtt: 86	RushYds: 1811  	RushTDs: 10	RushAtt: 198	PassYds: 2830	PassTDs: 0	PassAtt: 11	
+StatsID: 6	PlayerID: 6  	RecYds: 555	RecTDs: 19	RecAtt: 146	RushYds: 976  	RushTDs: 19	RushAtt: 16	PassYds: 3937	PassTDs: 50	PassAtt: 325	
+StatsID: 7	PlayerID: 7  	RecYds: 256	RecTDs: 22	RecAtt: 83	RushYds: 1044  	RushTDs: 32	RushAtt: 15	PassYds: 794	PassTDs: 38	PassAtt: 225	
+StatsID: 8	PlayerID: 8  	RecYds: 2359	RecTDs: 19	RecAtt: 1	RushYds: 1369  	RushTDs: 6	RushAtt: 175	PassYds: 1306	PassTDs: 54	PassAtt: 145	
+StatsID: 9	PlayerID: 9  	RecYds: 23	RecTDs: 22	RecAtt: 193	RushYds: 132  	RushTDs: 5	RushAtt: 79	PassYds: 3594	PassTDs: 49	PassAtt: 218	
+StatsID: 10	PlayerID: 10  	RecYds: 2038	RecTDs: 1	RecAtt: 7	RushYds: 2021  	RushTDs: 31	RushAtt: 111	PassYds: 5034	PassTDs: 53	PassAtt: 364	
+StatsID: 11	PlayerID: 11  	RecYds: 2477	RecTDs: 10	RecAtt: 34	RushYds: 246  	RushTDs: 7	RushAtt: 164	PassYds: 1587	PassTDs: 24	PassAtt: 475	
+StatsID: 12	PlayerID: 12  	RecYds: 1425	RecTDs: 26	RecAtt: 0	RushYds: 439  	RushTDs: 3	RushAtt: 119	PassYds: 5208	PassTDs: 54	PassAtt: 428	
+StatsID: 13	PlayerID: 13  	RecYds: 1861	RecTDs: 9	RecAtt: 0	RushYds: 1805  	RushTDs: 6	RushAtt: 73	PassYds: 4981	PassTDs: 25	PassAtt: 261	
+StatsID: 14	PlayerID: 14  	RecYds: 959	RecTDs: 27	RecAtt: 168	RushYds: 2168  	RushTDs: 25	RushAtt: 13	PassYds: 3320	PassTDs: 33	PassAtt: 274	
+StatsID: 15	PlayerID: 15  	RecYds: 2087	RecTDs: 21	RecAtt: 150	RushYds: 915  	RushTDs: 21	RushAtt: 135	PassYds: 401	PassTDs: 17	PassAtt: 460	
+StatsID: 16	PlayerID: 16  	RecYds: 1045	RecTDs: 26	RecAtt: 21	RushYds: 250  	RushTDs: 22	RushAtt: 92	PassYds: 1628	PassTDs: 8	PassAtt: 35	
+StatsID: 17	PlayerID: 17  	RecYds: 1501	RecTDs: 23	RecAtt: 34	RushYds: 860  	RushTDs: 1	RushAtt: 142	PassYds: 5180	PassTDs: 32	PassAtt: 288	
+StatsID: 18	PlayerID: 18  	RecYds: 1778	RecTDs: 16	RecAtt: 59	RushYds: 1516  	RushTDs: 32	RushAtt: 133	PassYds: 2949	PassTDs: 22	PassAtt: 267	
+StatsID: 19	PlayerID: 19  	RecYds: 686	RecTDs: 4	RecAtt: 67	RushYds: 339  	RushTDs: 30	RushAtt: 0	PassYds: 1080	PassTDs: 36	PassAtt: 466	
+StatsID: 20	PlayerID: 20  	RecYds: 194	RecTDs: 9	RecAtt: 47	RushYds: 198  	RushTDs: 5	RushAtt: 70	PassYds: 2112	PassTDs: 32	PassAtt: 338	
+StatsID: 21	PlayerID: 21  	RecYds: 323	RecTDs: 9	RecAtt: 18	RushYds: 1491  	RushTDs: 32	RushAtt: 121	PassYds: 1165	PassTDs: 12	PassAtt: 312	
