@@ -16,5 +16,5 @@ public interface CompareDao {
      * @param
      * @return
      */
-    public String playerComparison(Stats stats);
+    public int playerComparison(Stats stats);
 }

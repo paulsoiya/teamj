@@ -22,14 +22,15 @@ import model.Stats;
 public class CompareDaoImpl implements CompareDao {
     
     @Override
-    public String playerComparison(Stats stats) {
+    public int playerComparison(Stats stats) {
         Connection conPro = DaoFactory.createConnectionProfessional();
+        Connection conInd = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
         ResultSet resultSet;
-        String result = "";
+        int result = -1;
         Compare compare = new Compare();
         try {
-            String sql = "SELECT GameID FROM Stats WHERE RushYds LIKE ? "
+            String sql = "SELECT StatsID FROM Stats WHERE RushYds LIKE ? "
             + "AND RushTDs LIKE ? AND RushAtt LIKE ?";
             stmt = conPro.prepareStatement(sql);
             stmt.setInt(1, stats.getYards());
@@ -37,8 +38,14 @@ public class CompareDaoImpl implements CompareDao {
             stmt.setInt(3, stats.getAttempts());
             resultSet = stmt.executeQuery();
             if(resultSet.next())
-                result = resultSet.getString("GameID");
+                result = resultSet.getInt("StatsID");
             System.out.println(result);
+            sql = "UPDATE Stats set ProStatsID = ? WHERE "
+            + "GameID = ?";
+            stmt = conInd.prepareStatement(sql);
+            stmt.setInt(1, result);
+            stmt.setInt(2, stats.getGameID());
+            stmt.execute();
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
                                + e.getMessage());
