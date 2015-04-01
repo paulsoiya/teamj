@@ -61,7 +61,7 @@ public class EditController implements Initializable {
                             passwordTxt.getText(),
                             firstNameTxt.getText(),
                             lastNameTxt.getText(),
-                            dobPicker.getValue());
+                            dobPicker.getValue().toString());
             if(usrDao.updateUser(updateUsr))
                 controller.loadScreen(controller.HOME_FXML);
         }

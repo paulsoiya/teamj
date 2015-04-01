@@ -12,16 +12,30 @@ import java.sql.SQLException;
  */
 public class DaoFactory extends AbstractDaoFactory {
 
-	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static String conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
-    public static final String CON_URL_PRO = "jdbc:mysql://localhost:3306/professional?user=root&password=password";
+	public static final String DRIVER = "org.sqlite.JDBC";
+	public static final String CON_URL_IND = "jdbc:sqlite:individual.db";
+    public static final String CON_URL_PRO = "jdbc:sqlite:professional.db";
+    
+    public static Connection createConnection(String database){
+        Connection con = null;
+        
+        try {
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(database);
+            
+        }catch(Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        
+        return con;
+    }
 
 	public static Connection createConnectionIndividual(){
 		Connection con = null;
 		
 		try {
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection(DaoFactory.conUrlInd);
+			con = DriverManager.getConnection(DaoFactory.CON_URL_IND);
 			
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());

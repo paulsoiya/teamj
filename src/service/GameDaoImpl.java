@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import java.sql.ResultSet;
 import java.util.List;
@@ -32,9 +31,7 @@ public class GameDaoImpl implements GameDao {
         stmt = con.prepareStatement(sql);
         stmt.setInt(1, game.getUserID());
         stmt.setInt(2, game.getWeek());
-        stmt.setString(3, game.getDate().getYear() + "-"
-                + game.getDate().getMonthValue() + "-"
-                +game.getDate().getDayOfMonth());
+        stmt.setString(3, game.getDate());
         stmt.setString(4, game.getOpponent());
         stmt.setString(5, game.getScore());
         stmt.execute();
@@ -111,13 +108,13 @@ public class GameDaoImpl implements GameDao {
             List<Integer> week = new ArrayList<Integer>();
             List<String> opp = new ArrayList<String>();
             List<String> score = new ArrayList<String>();
-            List<LocalDate> date = new ArrayList<LocalDate>();
+            List<String> date = new ArrayList<String>();
             Game[] game = new Game[length];
             
             for(int i=0; i < length; i++) {
                 while(resultSet.next()) {
                     week.add(resultSet.getInt("Week"));
-                    date.add(resultSet.getDate("Date").toLocalDate());
+                    date.add(resultSet.getString("Date"));
                     opp.add(resultSet.getString("Opponent"));
                     score.add(resultSet.getString("Score"));
                 }

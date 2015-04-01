@@ -2,10 +2,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
 import service.*;
 import model.Game;
 import model.User;
@@ -23,7 +19,7 @@ public class GameDaoTest {
 	private Game game1;
 	private Game game2;
     private User user;
-     private User currentUser;
+    private User currentUser;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -37,19 +33,15 @@ public class GameDaoTest {
 	public void setUp() throws Exception {
 		daoFact = DaoFactory.getDaoFactory();
         
-        Date now = new Date();
-        LocalDate date = now.toInstant().atZone(ZoneId.systemDefault())
-        .toLocalDate();
-        
         this.user = new User("testemail5@asu.edu", "password", "TestFname",
-                              "TestLname", date);
+                              "TestLname", "");
         
 		this.dao = daoFact.getGameDao();
         this.usrDao = daoFact.getUserDao();
         usrDao.createUser(user);
         currentUser = usrDao.findUser(user.getEmail());
-		this.game1 = new Game(1, currentUser.getId(), 1, "Pittsford", "20-7", date);
-		this.game2 = new Game(2, currentUser.getId(), 2, "Rush", "28-7", date);
+		this.game1 = new Game(1, currentUser.getId(), 1, "Pittsford", "20-7", "");
+		this.game2 = new Game(2, currentUser.getId(), 2, "Rush", "28-7", "");
         
         
 	}
