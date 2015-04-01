@@ -43,7 +43,7 @@ public class UserDaoTest {
 	@Test
 	public void createUserTest() {
         assertTrue(dao.createUser(user1));
-        DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
         assertFalse(dao.createUser(user2));
 	}
     
@@ -58,7 +58,7 @@ public class UserDaoTest {
     @Test
     public void loginUserTest(){
         assertFalse(dao.loginUser(user1.getEmail(), "passord"));
-        DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
         assertTrue(dao.loginUser(user1.getEmail(), "password"));
         assertFalse(dao.loginUser(user1.getEmail(), "incorrect"));
     }
@@ -66,14 +66,14 @@ public class UserDaoTest {
     @Test
     public void updateUserTest() {
         assertTrue(dao.updateUser(user2));
-        DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
         assertFalse(dao.updateUser(user1));
     }
     
     @Test
     public void deleteUserTest(){
         assertFalse(dao.deleteUser(user1.getEmail()));
-        DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
         assertTrue(dao.deleteUser(user1.getEmail()));
     }
 

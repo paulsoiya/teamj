@@ -16,7 +16,7 @@ public class Sport {
         this.favoriteTeam = favoriteTeam;
         
 	}
-	
+
 	public Sport(int userId, String name, String position, String favoriteTeam) {
         this.userId = userId;
 		this.name = name;

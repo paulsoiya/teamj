@@ -141,18 +141,13 @@ public class DatabaseCreation {
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Stats(" +
-           "StatsID        INTEGER    PRIMARY KEY	AUTOINCREMENT," +
-           "GameID         INT," +
-           "UserID         INT," +
-           "RecYds         INT," +
-           "RecTDs         INT," +
-           "RecAtt         INT," +
-           "RushYds        INT," +
-           "RushTDs        INT," +
-           "RushAtt        INT," +
-           "PassYds        INT," +
-           "PassTDs        INT," +
-           "PassAtt        INT," +
+           "StatsID        INT(11)    PRIMARY KEY	AUTO_INCREMENT," +
+           "GameID         INT(11)," +
+           "UserID         INT(11)," +
+           "Yds            INT," +
+           "TDs            INT," +
+           "Att            INT," +
+           "ProStatsID        INT," +
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);

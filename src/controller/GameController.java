@@ -8,18 +8,21 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.List;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
+
 import model.Game;
 import service.*;
 import session.*;
@@ -71,8 +74,17 @@ public class GameController implements Initializable {
         }
         
         table.setItems(data);
+        
+        table.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    controller.loadScreen(controller.COMPARE);
+                }
+            }
+        });
 	}
-                    
+
     /**
      * Changes the current FXML page to stats.fxml
      * @param e

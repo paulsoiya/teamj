@@ -25,6 +25,7 @@ public class MainNavigator {
     public static final String GAME_FXML = "games.fxml";
     public static final String EDIT_FXML = "edit.fxml";
     public static final String COMPARE_FXML = "quickCompare.fxml";
+    public static final String COMPARE = "compare.fxml";
     
     /** The main application layout controller. */
     private static LoginController mainController;

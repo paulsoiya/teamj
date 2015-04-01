@@ -1,3 +1,9 @@
+/**
+ * GameDao
+ *
+ * @author Taylor Scott (tdscott2@asu.edu)
+ * @version Mar 26, 2015
+ */
 package service;
 
 import model.Game;
@@ -25,4 +31,11 @@ public interface GameDao {
      * @return array of games for the user
      */
     public List<Game> findGames(int userId);
+    
+    /**
+     * Finds gameId for a Game
+     * @param game
+     * @return gameId
+     */
+    public int findGameID(Game game);
 }

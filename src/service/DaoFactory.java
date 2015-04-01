@@ -13,8 +13,22 @@ import java.sql.SQLException;
 public class DaoFactory extends AbstractDaoFactory {
 
 	public static final String DRIVER = "org.sqlite.JDBC";
-	public static String CON_URL_IND = "jdbc:sqlite:individual.db";
+	public static final String CON_URL_IND = "jdbc:sqlite:individual.db";
     public static final String CON_URL_PRO = "jdbc:sqlite:professional.db";
+    
+    public static Connection createConnection(String database){
+        Connection con = null;
+        
+        try {
+            Class.forName(DRIVER);
+            con = DriverManager.getConnection(database);
+            
+        }catch(Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        
+        return con;
+    }
 
 	public static Connection createConnectionIndividual(){
 		Connection con = null;
@@ -62,8 +76,18 @@ public class DaoFactory extends AbstractDaoFactory {
         return new GameDaoImpl();
     }
 	
-	public SportDao getSportDao(){
+    @Override
+	public SportDao getSportDao() {
 		return new SportDaoImpl();
 	}
-
+    
+    @Override
+    public StatsDao getStatsDao() {
+        return new StatsDaoImpl();
+    }
+    
+    @Override
+    public CompareDao getCompareDao() {
+        return new CompareDaoImpl();
+    }
 }

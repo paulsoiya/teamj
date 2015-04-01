@@ -9,15 +9,19 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import model.Sport;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import service.DaoFactory;
+import service.SportDao;
+import view.MainNavigator;
 
 public class SportController implements Initializable {
 
-	view.MainNavigator controller;
+	MainNavigator controller;
 	
 	@FXML
 	private ChoiceBox<String> sportCB;
@@ -60,6 +64,14 @@ public class SportController implements Initializable {
      */
     @FXML
     private void changeToHome() {
+    	
+    	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    	SportDao sportDao = daoFact.getSportDao();
+    	Sport sport = new Sport(controller.getSessionUserId(), 
+    			sportCB.getValue(), positionCB.getValue(), favTeamCB.getValue());
+    	
+    	sportDao.createSport(sport);
+    	
         controller.loadScreen(controller.HOME_FXML);
     }
 }

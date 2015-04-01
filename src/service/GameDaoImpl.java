@@ -1,3 +1,9 @@
+/**
+ * GameDao Implementation
+ *
+ * @author Taylor Scott (tdscott2@asu.edu)
+ * @version Mar 26, 2015
+ */
 package service;
 
 import java.sql.Connection;
@@ -12,12 +18,6 @@ import java.util.ArrayList;
 
 import model.Game;
 
-/**
- * Game Dao
- *
- * @author tdscott10
- * @version March 26, 2015
- */
 public class GameDaoImpl implements GameDao {
 
     @Override
@@ -137,4 +137,38 @@ public class GameDaoImpl implements GameDao {
         }
         return games;
     }
+    
+    @Override
+    public int findGameID(Game game) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        int result = -1;
+        try {
+            String sql = "SELECT GameID FROM GameLog WHERE UserID = ? "
+            + "AND Week = ? AND Opponent = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, game.getUserID());
+            stmt.setInt(2, game.getWeek());
+            stmt.setString(3, game.getOpponent());
+            resultSet = stmt.executeQuery();
+            if(resultSet.next())
+                result = resultSet.getInt("GameID");
+        } catch(Exception e) {
+            System.err.println(e.getClass().getName() + ": "
+                               + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
+
 }

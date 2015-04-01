@@ -2,12 +2,13 @@
  * Controller for the Stats FXML page
  *
  * @author Taylor Scott (tdscott2@asu.edu)
- * @version Mar 16, 2015
+ * @version Mar 31, 2015
  */
 package controller;
 
 import model.Game;
 import model.User;
+import model.Stats;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,24 +56,43 @@ public class StatsController implements Initializable {
      * @param e
      */
     @FXML
-    private void changeToHome() {
+    private void changeToCompare() {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
-        System.out.println(weekTxt.getText());
+        StatsDao statsDao = daoFact.getStatsDao();
+        SportDao sportDao = daoFact.getSportDao();
+        CompareDao compareDao = daoFact.getCompareDao();
         try {
+            //Load Game info
             int week = Integer.parseInt(weekTxt.getText());
             Game game = new Game(controller.getSessionUserId(), week,
                                  opponentTxt.getText(),
                                  yourScore.getText() + "-" + theirScore.getText(),
                                  datePicker.getValue().toString());
             gameDao.addGame(game);
-            controller.loadScreen(controller.HOME_FXML);
-            System.out.println(week);
+            
+            //Load Stats
+            int gameId = gameDao.findGameID(game);
+            int yards = Integer.parseInt(yardsTxt.getText());
+            int touchdown = Integer.parseInt(touchdownTxt.getText());
+            int attempts = Integer.parseInt(attemptsTxt.getText());
+            Stats stats = new Stats(gameId, controller.getSessionUserId(),
+                                    yards, touchdown, attempts);
+            
+            if (statsDao.addStats(stats))
+                controller.loadScreen(controller.COMPARE);
+            
+            compareDao.playerComparison(stats);
         }
         catch (NumberFormatException e) {
-            //TODO
+            System.out.println(this.getClass().getName() + " error: " + e.getMessage());
         }
     }
+        
+        @FXML
+        private void changeToHome() {
+            controller.loadScreen(controller.HOME_FXML);
+        }
 }
 

@@ -42,7 +42,7 @@ public class EditUserDaoTest {
 	@Test
 	public void createUserTest() {
         assertTrue(dao.createUser(user1));
-        DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
         assertFalse(dao.createUser(user2));
 	}
     
