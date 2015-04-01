@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class DaoFactory extends AbstractDaoFactory {
 
 	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static String CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+	public static String conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
     public static final String CON_URL_PRO = "jdbc:mysql://localhost:3306/professional?user=root&password=password";
 
 	public static Connection createConnectionIndividual(){
@@ -21,7 +21,7 @@ public class DaoFactory extends AbstractDaoFactory {
 		
 		try {
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection(DaoFactory.CON_URL_IND);
+			con = DriverManager.getConnection(DaoFactory.conUrlInd);
 			
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());

@@ -62,7 +62,7 @@ public class GameDaoTest {
 	public void testCreateGame() {
 		assertTrue(dao.addGame(game1));
 		//give the wrong password to the connection so it can fail
-		DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
+		DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
 		assertFalse(dao.addGame(game2));
 
 	}
@@ -71,7 +71,7 @@ public class GameDaoTest {
 	public void testDeleteGame(){
 		assertFalse(dao.deleteGame(game1.getGameID()));
 		//set the right password so the connection will succeed and the delete will work
-		DaoFactory.CON_URL_IND = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
+		DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
 		assertTrue(dao.deleteGame(game1.getGameID()));
         usrDao.deleteUser(currentUser.getEmail());
 	}
