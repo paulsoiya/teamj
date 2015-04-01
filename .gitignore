@@ -1,5 +1,6 @@
 # ignore build folder, professional.db and individual.db
 /*
+!professional.db
 !/src
 !build.xml
 !/lib
@@ -7,3 +8,7 @@
 */.DS_Store
 .metadata
 .project
+.settings
+.classpath
+/bin
+lib/jacoco.exec
