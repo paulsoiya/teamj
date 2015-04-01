@@ -147,6 +147,7 @@ public class DatabaseCreation {
            "Yds            INT," +
            "TDs            INT," +
            "Att            INT," +
+           "StatsID        INT," +
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
