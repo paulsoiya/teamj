@@ -88,11 +88,11 @@ public class StatsController implements Initializable {
         catch (NumberFormatException e) {
             //TODO
         }
+    }
         
         @FXML
         private void changeToHome() {
             controller.loadScreen(controller.HOME_FXML);
         }
-    }
 }
 
