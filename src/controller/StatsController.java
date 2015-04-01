@@ -56,7 +56,7 @@ public class StatsController implements Initializable {
      * @param e
      */
     @FXML
-    private void changeToHome() {
+    private void changeToCompare() {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
         GameDao gameDao = daoFact.getGameDao();
@@ -87,6 +87,11 @@ public class StatsController implements Initializable {
         }
         catch (NumberFormatException e) {
             //TODO
+        }
+        
+        @FXML
+        private void changeToHome() {
+            controller.loadScreen(controller.HOME_FXML);
         }
     }
 }
