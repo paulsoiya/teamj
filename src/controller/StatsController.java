@@ -86,7 +86,7 @@ public class StatsController implements Initializable {
             compareDao.playerComparison(stats);
         }
         catch (NumberFormatException e) {
-            //TODO
+            System.out.println(this.getClass().getName() + " error: " + e.getMessage());
         }
     }
         
