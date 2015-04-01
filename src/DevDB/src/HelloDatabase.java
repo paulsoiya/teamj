@@ -72,8 +72,7 @@ public class HelloDatabase
               "UserID         INTEGER    PRIMARY KEY   AUTOINCREMENT," +
               "Email          TEXT," +
               "Password       TEXT," +
-              "FirstName      TEXT," +
-              "LastName       TEXT);";
+              "Name		      TEXT);";
               stmt.executeUpdate(sql);
               
               sql = "CREATE TABLE Sport(" +
@@ -84,7 +83,6 @@ public class HelloDatabase
               
               sql = "CREATE TABLE Stats(" +
               "StatsID        INT    PRIMARY KEY," +
-              "GameID         INT," +
               "UserID         INT," +
               "RecYds         INT," +
               "RecTDs         INT," +
