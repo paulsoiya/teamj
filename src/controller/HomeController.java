@@ -11,10 +11,22 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import service.*;
+import session.UserSession;
 
 public class HomeController implements Initializable {
 
-	view.MainNavigator controller;
+    
+    view.MainNavigator controller;
+    
+    private UserSession session = UserSession.getInstance();
+    
+    @FXML
+    private Button footballButton;
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    SportDao sportDao = daoFact.getSportDao();
 	
 	public HomeController(){
 		controller = new view.MainNavigator();
@@ -22,8 +34,7 @@ public class HomeController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+        footballButton.setVisible(sportDao.validSport(session.getUserId()));
 	}
 	
 	/**
