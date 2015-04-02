@@ -216,8 +216,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -225,6 +225,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -248,8 +251,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -257,6 +260,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -281,8 +287,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -290,6 +296,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -314,8 +323,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -323,6 +332,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -347,8 +359,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -356,6 +368,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -380,7 +395,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt, Average) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -389,6 +404,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -418,6 +436,14 @@ public class BuildProfessionalDB {
             }
 			return connection;  
 		}
+    
+    private static float compareAlgorithm(int yds, int tds, int att) {
+        float average;
+        float actualTDs = (float)tds*10;
+        float actualYds = (float)yds/100;
+        float actualAtt = (float)att/1000;
+        return average = actualTDs + actualYds + actualAtt;
+    }
 
 	  public static void main(String[] args) {
 		  teamPrint();
@@ -433,5 +459,6 @@ public class BuildProfessionalDB {
               System.err.println(e.getClass().getName() + ": " + e.getMessage());
           }
           statsPrint();
+          
 	  }
 }

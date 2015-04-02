@@ -74,6 +74,7 @@ public class DatabaseCreation {
             "PassYds        INT," +
             "PassTDs        INT," +
             "PassAtt        INT," +
+            "Average        REAL," +
             "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
             "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
          stmt.executeUpdate(sql);
@@ -147,6 +148,7 @@ public class DatabaseCreation {
            "Yds            INT," +
            "TDs            INT," +
            "Att            INT," +
+           "Average        REAL," +
            "ProStatsID     INT," +
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
