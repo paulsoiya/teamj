@@ -119,17 +119,18 @@ public class BuildProfessionalDB {
                             try {
                                 c = getConnection();
                                 c.setAutoCommit(false);
-                                String sql = "INSERT INTO Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, College, Number) " +
-                                "VALUES (?,?,?,?,?,?,?,?)";
+                                String sql = "INSERT INTO Player (PlayerID, PlayerName, Team, Position, Height, Weight, BirthDate, College, Number) " +
+                                "VALUES (?,?,?,?,?,?,?,?,?)";
                                 stmt = c.prepareStatement(sql);
                                 stmt.setString(1, player.get("id").toString());
                                 stmt.setString(2, player.get("name_full").toString());
                                 stmt.setString(3, team.get("id").toString());
-                                stmt.setString(4, player.get("height").toString());
-                                stmt.setString(5, player.get("weight").toString());
-                                stmt.setString(6, player.get("birthdate").toString());
-                                stmt.setString(7, player.get("college").toString());
-                                stmt.setString(8, player.get("jersey_number").toString());
+                                stmt.setString(4, player.get("position").toString());
+                                stmt.setString(5, player.get("height").toString());
+                                stmt.setString(6, player.get("weight").toString());
+                                stmt.setString(7, player.get("birthdate").toString());
+                                stmt.setString(8, player.get("college").toString());
+                                stmt.setString(9, player.get("jersey_number").toString());
                                 stmt.executeUpdate();
                             } catch ( Exception e1 ) {
                                 System.err.println(e1.getClass().getName() + ": " + e1.getMessage());

@@ -42,6 +42,7 @@ public class DatabaseCreation {
             "PlayerID       TEXT    PRIMARY KEY," +
             "PlayerName     TEXT," +
             "Team           TEXT," +
+            "Position       TEXT," +
             "Picture        TEXT," +
             "Height         INT," +
             "Weight         INT," +
