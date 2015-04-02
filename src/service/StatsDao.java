@@ -16,4 +16,11 @@ public interface StatsDao {
      * @return true if successfully entered
      */
     public boolean addStats(Stats stats);
+    
+    /**
+     * Finds Average of users stats for a game
+     * @param gameId
+     * @return float of average value
+     */
+    public float findCompareAverage(int gameID);
 }

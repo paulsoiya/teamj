@@ -52,7 +52,7 @@ public class StatsController implements Initializable {
 	}
                     
     /**
-     * Changes the current FXML page to home.fxml
+     * Changes the current FXML page to compare.fxml
      * @param e
      */
     @FXML
@@ -83,16 +83,19 @@ public class StatsController implements Initializable {
             if (statsDao.addStats(stats))
                 controller.loadScreen(controller.COMPARE);
             
-            compareDao.playerComparison(stats);
+            compareDao.playerComparison(statsDao.findCompareAverage(gameId));
         }
         catch (NumberFormatException e) {
             System.out.println(this.getClass().getName() + " error: " + e.getMessage());
         }
     }
-        
-        @FXML
-        private void changeToHome() {
-            controller.loadScreen(controller.HOME_FXML);
-        }
+    /**
+     * Changes the current FXML page to compare.fxml
+     * @param e
+     */
+    @FXML
+    private void changeToHome() {
+        controller.loadScreen(controller.HOME_FXML);
+    }
 }
 

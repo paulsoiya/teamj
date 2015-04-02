@@ -25,7 +25,8 @@ public class Stats {
 		this.userID = userID;
         this.yards = yards;
 		this.touchdowns = touchdowns;
-		this.attempts = attempts;
+        this.attempts = attempts;
+        average = compareAlgorithm(yards, touchdowns, attempts);
 	}
 	
     public Stats(int gameID, int userID, int yards,int touchdowns,
@@ -35,6 +36,7 @@ public class Stats {
         this.yards = yards;
         this.touchdowns = touchdowns;
         this.attempts = attempts;
+        average = compareAlgorithm(yards, touchdowns, attempts);
 	}
 	
 	public int getStatsID() {

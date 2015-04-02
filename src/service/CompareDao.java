@@ -13,8 +13,15 @@ public interface CompareDao {
 
     /**
      * Pulls down stats for both the User and Pro
-     * @param
-     * @return
+     * @param average
+     * @return int of StatsID for pro player
      */
-    public int playerComparison(Stats stats);
+    public int playerComparison(float average);
+    
+    /**
+     * Returns Position and Favorite Team for user
+     * @param userId
+     * @return String array of Position FavoriteTeam
+     */
+    public String[] userPositionTeam(int userId);
 }
