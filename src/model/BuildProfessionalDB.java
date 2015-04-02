@@ -216,7 +216,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yardss, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -251,7 +251,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -287,7 +287,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -323,7 +323,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -359,7 +359,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
@@ -395,7 +395,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);

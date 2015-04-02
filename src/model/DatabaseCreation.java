@@ -65,15 +65,9 @@ public class DatabaseCreation {
             "StatsID        INTEGER    PRIMARY KEY    AUTOINCREMENT," +
             "GameID         TEXT," +
             "PlayerID       TEXT," +
-            "RecYds         INT," +
-            "RecTDs         INT," +
-            "RecAtt         INT," +
-            "RushYds        INT," +
-            "RushTDs        INT," +
-            "RushAtt        INT," +
-            "PassYds        INT," +
-            "PassTDs        INT," +
-            "PassAtt        INT," +
+            "Yards            INT," +
+            "TDs            INT," +
+            "Att            INT," +
             "Average        REAL," +
             "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
             "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
