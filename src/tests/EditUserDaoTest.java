@@ -42,8 +42,6 @@ public class EditUserDaoTest {
 	@Test
 	public void createUserTest() {
         assertTrue(dao.createUser(user1));
-        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
-        assertFalse(dao.createUser(user2));
 	}
     
     @Test
