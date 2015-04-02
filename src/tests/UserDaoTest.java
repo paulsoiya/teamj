@@ -15,6 +15,7 @@ public class UserDaoTest {
 	private UserDao dao;
 	private User user1;
 	private User user2;
+    private User nullUser;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,8 +33,10 @@ public class UserDaoTest {
 
 		this.user1 = new User("testemail1@asu.edu", "password", "TestFname",
 				"TestLname", "");
-		this.user2 = new User("testemail2@asu.edu", "password", "TestFname",
-				"TestLname", "");
+		this.user2 = new User("testemail1@asu.edu", "password2", "Change",
+				"Change", "");
+        this.nullUser = new User(null, null, null, null, null);
+        
 	}
 
 	@After
@@ -67,6 +70,7 @@ public class UserDaoTest {
     @Test
     public void deleteUserTest(){
         assertTrue(dao.deleteUser(user1.getEmail()));
+        assertFalse(dao.deleteUser(user1.getEmail()));
     }
 
 }
