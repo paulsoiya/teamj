@@ -30,9 +30,11 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="518.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0" minWidth="10.0" prefWidth="500.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="0.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="102.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="618.0" minWidth="10.0" prefWidth="461.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0" minWidth="10.0" prefWidth="401.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="0.0" prefWidth="46.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="117.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
@@ -41,20 +43,16 @@
           <RowConstraints maxHeight="218.0" minHeight="0.0" prefHeight="218.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="227.0" style="-fx-background-color: #fff;" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#changeToSport" style="-fx-background-color: orange;" styleClass="complete-button" text="+" GridPane.columnIndex="4" />
+            <Button fx:id="footballButton" mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="451.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="263.0" fitWidth="399.0">
+                  <ImageView fitHeight="235.0" fitWidth="311.0">
                      <image>
-                        <Image url="@../resources/football_button.png" />
+                        <Image url="@football_button.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="270.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: #fff;" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="285.0" style="-fx-background-color: #fff;" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#changeToGames" prefHeight="26.0" prefWidth="288.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#changeToSport" style="-fx-background-color: orange;" styleClass="complete-button" text="+" GridPane.columnIndex="2" />
+               </graphic>
+            </Button>
          </children>
       </GridPane>
    </center>
