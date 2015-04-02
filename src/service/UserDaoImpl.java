@@ -158,8 +158,6 @@ public class UserDaoImpl implements UserDao {
             resultSet = stmt.executeQuery();
             if(resultSet.next()) {
                 storedPassword = resultSet.getString("Password");
-                stmt.close();
-                DaoFactory.closeConnection(con);
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
