@@ -58,18 +58,25 @@ public class EditController implements Initializable {
     private void changeToHome() {
         DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
         UserDao usrDao = daoFact.getUserDao();
-        
-        if(usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
-            User updateUsr = new User(emailTxt.getText(),
+        if(firstNameTxt.getText() != null && lastNameTxt.getText() != null &&
+           dobPicker.getValue() != null && emailTxt.getText() != null &&
+           passwordTxt.getText() != null && confirmPasswordTxt.getText() != null) {
+            if(usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
+                User updateUsr = new User(emailTxt.getText(),
                             passwordTxt.getText(),
                             firstNameTxt.getText(),
                             lastNameTxt.getText(),
                             dobPicker.getValue().toString());
-            if(usrDao.updateUser(updateUsr))
-                controller.loadScreen(controller.HOME_FXML);
+                if(usrDao.updateUser(updateUsr))
+                    controller.loadScreen(controller.HOME_FXML);
+                else
+                    wrongLabel.setText("Invaild Information");
+            }
             else
-                wrongLabel.setText("Invaild Information");
+                wrongLabel.setText("Passwords don't match");
         }
+        else
+            wrongLabel.setText("Enter your Information");
     }
 }
 
