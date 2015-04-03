@@ -17,7 +17,7 @@
         <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
         
          <children>
-         	<Label style="-fx-font-weight: bold; -fx-text-fill: red"  fx:id="errorLbl" GridPane.columnIndex="0" GridPane.columnSpan="2"></Label>
+         	<Label fx:id="errorLbl" style="-fx-font-weight: bold; -fx-text-fill: red" GridPane.columnIndex="0" GridPane.columnSpan="2" />
          	
             <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField fx:id="firstNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -51,14 +51,14 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
          </rowConstraints>
       </GridPane>
    </center>
    <left>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Register" />
             <Button mnemonicParsing="false" onAction="#changeToLogin" styleClass="navigation-button" text="Login" />
             <Button mnemonicParsing="false" onAction="#changeToQuickCompare" styleClass="navigation-button" text="Quick Compare" />
          </children>
