@@ -20,6 +20,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
+import session.UserSession;
+
 public class EditController implements Initializable {
 
 	view.MainNavigator controller;
@@ -40,6 +42,8 @@ public class EditController implements Initializable {
 	private PasswordField confirmPasswordTxt;
     @FXML
     private Label wrongLabel;
+    
+    private UserSession session = UserSession.getInstance();
 	
 	public EditController(){
 		controller = new view.MainNavigator();
@@ -61,16 +65,20 @@ public class EditController implements Initializable {
         if(firstNameTxt.getText() != null && lastNameTxt.getText() != null &&
            dobPicker.getValue() != null && emailTxt.getText() != null &&
            passwordTxt.getText() != null && confirmPasswordTxt.getText() != null) {
-            if(usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
-                User updateUsr = new User(emailTxt.getText(),
+           if(usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
+               if(session.getUserEmail().equals(emailTxt.getText())) {
+                   User updateUsr = new User(emailTxt.getText(),
                             passwordTxt.getText(),
                             firstNameTxt.getText(),
                             lastNameTxt.getText(),
                             dobPicker.getValue().toString());
-                if(usrDao.updateUser(updateUsr))
-                    controller.loadScreen(controller.HOME_FXML);
-                else
-                    wrongLabel.setText("Invaild Information");
+                   if(usrDao.updateUser(updateUsr))
+                       controller.loadScreen(controller.HOME_FXML);
+                   else
+                      wrongLabel.setText("Invaild Information");
+               }
+               else
+                   wrongLabel.setText("Email cannot be changed");
             }
             else
                 wrongLabel.setText("Passwords don't match");
