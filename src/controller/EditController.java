@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 public class EditController implements Initializable {
 
@@ -37,6 +38,8 @@ public class EditController implements Initializable {
 	private PasswordField passwordTxt;
 	@FXML
 	private PasswordField confirmPasswordTxt;
+    @FXML
+    private Label wrongLabel;
 	
 	public EditController(){
 		controller = new view.MainNavigator();
@@ -64,6 +67,8 @@ public class EditController implements Initializable {
                             dobPicker.getValue().toString());
             if(usrDao.updateUser(updateUsr))
                 controller.loadScreen(controller.HOME_FXML);
+            else
+                wrongLabel.setText("Invaild Information");
         }
     }
 }
