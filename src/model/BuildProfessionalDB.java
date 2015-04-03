@@ -427,17 +427,58 @@ public class BuildProfessionalDB {
         } catch (IOException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-    }		public static Connection getConnection() throws ClassNotFoundException {
-			Class.forName(DRIVER);  
-			Connection connection = null;  
-			try {
-			    connection = DriverManager.getConnection(DB_URL);
-			} catch (SQLException ex) {
-                System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
-            }
-			return connection;  
-		}
+    }
     
+    public static Connection getConnection() throws ClassNotFoundException {
+        Class.forName(DRIVER);
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL);
+        } catch (SQLException ex) {
+                System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
+        }
+        return connection;
+    }
+            
+    public static void addPhotosFromCBS() {
+        JSONObject jsonPlayer;
+        Connection c = null;
+        PreparedStatement stmt = null;
+        try {
+            jsonPlayer = readJsonFromUrl("http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=JSON");
+            JSONObject body = (JSONObject) jsonPlayer.get("body");
+            JSONArray players = body.getJSONArray("players");
+            for(int i=0; i<players.length();i++) {
+                JSONObject player = players.getJSONObject(i);
+            try {
+                c = getConnection();
+                c.setAutoCommit(false);
+                String sql = "UPDATE Player SET Picture=? " +
+                "WHERE PlayerName=?";
+                stmt = c.prepareStatement(sql);
+                stmt.setString(1, player.get("photo").toString());
+                stmt.setString(2, player.get("fullname").toString());
+                stmt.executeUpdate();
+            } catch ( Exception e1 ) {
+                System.err.println(e1.getClass().getName() + ": " + e1.getMessage());
+            } finally {
+                try{
+                    stmt.close();
+                    c.commit();
+                    c.close();
+                } catch (Exception e2) {
+                    System.err.println(e2.getClass().getName() + ": " + e2.getMessage());
+                }
+            }
+            }
+        } catch (JSONException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+    }
+
+
     private static float compareAlgorithm(int yds, int tds, int att) {
         float average;
         float actualTDs = (float)tds*10;
