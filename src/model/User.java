@@ -5,6 +5,7 @@ public class User {
 	private int id;
 	private String email;
 	private String password;
+	private String passwordConfirm;
 	private String firstName;
 	private String lastName;
 	private String dob;
@@ -31,6 +32,16 @@ public class User {
 		this.dob = dob;
 	}
 	
+	public User(String email, String password, String passwordConfirm, String firstName,
+			String lastName, String dob){
+		
+		this.email = email;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dob = dob;
+	}
 	
 	public int getId() {
 		return id;
@@ -79,4 +90,28 @@ public class User {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
+	
+	public ValidateResult validate() {
+		ValidateResult result = new ValidateResult(false, "");
+		String emailRegex = ".+@.+\\.[a-z]+";
+		boolean validEmail = email.matches(emailRegex);
+		boolean validName = !firstName.isEmpty() && !lastName.isEmpty();
+	    boolean validPassword = !password.isEmpty()
+					&& password.equals(passwordConfirm);
+		
+
+		if (!validName) {
+			result.setMessage("You must enter your first and last name.");
+		} else if (!validEmail) {
+			result.setMessage("The email you entered is invalid.");
+		} else if (!validPassword) {
+			result.setMessage("The passwords you entered do not mach.");
+		} else {
+			result.setValid(true);
+		}
+
+		return result;
+
+	}
+	
 }
