@@ -217,7 +217,7 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yardss, TDs, Att, Average) " +
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
                             "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
