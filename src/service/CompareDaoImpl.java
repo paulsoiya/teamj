@@ -24,14 +24,35 @@ public class CompareDaoImpl implements CompareDao {
     private static final int POSITION_TEAM = 2;
     
     @Override
-    public int playerComparison(float average) {
+    public boolean playerComparison(float average, String position, String favTeam) {
         Connection conPro = DaoFactory.createConnectionProfessional();
         Connection conInd = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
         ResultSet resultSet;
-        int result = -1;
+        boolean result = false;
         try {
-            String sql = "";
+            String sql = "SELECT * AS TeamStats " +
+            "FROM Stats " +
+            "LEFT OUTER JOIN Player " +
+            "ON Stats.PlayerID=Player.PlayerID " +
+            "WHERE Player.Position = ? " +
+            "LEFT OUTER JOIN Team " +
+            "ON (Team.TeamID = Player.Team) " +
+            "WHERE Team.TeamName = ?;";
+            stmt = conPro.prepareStatement(sql);
+            stmt.setString(1, position);
+            stmt.setString(2, favTeam);
+            stmt.executeQuery();
+            
+            sql = "SELECT StatsID FROM TeamStats WHERE Average > ? "
+            + "AND Average < ?";
+            stmt = conPro.prepareStatement(sql);
+            stmt.setFloat(1, average-1);
+            stmt.setFloat(2, average+1);
+            resultSet = stmt.executeQuery();
+            if(resultSet.next())
+                System.out.println(resultSet.getInt("StatsID"));
+            
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
                                + e.getMessage());
