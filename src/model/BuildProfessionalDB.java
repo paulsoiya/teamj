@@ -49,7 +49,7 @@ public class BuildProfessionalDB {
 			PreparedStatement stmt = null;
 				try {
 
-					jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+					jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
 					JSONArray confArr = jsonPlayer.getJSONArray("conferences");
 					for (int i=0; i< confArr.length(); i++) {
 						JSONObject conf = confArr.getJSONObject(i);
@@ -95,7 +95,7 @@ public class BuildProfessionalDB {
         Connection c = null;
         PreparedStatement stmt = null;
         try {
-            jsonTeam = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+            jsonTeam = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
             JSONArray confArr = jsonTeam.getJSONArray("conferences");
             for (int i=0; i< confArr.length(); i++) {
                 JSONObject conf = confArr.getJSONObject(i);
@@ -112,7 +112,7 @@ public class BuildProfessionalDB {
                         }
                         jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/" +
                                                      team.get("id").toString() +
-                                                     "/roster.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+                                                     "/roster.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
                         JSONArray players = jsonPlayer.getJSONArray("players");
                         for(int l=0; l<players.length(); l++){
                             JSONObject player = players.getJSONObject(l);
@@ -160,7 +160,7 @@ public class BuildProfessionalDB {
         Connection c = null;
         PreparedStatement stmt = null;
         try {
-            jsonSeason = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/2014/REG/schedule.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+            jsonSeason = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/2014/REG/schedule.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
             JSONArray weekArr = jsonSeason.getJSONArray("weeks");
             for (int i=0; i< weekArr.length(); i++) {
                 JSONObject week = weekArr.getJSONObject(i);
@@ -176,7 +176,7 @@ public class BuildProfessionalDB {
                                                 + week.get("number").toString() + "/"
                                                 + game.get("away").toString() + "/"
                                                 + game.get("home").toString()
-                                                + "/statistics.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+                                                + "/statistics.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
                     
                     JSONObject homeTeam = jsonStats.getJSONObject("home_team");
                     JSONObject statsHome = homeTeam.getJSONObject("statistics");
@@ -397,7 +397,7 @@ public class BuildProfessionalDB {
                             c.setAutoCommit(false);
                             
                             String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
-                            "VALUES (?,?,?,?,?)";
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -501,6 +501,6 @@ public class BuildProfessionalDB {
               System.err.println(e.getClass().getName() + ": " + e.getMessage());
           }
           statsPrint();
-          
+          addPhotosFromCBS();
 	  }
 }
