@@ -24,5 +24,12 @@ public interface SportDao {
      * @return String position
      */
     public String findPositionFootball(int userId);
+    
+    /**
+     * Find if user has a valid sport
+     * @param userId
+     * @return true if sport found
+     */
+    public boolean validSport(int userId);
 	
 }

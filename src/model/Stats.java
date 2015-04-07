@@ -14,6 +14,7 @@ public class Stats {
 	private int yards;
 	private int touchdowns;
 	private int attempts;
+    private float average;
 	
 	public Stats() { }
 
@@ -24,7 +25,8 @@ public class Stats {
 		this.userID = userID;
         this.yards = yards;
 		this.touchdowns = touchdowns;
-		this.attempts = attempts;
+        this.attempts = attempts;
+        average = compareAlgorithm(yards, touchdowns, attempts);
 	}
 	
     public Stats(int gameID, int userID, int yards,int touchdowns,
@@ -34,6 +36,7 @@ public class Stats {
         this.yards = yards;
         this.touchdowns = touchdowns;
         this.attempts = attempts;
+        average = compareAlgorithm(yards, touchdowns, attempts);
 	}
 	
 	public int getStatsID() {
@@ -83,5 +86,21 @@ public class Stats {
 	public void setAttempts(int attempts) {
 		this.attempts = attempts;
 	}
+    
+    public float getAverage() {
+        return average;
+    }
+    
+    public void setAverage() {
+        this.average = compareAlgorithm(yards, touchdowns, attempts);
+    }
+    
+    private float compareAlgorithm(int yds, int tds, int att) {
+        float average;
+        float actualTDs = (float)tds*10;
+        float actualYds = (float)yds/100;
+        float actualAtt = (float)att/1000;
+        return average = actualTDs + actualYds + actualAtt;
+    }
 	
 }

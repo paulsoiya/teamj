@@ -15,8 +15,8 @@ import org.json.JSONObject;
 
 public class BuildProfessionalDB {
 	
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/professional?user=root&password=password";  
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DB_URL = "jdbc:sqlite:professional.db";
+	private static final String DRIVER = "org.sqlite.JDBC";
 
 	private static String readAll(Reader rd) throws IOException {
 	    StringBuilder sb = new StringBuilder();
@@ -49,7 +49,7 @@ public class BuildProfessionalDB {
 			PreparedStatement stmt = null;
 				try {
 
-					jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+					jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
 					JSONArray confArr = jsonPlayer.getJSONArray("conferences");
 					for (int i=0; i< confArr.length(); i++) {
 						JSONObject conf = confArr.getJSONObject(i);
@@ -62,7 +62,7 @@ public class BuildProfessionalDB {
 								try {
 									c = getConnection();
 									c.setAutoCommit(false);
-									String sql = "INSERT Team (TeamID, TeamName) " +
+									String sql = "INSERT INTO Team (TeamID, TeamName) " +
 											"VALUES (?,?)";
 									stmt = c.prepareStatement(sql);
 									stmt.setString(1, jsonOBject.getString("id").toString());
@@ -95,7 +95,7 @@ public class BuildProfessionalDB {
         Connection c = null;
         PreparedStatement stmt = null;
         try {
-            jsonTeam = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+            jsonTeam = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/hierarchy.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
             JSONArray confArr = jsonTeam.getJSONArray("conferences");
             for (int i=0; i< confArr.length(); i++) {
                 JSONObject conf = confArr.getJSONObject(i);
@@ -112,24 +112,25 @@ public class BuildProfessionalDB {
                         }
                         jsonPlayer = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/teams/" +
                                                      team.get("id").toString() +
-                                                     "/roster.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+                                                     "/roster.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
                         JSONArray players = jsonPlayer.getJSONArray("players");
                         for(int l=0; l<players.length(); l++){
                             JSONObject player = players.getJSONObject(l);
                             try {
                                 c = getConnection();
                                 c.setAutoCommit(false);
-                                String sql = "INSERT Player (PlayerID, PlayerName, Team, Height, Weight, BirthDate, College, Number) " +
-                                "VALUES (?,?,?,?,?,?,?,?)";
+                                String sql = "INSERT INTO Player (PlayerID, PlayerName, Team, Position, Height, Weight, BirthDate, College, Number) " +
+                                "VALUES (?,?,?,?,?,?,?,?,?)";
                                 stmt = c.prepareStatement(sql);
                                 stmt.setString(1, player.get("id").toString());
                                 stmt.setString(2, player.get("name_full").toString());
                                 stmt.setString(3, team.get("id").toString());
-                                stmt.setString(4, player.get("height").toString());
-                                stmt.setString(5, player.get("weight").toString());
-                                stmt.setString(6, player.get("birthdate").toString());
-                                stmt.setString(7, player.get("college").toString());
-                                stmt.setString(8, player.get("jersey_number").toString());
+                                stmt.setString(4, player.get("position").toString());
+                                stmt.setString(5, player.get("height").toString());
+                                stmt.setString(6, player.get("weight").toString());
+                                stmt.setString(7, player.get("birthdate").toString());
+                                stmt.setString(8, player.get("college").toString());
+                                stmt.setString(9, player.get("jersey_number").toString());
                                 stmt.executeUpdate();
                             } catch ( Exception e1 ) {
                                 System.err.println(e1.getClass().getName() + ": " + e1.getMessage());
@@ -159,7 +160,7 @@ public class BuildProfessionalDB {
         Connection c = null;
         PreparedStatement stmt = null;
         try {
-            jsonSeason = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/2014/REG/schedule.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+            jsonSeason = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/2014/REG/schedule.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
             JSONArray weekArr = jsonSeason.getJSONArray("weeks");
             for (int i=0; i< weekArr.length(); i++) {
                 JSONObject week = weekArr.getJSONObject(i);
@@ -175,7 +176,7 @@ public class BuildProfessionalDB {
                                                 + week.get("number").toString() + "/"
                                                 + game.get("away").toString() + "/"
                                                 + game.get("home").toString()
-                                                + "/statistics.json?api_key=vdgd4t2d9vbfsum3rwxfaqu4");
+                                                + "/statistics.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
                     
                     JSONObject homeTeam = jsonStats.getJSONObject("home_team");
                     JSONObject statsHome = homeTeam.getJSONObject("statistics");
@@ -186,7 +187,7 @@ public class BuildProfessionalDB {
                         c = getConnection();
                         c.setAutoCommit(false);
                         
-                        String sql = "INSERT GameLog (GameID, Date, Team, Opponent, Score) " +
+                        String sql = "INSERT INTO GameLog (GameID, Date, Team, Opponent, Score) " +
                         "VALUES (?,?,?,?,?)";
                         stmt = c.prepareStatement(sql);
                         stmt.setString(1, game.get("id").toString());
@@ -216,8 +217,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -225,6 +226,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -248,8 +252,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -257,6 +261,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -281,8 +288,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -290,6 +297,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -314,8 +324,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, RushYDs, RushTDs, RushAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -323,6 +333,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -347,8 +360,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, PassYDs, PassTDs, PassAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -356,6 +369,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -380,8 +396,8 @@ public class BuildProfessionalDB {
                             c = getConnection();
                             c.setAutoCommit(false);
                             
-                            String sql = "INSERT Stats(GameID, PlayerID, RecYDs, RecTDs, RecAtt) " +
-                            "VALUES (?,?,?,?,?)";
+                            String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) " +
+                            "VALUES (?,?,?,?,?,?)";
                             
                             stmt = c.prepareStatement(sql);
                             stmt.setString(1, game.get("id").toString());
@@ -389,6 +405,9 @@ public class BuildProfessionalDB {
                             stmt.setInt(3, player.getInt("yds"));
                             stmt.setInt(4, player.getInt("td"));
                             stmt.setInt(5, player.getInt("att"));
+                            stmt.setFloat(6, compareAlgorithm(player.getInt("yds"),
+                                                              player.getInt("td"),
+                                                              player.getInt("att")));
                             stmt.executeUpdate();
                             
                         } catch (Exception e1) {
@@ -408,16 +427,65 @@ public class BuildProfessionalDB {
         } catch (IOException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-    }		public static Connection getConnection() throws ClassNotFoundException {
-			Class.forName(DRIVER);  
-			Connection connection = null;  
-			try {
-			    connection = DriverManager.getConnection(DB_URL);
-			} catch (SQLException ex) {
+    }
+    
+    public static Connection getConnection() throws ClassNotFoundException {
+        Class.forName(DRIVER);
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(DB_URL);
+        } catch (SQLException ex) {
                 System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
+        }
+        return connection;
+    }
+            
+    public static void addPhotosFromCBS() {
+        JSONObject jsonPlayer;
+        Connection c = null;
+        PreparedStatement stmt = null;
+        try {
+            jsonPlayer = readJsonFromUrl("http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=JSON");
+            JSONObject body = (JSONObject) jsonPlayer.get("body");
+            JSONArray players = body.getJSONArray("players");
+            for(int i=0; i<players.length();i++) {
+                JSONObject player = players.getJSONObject(i);
+            try {
+                c = getConnection();
+                c.setAutoCommit(false);
+                String sql = "UPDATE Player SET Picture=? " +
+                "WHERE PlayerName=?";
+                stmt = c.prepareStatement(sql);
+                stmt.setString(1, player.get("photo").toString());
+                stmt.setString(2, player.get("fullname").toString());
+                stmt.executeUpdate();
+            } catch ( Exception e1 ) {
+                System.err.println(e1.getClass().getName() + ": " + e1.getMessage());
+            } finally {
+                try{
+                    stmt.close();
+                    c.commit();
+                    c.close();
+                } catch (Exception e2) {
+                    System.err.println(e2.getClass().getName() + ": " + e2.getMessage());
+                }
             }
-			return connection;  
-		}
+            }
+        } catch (JSONException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+    }
+
+
+    private static float compareAlgorithm(int yds, int tds, int att) {
+        float average;
+        float actualTDs = (float)tds*10;
+        float actualYds = (float)yds/100;
+        float actualAtt = (float)att/1000;
+        return average = actualTDs + actualYds + actualAtt;
+    }
 
 	  public static void main(String[] args) {
 		  teamPrint();
@@ -433,5 +501,6 @@ public class BuildProfessionalDB {
               System.err.println(e.getClass().getName() + ": " + e.getMessage());
           }
           statsPrint();
+          addPhotosFromCBS();
 	  }
 }

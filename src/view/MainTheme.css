@@ -15,3 +15,7 @@
 	-fx-border-color:#e8e8e8;
 	-fx-background-color:#fff;
 }
+
+.login-image{
+     -fx-image: url('sc_1x.png');
+}

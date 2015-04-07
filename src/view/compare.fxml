@@ -18,8 +18,6 @@
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
          </children>
       </VBox>
    </left>

@@ -35,6 +35,7 @@
             <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
             <PasswordField fx:id="confirmPasswordTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#changeToHome" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Label fx:id="wrongLabel" prefHeight="16.0" prefWidth="189.0" textFill="#cd0808" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             
          </children>
          <columnConstraints>
@@ -62,8 +63,6 @@
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
             <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
          </children>
       </VBox>
    </left>

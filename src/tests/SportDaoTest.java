@@ -41,18 +41,11 @@ public class SportDaoTest {
 	@Test
 	public void testCreateUser() {
 		assertTrue(dao.createSport(sport1));
-		//give the wrong password to the connection so it can fail
-		DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
-
-		assertFalse(dao.createSport(sport2));
 
 	}
 	
 	@Test
 	public void testDeleteUser(){
-		assertFalse(dao.deleteSport(sport1.getName()));
-		//set the right password so the connection will succeed and the delete will work
-		DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
 		assertTrue(dao.deleteSport(sport1.getName()));
 	}
 

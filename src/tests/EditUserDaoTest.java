@@ -2,10 +2,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
 import service.*;
 import model.User;
 
@@ -33,13 +29,10 @@ public class EditUserDaoTest {
 		AbstractDaoFactory daoFact = DaoFactory.getDaoFactory();
 
 		this.dao = daoFact.getUserDao();
-		Date now = new Date();
-		LocalDate dob = now.toInstant().atZone(ZoneId.systemDefault())
-				.toLocalDate();
 		this.user1 = new User("testemail1@asu.edu", "password", "TestFname",
-				"TestLname", dob);
+				"TestLname", "3-8-15");
 		this.user2 = new User("testemail2@asu.edu", "password", "TestFname",
-				"TestLname", dob);
+				"TestLname", "3-8-15");
 	}
 
 	@After
@@ -49,8 +42,6 @@ public class EditUserDaoTest {
 	@Test
 	public void createUserTest() {
         assertTrue(dao.createUser(user1));
-        DaoFactory.conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=wrongpassword";
-        assertFalse(dao.createUser(user2));
 	}
     
     @Test

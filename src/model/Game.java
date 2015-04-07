@@ -1,8 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-
-
 public class Game {
 
     private int gameID;
@@ -10,12 +7,12 @@ public class Game {
     private int week;
 	private String opponent;
 	private String score;
-	private LocalDate date;
+	private String date;
 	
 	public Game() { }
 
 	public Game(int gameID, int userID, int week, String opponent,
-			String score, LocalDate date) {
+			String score, String date) {
 		this.gameID = gameID;
 		this.userID = userID;
 		this.week = week;
@@ -24,7 +21,7 @@ public class Game {
 		this.date = date;
 	}
 	
-	public Game(int userID, int week, String opponent, String score, LocalDate date) {
+	public Game(int userID, int week, String opponent, String score, String date) {
         this.userID = userID;
 		this.week = week;
 		this.opponent = opponent;
@@ -32,7 +29,7 @@ public class Game {
 		this.date = date;
 	}
     
-    public Game(int week, LocalDate date, String opponent, String score) {
+    public Game(int week, String date, String opponent, String score) {
         this.week = week;
         this.date = date;
         this.opponent = opponent;
@@ -80,11 +77,11 @@ public class Game {
 		this.score = score;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

@@ -101,6 +101,34 @@ public class SportDaoImpl implements SportDao{
         }
         return result;
     }
-
-
+    
+    @Override
+    public boolean validSport(int userId) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        boolean result = false;
+        try {
+            String sql = "SELECT SportName FROM Sport "
+            + "WHERE UserID = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            resultSet = stmt.executeQuery();
+            if(resultSet.next())
+                result = true;
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
 }

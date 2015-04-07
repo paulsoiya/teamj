@@ -69,7 +69,7 @@ public class LoginController implements Initializable {
             controller.setSessionUserEmail(currentUser.getEmail());
             
         } else
-            incorrectLabel.setText("Invail Email or Password.");
+            incorrectLabel.setText("Invaild Email or Password.");
     }
 
 	/**

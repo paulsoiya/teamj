@@ -62,7 +62,7 @@ public class GameController implements Initializable {
         weekCol.setCellValueFactory(
                     new PropertyValueFactory<Game, Integer>("week"));
         dateCol.setCellValueFactory(
-                    new PropertyValueFactory<Game, LocalDate>("date"));
+                    new PropertyValueFactory<Game, String>("date"));
         opponentCol.setCellValueFactory(
                     new PropertyValueFactory<Game, String>("opponent"));
         scoreCol.setCellValueFactory(
