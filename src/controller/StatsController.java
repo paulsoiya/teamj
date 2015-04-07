@@ -83,7 +83,9 @@ public class StatsController implements Initializable {
             if (statsDao.addStats(stats))
                 controller.loadScreen(controller.COMPARE);
             
-            compareDao.playerComparison(statsDao.findCompareAverage(gameId));
+            compareDao.playerComparison(statsDao.findCompareAverage(gameId),
+                                sportDao.findPositionFootball(controller.getSessionUserId()),
+                                sportDao.findTeamFootball(controller.getSessionUserId()));
         }
         catch (NumberFormatException e) {
             System.out.println(this.getClass().getName() + " error: " + e.getMessage());

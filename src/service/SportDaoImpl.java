@@ -85,7 +85,38 @@ public class SportDaoImpl implements SportDao{
             stmt.setString(2, "Football");
             resultSet = stmt.executeQuery();
             if (resultSet.next())
-                result = resultSet.getString("UserID");
+                result = resultSet.getString("Position");
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
+    
+    @Override
+    public String findTeamFootball(int userId) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        String result = "";
+        try {
+            String sql = "SELECT FavoriteTeam FROM Sport "
+            + "WHERE UserID = ? AND SportName = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            stmt.setString(2, "Football");
+            resultSet = stmt.executeQuery();
+            if (resultSet.next())
+                result = resultSet.getString("FavoriteTeam");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         } finally {

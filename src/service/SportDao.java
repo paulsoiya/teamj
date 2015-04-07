@@ -26,6 +26,13 @@ public interface SportDao {
     public String findPositionFootball(int userId);
     
     /**
+     * Find Favorite team by userId
+     * @param userId
+     * @return String favTeam
+     */
+    public String findTeamFootball(int userId);
+    
+    /**
      * Find if user has a valid sport
      * @param userId
      * @return true if sport found
