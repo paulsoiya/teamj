@@ -31,24 +31,22 @@ public class CompareDaoImpl implements CompareDao {
         ResultSet resultSet;
         boolean result = false;
         try {
-            String sql = "SELECT * AS TeamStats " +
+            String sql = "SELECT StatsID " +
             "FROM Stats " +
-            "LEFT OUTER JOIN Player " +
+            "LEFT JOIN Player " +
             "ON Stats.PlayerID=Player.PlayerID " +
-            "WHERE Player.Position = ? " +
-            "LEFT OUTER JOIN Team " +
+            "AND Player.Position = ? " +
+            "LEFT JOIN Team " +
             "ON (Team.TeamID = Player.Team) " +
-            "WHERE Team.TeamName = ?;";
+            "AND Team.TeamName = ? " +
+             "WHERE Stats.Average > ? AND Stats.Average < ?;";
             stmt = conPro.prepareStatement(sql);
             stmt.setString(1, position);
             stmt.setString(2, favTeam);
+            stmt.setFloat(3, average-0.1);
+            stmt.setFloat(4, average+0.1);
             stmt.executeQuery();
             
-            sql = "SELECT StatsID FROM TeamStats WHERE Average > ? "
-            + "AND Average < ?";
-            stmt = conPro.prepareStatement(sql);
-            stmt.setFloat(1, average-1);
-            stmt.setFloat(2, average+1);
             resultSet = stmt.executeQuery();
             if(resultSet.next())
                 System.out.println(resultSet.getInt("StatsID"));
