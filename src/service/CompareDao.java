@@ -6,8 +6,6 @@
  */
 package service;
 
-import model.Compare;
-import model.Stats;
 
 public interface CompareDao {
 	

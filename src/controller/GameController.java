@@ -7,25 +7,23 @@
 package controller;
 
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.time.LocalDate;
-
+import javafx.scene.input.MouseEvent;
 import model.Game;
-import service.*;
-import session.*;
+import service.DaoFactory;
+import service.GameDao;
+import session.UserSession;
 
 public class GameController implements Initializable {
 	

@@ -1,14 +1,21 @@
 package model;
 
-import java.io.*;
+import static model.Stats.compareAlgorithm;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -551,14 +558,6 @@ public class BuildProfessionalDB {
 		catch (IOException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
-	}
-	
-	private static float compareAlgorithm(int yds, int tds, int att) {
-		float average;
-		float actualTDs = (float) tds * 10;
-		float actualYds = (float) yds / 100;
-		float actualAtt = (float) att / 1000;
-		return average = actualTDs + actualYds + actualAtt;
 	}
 	
 	public static void main(String[] args) {

@@ -6,8 +6,9 @@
  */
 package service;
 
-import model.Game;
 import java.util.List;
+
+import model.Game;
 
 public interface GameDao {
 	

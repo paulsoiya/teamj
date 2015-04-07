@@ -2,7 +2,6 @@ package service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * Dao factory for the SQLite database

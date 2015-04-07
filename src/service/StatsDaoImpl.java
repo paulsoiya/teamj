@@ -7,15 +7,8 @@
 package service;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import javafx.collections.FXCollections;
 import java.sql.ResultSet;
-import java.util.List;
-import java.util.ArrayList;
 
 import model.Stats;
 

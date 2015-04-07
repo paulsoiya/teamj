@@ -95,12 +95,13 @@ public class Stats {
 		this.average = compareAlgorithm(yards, touchdowns, attempts);
 	}
 	
-	private float compareAlgorithm(int yds, int tds, int att) {
-		float average;
+	static float compareAlgorithm(int yds, int tds, int att) {
 		float actualTDs = (float) tds * 10;
 		float actualYds = (float) yds / 100;
 		float actualAtt = (float) att / 1000;
-		return average = actualTDs + actualYds + actualAtt;
+		float weightedAverage = actualTDs + actualYds + actualAtt;
+		
+		return weightedAverage;
 	}
 	
 }

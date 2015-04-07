@@ -1,8 +1,6 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import service.*;
+import static org.junit.Assert.assertTrue;
 import model.Sport;
 
 import org.junit.After;
@@ -10,6 +8,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import service.AbstractDaoFactory;
+import service.DaoFactory;
+import service.SportDao;
 
 public class SportDaoTest {
 	private AbstractDaoFactory daoFact;

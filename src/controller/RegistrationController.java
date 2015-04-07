@@ -8,19 +8,18 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import model.User;
-import model.ValidateResult;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-import service.*;
+import model.User;
+import model.ValidateResult;
+import service.DaoFactory;
+import service.UserDao;
 
 public class RegistrationController implements Initializable {
 	

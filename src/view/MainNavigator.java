@@ -1,11 +1,10 @@
 package view;
 
-import javafx.fxml.FXMLLoader;
-
 import java.io.IOException;
 
-import controller.*;
+import javafx.fxml.FXMLLoader;
 import session.UserSession;
+import controller.LoginController;
 
 /**
  * Utility class for controlling navigation between vistas.

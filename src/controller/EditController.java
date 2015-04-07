@@ -9,17 +9,15 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import model.User;
 import service.DaoFactory;
 import service.UserDao;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-
 import session.UserSession;
 
 public class EditController implements Initializable {

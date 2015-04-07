@@ -6,20 +6,21 @@
  */
 package controller;
 
-import model.Game;
-import model.User;
-import model.Stats;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.collections.*;
-import javafx.event.ActionEvent;
-import service.*;
+import model.Game;
+import model.Stats;
+import service.CompareDao;
+import service.DaoFactory;
+import service.GameDao;
+import service.SportDao;
+import service.StatsDao;
+import service.UserDao;
 
 public class StatsController implements Initializable {
 	
