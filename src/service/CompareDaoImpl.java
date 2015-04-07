@@ -43,8 +43,8 @@ public class CompareDaoImpl implements CompareDao {
             stmt = conPro.prepareStatement(sql);
             stmt.setString(1, position);
             stmt.setString(2, favTeam);
-            stmt.setFloat(3, average-0.1);
-            stmt.setFloat(4, average+0.1);
+            stmt.setFloat(3, average-0.1f);
+            stmt.setFloat(4, average+0.1f);
             stmt.executeQuery();
             
             resultSet = stmt.executeQuery();
