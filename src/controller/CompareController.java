@@ -8,32 +8,31 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
+import view.MainNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
 
 public class CompareController implements Initializable {
-	
+
 	view.MainNavigator controller;
 	
-	public CompareController() {
+	public CompareController(){
 		controller = new view.MainNavigator();
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	/**
 	 * Changes the current FXML page to the home.fxml
-	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToHome(ActionEvent e) {
+	private void changeToHome(ActionEvent e){
 		controller.loadScreen(controller.HOME_FXML);
 	}
 	
