@@ -7,20 +7,11 @@
 package service;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.SQLException;
-import javafx.collections.FXCollections;
 import java.sql.ResultSet;
-import java.util.List;
-import java.util.ArrayList;
-
-import model.Compare;
-import model.Stats;
 
 public class CompareDaoImpl implements CompareDao {
-    
+
     private static final int POSITION_TEAM = 2;
     
     @Override
