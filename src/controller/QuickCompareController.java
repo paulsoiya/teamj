@@ -14,13 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 
 public class QuickCompareController implements Initializable {
-
+	
 	view.MainNavigator controller;
 	
-	public QuickCompareController(){
+	public QuickCompareController() {
 		controller = new view.MainNavigator();
 	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -29,29 +29,31 @@ public class QuickCompareController implements Initializable {
 	
 	/**
 	 * Changes the current FXML page to the register.fxml
+	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToRegister(ActionEvent e){
+	private void changeToRegister(ActionEvent e) {
 		controller.loadScreen(controller.REG_FXML);
 	}
 	
-  
 	/**
 	 * Changes the current FXML page to the login.fxml
+	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToLogin(ActionEvent e){
+	private void changeToLogin(ActionEvent e) {
 		controller.loadScreen(controller.LOGIN_FXML);
 	}
-
+	
 	/**
 	 * Changes the current FXML page to the quickCompare.fxml
+	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToQuickCompare(ActionEvent e){
+	private void changeToQuickCompare(ActionEvent e) {
 		controller.loadScreen(controller.COMPARE_FXML);
 	}
 	

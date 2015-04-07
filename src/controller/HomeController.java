@@ -16,53 +16,54 @@ import service.*;
 import session.UserSession;
 
 public class HomeController implements Initializable {
-
-    
-    view.MainNavigator controller;
-    
-    private UserSession session = UserSession.getInstance();
-    
-    @FXML
-    private Button footballButton;
-    
-    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-    SportDao sportDao = daoFact.getSportDao();
 	
-	public HomeController(){
+	view.MainNavigator controller;
+	
+	private UserSession session = UserSession.getInstance();
+	
+	@FXML
+	private Button footballButton;
+	
+	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+	SportDao sportDao = daoFact.getSportDao();
+	
+	public HomeController() {
 		controller = new view.MainNavigator();
 	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        footballButton.setVisible(sportDao.validSport(session.getUserId()));
-        System.out.println(session.getUserId());
+		footballButton.setVisible(sportDao.validSport(session.getUserId()));
+		System.out.println(session.getUserId());
 	}
 	
 	/**
 	 * Changes the current FXML page to games.fxml
+	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToGames(ActionEvent e){
+	private void changeToGames(ActionEvent e) {
 		controller.loadScreen(controller.GAME_FXML);
 	}
-                    
-    /**
-     * Changes the current FXML page to sport.fxml
-     * @param e
-     */
-    @FXML
-    private void changeToSport(ActionEvent e){
-         controller.loadScreen(controller.SPORT_FXML);
-    }
-                    
-    /**
-     * Changes the current FXML page to edit.fxml
-     * @param e
-     */
-    @FXML
-    private void changeToEdit(ActionEvent e){
-         controller.loadScreen(controller.EDIT_FXML);
-    }
+	
+	/**
+	 * Changes the current FXML page to sport.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToSport(ActionEvent e) {
+		controller.loadScreen(controller.SPORT_FXML);
+	}
+	
+	/**
+	 * Changes the current FXML page to edit.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToEdit(ActionEvent e) {
+		controller.loadScreen(controller.EDIT_FXML);
+	}
 }
-

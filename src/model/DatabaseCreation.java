@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.SQLException;
 
+// @formatter:off
 public class DatabaseCreation {
 
    /*
