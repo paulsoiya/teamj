@@ -63,10 +63,10 @@ public class LoginController implements Initializable {
     @FXML
     private void changeToHome(ActionEvent e){
         if (usrDao.loginUser(emailTxt.getText(), passwordTxt.getText())) {
-            controller.loadScreen(controller.HOME_FXML);
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
+            controller.loadScreen(controller.HOME_FXML);
             
         } else
             incorrectLabel.setText("Invaild Email or Password.");
