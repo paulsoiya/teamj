@@ -6,6 +6,10 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.REG_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -20,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import model.User;
 import service.DaoFactory;
 import service.UserDao;
+import view.MainNavigator;
 
 public class LoginController implements Initializable {
 	
@@ -31,6 +37,8 @@ public class LoginController implements Initializable {
 	private PasswordField passwordTxt;
 	@FXML
 	private Label incorrectLabel;
+	@FXML
+	private Hyperlink forgotPasswordLink;
 	/** Holder of a switchable vista. */
 	@FXML
 	private BorderPane mainPane;
@@ -55,7 +63,12 @@ public class LoginController implements Initializable {
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e) {
-		controller.loadScreen(controller.REG_FXML);
+		MainNavigator.loadScreen(REG_FXML);
+	}
+	
+	@FXML
+	private void sendPasswordReminder(ActionEvent e) {
+		MainNavigator.loadScreen(REG_FXML);
 	}
 	
 	/**
@@ -69,11 +82,12 @@ public class LoginController implements Initializable {
 			User currentUser = usrDao.findUser(emailTxt.getText());
 			controller.setSessionUserId(currentUser.getId());
 			controller.setSessionUserEmail(currentUser.getEmail());
-			controller.loadScreen(controller.HOME_FXML);
-			
+			MainNavigator.loadScreen(HOME_FXML);
 		}
-		else
+		else {
+			forgotPasswordLink.setText("Forgot Password?");
 			incorrectLabel.setText("Invaild Email or Password.");
+		}
 	}
 	
 	/**
@@ -83,7 +97,7 @@ public class LoginController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		controller.loadScreen(controller.COMPARE_FXML);
+		MainNavigator.loadScreen(COMPARE_FXML);
 	}
 	
 	/**
