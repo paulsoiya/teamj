@@ -6,6 +6,10 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE;
+import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.STATS_FXML;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,7 @@ import model.Game;
 import service.DaoFactory;
 import service.GameDao;
 import session.UserSession;
+import view.MainNavigator;
 
 public class GameController implements Initializable {
 	
@@ -72,7 +77,7 @@ public class GameController implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-					controller.loadScreen(controller.COMPARE);
+					MainNavigator.loadScreen(COMPARE);
 				}
 			}
 		});
@@ -85,7 +90,7 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void changeToStats() {
-		controller.loadScreen(controller.STATS_FXML);
+		MainNavigator.loadScreen(STATS_FXML);
 	}
 	
 	/**
@@ -95,6 +100,6 @@ public class GameController implements Initializable {
 	 */
 	@FXML
 	private void changeToHome() {
-		controller.loadScreen(controller.HOME_FXML);
+		MainNavigator.loadScreen(HOME_FXML);
 	}
 }

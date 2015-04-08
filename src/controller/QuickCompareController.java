@@ -6,12 +6,17 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.LOGIN_FXML;
+import static view.MainNavigator.REG_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import view.MainNavigator;
 
 public class QuickCompareController implements Initializable {
 	
@@ -24,7 +29,6 @@ public class QuickCompareController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -34,7 +38,7 @@ public class QuickCompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToRegister(ActionEvent e) {
-		controller.loadScreen(controller.REG_FXML);
+		MainNavigator.loadScreen(REG_FXML);
 	}
 	
 	/**
@@ -44,7 +48,7 @@ public class QuickCompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e) {
-		controller.loadScreen(controller.LOGIN_FXML);
+		MainNavigator.loadScreen(LOGIN_FXML);
 	}
 	
 	/**
@@ -54,7 +58,7 @@ public class QuickCompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		controller.loadScreen(controller.COMPARE_FXML);
+		MainNavigator.loadScreen(COMPARE_FXML);
 	}
 	
 }

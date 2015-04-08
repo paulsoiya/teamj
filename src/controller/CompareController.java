@@ -6,12 +6,15 @@
  */
 package controller;
 
+import static view.MainNavigator.HOME_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import view.MainNavigator;
 
 public class CompareController implements Initializable {
 	
@@ -24,7 +27,6 @@ public class CompareController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -34,7 +36,7 @@ public class CompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToHome(ActionEvent e) {
-		controller.loadScreen(controller.HOME_FXML);
+		MainNavigator.loadScreen(HOME_FXML);
 	}
 	
 }
