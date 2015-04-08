@@ -18,10 +18,10 @@ import javax.mail.internet.MimeMessage;
 public class EmailProvider {
 	
 	private static EmailProvider instance = null;
-	
+
+	public final static String STMP_USER = "sports.comparison@gmail.com";
 	private final String STMP_HOST = "smtp.gmail.com";
 	private final String STMP_PORT = "587";
-	public final static String STMP_USER = "sports.comparison@gmail.com";
 	private final String STMP_PASSWORD = "sportsComp";
 	
 	private EmailProvider() { }
