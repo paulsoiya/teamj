@@ -1,23 +1,34 @@
+/**
+ * PasswordGenerator
+ * 
+ * @author Moore, Zachary (zcmoore@asu.edu)
+ * @version Apr 8, 2015
+ *
+ */
 package model;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class PasswordGenerator
-{
+/**
+ * Generates random passwords of a user-specified length. The length may be specified on a per-password basis, using
+ * {@link #generatePassword(int, int)}
+ * 
+ * @author Moore, Zachary (zcmoore@asu.edu)
+ *
+ */
+public class PasswordGenerator {
 	private static PasswordGenerator instance;
 	private SecureRandom random;
 	
-	public static PasswordGenerator getInstance()
-	{
+	public static PasswordGenerator getInstance() {
 		if (instance == null)
 			instance = new PasswordGenerator();
 		
 		return instance;
 	}
 	
-	private PasswordGenerator()
-	{
+	private PasswordGenerator() {
 		this.random = new SecureRandom();
 	}
 	
@@ -28,14 +39,12 @@ public class PasswordGenerator
 	 *            Radix value to use when converting to String
 	 * @return A random password, using the maximum symbol set available in the given base
 	 */
-	public String generatePassword(int length, int base)
-	{
+	public String generatePassword(int length, int base) {
 		int bitsPerCharacter = (int) Math.floor(Math.pow(base, 0.5));
 		int numberOfBits = bitsPerCharacter * length;
 		String password = new BigInteger(numberOfBits, random).toString(base);
 		
-		while (password.length() < length)
-		{
+		while (password.length() < length) {
 			String prefix = generatePassword(length - password.length(), base);
 			password = prefix.concat(password);
 		}
