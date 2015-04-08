@@ -24,7 +24,7 @@ public interface UserDao {
 	 * Finds the user with the email address matching the parameter
 	 * 
 	 * @param email
-	 * @return the User object
+	 * @return the User object, or {@link User#NULL_USER} if a user cannot be found
 	 */
 	public User findUser(String email);
 	

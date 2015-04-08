@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDao {
 		Connection con = DaoFactory.createConnectionIndividual();
 		PreparedStatement stmt = null;
 		ResultSet resultSet;
-		User user = new User();
+		User user = User.NULL_USER;
 		try {
 			String sql = "SELECT * FROM User WHERE Email=?";
 			stmt = con.prepareStatement(sql);

@@ -1,6 +1,7 @@
 package model;
 
 public class User {
+	public static final User NULL_USER = new User();
 	
 	private int id;
 	private String email;
