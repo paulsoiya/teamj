@@ -83,7 +83,7 @@ public class GameDaoImpl implements GameDao {
 	
 	@Override
 	public List<Game> findGames(int userId) {
-		Connection con = DaoFactory.createConnectionIndividual();
+		Connection con = DaoFactory.createConnectionProfessional();
 		PreparedStatement stmt = null;
 		ResultSet resultSet;
 		List<Game> games = null;

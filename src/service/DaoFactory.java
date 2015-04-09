@@ -93,4 +93,10 @@ public class DaoFactory extends AbstractDaoFactory {
 	public CompareDao getCompareDao() {
 		return new CompareDaoImpl();
 	}
+
+	@Override
+	public TeamDao getTeamDao() {
+		return new TeamDaoImpl();
+	}
+	
 }
