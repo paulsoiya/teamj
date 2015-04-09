@@ -41,7 +41,6 @@ public class HomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		footballButton.setVisible(sportDao.validSport(session.getUserId()));
-		System.out.println(session.getUserId());
 	}
 	
 	/**

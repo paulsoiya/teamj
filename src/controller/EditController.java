@@ -7,6 +7,7 @@
 package controller;
 
 import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.GAME_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -86,4 +87,25 @@ public class EditController implements Initializable {
 		else
 			wrongLabel.setText("Enter your Information");
 	}
+
+    /**
+     * Changes the current FXML page to home.fxml
+     *
+     * @param e
+     */
+    @FXML
+    private void changeToHomeQuick() {
+        MainNavigator.loadScreen(HOME_FXML);
+    }
+    
+    /**
+     * Changes the current FXML page to games.fxml
+     *
+     * @param e
+     */
+    @FXML
+    private void changeToGames() {
+        MainNavigator.loadScreen(GAME_FXML);
+    }
 }
+

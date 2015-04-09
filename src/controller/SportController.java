@@ -72,4 +72,14 @@ public class SportController implements Initializable {
 		
 		MainNavigator.loadScreen(HOME_FXML);
 	}
+    
+    /**
+     * Changes the current FXML page to home.fxml
+     *
+     * @param e
+     */
+    @FXML
+    private void changeToHomeQuick() {
+        MainNavigator.loadScreen(HOME_FXML);
+    }
 }

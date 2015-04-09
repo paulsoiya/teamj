@@ -15,7 +15,7 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHomeQuick" styleClass="navigation-button" text="Home" />
          </children>
       </VBox>
    </left>

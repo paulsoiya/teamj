@@ -8,6 +8,7 @@ package controller;
 
 import static view.MainNavigator.COMPARE;
 import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.GAME_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,7 +100,7 @@ public class StatsController implements Initializable {
 	}
 	
 	/**
-	 * Changes the current FXML page to compare.fxml
+	 * Changes the current FXML page to home.fxml
 	 * 
 	 * @param e
 	 */
@@ -107,4 +108,14 @@ public class StatsController implements Initializable {
 	private void changeToHome() {
 		MainNavigator.loadScreen(HOME_FXML);
 	}
+    
+    /**
+     * Changes the current FXML page to games.fxml
+     *
+     * @param e
+     */
+    @FXML
+    private void changeToGames() {
+        MainNavigator.loadScreen(GAME_FXML);
+    }
 }
