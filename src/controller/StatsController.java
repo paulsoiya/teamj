@@ -86,13 +86,13 @@ public class StatsController implements Initializable {
 			Stats stats = new Stats(gameId, controller.getSessionUserId(), yards,
 					touchdown, attempts);
 			
-			if (statsDao.addStats(stats))
-				MainNavigator.loadScreen(COMPARE);
-			
-			compareDao.playerComparison(statsDao.findCompareAverage(gameId),
-					sportDao.findPositionFootball(controller.getSessionUserId()),
-					sportDao.findTeamFootball(controller.getSessionUserId()),
-                    gameId);
+            String position = sportDao.findPositionFootball(controller.getSessionUserId());
+            String team = sportDao.findTeamFootball(controller.getSessionUserId());
+            System.out.println(controller.getSessionUserId());
+            System.out.println(position + " " + team);
+			if(statsDao.addStats(stats) && compareDao.playerComparison(statsDao.findCompareAverage(gameId),
+					position, team, gameId))
+                MainNavigator.loadScreen(COMPARE);
 		}
 		catch (NumberFormatException e) {
 			System.out.println(this.getClass().getName() + " error: " + e.getMessage());

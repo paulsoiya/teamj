@@ -99,14 +99,14 @@ public class CompareDaoImpl implements CompareDao {
         String[] result = new String[POSITION_TEAM];
         try {
             String sql = "SELECT Position, FavoriteTeam " +
-            "FROM Sport Where UserID = ? AND Sport = ?";
+            "FROM Sport Where UserID = ? AND SportName = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
             stmt.setString(2, "Football");
             resultSet = stmt.executeQuery();
-            if(resultSet.next()) {
-                result[1] = resultSet.getString("Position");
-                result[2] = resultSet.getString("Sport");
+            while (resultSet.next()) {
+                result[0] = resultSet.getString("Position");
+                result[1] = resultSet.getString("FavoriteTeam");
             }
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
