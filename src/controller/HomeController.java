@@ -6,6 +6,10 @@
  */
 package controller;
 
+import static view.MainNavigator.EDIT_FXML;
+import static view.MainNavigator.GAME_FXML;
+import static view.MainNavigator.SPORT_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,6 +20,7 @@ import javafx.scene.control.Button;
 import service.DaoFactory;
 import service.SportDao;
 import session.UserSession;
+import view.MainNavigator;
 
 public class HomeController implements Initializable {
 	
@@ -46,7 +51,7 @@ public class HomeController implements Initializable {
 	 */
 	@FXML
 	private void changeToGames(ActionEvent e) {
-		controller.loadScreen(controller.GAME_FXML);
+		MainNavigator.loadScreen(GAME_FXML);
 	}
 	
 	/**
@@ -56,7 +61,7 @@ public class HomeController implements Initializable {
 	 */
 	@FXML
 	private void changeToSport(ActionEvent e) {
-		controller.loadScreen(controller.SPORT_FXML);
+		MainNavigator.loadScreen(SPORT_FXML);
 	}
 	
 	/**
@@ -66,6 +71,6 @@ public class HomeController implements Initializable {
 	 */
 	@FXML
 	private void changeToEdit(ActionEvent e) {
-		controller.loadScreen(controller.EDIT_FXML);
+		MainNavigator.loadScreen(EDIT_FXML);
 	}
 }

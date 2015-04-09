@@ -6,6 +6,10 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.LOGIN_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +24,7 @@ import model.User;
 import model.ValidateResult;
 import service.DaoFactory;
 import service.UserDao;
+import view.MainNavigator;
 
 public class RegistrationController implements Initializable {
 	
@@ -57,7 +62,7 @@ public class RegistrationController implements Initializable {
 	 */
 	@FXML
 	private void changeToLogin(ActionEvent e) {
-		controller.loadScreen(controller.LOGIN_FXML);
+		MainNavigator.loadScreen(LOGIN_FXML);
 	}
 	
 	/**
@@ -99,7 +104,7 @@ public class RegistrationController implements Initializable {
 				User currentUser = usrDao.findUser(emailTxt.getText());
 				controller.setSessionUserId(currentUser.getId());
 				controller.setSessionUserEmail(emailTxt.getText());
-				controller.loadScreen(controller.HOME_FXML);
+				MainNavigator.loadScreen(HOME_FXML);
 			}
 			else {
 				errorLbl.setText("Unable to add new user.");
@@ -117,7 +122,7 @@ public class RegistrationController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		controller.loadScreen(controller.COMPARE_FXML);
+		MainNavigator.loadScreen(COMPARE_FXML);
 	}
 	
 }

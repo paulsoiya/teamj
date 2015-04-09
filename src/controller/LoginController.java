@@ -6,20 +6,36 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.REG_FXML;
+
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
+import model.Email;
+import model.EmailProvider;
+import model.PasswordGenerator;
 import model.User;
 import service.DaoFactory;
 import service.UserDao;
+import view.MainNavigator;
 
 public class LoginController implements Initializable {
 	
@@ -31,6 +47,8 @@ public class LoginController implements Initializable {
 	private PasswordField passwordTxt;
 	@FXML
 	private Label incorrectLabel;
+	@FXML
+	private Hyperlink forgotPasswordLink;
 	/** Holder of a switchable vista. */
 	@FXML
 	private BorderPane mainPane;
@@ -45,7 +63,6 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
@@ -55,7 +72,69 @@ public class LoginController implements Initializable {
 	 */
 	@FXML
 	private void changeToRegistration(ActionEvent e) {
-		controller.loadScreen(controller.REG_FXML);
+		MainNavigator.loadScreen(REG_FXML);
+	}
+	
+	private void sendPasswordReminder(String destination) {
+		// TODO: Load email text from file
+		// TODO: register change with database only if an email was sent, and all other operations concluded
+		// successfully
+		
+		User user = usrDao.findUser(destination);
+		String sender = EmailProvider.STMP_USER;
+		final Email email = new Email(destination, sender, null, null);
+		
+		if (user.equals(User.NULL_USER)) {
+			DateFormat format = new SimpleDateFormat("dd MMM yyyy"); // 1 Jan 2015
+			Calendar calendar = Calendar.getInstance();
+			String date = format.format(calendar.getTime());
+			
+			String subject = "Password Reset";
+			String body = "An attempt to change the password associated with this email address for SprotsCompare was made on "
+					+ date
+					+ ". However, there is no account registered for "
+					+ user.getEmail()
+					+ ". If this request was not made by you, simply ignore this message. Otherwise, you can register for a new account using the SportsCompare client.";
+			email.setSubject(subject);
+			email.setBody(body);
+		}
+		else {
+			String newPassword = PasswordGenerator.getInstance().generatePassword(7, 36);
+			String subject = "Password Reset";
+			String body = "The password for "
+					+ user.getEmail()
+					+ " has been temporarily reset to \""
+					+ newPassword
+					+ "\" (no quotes). If this request was not made by you, simply ignore this message. Otherwise, you can change your password by logging in via the SportsCompare client.";
+			email.setSubject(subject);
+			email.setBody(body);
+			
+			user.setPassword(newPassword);
+			usrDao.updateUser(user);
+		}
+		
+		String message = "Further instructions have been sent to " + user.getEmail();
+		if (!EmailProvider.getInstance().sendEmail(email)) {
+			message = "Cannot connect. Check the internet connection and try again.";
+		}
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Reset Password");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		
+		alert.showAndWait();
+	}
+	
+	@FXML
+	private void openForgotPasswordDialog(ActionEvent e) {
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("Reset Password");
+		dialog.setHeaderText(null);
+		dialog.setContentText("Enter your email address: ");
+		
+		Optional<String> userResponse = dialog.showAndWait();
+		userResponse.ifPresent(this::sendPasswordReminder);
 	}
 	
 	/**
@@ -69,11 +148,12 @@ public class LoginController implements Initializable {
 			User currentUser = usrDao.findUser(emailTxt.getText());
 			controller.setSessionUserId(currentUser.getId());
 			controller.setSessionUserEmail(currentUser.getEmail());
-			controller.loadScreen(controller.HOME_FXML);
-			
+			MainNavigator.loadScreen(HOME_FXML);
 		}
-		else
+		else {
+			forgotPasswordLink.setText("Forgot Password?");
 			incorrectLabel.setText("Invaild Email or Password.");
+		}
 	}
 	
 	/**
@@ -83,7 +163,7 @@ public class LoginController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		controller.loadScreen(controller.COMPARE_FXML);
+		MainNavigator.loadScreen(COMPARE_FXML);
 	}
 	
 	/**

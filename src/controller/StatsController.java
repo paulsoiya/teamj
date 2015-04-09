@@ -6,6 +6,9 @@
  */
 package controller;
 
+import static view.MainNavigator.COMPARE;
+import static view.MainNavigator.HOME_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,6 +24,7 @@ import service.GameDao;
 import service.SportDao;
 import service.StatsDao;
 import service.UserDao;
+import view.MainNavigator;
 
 public class StatsController implements Initializable {
 	
@@ -82,7 +86,7 @@ public class StatsController implements Initializable {
 					touchdown, attempts);
 			
 			if (statsDao.addStats(stats))
-				controller.loadScreen(controller.COMPARE);
+				MainNavigator.loadScreen(COMPARE);
 			
 			compareDao.playerComparison(statsDao.findCompareAverage(gameId),
 					sportDao.findPositionFootball(controller.getSessionUserId()),
@@ -101,6 +105,6 @@ public class StatsController implements Initializable {
 	 */
 	@FXML
 	private void changeToHome() {
-		controller.loadScreen(controller.HOME_FXML);
+		MainNavigator.loadScreen(HOME_FXML);
 	}
 }

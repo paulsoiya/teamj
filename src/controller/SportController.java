@@ -6,6 +6,8 @@
  */
 package controller;
 
+import static view.MainNavigator.HOME_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,6 +70,6 @@ public class SportController implements Initializable {
 		
 		sportDao.createSport(sport);
 		
-		controller.loadScreen(controller.HOME_FXML);
+		MainNavigator.loadScreen(HOME_FXML);
 	}
 }

@@ -6,6 +6,8 @@
  */
 package controller;
 
+import static view.MainNavigator.HOME_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,6 +21,7 @@ import model.User;
 import service.DaoFactory;
 import service.UserDao;
 import session.UserSession;
+import view.MainNavigator;
 
 public class EditController implements Initializable {
 	
@@ -70,7 +73,7 @@ public class EditController implements Initializable {
 							firstNameTxt.getText(), lastNameTxt.getText(), dobPicker
 									.getValue().toString());
 					if (usrDao.updateUser(updateUsr))
-						controller.loadScreen(controller.HOME_FXML);
+						MainNavigator.loadScreen(HOME_FXML);
 					else
 						wrongLabel.setText("Invaild Information");
 				}

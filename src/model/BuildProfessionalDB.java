@@ -186,8 +186,8 @@ public class BuildProfessionalDB {
 	public static void statsPrint() {
 		JSONObject jsonSeason;
 		JSONObject jsonStats;
-		Connection c = null;
-		PreparedStatement stmt = null;
+		Connection connection = null;
+		PreparedStatement sqlStatement = null;
 		try {
 			jsonSeason = readJsonFromUrl("http://api.sportsdatallc.org/nfl-t1/2014/REG/schedule.json?api_key=8q8cz7sy9wuqv8u9ba8mfsa5");
 			JSONArray weekArr = jsonSeason.getJSONArray("weeks");
@@ -217,19 +217,19 @@ public class BuildProfessionalDB {
 					JSONObject statsAway = awayTeam.getJSONObject("statistics");
 					
 					try {
-						c = getConnection();
-						c.setAutoCommit(false);
+						connection = getConnection();
+						connection.setAutoCommit(false);
 						
 						String sql = "INSERT INTO GameLog (GameID, Date, Team, Opponent, Score) "
 								+ "VALUES (?,?,?,?,?)";
-						stmt = c.prepareStatement(sql);
-						stmt.setString(1, game.get("id").toString());
-						stmt.setString(2, game.get("scheduled").toString());
-						stmt.setString(3, game.get("home").toString());
-						stmt.setString(4, game.get("away").toString());
-						stmt.setString(5, homeTeam.get("points").toString() + "-"
+						sqlStatement = connection.prepareStatement(sql);
+						sqlStatement.setString(1, game.get("id").toString());
+						sqlStatement.setString(2, game.get("scheduled").toString());
+						sqlStatement.setString(3, game.get("home").toString());
+						sqlStatement.setString(4, game.get("away").toString());
+						sqlStatement.setString(5, homeTeam.get("points").toString() + "-"
 								+ awayTeam.get("points").toString());
-						stmt.executeUpdate();
+						sqlStatement.executeUpdate();
 					}
 					catch (Exception e1) {
 						System.err.println(e1.getClass().getName() + ": "
@@ -237,9 +237,9 @@ public class BuildProfessionalDB {
 					}
 					finally {
 						try {
-							stmt.close();
-							c.commit();
-							c.close();
+							sqlStatement.close();
+							connection.commit();
+							connection.close();
 						}
 						catch (Exception e2) {
 							System.err.println(e2.getClass().getName() + ": "
@@ -253,23 +253,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < homeRushArr.length(); k++) {
 						JSONObject player = homeRushArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -278,9 +278,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
@@ -294,23 +294,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < homePassArr.length(); k++) {
 						JSONObject player = homePassArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -319,9 +319,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
@@ -336,23 +336,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < homeRecArr.length(); k++) {
 						JSONObject player = homeRecArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -361,9 +361,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
@@ -378,23 +378,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < awayRushArr.length(); k++) {
 						JSONObject player = awayRushArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -403,9 +403,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
@@ -420,23 +420,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < awayPassArr.length(); k++) {
 						JSONObject player = awayPassArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -445,9 +445,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
@@ -462,23 +462,23 @@ public class BuildProfessionalDB {
 					for (int k = 0; k < awayRecArr.length(); k++) {
 						JSONObject player = awayRecArr.getJSONObject(k);
 						try {
-							c = getConnection();
-							c.setAutoCommit(false);
+							connection = getConnection();
+							connection.setAutoCommit(false);
 							
 							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
 									+ "VALUES (?,?,?,?,?,?)";
 							
-							stmt = c.prepareStatement(sql);
-							stmt.setString(1, game.get("id").toString());
-							stmt.setString(2, player.get("id").toString());
-							stmt.setInt(3, player.getInt("yds"));
-							stmt.setInt(4, player.getInt("td"));
-							stmt.setInt(5, player.getInt("att"));
-							stmt.setFloat(
+							sqlStatement = connection.prepareStatement(sql);
+							sqlStatement.setString(1, game.get("id").toString());
+							sqlStatement.setString(2, player.get("id").toString());
+							sqlStatement.setInt(3, player.getInt("yds"));
+							sqlStatement.setInt(4, player.getInt("td"));
+							sqlStatement.setInt(5, player.getInt("att"));
+							sqlStatement.setFloat(
 									6,
 									compareAlgorithm(player.getInt("yds"),
 											player.getInt("td"), player.getInt("att")));
-							stmt.executeUpdate();
+							sqlStatement.executeUpdate();
 							
 						}
 						catch (Exception e1) {
@@ -487,9 +487,9 @@ public class BuildProfessionalDB {
 						}
 						finally {
 							try {
-								stmt.close();
-								c.commit();
-								c.close();
+								sqlStatement.close();
+								connection.commit();
+								connection.close();
 							}
 							catch (Exception e2) {
 								System.err.println(e2.getClass().getName() + ": "
