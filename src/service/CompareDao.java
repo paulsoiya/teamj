@@ -13,7 +13,7 @@ public interface CompareDao {
      * @param average
      * @return int of StatsID for pro player
      */
-    public int playerComparison(float average, String position, String favTeam);
+    public boolean playerComparison(float average, String position, String favTeam, int gameID);
     
     /**
      * Returns Position and Favorite Team for user

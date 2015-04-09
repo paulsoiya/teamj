@@ -15,22 +15,24 @@ public class CompareDaoImpl implements CompareDao {
     private static final int POSITION_TEAM = 2;
     
     @Override
-    public int playerComparison(float average, String position, String favTeam) {
+    public boolean playerComparison(float average, String position, String favTeam, int gameID) {
         Connection conPro = DaoFactory.createConnectionProfessional();
         Connection conInd = DaoFactory.createConnectionIndividual();
         PreparedStatement stmt = null;
         ResultSet resultSet;
         int result = -1;
+        boolean success = false;
+        float averageDifference = 0.05f;
         try {
             String sql = "SELECT StatsID " +
             "FROM Stats " +
-            "LEFT JOIN Player " +
+            "INNER JOIN Player " +
             "ON Stats.PlayerID=Player.PlayerID " +
             "AND Player.Position = ? " +
-            "LEFT JOIN Team " +
+            "INNER JOIN Team " +
             "ON (Team.TeamID = Player.Team) " +
             "AND Team.TeamName = ? " +
-             "WHERE Stats.Average > ? AND Stats.Average < ?;";
+            "WHERE Stats.Average > ? AND Stats.Average < ?;";
             stmt = conPro.prepareStatement(sql);
             stmt.setString(1, position);
             stmt.setString(2, favTeam);
@@ -41,6 +43,35 @@ public class CompareDaoImpl implements CompareDao {
             resultSet = stmt.executeQuery();
             if(resultSet.next())
                 result = resultSet.getInt("StatsID");
+            else {
+                while(result == -1) {
+                    sql = "SELECT StatsID " +
+                    "FROM Stats " +
+                    "INNER JOIN Player " +
+                    "ON Stats.PlayerID=Player.PlayerID " +
+                    "AND Player.Position = ? " +
+                    "WHERE Stats.Average > ? AND Stats.Average < ?;";
+                    stmt = conPro.prepareStatement(sql);
+                    stmt.setString(1, position);
+                    stmt.setFloat(2, average-averageDifference);
+                    stmt.setFloat(3, average+averageDifference);
+                    stmt.executeQuery();
+                
+                    resultSet = stmt.executeQuery();
+                    if(resultSet.next())
+                        result = resultSet.getInt("StatsID");
+                    averageDifference += 0.05f;
+                }
+            }
+            
+            String insert = "UPDATE Stats SET ProStatsID = ? " +
+            "WHERE GameID = ?";
+            stmt = conInd.prepareStatement(insert);
+            stmt.setFloat(1, result);
+            stmt.setInt(2, gameID);
+            stmt.execute();
+            
+            success = true;
             
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
@@ -57,7 +88,7 @@ public class CompareDaoImpl implements CompareDao {
                                    + e.getMessage());
             }
         }
-        return result;
+        return success;
     }
     
     @Override

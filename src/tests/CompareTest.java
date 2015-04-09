@@ -13,7 +13,7 @@ import service.*;
 
 public class CompareTest {
     private float min = 0.0f;
-    private float max = 40.0f;
+    private float max = 65.0f;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -34,14 +34,11 @@ public class CompareTest {
 	@Test
 	public void CompareTest() {
         Random rand = new Random();
-        float randAverage = rand.nextFloat() * (max - min) + min;
         AbstractDaoFactory daoFact = new DaoFactory();
         CompareDao dao = daoFact.getCompareDao();
         
-        for(int i=0; i < 1000; i++){
-            assertTrue(dao.playerComparison(randAverage, "RB", "New York Jets") > 1);
+        for(int i=0; i < 50; i++) {
+            assertTrue(dao.playerComparison((rand.nextFloat() * (max - min) + min), "RB", "New York Jets", 1));
         }
 	}
-
-
 }
