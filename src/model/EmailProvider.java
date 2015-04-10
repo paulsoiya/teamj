@@ -47,6 +47,7 @@ public class EmailProvider {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", STMP_HOST);
 		props.put("mail.smtp.port", STMP_PORT);
+		
 
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
