@@ -62,17 +62,16 @@ public class GameController implements Initializable {
 		games = gameDao.findGames(session.getUserId());
 		weekCol.setCellValueFactory(new PropertyValueFactory<Game, Integer>("week"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<Game, String>("date"));
-		opponentCol
-				.setCellValueFactory(new PropertyValueFactory<Game, String>("opponent"));
+		opponentCol.setCellValueFactory(new PropertyValueFactory<Game, String>("opponent"));
 		scoreCol.setCellValueFactory(new PropertyValueFactory<Game, String>("score"));
 		ObservableList<Game> data = FXCollections.observableArrayList();
 		
-		for (int i = 0; i < games.size(); i++) {
-			data.add(games.get(i));
-		}
-		
-		table.setItems(data);
-		
+        for (int i = 0; i < games.size(); i++) {
+            data.add(games.get(i));
+        }
+        
+        table.setItems(data);
+        
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
