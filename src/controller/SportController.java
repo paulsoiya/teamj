@@ -9,6 +9,8 @@ package controller;
 import static view.MainNavigator.HOME_FXML;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -17,8 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import model.Sport;
+import model.Team;
 import service.DaoFactory;
 import service.SportDao;
+import service.TeamDao;
 import view.MainNavigator;
 
 public class SportController implements Initializable {
@@ -44,17 +48,19 @@ public class SportController implements Initializable {
 		
 		sportCB.setItems(FXCollections.observableArrayList("Football"));
 		positionCB.setItems(FXCollections.observableArrayList("QB", "RB", "WR"));
-		favTeamCB.setItems(FXCollections.observableArrayList("Arizona Cardinals",
-				"Atlanta Falcons", "Baltimore Ravens", "Buffalo Bills",
-				"Carolina Panthers", "Chicago Bears", "Cincinnati Bengals",
-				"Cleveland Browns", "Dallas Cowboys", "Denver Broncos", "Detroit Lions",
-				"Green Bay Packers", "Houston Texans", "Indianapolis Colts",
-				"Jacksonville Jaguars", "Kansas City Chiefs", "Miami Dolphins",
-				"Minnesota Vikings", "New England Patriots", "New Orleans Saints",
-				"New York Giants", "New York Jets", "Oakland Raiders",
-				"Philadelphia Eagles", "Pittsburgh Steelers", "Saint Louis Rams",
-				"San Diego Chargers", "San Francisco 49ers", "Seattle Seahawks",
-				"Tampa Bay Buccaneers", "Tennessee Titans", "Washington Redskins"));
+		
+		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+		TeamDao teamDao = daoFact.getTeamDao();
+		
+		List<Team> teams = teamDao.findAll();
+		List<String> teamNames = new ArrayList<String>();
+		
+		//iterate through each team and extract the team name
+		for (Team team : teams) {
+			teamNames.add(team.getTeamName());
+		}
+		
+		favTeamCB.setItems(FXCollections.observableArrayList(teamNames));
 		
 	}
 	
