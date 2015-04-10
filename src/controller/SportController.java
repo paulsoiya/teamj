@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import model.Sport;
 import service.DaoFactory;
 import service.SportDao;
@@ -30,6 +31,8 @@ public class SportController implements Initializable {
 	private ChoiceBox<String> positionCB;
 	@FXML
 	private ChoiceBox<String> favTeamCB;
+    @FXML
+    private Label errorLabel;
 	
 	public SportController() {
 		controller = new view.MainNavigator();
@@ -65,12 +68,16 @@ public class SportController implements Initializable {
 		
 		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
 		SportDao sportDao = daoFact.getSportDao();
-		Sport sport = new Sport(controller.getSessionUserId(), sportCB.getValue(),
+
+        Sport sport = new Sport(controller.getSessionUserId(), sportCB.getValue(),
 				positionCB.getValue(), favTeamCB.getValue());
-		
-		sportDao.createSport(sport);
-		
-		MainNavigator.loadScreen(HOME_FXML);
+        
+        if(sportCB.getValue() != null && positionCB.getValue() != null &&
+           favTeamCB.getValue() != null) {
+            if (sportDao.createSport(sport))
+                MainNavigator.loadScreen(HOME_FXML);
+        } else
+            errorLabel.setText("Please Enter All Selections");
 	}
     
     /**

@@ -119,11 +119,11 @@ public class DatabaseCreation {
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
-           "SportID       INTEGER    PRIMARY KEY	AUTOINCREMENT," +
-           "UserID        INT," +
+           "UserID        INTEGER," +
            "SportName     TEXT," +
            "Position      TEXT," +
            "FavoriteTeam  TEXT," +
+           "PRIMARY KEY (UserID, SportName)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
