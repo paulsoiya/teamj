@@ -2,9 +2,10 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+// @formatter:off
 public class DatabaseCreation {
 
    /*
@@ -42,6 +43,7 @@ public class DatabaseCreation {
             "PlayerID       TEXT    PRIMARY KEY," +
             "PlayerName     TEXT," +
             "Team           TEXT," +
+            "Position       TEXT," +
             "Picture        TEXT," +
             "Height         INT," +
             "Weight         INT," +
@@ -65,15 +67,10 @@ public class DatabaseCreation {
             "StatsID        INTEGER    PRIMARY KEY    AUTOINCREMENT," +
             "GameID         TEXT," +
             "PlayerID       TEXT," +
-            "RecYds         INT," +
-            "RecTDs         INT," +
-            "RecAtt         INT," +
-            "RushYds        INT," +
-            "RushTDs        INT," +
-            "RushAtt        INT," +
-            "PassYds        INT," +
-            "PassTDs        INT," +
-            "PassAtt        INT," +
+            "Yards            INT," +
+            "TDs            INT," +
+            "Att            INT," +
+            "Average        REAL," +
             "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
             "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
          stmt.executeUpdate(sql);
@@ -122,11 +119,11 @@ public class DatabaseCreation {
            stmt.executeUpdate(sql);
            
            sql = "CREATE TABLE Sport(" +
-           "SportID       INTEGER    PRIMARY KEY	AUTOINCREMENT," +
-           "UserID        INT," +
+           "UserID        INTEGER," +
            "SportName     TEXT," +
            "Position      TEXT," +
            "FavoriteTeam  TEXT," +
+           "PRIMARY KEY (UserID, SportName)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
            
@@ -147,6 +144,7 @@ public class DatabaseCreation {
            "Yds            INT," +
            "TDs            INT," +
            "Att            INT," +
+           "Average        REAL," +
            "ProStatsID     INT," +
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";

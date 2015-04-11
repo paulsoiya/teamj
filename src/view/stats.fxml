@@ -16,9 +16,7 @@
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
+            <Button mnemonicParsing="false" onAction="#changeToGames" styleClass="navigation-button" text="Recent Games" />
          </children>
       </VBox>
    </left>
