@@ -83,14 +83,22 @@ public class GameDaoImpl implements GameDao {
 	
 	@Override
 	public List<Game> findGames(int userId) {
-		Connection con = DaoFactory.createConnectionProfessional();
+		Connection con = DaoFactory.createConnectionIndividual();
 		PreparedStatement stmt = null;
 		ResultSet resultSet;
 		List<Game> games = null;
 		int length = 0;
 		try {
-			games = new ArrayList<Game>();
-			String sql = "SELECT * FROM GameLog WHERE UserID = ?";
+            String sql = "SELECT COUNT(UserID) AS total FROM GameLog WHERE UserID = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next())
+                length = resultSet.getInt("total");
+            
+            games = new ArrayList<Game>();
+            
+			sql = "SELECT * FROM GameLog WHERE UserID = ?";
 			
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, userId);
