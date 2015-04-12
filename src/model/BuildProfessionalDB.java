@@ -249,259 +249,78 @@ public class BuildProfessionalDB {
 					
 					// Home Team Rushing Stats
 					JSONObject rushHome = statsHome.getJSONObject("rushing");
-					JSONArray homeRushArr = rushHome.getJSONArray("players");
-					for (int k = 0; k < homeRushArr.length(); k++) {
-						JSONObject player = homeRushArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(rushHome, game);
+					
 					// Home Team Passing Stats
 					JSONObject passHome = statsHome.getJSONObject("passing");
-					JSONArray homePassArr = passHome.getJSONArray("players");
-					for (int k = 0; k < homePassArr.length(); k++) {
-						JSONObject player = homePassArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(passHome, game);
 					
 					// Home Team Receiving Stats
 					JSONObject recHome = statsHome.getJSONObject("passing");
-					JSONArray homeRecArr = recHome.getJSONArray("players");
-					for (int k = 0; k < homeRecArr.length(); k++) {
-						JSONObject player = homeRecArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(recHome, game);
 					
 					// Away Team Rushing Stats
 					JSONObject rushAway = statsAway.getJSONObject("rushing");
-					JSONArray awayRushArr = rushAway.getJSONArray("players");
-					for (int k = 0; k < awayRushArr.length(); k++) {
-						JSONObject player = awayRushArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(rushAway, game);
 					
 					// Away Team Passing Stats
 					JSONObject passAway = statsHome.getJSONObject("passing");
-					JSONArray awayPassArr = passAway.getJSONArray("players");
-					for (int k = 0; k < awayPassArr.length(); k++) {
-						JSONObject player = awayPassArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(passAway, game);
 					
 					// Away Team Receiving Stats
 					JSONObject recAway = statsHome.getJSONObject("passing");
-					JSONArray awayRecArr = recAway.getJSONArray("players");
-					for (int k = 0; k < awayRecArr.length(); k++) {
-						JSONObject player = awayRecArr.getJSONObject(k);
-						try {
-							connection = getConnection();
-							connection.setAutoCommit(false);
-							
-							String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
-									+ "VALUES (?,?,?,?,?,?)";
-							
-							sqlStatement = connection.prepareStatement(sql);
-							sqlStatement.setString(1, game.get("id").toString());
-							sqlStatement.setString(2, player.get("id").toString());
-							sqlStatement.setInt(3, player.getInt("yds"));
-							sqlStatement.setInt(4, player.getInt("td"));
-							sqlStatement.setInt(5, player.getInt("att"));
-							sqlStatement.setFloat(
-									6,
-									compareAlgorithm(player.getInt("yds"),
-											player.getInt("td"), player.getInt("att")));
-							sqlStatement.executeUpdate();
-							
-						}
-						catch (Exception e1) {
-							System.err.println(e1.getClass().getName() + ": "
-									+ e1.getMessage());
-						}
-						finally {
-							try {
-								sqlStatement.close();
-								connection.commit();
-								connection.close();
-							}
-							catch (Exception e2) {
-								System.err.println(e2.getClass().getName() + ": "
-										+ e2.getMessage());
-							}
-						}
-					}
+					insertPlayerStatsFrom(recAway, game);
 				}
 			}
 		}
 		catch (IOException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+	}
+	
+	private static void insertPlayerStatsFrom(JSONObject statsObject, JSONObject game) {
+		JSONArray players = statsObject.getJSONArray("players");
+		for (int k = 0; k < players.length(); k++) {
+			JSONObject player = players.getJSONObject(k);
+			insertPlayerStats(player, game);
+		}
+	}
+	
+	private static void insertPlayerStats(JSONObject player, JSONObject game) {
+		Connection connection = null;
+		PreparedStatement sqlStatement = null;
+		try {
+			connection = getConnection();
+			connection.setAutoCommit(false);
+			
+			String sql = "INSERT INTO Stats(GameID, PlayerID, Yards, TDs, Att, Average) "
+					+ "VALUES (?,?,?,?,?,?)";
+			
+			sqlStatement = connection.prepareStatement(sql);
+			sqlStatement.setString(1, game.get("id").toString());
+			sqlStatement.setString(2, player.get("id").toString());
+			sqlStatement.setInt(3, player.getInt("yds"));
+			sqlStatement.setInt(4, player.getInt("td"));
+			sqlStatement.setInt(5, player.getInt("att"));
+			sqlStatement.setFloat(
+					6,
+					compareAlgorithm(player.getInt("yds"), player.getInt("td"),
+							player.getInt("att")));
+			sqlStatement.executeUpdate();
+			
+		}
+		catch (Exception e1) {
+			System.err.println(e1.getClass().getName() + ": " + e1.getMessage());
+		}
+		finally {
+			try {
+				sqlStatement.close();
+				connection.commit();
+				connection.close();
+			}
+			catch (Exception e2) {
+				System.err.println(e2.getClass().getName() + ": " + e2.getMessage());
+			}
 		}
 	}
 	
