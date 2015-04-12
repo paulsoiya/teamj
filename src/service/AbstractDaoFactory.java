@@ -14,6 +14,8 @@ public abstract class AbstractDaoFactory {
 	public abstract CompareDao getCompareDao();
 	
 	public abstract TeamDao getTeamDao();
+    
+    public abstract ProInfoDao getProInfoDao();
 	
 	public static AbstractDaoFactory getDaoFactory() {
 		return new DaoFactory();

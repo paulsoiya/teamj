@@ -14,11 +14,22 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import model.ProInfo;
+import service.DaoFactory;
+import service.ProInfoDao;
+import session.UserSession;
 import view.MainNavigator;
 
 public class CompareController implements Initializable {
 	
 	view.MainNavigator controller;
+    
+    private UserSession session = UserSession.getInstance();
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    ProInfoDao infoDao = daoFact.getProInfoDao();
+    
+    ProInfo info = new ProInfo();
 	
 	public CompareController() {
 		controller = new view.MainNavigator();
@@ -26,7 +37,8 @@ public class CompareController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+        info = infoDao.findProInfo(session.getGameId());
+        System.out.println(info.getName() + session.getGameId());
 	}
 	
 	/**

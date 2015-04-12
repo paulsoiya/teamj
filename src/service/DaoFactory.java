@@ -98,5 +98,10 @@ public class DaoFactory extends AbstractDaoFactory {
 	public TeamDao getTeamDao() {
 		return new TeamDaoImpl();
 	}
+    
+    @Override
+    public ProInfoDao getProInfoDao() {
+        return new ProInfoDaoImpl();
+    }
 	
 }

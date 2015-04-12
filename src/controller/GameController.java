@@ -22,6 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableRow;
+import javafx.scene.Node;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import model.Game;
@@ -72,14 +74,26 @@ public class GameController implements Initializable {
         
         table.setItems(data);
         
-		table.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-					MainNavigator.loadScreen(COMPARE);
-				}
-			}
-		});
+        table.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    Node node = ((Node) event.getTarget()).getParent();
+                    TableRow row;
+                    if (node instanceof TableRow) {
+                        row = (TableRow) node;
+                    } else {
+                        row = (TableRow) node.getParent();
+                    }
+                    Game game = new Game();
+                    game = (Game)row.getItem();
+                    game.setUserID(session.getUserId());
+                    int gameId = gameDao.findGameID(game);
+                    session.setGameId(gameId);
+                    MainNavigator.loadScreen(COMPARE);
+                }
+            }
+        });
 	}
 	
 	/**
