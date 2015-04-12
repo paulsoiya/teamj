@@ -27,6 +27,13 @@ public interface UserDao {
 	 * @return the User object, or {@link User#NULL_USER} if a user cannot be found
 	 */
 	public User findUser(String email);
+    
+    /**
+     *
+     *
+     *
+     */
+    public boolean userExists(String email);
 	
 	/**
 	 * Deletes a user with the specified email

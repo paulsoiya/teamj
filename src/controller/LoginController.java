@@ -9,6 +9,7 @@ package controller;
 import static view.MainNavigator.COMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.REG_FXML;
+import static view.MainNavigator.PASSWORD;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -21,13 +22,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import model.Email;
 import model.EmailProvider;
@@ -90,7 +88,7 @@ public class LoginController implements Initializable {
 			String date = format.format(calendar.getTime());
 			
 			String subject = "Password Reset";
-			String body = "An attempt to change the password associated with this email address for SprotsCompare was made on "
+			String body = "An attempt to change the password associated with this email address for SportsCompare was made on "
 					+ date
 					+ ". However, there is no account registered for "
 					+ user.getEmail()
@@ -112,29 +110,20 @@ public class LoginController implements Initializable {
 			user.setPassword(newPassword);
 			usrDao.updateUser(user);
 		}
-		
-		String message = "Further instructions have been sent to " + user.getEmail();
-		if (!EmailProvider.getInstance().sendEmail(email)) {
-			message = "Cannot connect. Check the internet connection and try again.";
-		}
-		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Reset Password");
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		
-		alert.showAndWait();
+        EmailProvider.getInstance().sendEmail(email);
 	}
 	
 	@FXML
-	private void openForgotPasswordDialog(ActionEvent e) {
-		TextInputDialog dialog = new TextInputDialog();
-		dialog.setTitle("Reset Password");
-		dialog.setHeaderText(null);
-		dialog.setContentText("Enter your email address: ");
-		
-		Optional<String> userResponse = dialog.showAndWait();
-		userResponse.ifPresent(this::sendPasswordReminder);
+	private void openForgotPassword(ActionEvent e) {
+        if(usrDao.userExists(emailTxt.getText())) {
+            sendPasswordReminder(emailTxt.getText());
+            User currentUser = usrDao.findUser(emailTxt.getText());
+            controller.setSessionUserId(currentUser.getId());
+            controller.setSessionUserEmail(currentUser.getEmail());
+            MainNavigator.loadScreen(PASSWORD);
+        }
+        else
+            incorrectLabel.setText("Email Address is not registered.");
 	}
 	
 	/**

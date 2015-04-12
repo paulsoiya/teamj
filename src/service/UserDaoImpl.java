@@ -119,6 +119,39 @@ public class UserDaoImpl implements UserDao {
 		}
 		return user;
 	}
+    
+    @Override
+    public boolean userExists(String email) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        String userEmail = null;
+        try {
+            String sql = "SELECT Email FROM User " + "WHERE Email = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            resultSet = stmt.executeQuery();
+            
+            if (resultSet.next())
+                userEmail = resultSet.getString("Email");
+        }
+        catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            }
+            catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
+        }
+        return email.equals(userEmail);
+
+    }
 	
 	@Override
 	public boolean deleteUser(String email) {
