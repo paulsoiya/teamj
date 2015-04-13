@@ -36,6 +36,20 @@ public class CompareController implements Initializable {
     @FXML
     private Label teamTxt;
     @FXML
+    private Label dobTxt;
+    @FXML
+    private Label weightTxt;
+    @FXML
+    private Label heightTxt;
+    @FXML
+    private Label collegeTxt;
+    @FXML
+    private Label attemptsTxt;
+    @FXML
+    private Label yardsTxt;
+    @FXML
+    private Label touchdownsTxt;
+    @FXML
     private ImageView playerPicture;
     @FXML
     private ImageView teamPicture;
@@ -63,6 +77,10 @@ public class CompareController implements Initializable {
         nameTxt.setText(info.getName());
         positionTxt.setText(info.getPosition());
         numberTxt.setText(Integer.toString(info.getNumber()));
+        collegeTxt.setText(info.getCollege());
+        heightTxt.setText(Integer.toString(info.getHeight()));
+        weightTxt.setText(Integer.toString(info.getWeight()));
+        dobTxt.setText(info.getDOB());
         teamTxt.setText(teamInfo.getTeamName());
         Image img = new Image(info.getPicture());
         playerPicture.setImage(img);
