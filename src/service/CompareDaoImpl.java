@@ -154,6 +154,5 @@ public class CompareDaoImpl implements CompareDao {
             }
         }
         return result;
-        
     }
 }

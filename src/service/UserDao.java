@@ -29,9 +29,9 @@ public interface UserDao {
 	public User findUser(String email);
     
     /**
-     *
-     *
-     *
+     * Checks that a user is in the system
+     * @param email
+     * @return true if exists
      */
     public boolean userExists(String email);
 	
