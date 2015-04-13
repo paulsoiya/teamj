@@ -36,18 +36,22 @@
             <RowConstraints maxHeight="325.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="325.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="380.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="178.0" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="461.0" minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="178.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="461.0" minHeight="10.0" prefHeight="245.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <ImageView fx:id="teamPicture" fitHeight="473.0" fitWidth="910.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3" />
-            <ImageView fx:id="playerPicture" fitHeight="469.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Stats" />
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Graph" />
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Videos" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+               <children>
+                  <ImageView fx:id="playerPicture" fitHeight="469.0" fitWidth="639.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             <Label fx:id="nameTxt" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="630.0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
