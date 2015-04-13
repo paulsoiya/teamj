@@ -83,6 +83,7 @@ public class StatsController implements Initializable {
 			
 			// Load Stats
 			int gameId = gameDao.findGameID(game);
+            session.setGameId(gameId);
 			int yards = Integer.parseInt(yardsTxt.getText());
 			int touchdown = Integer.parseInt(touchdownTxt.getText());
 			int attempts = Integer.parseInt(attemptsTxt.getText());
@@ -91,12 +92,11 @@ public class StatsController implements Initializable {
 			
             String position = sportDao.findPositionFootball(controller.getSessionUserId());
             String team = sportDao.findTeamFootball(controller.getSessionUserId());
+            statsDao.addStats(stats);
             int proStat = compareDao.playerComparison(statsDao.findCompareAverage(gameId),
                                                       position, team);
-            if(statsDao.addStats(stats) && compareDao.insertStat(proStat, gameId)) {
-                session.setGameId(gameId);
-                MainNavigator.loadScreen(COMPARE);
-            }
+            compareDao.insertStat(proStat, gameId);
+            MainNavigator.loadScreen(COMPARE);
 		}
 		catch (NumberFormatException e) {
 			System.out.println(this.getClass().getName() + " error: " + e.getMessage());
