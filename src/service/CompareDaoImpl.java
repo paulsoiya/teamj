@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import model.Compare;
+
 public class CompareDaoImpl implements CompareDao {
 
     private static final int POSITION_TEAM = 2;
@@ -147,6 +149,55 @@ public class CompareDaoImpl implements CompareDao {
                 if (stmt != null) {
                     stmt.close();
                     DaoFactory.closeConnection(con);
+                }
+            }
+            catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
+        }
+        return result;
+    }
+    
+    @Override
+    public Compare inputStats(int gameId, int statsId) {
+        Connection conInd = DaoFactory.createConnectionIndividual();
+        Connection conPro = DaoFactory.createConnectionProfessional();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        Compare result = new Compare();
+        try {
+            String sql = "SELECT * FROM Stats WHERE GameID = ?";
+            stmt = conInd.prepareStatement(sql);
+            stmt.setInt(1, gameId);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                result.setUserAttempts(resultSet.getInt("Att"));
+                result.setUserYards(resultSet.getInt("Yds"));
+                result.setUserTouchdowns(resultSet.getInt("TDs"));
+                System.out.println(resultSet.getInt("TDs"));
+            }
+            
+            sql = "SELECT * FROM Stats WHERE StatsID = ?";
+            stmt = conPro.prepareStatement(sql);
+            stmt.setInt(1, statsId);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                result.setProAttempts(resultSet.getInt("Att"));
+                result.setProYards(resultSet.getInt("Yards"));
+                result.setProTouchdowns(resultSet.getInt("TDs"));
+                System.out.println(resultSet.getInt("TDs"));
+            }
+
+        }
+        catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(conInd);
+                    DaoFactory.closeConnection(conPro);
                 }
             }
             catch (Exception e) {

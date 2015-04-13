@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.ProInfo;
 import model.TeamInfo;
+import model.Compare;
 import service.DaoFactory;
 import service.ProInfoDao;
 import service.CompareDao;
@@ -48,7 +49,7 @@ public class CompareController implements Initializable {
     @FXML
     private Label yardsTxt;
     @FXML
-    private Label touchdownsTxt;
+    private Label touchdownTxt;
     @FXML
     private ImageView playerPicture;
     @FXML
@@ -64,6 +65,7 @@ public class CompareController implements Initializable {
     
     ProInfo info = new ProInfo();
     TeamInfo teamInfo = new TeamInfo();
+    Compare comp = new Compare();
 	
 	public CompareController() {
 		controller = new view.MainNavigator();
@@ -74,6 +76,7 @@ public class CompareController implements Initializable {
         int statsId = compareDao.findStatsId(session.getGameId());
         info = infoDao.findProInfo(statsId);
         teamInfo = infoDao.findTeamInfo(info.getTeam());
+        comp = compareDao.inputStats(session.getGameId(), statsId);
         nameTxt.setText(info.getName());
         positionTxt.setText(info.getPosition());
         numberTxt.setText(Integer.toString(info.getNumber()));
@@ -86,6 +89,9 @@ public class CompareController implements Initializable {
         playerPicture.setImage(img);
         Image imgTeam = new Image(teamInfo.getTeamPicture());
         teamPicture.setImage(imgTeam);
+        attemptsTxt.setText(Integer.toString(comp.getProAttempts()));
+        yardsTxt.setText(Integer.toString(comp.getProYards()));
+        touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
 	}
 	
 	/**

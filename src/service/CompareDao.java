@@ -6,6 +6,7 @@
  */
 package service;
 
+import model.Compare;
 
 public interface CompareDao {
     /**
@@ -28,4 +29,11 @@ public interface CompareDao {
      * @return int StatsID
      */
     public int findStatsId(int gameId);
+    
+    /**
+     * Creates a compare object
+     * @param gameId, statsId
+     * @return Compare
+     */
+    public Compare inputStats(int gameId, int statsId);
 }
