@@ -17,13 +17,12 @@ public class CompareDaoImpl implements CompareDao {
     private static final int POSITION_TEAM = 2;
     
     @Override
-    public boolean playerComparison(float average, String position, String favTeam, int gameID) {
+    public int playerComparison(float average, String position, String favTeam) {
         Connection conPro = DaoFactory.createConnectionProfessional();
-        Connection conInd = DaoFactory.createConnectionIndividual();
+       
         PreparedStatement stmt = null;
         ResultSet resultSet;
         int result = -1;
-        boolean success = false;
         float averageDifference = 0.05f;
         try {
             String sql = "SELECT StatsID " +
@@ -66,15 +65,6 @@ public class CompareDaoImpl implements CompareDao {
                 }
             }
             
-            String insert = "UPDATE Stats SET ProStatsID = ? " +
-            "WHERE GameID = ?";
-            stmt = conInd.prepareStatement(insert);
-            stmt.setFloat(1, result);
-            stmt.setInt(2, gameID);
-            stmt.execute();
-            
-            success = true;
-            
         } catch(Exception e) {
             System.err.println(e.getClass().getName() + ": "
                                + e.getMessage());
@@ -83,6 +73,34 @@ public class CompareDaoImpl implements CompareDao {
                 if (stmt != null) {
                     stmt.close();
                     DaoFactory.closeConnection(conPro);
+                }
+            } catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": "
+                                   + e.getMessage());
+            }
+        }
+        return result;
+    }
+    
+    @Override
+    public boolean insertStat(int proStatsId, int gameId) {
+        Connection conInd = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        boolean result = false;
+        try {
+            String insert = "UPDATE Stats SET ProStatsID = ? " +
+            "WHERE GameID = ?";
+            stmt = conInd.prepareStatement(insert);
+            stmt.setFloat(1, proStatsId);
+            stmt.setInt(2, gameId);
+            stmt.execute();
+        } catch(Exception e) {
+            System.err.println(e.getClass().getName() + ": "
+                               + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
                     DaoFactory.closeConnection(conInd);
                 }
             } catch (Exception e) {
@@ -90,7 +108,7 @@ public class CompareDaoImpl implements CompareDao {
                                    + e.getMessage());
             }
         }
-        return success;
+    return result;
     }
     
     @Override

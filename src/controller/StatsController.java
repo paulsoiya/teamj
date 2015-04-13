@@ -25,6 +25,7 @@ import service.GameDao;
 import service.SportDao;
 import service.StatsDao;
 import service.UserDao;
+import session.UserSession;
 import view.MainNavigator;
 
 public class StatsController implements Initializable {
@@ -47,6 +48,8 @@ public class StatsController implements Initializable {
 	private TextField yardsTxt;
 	@FXML
 	private TextField touchdownTxt;
+    
+    private UserSession session = UserSession.getInstance();
 	
 	public StatsController() {
 		controller = new view.MainNavigator();
@@ -88,11 +91,12 @@ public class StatsController implements Initializable {
 			
             String position = sportDao.findPositionFootball(controller.getSessionUserId());
             String team = sportDao.findTeamFootball(controller.getSessionUserId());
-            System.out.println(controller.getSessionUserId());
-            System.out.println(position + " " + team);
-			if(statsDao.addStats(stats) && compareDao.playerComparison(statsDao.findCompareAverage(gameId),
-					position, team, gameId))
+            int proStat = compareDao.playerComparison(statsDao.findCompareAverage(gameId),
+                                                      position, team);
+            if(statsDao.addStats(stats) && compareDao.insertStat(proStat, gameId)) {
+                session.setGameId(gameId);
                 MainNavigator.loadScreen(COMPARE);
+            }
 		}
 		catch (NumberFormatException e) {
 			System.out.println(this.getClass().getName() + " error: " + e.getMessage());

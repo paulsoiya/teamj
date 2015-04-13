@@ -38,7 +38,7 @@ public class CompareTest {
         CompareDao dao = daoFact.getCompareDao();
         
         for(int i=0; i < 50; i++) {
-            assertTrue(dao.playerComparison((rand.nextFloat() * (max - min) + min), "RB", "New York Jets", 1));
+            assertTrue(dao.playerComparison((rand.nextFloat() * (max - min) + min), "RB", "New York Jets") > 0);
         }
 	}
 }

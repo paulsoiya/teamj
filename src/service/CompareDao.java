@@ -11,10 +11,17 @@ import model.Compare;
 public interface CompareDao {
     /**
      * Pulls down stats for both the User and Pro
-     * @param average
+     * @param average, position, favTeam
      * @return int of StatsID for pro player
      */
-    public boolean playerComparison(float average, String position, String favTeam, int gameID);
+    public int playerComparison(float average, String position, String favTeam);
+    
+    /**
+     * Inserts proStatsId into individual db
+     * @param proStatsId, gameId
+     * @return true if sucessful
+     */
+    public boolean insertStat(int proStatsId, int gameId);
     
     /**
      * Returns Position and Favorite Team for user
