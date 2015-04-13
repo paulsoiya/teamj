@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
+import model.ValidateResult;
 import service.DaoFactory;
 import service.UserDao;
 import view.MainNavigator;
@@ -60,12 +61,15 @@ public class PasswordController implements Initializable {
 	@FXML
 	private void changeToHome(ActionEvent e) {
         User user = usrDao.findUser(session.getUserEmail());
+        ValidateResult validateRes;
         if(usrDao.loginUser(session.getUserEmail(), tempPasswordTxt.getText())) {
-            if(passwordTxt.getText().equals(confirmPasswordTxt.getText()) &&
-               passwordTxt.getText() != null) {
+            if(passwordTxt.getText().equals(confirmPasswordTxt.getText())) {
                 user.setPassword(passwordTxt.getText());
-                usrDao.updateUser(user);
-                MainNavigator.loadScreen(HOME_FXML);
+                if(!passwordTxt.getText().isEmpty()) {
+                    usrDao.updateUser(user);
+                    MainNavigator.loadScreen(HOME_FXML);
+                } else
+                    incorrectTxt.setText("Invailid Password.");
             } else
                 incorrectTxt.setText("Passwords do not match.");
         } else
