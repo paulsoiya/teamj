@@ -21,4 +21,11 @@ public interface CompareDao {
      * @return String array of Position FavoriteTeam
      */
     public String[] userPositionTeam(int userId);
+    
+    /**
+     * Finds statsID given a gameID
+     * @param gameId
+     * @return int StatsID
+     */
+    public int findStatsId(int gameId);
 }

@@ -124,4 +124,36 @@ public class CompareDaoImpl implements CompareDao {
         }
         return result;
     }
+    
+    @Override
+    public int findStatsId(int gameId) {
+        Connection con = DaoFactory.createConnectionIndividual();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        int result = -1;
+        try {
+            String sql = "SELECT ProStatsID FROM Stats WHERE GameID = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, gameId);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next())
+                result = resultSet.getInt("ProStatsID");
+        }
+        catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(con);
+                }
+            }
+            catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
+        }
+        return result;
+        
+    }
 }

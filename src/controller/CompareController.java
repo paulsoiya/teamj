@@ -14,13 +14,26 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.ProInfo;
 import service.DaoFactory;
 import service.ProInfoDao;
+import service.CompareDao;
 import session.UserSession;
 import view.MainNavigator;
 
 public class CompareController implements Initializable {
+    
+    @FXML
+    private Label nameTxt;
+    @FXML
+    private Label positionTxt;
+    @FXML
+    private Label numberTxt;
+    @FXML
+    private ImageView playerPicture;
 	
 	view.MainNavigator controller;
     
@@ -28,6 +41,7 @@ public class CompareController implements Initializable {
     
     DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
     ProInfoDao infoDao = daoFact.getProInfoDao();
+    CompareDao compareDao = daoFact.getCompareDao();
     
     ProInfo info = new ProInfo();
 	
@@ -37,8 +51,13 @@ public class CompareController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        info = infoDao.findProInfo(session.getGameId());
-        System.out.println(info.getName() + session.getGameId());
+        int statsId = compareDao.findStatsId(session.getGameId());
+        info = infoDao.findProInfo(statsId);
+        nameTxt.setText(info.getName());
+        positionTxt.setText(info.getPosition());
+        numberTxt.setText(Integer.toString(info.getNumber()));
+        Image img = new Image(info.getPicture());
+        playerPicture.setImage(img);
 	}
 	
 	/**
