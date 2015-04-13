@@ -73,7 +73,12 @@ public class CompareController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        int statsId = compareDao.findStatsId(session.getGameId());
+        int statsId = -1;
+        if (session.getGameId() != -1)
+            statsId = compareDao.findStatsId(session.getGameId());
+        else
+            statsId = session.getProStatsId();
+        
         info = infoDao.findProInfo(statsId);
         teamInfo = infoDao.findTeamInfo(info.getTeam());
         comp = compareDao.inputStats(session.getGameId(), statsId);

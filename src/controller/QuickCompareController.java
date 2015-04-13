@@ -6,29 +6,73 @@
  */
 package controller;
 
-import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.COMPARE;
 import static view.MainNavigator.LOGIN_FXML;
 import static view.MainNavigator.REG_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
+import model.Sport;
+import model.Team;
+import service.DaoFactory;
+import service.SportDao;
+import service.TeamDao;
+import service.CompareDao;
+import session.UserSession;
 import view.MainNavigator;
 
 public class QuickCompareController implements Initializable {
 	
 	view.MainNavigator controller;
+    
+    @FXML
+    private ChoiceBox<String> sportCB;
+    @FXML
+    private ChoiceBox<String> positionCB;
+    @FXML
+    private ChoiceBox<String> favTeamCB;
+    @FXML
+    private TextField attTxt;
+    @FXML
+    private TextField ydsTxt;
+    @FXML
+    private TextField touchdownTxt;
 	
 	public QuickCompareController() {
 		controller = new view.MainNavigator();
 	}
+    
+    private UserSession session = UserSession.getInstance();
+    
+    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+    CompareDao compareDao = daoFact.getCompareDao();
+    
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+        sportCB.setItems(FXCollections.observableArrayList("Football"));
+        positionCB.setItems(FXCollections.observableArrayList("QB", "RB", "WR"));
+        
+        TeamDao teamDao = daoFact.getTeamDao();
+        
+        List<Team> teams = teamDao.findAll();
+        List<String> teamNames = new ArrayList<String>();
+        
+        //iterate through each team and extract the team name
+        for (Team team : teams) {
+            teamNames.add(team.getTeamName());
+        }
+        
+        favTeamCB.setItems(FXCollections.observableArrayList(teamNames));
 	}
 	
 	/**
@@ -58,7 +102,15 @@ public class QuickCompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		MainNavigator.loadScreen(COMPARE_FXML);
+        int att = Integer.parseInt(attTxt.getText());
+        int yds = Integer.parseInt(ydsTxt.getText());
+        int tds = Integer.parseInt(touchdownTxt.getText());
+        float average = (att/1000)+(yds/100)+(tds*10);
+        int proStatsId = compareDao.playerComparison(average, positionCB.getValue(),
+                                                     favTeamCB.getValue());
+        session.setProStatsId(proStatsId);
+        
+		MainNavigator.loadScreen(COMPARE);
 	}
 	
 }

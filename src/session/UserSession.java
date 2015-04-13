@@ -12,6 +12,7 @@ public class UserSession {
 	private int userId;
 	private String userEmail;
     private int gameId;
+    private int proStatsId;
 	private boolean sessionValid;
 	public static final int INVALID_VALUE = -1;
 	
@@ -20,6 +21,7 @@ public class UserSession {
 		this.userId = INVALID_VALUE;
 		this.userEmail = null;
         this.gameId = INVALID_VALUE;
+        this.proStatsId = INVALID_VALUE;
 		this.sessionValid = false;
 		
 	}
@@ -53,6 +55,14 @@ public class UserSession {
     
     public void setGameId(int gameId) {
         this.gameId = gameId;
+    }
+    
+    public int getProStatsId() {
+        return proStatsId;
+    }
+    
+    public void setProStatsId(int proStatsId) {
+        this.proStatsId = proStatsId;
     }
 	
 	public boolean isSessionValid() {
