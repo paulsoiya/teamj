@@ -132,6 +132,7 @@
 			<copy todir="build/classes">
 			<fileset dir="${src.fx}">
 				<exclude name="**/*.java"/>
+                <exclude name="**/tests/*"/>
 			</fileset>
 			</copy>
 	</target>
@@ -155,6 +156,7 @@
         </fileset>
         <fileset dir="build/classes">
             <exclude name="**/*.java"/>
+            <exclude name="**/tests/*"/>
         </fileset>
 
 	    <!-- Customize jar manifest (optional) -->
