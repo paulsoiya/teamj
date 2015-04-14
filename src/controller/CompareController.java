@@ -8,6 +8,7 @@ package controller;
 
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
+import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -111,5 +112,11 @@ public class CompareController implements Initializable {
 		System.out.println("ABOUT TO SHARE STAT");
 		MainNavigator.loadScreen(SHARE_STAT_FXML);
 	}
+    
+    @FXML
+    public void changetoVideoDisplay(ActionEvent e) {
+        MainNavigator.loadScreen(DISPLAY_VIDEO_FXML);
+    }
+    
 	
 }
