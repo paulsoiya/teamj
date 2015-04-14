@@ -70,6 +70,7 @@
             <ChoiceBox fx:id="sportCB" prefHeight="26.0" prefWidth="292.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="positionCB" prefHeight="26.0" prefWidth="292.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="favTeamCB" prefHeight="26.0" prefWidth="294.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label fx:id="errorLabel" alignment="CENTER" prefHeight="16.0" prefWidth="669.0" textFill="#da0808" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import model.Sport;
 import model.Team;
 import service.DaoFactory;
@@ -46,6 +47,8 @@ public class QuickCompareController implements Initializable {
     private TextField ydsTxt;
     @FXML
     private TextField touchdownTxt;
+    @FXML
+    private Label errorLabel;
 	
 	public QuickCompareController() {
 		controller = new view.MainNavigator();
@@ -102,15 +105,70 @@ public class QuickCompareController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-        int att = Integer.parseInt(attTxt.getText());
-        int yds = Integer.parseInt(ydsTxt.getText());
-        int tds = Integer.parseInt(touchdownTxt.getText());
-        float average = (att/1000)+(yds/100)+(tds*10);
-        int proStatsId = compareDao.playerComparison(average, positionCB.getValue(),
+        if(isInputValid()) {
+            int att = Integer.parseInt(attTxt.getText());
+            int yds = Integer.parseInt(ydsTxt.getText());
+            int tds = Integer.parseInt(touchdownTxt.getText());
+            float average = (att/1000)+(yds/100)+(tds*10);
+            int proStatsId = compareDao.playerComparison(average, positionCB.getValue(),
                                                      favTeamCB.getValue());
-        session.setProStatsId(proStatsId);
-        
-		MainNavigator.loadScreen(QCOMPARESCREEN_FXML);
+            session.setProStatsId(proStatsId);
+            MainNavigator.loadScreen(QCOMPARESCREEN_FXML);
+        }
 	}
-	
+    
+    /**
+     * Validates the user input in the text fields.
+     *
+     * @return true if the input is valid
+     */
+    private boolean isInputValid() {
+        String errorMessage = "";
+        
+        if (positionCB.getValue() == null) {
+            errorMessage = "No position choosen";
+        }
+        
+        if (favTeamCB.getValue() == null) {
+            errorMessage = "No favorite team choosen";
+        }
+        
+        if (attTxt.getText() == null || attTxt.getText().length() == 0) {
+            errorMessage = "No Attempts inputted";
+        } else {
+            try {
+                int att = Integer.parseInt(attTxt.getText());
+                if(att < 0 && att > 60)
+                    errorMessage = "Attempts are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Attempts input";
+            }
+        }
+        
+        if (ydsTxt.getText() == null || ydsTxt.getText().length() == 0) {
+            errorMessage = "No Yards inputted";
+        } else {
+            try {
+                int yds = Integer.parseInt(ydsTxt.getText());
+                if(yds < 0 && yds > 600)
+                    errorMessage = "Yards are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Yards input";
+            }
+        }
+        
+        if (touchdownTxt.getText() == null || touchdownTxt.getText().length() == 0) {
+            errorMessage = "No Touchdowns inputted";
+        } else {
+            try {
+                int tds = Integer.parseInt(attTxt.getText());
+                if(tds < 0 && tds > 8)
+                    errorMessage = "Touchdowns are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid touchdown input";
+            }
+        }
+        errorLabel.setText(errorMessage);
+        return errorMessage.length() == 0;
+    }
 }
