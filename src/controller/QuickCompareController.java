@@ -165,7 +165,7 @@ public class QuickCompareController implements Initializable {
             errorMessage = "No Touchdowns inputted";
         } else {
             try {
-                int tds = Integer.parseInt(attTxt.getText());
+                int tds = Integer.parseInt(touchdownTxt.getText());
                 if(tds < 0 && tds > 8)
                     errorMessage = "Touchdowns are not within range";
             } catch (NumberFormatException e) {
