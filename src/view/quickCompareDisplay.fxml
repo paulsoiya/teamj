@@ -41,17 +41,10 @@
           <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="teamPicture" fitHeight="473.0" fitWidth="910.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <ImageView fx:id="teamPicture" fitHeight="473.0" fitWidth="631.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="3" />
+            <HBox alignment="CENTER" prefHeight="404.0" prefWidth="614.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Stats" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Graph" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Videos" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
-               <children>
-                  <ImageView fx:id="playerPicture" fitHeight="444.0" fitWidth="629.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="playerPicture" fitHeight="444.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             <Label fx:id="nameTxt" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="630.0" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
@@ -116,6 +109,13 @@
                   <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                </children>
             </GridPane>
+            <HBox prefHeight="26.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Stats" />
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Graph" />
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="217.0" text="Videos" />
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </center>
