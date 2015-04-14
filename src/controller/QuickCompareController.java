@@ -133,6 +133,10 @@ public class QuickCompareController implements Initializable {
             errorMessage = "No favorite team choosen";
         }
         
+        if (sportCB.getValue() == null) {
+            errorMessage = "No sport choosen";
+        }
+        
         if (attTxt.getText() == null || attTxt.getText().length() == 0) {
             errorMessage = "No Attempts inputted";
         } else {
