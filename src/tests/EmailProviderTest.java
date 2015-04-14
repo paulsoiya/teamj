@@ -1,15 +1,14 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import model.Email;
+import model.EmailProvider;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import model.Email;
-import model.EmailProvider;
 
 public class EmailProviderTest {
 

@@ -18,12 +18,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Compare;
 import model.ProInfo;
 import model.TeamInfo;
-import model.Compare;
+import service.CompareDao;
 import service.DaoFactory;
 import service.ProInfoDao;
-import service.CompareDao;
 import session.UserSession;
 import view.MainNavigator;
 

@@ -6,16 +6,15 @@
  */
 package controller;
 
-import static view.MainNavigator.QCOMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
-import static view.MainNavigator.REG_FXML;
 import static view.MainNavigator.PASSWORD_FXML;
+import static view.MainNavigator.QCOMPARE_FXML;
+import static view.MainNavigator.REG_FXML;
 
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;

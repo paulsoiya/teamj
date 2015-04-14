@@ -6,8 +6,8 @@
  */
 package controller;
 
-import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.GAME_FXML;
+import static view.MainNavigator.HOME_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;

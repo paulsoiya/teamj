@@ -6,28 +6,26 @@
  */
 package controller;
 
-import static view.MainNavigator.QCOMPARESCREEN_FXML;
 import static view.MainNavigator.LOGIN_FXML;
+import static view.MainNavigator.QCOMPARESCREEN_FXML;
 import static view.MainNavigator.REG_FXML;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import model.Sport;
+import javafx.scene.control.TextField;
 import model.Team;
-import service.DaoFactory;
-import service.SportDao;
-import service.TeamDao;
 import service.CompareDao;
+import service.DaoFactory;
+import service.TeamDao;
 import session.UserSession;
 import view.MainNavigator;
 
