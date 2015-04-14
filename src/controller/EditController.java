@@ -56,6 +56,18 @@ public class EditController implements Initializable {
 		// TODO
 	}
 	
+	public void setFields() {
+		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+		UserDao usrDao = daoFact.getUserDao();
+		User user = usrDao.findUser(session.getUserEmail());
+		
+		this.firstNameTxt.setText(user.getFirstName());
+		this.lastNameTxt.setText(user.getLastName());
+		this.emailTxt.setText(user.getEmail());
+		this.passwordTxt.setText(user.getPassword());
+		this.confirmPasswordTxt.setText(user.getPassword());
+	}
+	
 	/**
 	 * Changes the current FXML page to home.fxml
 	 * 
@@ -87,25 +99,24 @@ public class EditController implements Initializable {
 		else
 			wrongLabel.setText("Enter your Information");
 	}
-
-    /**
-     * Changes the current FXML page to home.fxml
-     *
-     * @param e
-     */
-    @FXML
-    private void changeToHomeQuick() {
-        MainNavigator.loadScreen(HOME_FXML);
-    }
-    
-    /**
-     * Changes the current FXML page to games.fxml
-     *
-     * @param e
-     */
-    @FXML
-    private void changeToGames() {
-        MainNavigator.loadScreen(GAME_FXML);
-    }
+	
+	/**
+	 * Changes the current FXML page to home.fxml
+	 *
+	 * @param e
+	 */
+	@FXML
+	private void changeToHomeQuick() {
+		MainNavigator.loadScreen(HOME_FXML);
+	}
+	
+	/**
+	 * Changes the current FXML page to games.fxml
+	 *
+	 * @param e
+	 */
+	@FXML
+	private void changeToGames() {
+		MainNavigator.loadScreen(GAME_FXML);
+	}
 }
-
