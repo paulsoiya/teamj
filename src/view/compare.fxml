@@ -107,6 +107,7 @@
                   <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <Label text="Touchdowns: " GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Button text="Share with a friend" onAction="#changeToShareStat" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">

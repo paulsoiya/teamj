@@ -27,34 +27,8 @@ import service.CompareDao;
 import session.UserSession;
 import view.MainNavigator;
 
-public class CompareController implements Initializable {
+public class ShareStatController implements Initializable {
     
-    @FXML
-    private Label nameTxt;
-    @FXML
-    private Label positionTxt;
-    @FXML
-    private Label numberTxt;
-    @FXML
-    private Label teamTxt;
-    @FXML
-    private Label dobTxt;
-    @FXML
-    private Label weightTxt;
-    @FXML
-    private Label heightTxt;
-    @FXML
-    private Label collegeTxt;
-    @FXML
-    private Label attemptsTxt;
-    @FXML
-    private Label yardsTxt;
-    @FXML
-    private Label touchdownTxt;
-    @FXML
-    private ImageView playerPicture;
-    @FXML
-    private ImageView teamPicture;
 	
 	view.MainNavigator controller;
     
@@ -68,14 +42,14 @@ public class CompareController implements Initializable {
     TeamInfo teamInfo = new TeamInfo();
     Compare comp = new Compare();
 	
-	public CompareController() {
+	public ShareStatController() {
 		controller = new view.MainNavigator();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
         int statsId = compareDao.findStatsId(session.getGameId());
-
+/*
         info = infoDao.findProInfo(statsId);
         teamInfo = infoDao.findTeamInfo(info.getTeam());
         comp = compareDao.inputStats(session.getGameId(), statsId);
@@ -94,6 +68,8 @@ public class CompareController implements Initializable {
         attemptsTxt.setText(Integer.toString(comp.getProAttempts()));
         yardsTxt.setText(Integer.toString(comp.getProYards()));
         touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
+        
+        */
 	}
 	
 	/**
@@ -106,10 +82,6 @@ public class CompareController implements Initializable {
 		MainNavigator.loadScreen(HOME_FXML);
 	}
 	
-	@FXML
-	public void changeToShareStat(ActionEvent e) {
-		System.out.println("ABOUT TO SHARE STAT");
-		MainNavigator.loadScreen(SHARE_STAT_FXML);
-	}
+	
 	
 }
