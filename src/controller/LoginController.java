@@ -6,10 +6,10 @@
  */
 package controller;
 
-import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.QCOMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.REG_FXML;
-import static view.MainNavigator.PASSWORD;
+import static view.MainNavigator.PASSWORD_FXML;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -120,7 +120,7 @@ public class LoginController implements Initializable {
             User currentUser = usrDao.findUser(emailTxt.getText());
             controller.setSessionUserId(currentUser.getId());
             controller.setSessionUserEmail(currentUser.getEmail());
-            MainNavigator.loadScreen(PASSWORD);
+            MainNavigator.loadScreen(PASSWORD_FXML);
         }
         else
             incorrectLabel.setText("Email Address is not registered.");
@@ -152,7 +152,7 @@ public class LoginController implements Initializable {
 	 */
 	@FXML
 	private void changeToQuickCompare(ActionEvent e) {
-		MainNavigator.loadScreen(COMPARE_FXML);
+		MainNavigator.loadScreen(QCOMPARE_FXML);
 	}
 	
 	/**

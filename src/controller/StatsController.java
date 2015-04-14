@@ -6,7 +6,7 @@
  */
 package controller;
 
-import static view.MainNavigator.COMPARE;
+import static view.MainNavigator.COMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.GAME_FXML;
 
@@ -96,7 +96,7 @@ public class StatsController implements Initializable {
             int proStat = compareDao.playerComparison(statsDao.findCompareAverage(gameId),
                                                       position, team);
             compareDao.insertStat(proStat, gameId);
-            MainNavigator.loadScreen(COMPARE);
+            MainNavigator.loadScreen(COMPARE_FXML);
 		}
 		catch (NumberFormatException e) {
 			System.out.println(this.getClass().getName() + " error: " + e.getMessage());

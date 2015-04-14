@@ -6,7 +6,7 @@
  */
 package controller;
 
-import static view.MainNavigator.COMPARE;
+import static view.MainNavigator.COMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.STATS_FXML;
 
@@ -90,7 +90,7 @@ public class GameController implements Initializable {
                     game.setUserID(session.getUserId());
                     int gameId = gameDao.findGameID(game);
                     session.setGameId(gameId);
-                    MainNavigator.loadScreen(COMPARE);
+                    MainNavigator.loadScreen(COMPARE_FXML);
                 }
             }
         });

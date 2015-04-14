@@ -6,7 +6,7 @@
  */
 package controller;
 
-import static view.MainNavigator.COMPARE;
+import static view.MainNavigator.QCOMPARESCREEN_FXML;
 import static view.MainNavigator.LOGIN_FXML;
 import static view.MainNavigator.REG_FXML;
 
@@ -110,7 +110,7 @@ public class QuickCompareController implements Initializable {
                                                      favTeamCB.getValue());
         session.setProStatsId(proStatsId);
         
-		MainNavigator.loadScreen(COMPARE);
+		MainNavigator.loadScreen(QCOMPARESCREEN_FXML);
 	}
 	
 }

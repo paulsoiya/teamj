@@ -23,9 +23,10 @@ public class MainNavigator {
 	public static final String SPORT_FXML = "sport.fxml";
 	public static final String GAME_FXML = "games.fxml";
 	public static final String EDIT_FXML = "edit.fxml";
-	public static final String COMPARE_FXML = "quickCompare.fxml";
-	public static final String COMPARE = "compare.fxml";
-    public static final String PASSWORD = "password.fxml";
+	public static final String QCOMPARE_FXML = "quickCompare.fxml";
+    public static final String QCOMPARESCREEN_FXML = "quickCompareDisplay.fxml";
+	public static final String COMPARE_FXML = "compare.fxml";
+    public static final String PASSWORD_FXML = "password.fxml";
 	
 	/** The main application layout controller. */
 	private static LoginController mainController;

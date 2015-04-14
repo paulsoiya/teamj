@@ -6,7 +6,8 @@
  */
 package controller;
 
-import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.LOGIN_FXML;
+import static view.MainNavigator.REG_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ import service.CompareDao;
 import session.UserSession;
 import view.MainNavigator;
 
-public class CompareController implements Initializable {
+public class QuickCompareScreenController implements Initializable {
     
     @FXML
     private Label nameTxt;
@@ -67,14 +68,14 @@ public class CompareController implements Initializable {
     TeamInfo teamInfo = new TeamInfo();
     Compare comp = new Compare();
 	
-	public CompareController() {
+	public QuickCompareScreenController() {
 		controller = new view.MainNavigator();
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        int statsId = compareDao.findStatsId(session.getGameId());
-
+        int statsId = session.getProStatsId();
+        
         info = infoDao.findProInfo(statsId);
         teamInfo = infoDao.findTeamInfo(info.getTeam());
         comp = compareDao.inputStats(session.getGameId(), statsId);
@@ -96,13 +97,23 @@ public class CompareController implements Initializable {
 	}
 	
 	/**
-	 * Changes the current FXML page to the home.fxml
+	 * Changes the current FXML page to the login.fxml
 	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToHome(ActionEvent e) {
-		MainNavigator.loadScreen(HOME_FXML);
+	private void changeToLogin(ActionEvent e) {
+		MainNavigator.loadScreen(LOGIN_FXML);
 	}
+    
+    /**
+     * Changes the current FXML page to the register.fxml
+     *
+     * @param e
+     */
+    @FXML
+    private void changeToRegister(ActionEvent e) {
+        MainNavigator.loadScreen(REG_FXML);
+    }
 	
 }
