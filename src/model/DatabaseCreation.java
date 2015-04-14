@@ -67,7 +67,7 @@ public class DatabaseCreation {
             "StatsID        INTEGER    PRIMARY KEY    AUTOINCREMENT," +
             "GameID         TEXT," +
             "PlayerID       TEXT," +
-            "Yards            INT," +
+            "Yards          INT," +
             "TDs            INT," +
             "Att            INT," +
             "Average        REAL," +
@@ -122,6 +122,7 @@ public class DatabaseCreation {
            "UserID        INTEGER," +
            "SportName     TEXT," +
            "Position      TEXT," +
+           "Handicap      TEXT," +
            "FavoriteTeam  TEXT," +
            "PRIMARY KEY (UserID, SportName)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
@@ -133,6 +134,15 @@ public class DatabaseCreation {
            "Week           INT," +
            "Date           TEXT," +
            "Opponent       TEXT," +
+           "Score          TEXT," +
+           "FOREIGN KEY(UserID) REFERENCES User(UserID));";
+           stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE RoundLog(" +
+           "RoundID        INTEGER    PRIMARY KEY AUTOINCREMENT," +
+           "UserID         INT," +
+           "Date           TEXT," +
+           "Course         TEXT," +
            "Score          TEXT," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
@@ -149,6 +159,18 @@ public class DatabaseCreation {
            "FOREIGN KEY(GameID) REFERENCES GameLog(GameID)," +
            "FOREIGN KEY(UserID) REFERENCES User(UserID));";
            stmt.executeUpdate(sql);
+           
+           sql = "CREATE TABLE GolfStats(" +
+           "StatsID        INTEGER    PRIMARY KEY	AUTOINCREMENT," +
+           "RoundID        INT," +
+           "UserID         INT," +
+           "Score          INT," +
+           "Average        REAL," +
+           "ProStatsID     INT," +
+           "FOREIGN KEY(RoundID) REFERENCES RoundLog(RoundID)," +
+           "FOREIGN KEY(UserID) REFERENCES User(UserID));";
+           stmt.executeUpdate(sql);
+           
            stmt.close();
            c.close();
        } catch (Exception e) {
@@ -162,4 +184,50 @@ public class DatabaseCreation {
            }
        }
    }
+    public void createProfessionalGolfDatabase() {
+        Connection c = null;
+        Statement stmt = null;
+        
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:professionalGolf.db");
+            c.createStatement().execute("PRAGMA foreign_keys = ON");
+            stmt = c.createStatement();
+            
+            String sql = "drop table if exists RoundLog;";
+            stmt.executeUpdate(sql);
+            sql = "drop table if exists Player;";
+            stmt.executeUpdate(sql);
+            
+            sql = "CREATE TABLE Player(" +
+            "PlayerID       TEXT    PRIMARY KEY," +
+            "PlayerName     TEXT," +
+            "Picture        TEXT," +
+            "Height         INT," +
+            "Weight         INT," +
+            "BirthDate      TEXT," +
+            "Country        TEXT," +
+            "BirthPlace     TEXT);";
+            stmt.executeUpdate(sql);
+            
+            sql = "CREATE TABLE Stats(" +
+            "StatsID        INTEGER    PRIMARY KEY    AUTOINCREMENT," +
+            "PlayerID       TEXT," +
+            "Score          INT," +
+            "FOREIGN KEY(PlayerID) REFERENCES Player(PlayerID));";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        } finally {
+            try {
+                if(c != null)
+                    c.close();
+            } catch (SQLException se){
+                se.printStackTrace();
+            }
+        }
+    }
+
 }
