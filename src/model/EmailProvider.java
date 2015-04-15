@@ -12,8 +12,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.activation.CommandMap;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
 import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
