@@ -142,7 +142,7 @@ public class QuickCompareController implements Initializable {
         } else {
             try {
                 int att = Integer.parseInt(attTxt.getText());
-                if(att < 0 && att > 60)
+                if(att < 0 || att > 60)
                     errorMessage = "Attempts are not within range";
             } catch (NumberFormatException e) {
                 errorMessage = "Invalid Attempts input";
@@ -154,7 +154,7 @@ public class QuickCompareController implements Initializable {
         } else {
             try {
                 int yds = Integer.parseInt(ydsTxt.getText());
-                if(yds < 0 && yds > 600)
+                if(yds < 0 || yds > 600)
                     errorMessage = "Yards are not within range";
             } catch (NumberFormatException e) {
                 errorMessage = "Invalid Yards input";
@@ -166,7 +166,7 @@ public class QuickCompareController implements Initializable {
         } else {
             try {
                 int tds = Integer.parseInt(touchdownTxt.getText());
-                if(tds < 0 && tds > 8)
+                if(tds < 0 || tds > 8)
                     errorMessage = "Touchdowns are not within range";
             } catch (NumberFormatException e) {
                 errorMessage = "Invalid touchdown input";
