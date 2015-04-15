@@ -48,13 +48,13 @@
          	<Label fx:id="errorLbl" style="-fx-font-weight: bold; -fx-text-fill: red" GridPane.columnIndex="0" GridPane.columnSpan="2" />
          	
             <Label prefWidth="148.0" text="Friend's email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField prefWidth="198.0"  prefHeight="125.0"  fx:id="friendEmailTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="friendEmailTxt" prefWidth="198.0"  prefHeight="125.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             
             <Label text="Message:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <TextArea fx:id="messageTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
             
-            <Button mnemonicParsing="false"  style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button onAction="#shareStats" mnemonicParsing="false"  style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             
          </children>
          <columnConstraints>

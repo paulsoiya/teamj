@@ -7,7 +7,6 @@
 package controller;
 
 import static view.MainNavigator.HOME_FXML;
-import static view.MainNavigator.SHARE_STAT_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,31 +15,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import model.ProInfo;
-import model.TeamInfo;
-import model.Compare;
-import service.DaoFactory;
-import service.ProInfoDao;
-import service.CompareDao;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import session.UserSession;
 import view.MainNavigator;
+import model.Email;
+import model.EmailProvider;
 
 public class ShareStatController implements Initializable {
     
 	
-	view.MainNavigator controller;
+	private view.MainNavigator controller;
     
     private UserSession session = UserSession.getInstance();
     
-    DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-    ProInfoDao infoDao = daoFact.getProInfoDao();
-    CompareDao compareDao = daoFact.getCompareDao();
+    @FXML
+    private Label errorLbl; 
     
-    ProInfo info = new ProInfo();
-    TeamInfo teamInfo = new TeamInfo();
-    Compare comp = new Compare();
+    @FXML
+    private TextField friendEmailTxt;
+    
+    @FXML
+    private TextArea messageTxt;
 	
 	public ShareStatController() {
 		controller = new view.MainNavigator();
@@ -48,28 +44,7 @@ public class ShareStatController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        int statsId = compareDao.findStatsId(session.getGameId());
-/*
-        info = infoDao.findProInfo(statsId);
-        teamInfo = infoDao.findTeamInfo(info.getTeam());
-        comp = compareDao.inputStats(session.getGameId(), statsId);
-        nameTxt.setText(info.getName());
-        positionTxt.setText(info.getPosition());
-        numberTxt.setText(Integer.toString(info.getNumber()));
-        collegeTxt.setText(info.getCollege());
-        heightTxt.setText(Integer.toString(info.getHeight()));
-        weightTxt.setText(Integer.toString(info.getWeight()));
-        dobTxt.setText(info.getDOB());
-        teamTxt.setText(teamInfo.getTeamName());
-        Image img = new Image(info.getPicture());
-        playerPicture.setImage(img);
-        Image imgTeam = new Image(teamInfo.getTeamPicture());
-        teamPicture.setImage(imgTeam);
-        attemptsTxt.setText(Integer.toString(comp.getProAttempts()));
-        yardsTxt.setText(Integer.toString(comp.getProYards()));
-        touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
-        
-        */
+
 	}
 	
 	/**
@@ -82,6 +57,18 @@ public class ShareStatController implements Initializable {
 		MainNavigator.loadScreen(HOME_FXML);
 	}
 	
-	
+	@FXML
+	private void shareStats(ActionEvent e){
+		
+		Email email = new Email(friendEmailTxt.getText(), EmailProvider.STMP_USER,
+								"Sports Compare Comparison",  messageTxt.getText(), session.getScreenshotPath());
+		
+		System.out.println("screenshot path inside controller = " + email.getAttachmentPath());
+		
+		EmailProvider emailProvider = EmailProvider.getInstance();
+		emailProvider.sendEmail(email);
+		
+		
+	}
 	
 }

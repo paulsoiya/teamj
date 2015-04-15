@@ -13,6 +13,7 @@ public class UserSession {
 	private String userEmail;
     private int gameId;
     private int proStatsId;
+    private String screenshotPath;
 	private boolean sessionValid;
 	public static final int INVALID_VALUE = -1;
 	
@@ -72,5 +73,14 @@ public class UserSession {
 	public void setSessionValid(boolean sessionValid) {
 		this.sessionValid = sessionValid;
 	}
+
+	public String getScreenshotPath() {
+		return screenshotPath;
+	}
+
+	public void setScreenshotPath(String screenshotPath) {
+		this.screenshotPath = screenshotPath;
+	}
+	
 	
 }

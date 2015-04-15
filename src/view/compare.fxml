@@ -26,7 +26,7 @@
     <URL value="@MainTheme.css" />
   </stylesheets>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane fx:id="compGP" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="211.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="630.0" />
