@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import model.Game;
 import model.Stats;
 import service.CompareDao;
@@ -48,6 +49,8 @@ public class StatsController implements Initializable {
 	private TextField yardsTxt;
 	@FXML
 	private TextField touchdownTxt;
+    @FXML
+    private Label errorLabel;
     
     private UserSession session = UserSession.getInstance();
 	
@@ -142,12 +145,12 @@ public class StatsController implements Initializable {
             }
         }
         
-        if (datePicker.getValue() == null) {
+        if (datePicker.getValue() == null || opponentTxt.getText().length() == 0) {
             errorMessage = "No date choosen";
         }
         
         
-        if (opponentTxt.getText() == null) {
+        if (opponentTxt.getText() == null || opponentTxt.getText().length() == 0) {
             errorMessage = "No opponent input";
         }
         
