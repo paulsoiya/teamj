@@ -8,6 +8,7 @@ package controller;
 
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
+import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,6 +126,12 @@ public class CompareController implements Initializable {
 		session.setScreenshotPath(screenshotPath);
 		MainNavigator.loadScreen(SHARE_STAT_FXML);
 	}
+    
+    @FXML
+    public void changetoVideoDisplay(ActionEvent e) {
+        MainNavigator.loadScreen(DISPLAY_VIDEO_FXML);
+    }
+    
 	
 	public String takeScreenshot() {
 	    WritableImage image = compGP.snapshot(new SnapshotParameters(), null);

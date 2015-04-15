@@ -174,7 +174,7 @@
     </jar>
     <sleep seconds="1"/>
     <jar jarfile="build/dist/application.jar">
-        <fileset dir="build/dist/" includes="**/*.*"/>
+        <fileset dir="build/dist/" includes="**/*.*" excludes="**/temp/*"/>
         <zipfileset src="build/dist/temp/external-libs.jar">
             <exclude name="META-INF/**/*"/>
         </zipfileset>
@@ -188,8 +188,7 @@
         </manifest>
     </jar>
     
-    <delete file="build/dist/lib/external-libs.jar"/>
-    <delete file="build/dist/lib/temp-application.jar"/>
+    <delete dir="build/dist/temp"/>
     </target>
     
     <target name="run-tests" depends="fx-compile">

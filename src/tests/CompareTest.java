@@ -34,7 +34,7 @@ public class CompareTest {
 	}
 
 	@Test
-	public void CompareTest() {
+    public void playerCompareTest() {
         Random rand = new Random();
         
         for(int i=0; i < 50; i++) {
