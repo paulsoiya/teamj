@@ -10,13 +10,11 @@ import static view.MainNavigator.EDIT_FXML;
 import static view.MainNavigator.GAME_FXML;
 import static view.MainNavigator.SPORT_FXML;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import service.DaoFactory;
@@ -73,15 +71,5 @@ public class HomeController implements Initializable {
 	@FXML
 	private void changeToEdit(ActionEvent e) {
 		MainNavigator.loadScreen(EDIT_FXML);
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		try {
-			fxmlLoader.load(controller.getClass().getResource(EDIT_FXML).openStream());
-			EditController controller = (EditController) fxmlLoader.getController();
-			controller.setFields();
-		}
-		catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 	}
 }

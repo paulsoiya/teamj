@@ -10,6 +10,7 @@ import static view.MainNavigator.GAME_FXML;
 import static view.MainNavigator.HOME_FXML;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -53,10 +54,6 @@ public class EditController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO
-	}
-	
-	public void setFields() {
 		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
 		UserDao usrDao = daoFact.getUserDao();
 		User user = usrDao.findUser(session.getUserEmail());
@@ -66,6 +63,7 @@ public class EditController implements Initializable {
 		this.emailTxt.setText(user.getEmail());
 		this.passwordTxt.setText(user.getPassword());
 		this.confirmPasswordTxt.setText(user.getPassword());
+		this.dobPicker.setValue(LocalDate.parse(user.getDob()));
 	}
 	
 	/**
