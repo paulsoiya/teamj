@@ -40,6 +40,9 @@ public class PasswordGenerator {
 	 * @return A random password, using the maximum symbol set available in the given base
 	 */
 	public String generatePassword(int length, int base) {
+		if (base <= 0)
+			throw new IllegalArgumentException("base must be positive");
+		
 		int bitsPerCharacter = (int) Math.floor(Math.pow(base, 0.5));
 		int numberOfBits = bitsPerCharacter * length;
 		String password = new BigInteger(numberOfBits, random).toString(base);
