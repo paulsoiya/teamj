@@ -42,19 +42,20 @@
         </rowConstraints>
          <children>
            <GridPane hgap="30" stylesheets="@MainTheme.css" vgap="10" BorderPane.alignment="CENTER">
-        <padding><Insets bottom="10" left="25" right="25" top="65" /></padding>
+        <padding><Insets bottom="10" left="25" right="25" top="85" /></padding>
         
          <children>
          	<Label fx:id="errorLbl" style="-fx-font-weight: bold; -fx-text-fill: red" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+         	<Label fx:id="successLbl" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
          	
-            <Label prefWidth="148.0" text="Friend's email:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="friendEmailTxt" prefWidth="198.0"  prefHeight="125.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefWidth="148.0" text="Friend's email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="friendEmailTxt" prefWidth="198.0"  prefHeight="125.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
-            <Label text="Message:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextArea fx:id="messageTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Message:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextArea fx:id="messageTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             
             
-            <Button onAction="#shareStats" mnemonicParsing="false"  style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button onAction="#shareStats" mnemonicParsing="false"  style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             
          </children>
          <columnConstraints>

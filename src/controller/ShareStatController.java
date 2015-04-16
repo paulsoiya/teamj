@@ -33,6 +33,9 @@ public class ShareStatController implements Initializable {
     private Label errorLbl; 
     
     @FXML
+    private Label successLbl;
+    
+    @FXML
     private TextField friendEmailTxt;
     
     @FXML
@@ -66,7 +69,13 @@ public class ShareStatController implements Initializable {
 		System.out.println("screenshot path inside controller = " + email.getAttachmentPath());
 		
 		EmailProvider emailProvider = EmailProvider.getInstance();
-		emailProvider.sendEmail(email);
+		boolean res = emailProvider.sendEmail(email);
+		
+		if ( res ) {
+			successLbl.setText("The email was sent successfully.");
+		} else {
+			errorLbl.setText("Unable to send the email. Please try again.");
+		}
 		
 		
 	}
