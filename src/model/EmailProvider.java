@@ -18,7 +18,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 
 /**
- * Allows for the ability to send email messages over STMP 
+ * Allows for the ability to send email messages over SMTP 
  * @author Paul Soiya II
  * @version April 7, 2015
  */
@@ -136,7 +136,7 @@ public class EmailProvider {
 			MimeBodyPart attachment = new MimeBodyPart();
 			attachment.attachFile(new File(email.getAttachmentPath()));
 			attachment.setHeader("Content-Type", "image/png");
-			attachment.setHeader("Content-ID","<comparison>");
+			attachment.setHeader("Content-ID", "<comparison>");
 			
 			mp.addBodyPart(attachment);
 			
