@@ -11,10 +11,7 @@ import static view.MainNavigator.HOME_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
-import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

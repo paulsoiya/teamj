@@ -37,15 +37,15 @@ public class GameController implements Initializable {
 	view.MainNavigator controller;
 	
 	@FXML
-	private TableColumn weekCol;
+	private TableColumn<Game, Integer> weekCol;
 	@FXML
-	private TableColumn dateCol;
+	private TableColumn<Game, String> dateCol;
 	@FXML
-	private TableColumn opponentCol;
+	private TableColumn<Game, String> opponentCol;
 	@FXML
-	private TableColumn scoreCol;
+	private TableColumn<Game, String> scoreCol;
 	@FXML
-	private TableView table;
+	private TableView<Game> table;
 	
 	private UserSession session = UserSession.getInstance();
 	
@@ -75,15 +75,16 @@ public class GameController implements Initializable {
         table.setItems(data);
         
         table.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
+            @SuppressWarnings("unchecked")
+			@Override
             public void handle(MouseEvent event) {
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     Node node = ((Node) event.getTarget()).getParent();
-                    TableRow row;
+                    TableRow<Game> row;
                     if (node instanceof TableRow) {
-                        row = (TableRow) node;
+                        row = (TableRow<Game>) node;
                     } else {
-                        row = (TableRow) node.getParent();
+                        row = (TableRow<Game>) node.getParent();
                     }
                     Game game = new Game();
                     game = (Game)row.getItem();

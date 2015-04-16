@@ -25,7 +25,6 @@ import service.DaoFactory;
 import service.GameDao;
 import service.SportDao;
 import service.StatsDao;
-import service.UserDao;
 import session.UserSession;
 import view.MainNavigator;
 
@@ -71,7 +70,6 @@ public class StatsController implements Initializable {
 	@FXML
 	private void changeToCompare() {
 		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-		UserDao usrDao = daoFact.getUserDao();
 		GameDao gameDao = daoFact.getGameDao();
 		StatsDao statsDao = daoFact.getStatsDao();
 		SportDao sportDao = daoFact.getSportDao();

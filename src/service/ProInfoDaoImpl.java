@@ -71,7 +71,6 @@ public class ProInfoDaoImpl implements ProInfoDao {
         PreparedStatement stmt = null;
         ResultSet resultSet;
         TeamInfo info = new TeamInfo();
-        String playerId = null;
         try {
             String sql = "SELECT * FROM Team WHERE TeamID = ?";
             stmt = con.prepareStatement(sql);

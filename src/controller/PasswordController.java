@@ -17,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import model.User;
-import model.ValidateResult;
 import service.DaoFactory;
 import service.UserDao;
 import session.UserSession;
@@ -61,7 +60,6 @@ public class PasswordController implements Initializable {
 	@FXML
 	private void changeToHome(ActionEvent e) {
         User user = usrDao.findUser(session.getUserEmail());
-        ValidateResult validateRes;
         if(usrDao.loginUser(session.getUserEmail(), tempPasswordTxt.getText())) {
             if(passwordTxt.getText().equals(confirmPasswordTxt.getText())) {
                 user.setPassword(passwordTxt.getText());

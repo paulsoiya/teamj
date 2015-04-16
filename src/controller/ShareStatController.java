@@ -24,9 +24,6 @@ import model.EmailProvider;
 
 public class ShareStatController implements Initializable {
     
-	
-	private view.MainNavigator controller;
-    
     private UserSession session = UserSession.getInstance();
     
     @FXML
@@ -42,7 +39,7 @@ public class ShareStatController implements Initializable {
     private TextArea messageTxt;
 	
 	public ShareStatController() {
-		controller = new view.MainNavigator();
+		
 	}
 	
 	@Override

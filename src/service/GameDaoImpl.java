@@ -108,7 +108,6 @@ public class GameDaoImpl implements GameDao {
 			List<String> opp = new ArrayList<String>();
 			List<String> score = new ArrayList<String>();
 			List<String> date = new ArrayList<String>();
-			Game[] game = new Game[length];
 			
 			for (int i = 0; i < length; i++) {
 				while (resultSet.next()) {
