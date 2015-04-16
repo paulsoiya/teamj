@@ -125,14 +125,19 @@ public class EmailProvider {
 			Multipart mp = new MimeMultipart();
 
 			MimeBodyPart htmlPart = new MimeBodyPart();
-			htmlPart.setContent(email.getBody(), "text/html");
+			
+			String htmlContent = "<b>Message:</b> " + email.getBody();
+			htmlContent += "<br><img src=\"cid:comparison\">";
+			
+			htmlPart.setContent(htmlContent, "text/html");
 			mp.addBodyPart(htmlPart);
 			
 			// Create a new part for the attached file
 			MimeBodyPart attachment = new MimeBodyPart();
 			attachment.attachFile(new File(email.getAttachmentPath()));
 			attachment.setHeader("Content-Type", "image/png");
-
+			attachment.setHeader("Content-ID","<comparison>");
+			
 			mp.addBodyPart(attachment);
 			
 			msg.setContent(mp);
