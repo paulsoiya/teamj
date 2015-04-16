@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import model.Game;
 import model.Stats;
 import service.CompareDao;
@@ -48,6 +49,8 @@ public class StatsController implements Initializable {
 	private TextField yardsTxt;
 	@FXML
 	private TextField touchdownTxt;
+    @FXML
+    private Label errorLabel;
     
     private UserSession session = UserSession.getInstance();
 	
@@ -75,6 +78,8 @@ public class StatsController implements Initializable {
 		CompareDao compareDao = daoFact.getCompareDao();
 		try {
 			// Load Game info
+			if(isInputValid());
+			
 			int week = Integer.parseInt(weekTxt.getText());
 			Game game = new Game(controller.getSessionUserId(), week,
 					opponentTxt.getText(), yourScore.getText() + "-"
@@ -97,6 +102,8 @@ public class StatsController implements Initializable {
                                                       position, team);
             compareDao.insertStat(proStat, gameId);
             MainNavigator.loadScreen(COMPARE_FXML);
+            
+   
 		}
 		catch (NumberFormatException e) {
 			System.out.println(this.getClass().getName() + " error: " + e.getMessage());
@@ -121,5 +128,92 @@ public class StatsController implements Initializable {
     @FXML
     private void changeToGames() {
         MainNavigator.loadScreen(GAME_FXML);
+    }
+    
+    private boolean isInputValid() {
+        String errorMessage = "";
+        
+        if (weekTxt.getText() == null || weekTxt.getText().length() == 0) {
+            errorMessage = "No Week inputted";
+        } else {
+            try {
+                int week = Integer.parseInt(weekTxt.getText());
+                if(week < 0 || week > 40)
+                    errorMessage = "Week is not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Week input";
+            }
+        }
+        
+        if (datePicker.getValue() == null || opponentTxt.getText().length() == 0) {
+            errorMessage = "No date choosen";
+        }
+        
+        
+        if (opponentTxt.getText() == null || opponentTxt.getText().length() == 0) {
+            errorMessage = "No opponent input";
+        }
+        
+        if (yourScore.getText() == null || yourScore.getText().length() == 0) {
+            errorMessage = "No Your Score inputted";
+        } else {
+            try {
+                int score = Integer.parseInt(yourScore.getText());
+                if(score < 0 || score > 100)
+                    errorMessage = "Your Score is not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Your Score input";
+            }
+        }
+        
+        if (theirScore.getText() == null || theirScore.getText().length() == 0) {
+            errorMessage = "No Their Score inputted";
+        } else {
+            try {
+                int score = Integer.parseInt(theirScore.getText());
+                if(score < 0 || score > 100)
+                    errorMessage = "Their Score is not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Their Score input";
+            }
+        }
+        
+        if (attemptsTxt.getText() == null || attemptsTxt.getText().length() == 0) {
+            errorMessage = "No Attempts inputted";
+        } else {
+            try {
+                int att = Integer.parseInt(attemptsTxt.getText());
+                if(att < 0 || att > 60)
+                    errorMessage = "Attempts are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Attempts input";
+            }
+        }
+        
+        if (yardsTxt.getText() == null || yardsTxt.getText().length() == 0) {
+            errorMessage = "No Yards inputted";
+        } else {
+            try {
+                int yds = Integer.parseInt(yardsTxt.getText());
+                if(yds < 0 || yds > 600)
+                    errorMessage = "Yards are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid Yards input";
+            }
+        }
+        
+        if (touchdownTxt.getText() == null || touchdownTxt.getText().length() == 0) {
+            errorMessage = "No Touchdowns inputted";
+        } else {
+            try {
+                int tds = Integer.parseInt(touchdownTxt.getText());
+                if(tds < 0 || tds > 8)
+                    errorMessage = "Touchdowns are not within range";
+            } catch (NumberFormatException e) {
+                errorMessage = "Invalid touchdown input";
+            }
+        }
+        errorLabel.setText(errorMessage);
+        return errorMessage.length() == 0;
     }
 }

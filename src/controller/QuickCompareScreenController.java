@@ -8,6 +8,7 @@ package controller;
 
 import static view.MainNavigator.LOGIN_FXML;
 import static view.MainNavigator.REG_FXML;
+import static view.MainNavigator.QCDISPLAY_VIDEO_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -114,6 +115,11 @@ public class QuickCompareScreenController implements Initializable {
     @FXML
     private void changeToRegister(ActionEvent e) {
         MainNavigator.loadScreen(REG_FXML);
+    }
+    
+    @FXML
+    public void changeToVideoDisplay(ActionEvent e) {
+        MainNavigator.loadScreen(QCDISPLAY_VIDEO_FXML);
     }
 	
 }

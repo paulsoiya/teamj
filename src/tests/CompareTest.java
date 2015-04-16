@@ -17,6 +17,8 @@ import service.DaoFactory;
 public class CompareTest {
     private float min = 0.0f;
     private float max = 65.0f;
+    AbstractDaoFactory daoFact = new DaoFactory();
+    CompareDao dao = daoFact.getCompareDao();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -35,13 +37,26 @@ public class CompareTest {
 	}
 
 	@Test
-	public void CompareTest() {
+    public void playerCompareTest() {
         Random rand = new Random();
-        AbstractDaoFactory daoFact = new DaoFactory();
-        CompareDao dao = daoFact.getCompareDao();
         
         for(int i=0; i < 50; i++) {
             assertTrue(dao.playerComparison((rand.nextFloat() * (max - min) + min), "RB", "New York Jets") > 0);
         }
 	}
+    
+    @Test
+    public void InsertTest() {
+        assertTrue(dao.insertStat(1,1));
+    }
+    
+    @Test
+    public void findStatTest() {
+        assertTrue(dao.findStatsId(1) > 0);
+    }
+    
+    @Test
+    public void userPositionTeamTest() {
+        assertTrue(dao.userPositionTeam(1) != null);
+    }
 }

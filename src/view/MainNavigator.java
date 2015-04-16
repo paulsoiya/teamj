@@ -27,6 +27,9 @@ public class MainNavigator {
     public static final String QCOMPARESCREEN_FXML = "quickCompareDisplay.fxml";
 	public static final String COMPARE_FXML = "compare.fxml";
     public static final String PASSWORD_FXML = "password.fxml";
+    public static final String SHARE_STAT_FXML = "shareStat.fxml";
+    public static final String DISPLAY_VIDEO_FXML = "displayVideo.fxml";
+    public static final String QCDISPLAY_VIDEO_FXML = "qcDisplayVideo.fxml";
 	
 	/** The main application layout controller. */
 	private static LoginController mainController;

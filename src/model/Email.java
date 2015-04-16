@@ -6,12 +6,21 @@ public class Email {
 	private String from;
 	private String subject;
 	private String body;
+	private String attachmentPath;
 	
 	public Email(String to, String from, String subject, String body){
 		this.to = to;
 		this.from = from;
 		this.subject = subject;
 		this.body = body;
+	}
+	
+	public Email(String to, String from, String subject, String body, String attachmentPath){
+		this.to = to;
+		this.from = from;
+		this.subject = subject;
+		this.body = body;
+		this.attachmentPath = attachmentPath;
 	}
 
 	public String getTo() {
@@ -44,6 +53,14 @@ public class Email {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getAttachmentPath() {
+		return attachmentPath;
+	}
+
+	public void setAttachmentPath(String attachmentPath) {
+		this.attachmentPath = attachmentPath;
 	}
 	
 }

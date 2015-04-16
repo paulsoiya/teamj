@@ -26,7 +26,7 @@
     <URL value="@MainTheme.css" />
   </stylesheets>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane fx:id="compGP" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="211.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="630.0" />
@@ -81,6 +81,7 @@
                 <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
               </rowConstraints>
                <children>
                   <Label alignment="CENTER" prefHeight="16.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
@@ -107,13 +108,14 @@
                   <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <Label text="Touchdowns: " GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Button onAction="#changeToShareStat" text="Share with a friend" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Stats" />
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Graph" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Videos" />
+                  <Button mnemonicParsing="false" onAction="#changetoVideoDisplay" prefHeight="26.0" prefWidth="210.0" text="Videos" />
                </children>
             </HBox>
          </children>
