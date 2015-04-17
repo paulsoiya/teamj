@@ -23,6 +23,7 @@ public class ProInfoDaoImpl implements ProInfoDao {
         ProInfo info = new ProInfo();
         String playerId = null;
         try {
+        	// TODO: refactor
             String sql = "SELECT PlayerID FROM Stats WHERE StatsID = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, statsId);
@@ -30,6 +31,7 @@ public class ProInfoDaoImpl implements ProInfoDao {
             
             if(resultSet.next())
                 playerId = resultSet.getString("PlayerID");
+            stmt.close();
             
             sql = "SELECT * FROM Player WHERE PlayerID = ?";
             stmt = con.prepareStatement(sql);

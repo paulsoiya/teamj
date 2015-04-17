@@ -89,17 +89,18 @@ public class GameDaoImpl implements GameDao {
 		List<Game> games = null;
 		int length = 0;
 		try {
+			// TODO: refactor - 3 blocks with varied objectives
             String sql = "SELECT COUNT(UserID) AS total FROM GameLog WHERE UserID = ?";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, userId);
             resultSet = stmt.executeQuery();
             if (resultSet.next())
                 length = resultSet.getInt("total");
+            stmt.close();
             
             games = new ArrayList<Game>();
             
 			sql = "SELECT * FROM GameLog WHERE UserID = ?";
-			
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, userId);
 			resultSet = stmt.executeQuery();

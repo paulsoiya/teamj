@@ -184,6 +184,7 @@ public class CompareDaoImpl implements CompareDao {
         ResultSet resultSet;
         Compare result = new Compare();
         try {
+        	// TODO: refactor
             String sql = "SELECT * FROM Stats WHERE GameID = ?";
             stmt = conInd.prepareStatement(sql);
             stmt.setInt(1, gameId);
@@ -195,6 +196,7 @@ public class CompareDaoImpl implements CompareDao {
                 System.out.println(resultSet.getInt("TDs"));
             }
             
+            stmt.close();
             sql = "SELECT * FROM Stats WHERE StatsID = ?";
             stmt = conPro.prepareStatement(sql);
             stmt.setInt(1, statsId);
