@@ -10,24 +10,16 @@ import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
-
-import javax.imageio.ImageIO;
-
 import model.Compare;
 import model.ProInfo;
 import model.TeamInfo;
@@ -35,6 +27,7 @@ import service.CompareDao;
 import service.DaoFactory;
 import service.ProInfoDao;
 import session.UserSession;
+import view.Main;
 import view.MainNavigator;
 
 public class CompareController implements Initializable {
@@ -122,7 +115,7 @@ public class CompareController implements Initializable {
 	@FXML
 	public void changeToShareStat(ActionEvent e) {
 		System.out.println("ABOUT TO SHARE STAT");
-		String screenshotPath = takeScreenshot();
+		String screenshotPath = Main.takeScreenshot(compGP);
 		session.setScreenshotPath(screenshotPath);
 		MainNavigator.loadScreen(SHARE_STAT_FXML);
 	}
@@ -131,20 +124,4 @@ public class CompareController implements Initializable {
     public void changetoVideoDisplay(ActionEvent e) {
         MainNavigator.loadScreen(DISPLAY_VIDEO_FXML);
     }
-    
-	
-	public String takeScreenshot() {
-	    WritableImage image = compGP.snapshot(new SnapshotParameters(), null);
-
-	    String fileName = "comparison.png";
-	    File file = new File(fileName);
-
-	    try {
-	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    } catch (IOException e) {
-	        System.out.println("Screenshot didn't work");
-	    }
-	    
-	    return file.getAbsolutePath();
-	}
 }

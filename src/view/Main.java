@@ -1,12 +1,20 @@
 package view;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
+
 import controller.LoginController;
 
 /**
@@ -57,6 +65,21 @@ public class Main extends Application {
 				getClass().getResource("MainTheme.css").toExternalForm());
 		
 		return scene;
+	}
+	
+	public static String takeScreenshot(GridPane gridPanel) {
+	    WritableImage image = gridPanel.snapshot(new SnapshotParameters(), null);
+
+	    String fileName = "comparison.png";
+	    File file = new File(fileName);
+
+	    try {
+	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+	    } catch (IOException e) {
+	        System.out.println("Screenshot didn't work");
+	    }
+	    
+	    return file.getAbsolutePath();
 	}
 	
 	public static void main(String[] args) {
