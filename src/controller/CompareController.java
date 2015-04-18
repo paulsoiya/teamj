@@ -9,6 +9,7 @@ package controller;
 import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
+import static view.MainNavigator.GRAPH_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +35,6 @@ public class CompareController implements Initializable {
     
 	@FXML 
 	private GridPane compGP;
-	
     @FXML
     private Label nameTxt;
     @FXML
@@ -123,5 +123,10 @@ public class CompareController implements Initializable {
     @FXML
     public void changetoVideoDisplay(ActionEvent e) {
         MainNavigator.loadScreen(DISPLAY_VIDEO_FXML);
+    }
+    
+    @FXML
+    public void changeToGraph(ActionEvent e) {
+    	MainNavigator.loadScreen(GRAPH_FXML);
     }
 }

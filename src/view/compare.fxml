@@ -73,7 +73,7 @@
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
           <children>
             <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToShareStat" text="Share" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" text="Graph" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToGraph" text="Graph" />
             <Button mnemonicParsing="false" onAction="#changetoVideoDisplay" prefHeight="26.0" prefWidth="210.0" text="Videos" />
           </children>
         </HBox>
