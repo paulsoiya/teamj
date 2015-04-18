@@ -113,7 +113,7 @@
                <children>
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToShareStat" text="Share" />
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToGraph" text="Graph" />
-                  <Button mnemonicParsing="false" onAction="#changeToVideoDisplay" prefHeight="26.0" prefWidth="217.0" text="Videos" />
+                  <Button mnemonicParsing="false"  prefHeight="26.0" prefWidth="217.0" onAction="#changeToVideoDisplay" text="Videos" />
                </children>
             </HBox>
          </children>
