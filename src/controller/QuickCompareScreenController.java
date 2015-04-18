@@ -10,6 +10,8 @@ import static view.MainNavigator.LOGIN_FXML;
 import static view.MainNavigator.QCDISPLAY_VIDEO_FXML;
 import static view.MainNavigator.REG_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
+import static view.MainNavigator.QC_GRAPH_FXML;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +37,6 @@ public class QuickCompareScreenController implements Initializable {
 	
 	@FXML
 	private GridPane quickCompGP;
-	
 	@FXML
 	private Label nameTxt;
 	@FXML
@@ -136,4 +137,8 @@ public class QuickCompareScreenController implements Initializable {
 		MainNavigator.loadScreen(SHARE_STAT_FXML);
 	}
 	
+	@FXML
+	public void changeToGraph(ActionEvent e) {
+		MainNavigator.loadScreen(QC_GRAPH_FXML);
+		}
 }

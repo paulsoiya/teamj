@@ -31,7 +31,8 @@ public class MainNavigator {
     public static final String DISPLAY_VIDEO_FXML = "displayVideo.fxml";
     public static final String QCDISPLAY_VIDEO_FXML = "qcDisplayVideo.fxml";
     public static final String GRAPH_FXML = "compareGraph.fxml";
-	
+    public static final String QC_GRAPH_FXML = "qcCompareGraph.fxml";
+    
 	/** The main application layout controller. */
 	private static LoginController mainController;
 	private UserSession session;
