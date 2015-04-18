@@ -8,7 +8,9 @@ package controller;
 
 import static view.MainNavigator.COMPARE_FXML;
 import static view.MainNavigator.HOME_FXML;
-
+import static view.MainNavigator.SHARE_STAT_FXML;
+import static view.MainNavigator.GRAPH_FXML;
+import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -68,5 +70,17 @@ public class CompareGraphController implements Initializable {
 	private void changeToCompare(ActionEvent e) {
 		MainNavigator.loadScreen(COMPARE_FXML);
 	}
+	@FXML
+	private void changeToShareStat(ActionEvent e) {
+		MainNavigator.loadScreen(SHARE_STAT_FXML);
+	}
+	@FXML
+	private void changeToGraph(ActionEvent e) {
+		MainNavigator.loadScreen(GRAPH_FXML);
+	}
+	@FXML
+	private void changetoVideoDisplay(ActionEvent e) {
+		MainNavigator.loadScreen(DISPLAY_VIDEO_FXML);
+	}	
 
 }
