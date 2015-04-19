@@ -76,11 +76,12 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="149.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label alignment="CENTER" prefHeight="16.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
@@ -107,13 +108,21 @@
                   <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <Label text="Touchdowns: " GridPane.columnIndex="4" GridPane.rowIndex="4" />
                   <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="101.0" text="Date:" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="55.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Label fx:id="dateTxt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="73.0" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam1Txt" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="62.0" text="AT" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="26.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToShareStat" text="Share" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToGraph" text="Graph" />
-                  <Button mnemonicParsing="false"  prefHeight="26.0" prefWidth="217.0" onAction="#changeToVideoDisplay" text="Videos" />
+                  <Button mnemonicParsing="false" onAction="#changeToShareStat" prefHeight="26.0" prefWidth="210.0" text="Share" />
+                  <Button mnemonicParsing="false" onAction="#changeToGraph" prefHeight="26.0" prefWidth="210.0" text="Graph" />
+                  <Button mnemonicParsing="false" onAction="#changeToVideoDisplay" prefHeight="26.0" prefWidth="217.0" text="Videos" />
                </children>
             </HBox>
          </children>

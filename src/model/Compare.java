@@ -14,6 +14,11 @@ public class Compare {
 	private int proYards;
 	private int proTouchdowns;
 	private int proAttempts;
+	private String proGameId;
+	private String gameDate;
+	private String gameTeam2;
+	private String gameScore;
+	private String gameTeam1;
 	
 	public Compare() {
 	}
@@ -75,5 +80,46 @@ public class Compare {
 	public void setProAttempts(int proAttempts) {
 		this.proAttempts = proAttempts;
 	}
+	
+	public String getProGameId(){
+		return proGameId;
+	}
+
+	public void setProGameId(String proGameId) {
+		this.proGameId = proGameId;	
+	}
+
+	public void setGameDate(String gameDate) {
+		this.gameDate = gameDate;	
+	}
+	
+	public String getGameDate() {
+		return gameDate;
+	}
+	
+	public void setGameTeam1(String gameTeam1) {
+		this.gameTeam1 = gameTeam1;	
+	}
+	
+	public String getGameTeam1(){
+		return gameTeam1;
+	}
+
+	public void setGameTeam2(String gameTeam2) {
+		this.gameTeam2 = gameTeam2;
+	}
+	
+	public String getGameTeam2() {
+		return gameTeam2;
+	}
+
+	public void setGameScore(String gameScore) {
+		this.gameScore= gameScore;	
+	}
+
+	public String getGameScore() {
+		return gameScore;
+	}
+
 	
 }
