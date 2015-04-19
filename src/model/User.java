@@ -102,7 +102,7 @@ public class User {
 		boolean nullName = firstName == null || lastName == null;
 		boolean validName = !nullName && !firstName.isEmpty() && !lastName.isEmpty();
 		boolean nullPassword = password == null || passwordConfirm == null;
-		boolean validPassword = !nullPassword && !password.isEmpty()
+		boolean validPassword = !nullPassword && !password.trim().isEmpty()
 				&& password.equals(passwordConfirm);
 		
 		if (!validName) {
