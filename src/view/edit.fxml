@@ -17,17 +17,17 @@
         <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
         
          <children>
-            <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="firstNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="emailTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             
-            <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="lastNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="firstNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             
-            <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dobPicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="lastNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
-            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField fx:id="emailTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <DatePicker fx:id="dobPicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             
             <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <PasswordField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
