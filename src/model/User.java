@@ -95,10 +95,15 @@ public class User {
 	
 	public ValidateResult validate() {
 		ValidateResult result = new ValidateResult(false, "");
+		boolean validDOB = dob != null;
+		boolean validID = true;
 		String emailRegex = ".+@.+\\.[a-z]+";
-		boolean validEmail = email.matches(emailRegex);
-		boolean validName = !firstName.isEmpty() && !lastName.isEmpty();
-		boolean validPassword = !password.isEmpty() && password.equals(passwordConfirm);
+		boolean validEmail = email != null && email.matches(emailRegex);
+		boolean nullName = firstName == null || lastName == null;
+		boolean validName = !nullName && !firstName.isEmpty() && !lastName.isEmpty();
+		boolean nullPassword = password == null || passwordConfirm == null;
+		boolean validPassword = !nullPassword && !password.isEmpty()
+				&& password.equals(passwordConfirm);
 		
 		if (!validName) {
 			result.setMessage("You must enter your first and last name.");
@@ -108,6 +113,12 @@ public class User {
 		}
 		else if (!validPassword) {
 			result.setMessage("The passwords you entered do not mach.");
+		}
+		else if (!validDOB) {
+			result.setMessage("The DOB you entered is invalid.");
+		}
+		else if (!validID) {
+			result.setMessage("The ID you entered is invalid.");
 		}
 		else {
 			result.setValid(true);
