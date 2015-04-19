@@ -38,7 +38,7 @@ public class EditController implements Initializable {
 	@FXML
 	private DatePicker dobPicker;
 	@FXML
-	private TextField emailTxt;
+	private Label emailTxt;
 	@FXML
 	private PasswordField passwordTxt;
 	@FXML
@@ -80,10 +80,8 @@ public class EditController implements Initializable {
 				&& passwordTxt.getText() != null && confirmPasswordTxt.getText() != null) {
 			if (usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
 				if (session.getUserEmail().equals(emailTxt.getText())) {
-					User updateUsr = new User(emailTxt.getText(), passwordTxt.getText(),
-							firstNameTxt.getText(), lastNameTxt.getText(), dobPicker
-									.getValue().toString());
-					if (usrDao.updateUser(updateUsr))
+					User updateUsr = getUpdateInformation();
+					if (updateUsr != null && usrDao.updateUser(updateUsr))
 						MainNavigator.loadScreen(HOME_FXML);
 					else
 						wrongLabel.setText("Invaild Information");
@@ -96,6 +94,12 @@ public class EditController implements Initializable {
 		}
 		else
 			wrongLabel.setText("Enter your Information");
+	}
+	
+	private User getUpdateInformation() {
+		return new User(emailTxt.getText(), passwordTxt.getText(),
+				confirmPasswordTxt.getText(), firstNameTxt.getText(),
+				lastNameTxt.getText(), dobPicker.getValue().toString());
 	}
 	
 	/**

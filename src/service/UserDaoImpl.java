@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.User;
+import model.ValidateResult;
 
 /**
  * User Dao
@@ -50,35 +51,42 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public boolean updateUser(User user) {
-		Connection con = DaoFactory.createConnectionIndividual();
-		PreparedStatement stmt = null;
+		ValidateResult validationResult = user.validate();
 		boolean result = false;
-		try {
-			String sql = "UPDATE User set Password =?, FirstName=?, LastName=?, BirthDate=?"
-					+ "WHERE email=?";
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, user.getPassword());
-			stmt.setString(2, user.getFirstName());
-			stmt.setString(3, user.getLastName());
-			stmt.setString(4, user.getDob());
-			stmt.setString(5, user.getEmail());
-			stmt.executeUpdate();
-			result = true;
-		}
-		catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-		}
-		finally {
+		System.out.println(validationResult.getMessage());
+		
+		if (validationResult.isValid()) {
+			Connection con = DaoFactory.createConnectionIndividual();
+			PreparedStatement stmt = null;
+			
 			try {
-				if (stmt != null) {
-					stmt.close();
-					DaoFactory.closeConnection(con);
-				}
+				String sql = "UPDATE User set Password =?, FirstName=?, LastName=?, BirthDate=?"
+						+ "WHERE email=?";
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, user.getPassword());
+				stmt.setString(2, user.getFirstName());
+				stmt.setString(3, user.getLastName());
+				stmt.setString(4, user.getDob());
+				stmt.setString(5, user.getEmail());
+				stmt.executeUpdate();
+				result = true;
 			}
 			catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			}
+			finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+						DaoFactory.closeConnection(con);
+					}
+				}
+				catch (Exception e) {
+					System.err.println(e.getClass().getName() + ": " + e.getMessage());
+				}
+			}
 		}
+		
 		return result;
 	}
 	
@@ -119,39 +127,39 @@ public class UserDaoImpl implements UserDao {
 		}
 		return user;
 	}
-    
-    @Override
-    public boolean userExists(String email) {
-        Connection con = DaoFactory.createConnectionIndividual();
-        PreparedStatement stmt = null;
-        ResultSet resultSet;
-        String userEmail = null;
-        try {
-            String sql = "SELECT Email FROM User " + "WHERE Email = ?";
-            stmt = con.prepareStatement(sql);
-            stmt.setString(1, email);
-            resultSet = stmt.executeQuery();
-            
-            if (resultSet.next())
-                userEmail = resultSet.getString("Email");
-        }
-        catch (Exception e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                    DaoFactory.closeConnection(con);
-                }
-            }
-            catch (Exception e) {
-                System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            }
-        }
-        return email.equals(userEmail);
-
-    }
+	
+	@Override
+	public boolean userExists(String email) {
+		Connection con = DaoFactory.createConnectionIndividual();
+		PreparedStatement stmt = null;
+		ResultSet resultSet;
+		String userEmail = null;
+		try {
+			String sql = "SELECT Email FROM User " + "WHERE Email = ?";
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, email);
+			resultSet = stmt.executeQuery();
+			
+			if (resultSet.next())
+				userEmail = resultSet.getString("Email");
+		}
+		catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+		finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+					DaoFactory.closeConnection(con);
+				}
+			}
+			catch (Exception e) {
+				System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			}
+		}
+		return email.equals(userEmail);
+		
+	}
 	
 	@Override
 	public boolean deleteUser(String email) {
