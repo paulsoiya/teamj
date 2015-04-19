@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
+import model.ValidateResult;
 import service.DaoFactory;
 import service.UserDao;
 import session.UserSession;
@@ -75,25 +76,18 @@ public class EditController implements Initializable {
 	private void changeToHome() {
 		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
 		UserDao usrDao = daoFact.getUserDao();
-		if (firstNameTxt.getText() != null && lastNameTxt.getText() != null
-				&& dobPicker.getValue() != null && emailTxt.getText() != null
-				&& passwordTxt.getText() != null && confirmPasswordTxt.getText() != null) {
-			if (usrDao.passwordMatch(confirmPasswordTxt.getText(), passwordTxt.getText())) {
-				if (session.getUserEmail().equals(emailTxt.getText())) {
-					User updateUsr = getUpdateInformation();
-					if (updateUsr != null && usrDao.updateUser(updateUsr))
-						MainNavigator.loadScreen(HOME_FXML);
-					else
-						wrongLabel.setText("Invaild Information");
-				}
-				else
-					wrongLabel.setText("Email cannot be changed");
-			}
-			else
-				wrongLabel.setText("Passwords don't match");
-		}
+		User updateUsr = getUpdateInformation();
+		ValidateResult userValidation = updateUsr.validate();
+		boolean sessionsMatch = session.getUserEmail().equals(emailTxt.getText());
+		
+		if (!userValidation.isValid())
+			wrongLabel.setText(userValidation.getMessage());
+		else if (!sessionsMatch)
+			wrongLabel.setText("The current session is invalid. Please log in again.");
+		else if (!usrDao.updateUser(updateUsr))
+			wrongLabel.setText("Invaild Information");
 		else
-			wrongLabel.setText("Enter your Information");
+			MainNavigator.loadScreen(HOME_FXML);
 	}
 	
 	private User getUpdateInformation() {
