@@ -7,7 +7,6 @@
 package service;
 
 import model.ProInfo;
-import model.TeamInfo;
 
 public interface ProInfoDao {
   
@@ -17,11 +16,4 @@ public interface ProInfoDao {
      * @return ProInfo object
      */
     public ProInfo findProInfo(int statsId);
-    
-    /**
-     * Find Team info
-     * @param teamId
-     * @return TeamInfo
-     */
-    public TeamInfo findTeamInfo(String teamId);
 }

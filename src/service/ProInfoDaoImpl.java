@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.ProInfo;
-import model.TeamInfo;
 
 public class ProInfoDaoImpl implements ProInfoDao {
 
@@ -65,42 +64,5 @@ public class ProInfoDaoImpl implements ProInfoDao {
             }
         }
         return info;
-    }
-    
-    @Override
-    public TeamInfo findTeamInfo(String teamId) {
-        Connection con = DaoFactory.createConnectionProfessional();
-        PreparedStatement stmt = null;
-        ResultSet resultSet;
-        TeamInfo info = new TeamInfo();
-        try {
-            String sql = "SELECT * FROM Team WHERE TeamID = ?";
-            stmt = con.prepareStatement(sql);
-            stmt.setString(1, teamId);
-            resultSet = stmt.executeQuery();
-            if(resultSet.next()) {
-                info.setTeamId(resultSet.getString("TeamID"));
-                info.setTeamName(resultSet.getString("TeamName"));
-                info.setTeamPicture(resultSet.getString("Logo"));
-                info.setPrimaryColor(resultSet.getString("PrimaryColor"));
-                info.setSecondaryColor(resultSet.getString("SecondaryColor"));
-            }
-            
-        } catch(Exception e) {
-            System.err.println(e.getClass().getName() + ": "
-                               + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                    DaoFactory.closeConnection(con);
-                }
-            } catch (Exception e) {
-                System.err.println(e.getClass().getName() + ": "
-                                   + e.getMessage());
-            }
-        }
-        return info;
-
     }
 }

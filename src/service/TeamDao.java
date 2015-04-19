@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import model.Team;
+import model.TeamInfo;
 
 public interface TeamDao {
 	
@@ -13,5 +14,11 @@ public interface TeamDao {
 	 * @return the auto increment id of the new user
 	 */
 	public List<Team> findAll();
-	
+    
+    /**
+     * Find Team info
+     * @param teamId
+     * @return TeamInfo
+     */
+    public TeamInfo findTeamInfo(String teamId);
 }

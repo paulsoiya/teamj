@@ -27,6 +27,7 @@ import model.TeamInfo;
 import service.CompareDao;
 import service.DaoFactory;
 import service.ProInfoDao;
+import service.TeamDao;
 import session.UserSession;
 import view.Main;
 import view.MainNavigator;
@@ -69,6 +70,7 @@ public class CompareController implements Initializable {
     DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
     ProInfoDao infoDao = daoFact.getProInfoDao();
     CompareDao compareDao = daoFact.getCompareDao();
+    TeamDao teamDao = daoFact.getTeamDao();
     
     ProInfo info = new ProInfo();
     TeamInfo teamInfo = new TeamInfo();
@@ -83,7 +85,7 @@ public class CompareController implements Initializable {
         int statsId = compareDao.findStatsId(session.getGameId());
 
         info = infoDao.findProInfo(statsId);
-        teamInfo = infoDao.findTeamInfo(info.getTeam());
+        teamInfo = teamDao.findTeamInfo(info.getTeam());
         comp = compareDao.inputStats(session.getGameId(), statsId);
         nameTxt.setText(info.getName());
         positionTxt.setText(info.getPosition());

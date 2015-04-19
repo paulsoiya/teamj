@@ -35,4 +35,9 @@ public class TeamTest {
     public void findAllTest() {
         assertTrue(dao.findAll() != null);
     }
+    
+    @Test
+    public void findTeamInfoTest() {
+        assertTrue(dao.findTeamInfo("BUF") != null);
+    }
 }

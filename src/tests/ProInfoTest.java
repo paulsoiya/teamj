@@ -32,11 +32,6 @@ public class ProInfoTest {
 	}
     
     @Test
-    public void findTeamInfoTest() {
-        assertTrue(dao.findTeamInfo("BUF") != null);
-    }
-    
-    @Test
     public void findProInfoTest() {
         assertTrue(dao.findProInfo(1) != null);
     }
