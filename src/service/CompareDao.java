@@ -43,4 +43,11 @@ public interface CompareDao {
      * @return Compare
      */
     public Compare inputStats(int gameId, int statsId);
+    
+    /**
+     * Creates a compare with just pro stats
+     * @param statsId
+     * @return Compare
+     */
+    public Compare qcInputStats(int statsId);
 }

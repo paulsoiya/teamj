@@ -97,7 +97,7 @@ public class QuickCompareScreenController implements Initializable {
 		
 		info = infoDao.findProInfo(statsId);
 		teamInfo = teamDao.findTeamInfo(info.getTeam());
-		comp = compareDao.inputStats(session.getGameId(), statsId);
+		comp = compareDao.qcInputStats(statsId);
 		nameTxt.setText(info.getName());
 		positionTxt.setText(info.getPosition());
 		numberTxt.setText(Integer.toString(info.getNumber()));

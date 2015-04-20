@@ -242,4 +242,56 @@ public class CompareDaoImpl implements CompareDao {
         }
         return result;
     }
+    
+    @Override
+    public Compare qcInputStats(int statsId) {
+        Connection conPro = DaoFactory.createConnectionProfessional();
+        PreparedStatement stmt = null;
+        ResultSet resultSet;
+        Compare result = new Compare();
+        try {
+            String sql = "SELECT * FROM Stats WHERE StatsID = ?";
+            stmt = conPro.prepareStatement(sql);
+            stmt.setInt(1, statsId);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                result.setProAttempts(resultSet.getInt("Att"));
+                result.setProYards(resultSet.getInt("Yards"));
+                result.setProTouchdowns(resultSet.getInt("TDs"));
+                
+                result.setProGameId(resultSet.getString("GameId"));
+                
+                System.out.println(resultSet.getInt("TDs"));
+            }
+            
+            stmt.close();
+            sql = "SELECT * FROM GameLog WHERE GameId = ?";
+            stmt = conPro.prepareStatement(sql);
+            stmt.setString(1, result.getProGameId());
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                result.setGameDate(resultSet.getString("Date"));
+                result.setGameTeam1(resultSet.getString("Team"));
+                result.setGameTeam2(resultSet.getString("Opponent"));
+                result.setGameScore(resultSet.getString("Score"));
+                
+            }
+            
+        }
+        catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        }
+        finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                    DaoFactory.closeConnection(conPro);
+                }
+            }
+            catch (Exception e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
+        }
+        return result;
+    }
 }
