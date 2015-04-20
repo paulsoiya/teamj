@@ -122,7 +122,7 @@ public final class EmailProvider {
 					InternetAddress.parse(email.getTo()));
 			msg.setSubject(email.getSubject());
 			
-			Multipart mp = new MimeMultipart();
+			Multipart multiPart = new MimeMultipart();
 
 			MimeBodyPart htmlPart = new MimeBodyPart();
 			
@@ -130,7 +130,7 @@ public final class EmailProvider {
 			htmlContent += "<br><img src=\"cid:comparison\">";
 			
 			htmlPart.setContent(htmlContent, "text/html");
-			mp.addBodyPart(htmlPart);
+			multiPart.addBodyPart(htmlPart);
 			
 			// Create a new part for the attached file
 			MimeBodyPart attachment = new MimeBodyPart();
@@ -138,17 +138,17 @@ public final class EmailProvider {
 			attachment.setHeader("Content-Type", "image/png");
 			attachment.setHeader("Content-ID", "<comparison>");
 			
-			mp.addBodyPart(attachment);
+			multiPart.addBodyPart(attachment);
 			
-			msg.setContent(mp);
+			msg.setContent(multiPart);
 			
 			//must set this so class loader knows of the different MIME types
-			MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
-			mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"); 
-			mc.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"); 
-			mc.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"); 
-			mc.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"); 
-			mc.addMailcap("message/rfc822;; x-java-content- handler=com.sun.mail.handlers.message_rfc822");
+			MailcapCommandMap mCommandMap = (MailcapCommandMap) CommandMap.getDefaultCommandMap(); 
+			mCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"); 
+			mCommandMap.addMailcap("text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"); 
+			mCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"); 
+			mCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"); 
+			mCommandMap.addMailcap("message/rfc822;; x-java-content- handler=com.sun.mail.handlers.message_rfc822");
 			
 			Transport.send(msg);
 
