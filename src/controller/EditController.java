@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,6 +23,7 @@ import javafx.scene.control.TextField;
 import model.User;
 import model.ValidateResult;
 import service.DaoFactory;
+import service.SportDao;
 import service.UserDao;
 import session.UserSession;
 import view.MainNavigator;
@@ -46,6 +48,8 @@ public class EditController implements Initializable {
 	private PasswordField confirmPasswordTxt;
 	@FXML
 	private Label wrongLabel;
+	@FXML
+	private Button recentGamesButton;
 	
 	private UserSession session = UserSession.getInstance();
 	
@@ -65,6 +69,10 @@ public class EditController implements Initializable {
 		this.passwordTxt.setText(user.getPassword());
 		this.confirmPasswordTxt.setText(user.getPassword());
 		this.dobPicker.setValue(LocalDate.parse(user.getDob()));
+		
+		SportDao sportDao = daoFact.getSportDao();
+		boolean validSport = sportDao.validSport(session.getUserId());
+		recentGamesButton.setVisible(validSport);
 	}
 	
 	/**

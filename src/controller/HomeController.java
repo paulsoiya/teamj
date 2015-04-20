@@ -30,6 +30,8 @@ public class HomeController implements Initializable {
 	
 	@FXML
 	private Button footballButton;
+	@FXML
+	private Button recentGamesButton;
 	
 	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
 	SportDao sportDao = daoFact.getSportDao();
@@ -40,7 +42,9 @@ public class HomeController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		footballButton.setVisible(sportDao.validSport(session.getUserId()));
+		boolean validSport = sportDao.validSport(session.getUserId());
+		footballButton.setVisible(validSport);
+		recentGamesButton.setVisible(validSport);
 	}
 	
 	/**
