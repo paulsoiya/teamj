@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.CompareController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompareController">
   <center>
     <GridPane fx:id="compGP" BorderPane.alignment="CENTER">
       <children>
@@ -52,6 +52,14 @@
             <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Label text="Touchdowns: " GridPane.columnIndex="4" GridPane.rowIndex="4" />
             <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="111.0" text="Date:" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="58.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="AT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="55.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="75.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="55.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Label fx:id="dateTxt" prefHeight="17.0" prefWidth="77.0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.0" minWidth="10.0" prefWidth="195.0" />
@@ -64,16 +72,17 @@
           <rowConstraints>
             <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
-            <RowConstraints />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
           </rowConstraints>
         </GridPane>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
           <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToShareStat" text="Share" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="210.0" onAction="#changeToGraph" text="Graph" />
+            <Button mnemonicParsing="false" onAction="#changeToShareStat" prefHeight="26.0" prefWidth="210.0" text="Share" />
+            <Button mnemonicParsing="false" onAction="#changeToGraph" prefHeight="26.0" prefWidth="210.0" text="Graph" />
             <Button mnemonicParsing="false" onAction="#changetoVideoDisplay" prefHeight="26.0" prefWidth="210.0" text="Videos" />
           </children>
         </HBox>
@@ -97,7 +106,7 @@
     <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
       <children>
         <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
-        <Button mnemonicParsing="false" styleClass="navigation-button" onAction="#changeToRecentGames" text="Recent Games" />
+        <Button mnemonicParsing="false" onAction="#changeToRecentGames" styleClass="navigation-button" text="Recent Games" />
       </children>
     </VBox>
   </left>
