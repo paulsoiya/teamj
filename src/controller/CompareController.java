@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -71,6 +72,12 @@ public class CompareController implements Initializable {
 	private ImageView playerPicture;
 	@FXML
 	private ImageView teamPicture;
+    @FXML
+    private Button shareBtn;
+    @FXML
+    private Button graphBtn;
+    @FXML
+    private Button videoBtn;
 	
 	view.MainNavigator controller;
 	
@@ -116,6 +123,12 @@ public class CompareController implements Initializable {
 		gameTeam1Txt.setText(comp.getGameTeam1());
 		gameTeam2Txt.setText(comp.getGameTeam2());
 		scoreTxt.setText(comp.getGameScore());
+        shareBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
+                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+        graphBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
+                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+        videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
+                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 	}
 	
 	/**
