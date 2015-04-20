@@ -113,7 +113,8 @@ public class QuickCompareScreenController implements Initializable {
 		attemptsTxt.setText(Integer.toString(comp.getProAttempts()));
 		yardsTxt.setText(Integer.toString(comp.getProYards()));
 		touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
-		dateTxt.setText(comp.getGameDate());
+		String date = comp.getGameDate();
+		dateTxt.setText(date.substring(0,10));
 		gameTeam1Txt.setText(comp.getGameTeam1());
 		gameTeam2Txt.setText(comp.getGameTeam2());
 		scoreTxt.setText(comp.getGameScore());

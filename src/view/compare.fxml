@@ -54,12 +54,12 @@
             <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="111.0" text="Date:" GridPane.rowIndex="5" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="58.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="AT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="55.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label text="at" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="47.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="75.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                   <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="55.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                   <Label fx:id="dateTxt" prefHeight="17.0" prefWidth="77.0" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.0" minWidth="10.0" prefWidth="195.0" />

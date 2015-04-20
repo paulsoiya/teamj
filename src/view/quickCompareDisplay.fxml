@@ -112,10 +112,10 @@
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="55.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                   <Label fx:id="dateTxt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="73.0" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                   <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam1Txt" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="18.0" text="AT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="51.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="18.0" text="at" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="26.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
