@@ -22,14 +22,14 @@ import javax.mail.internet.MimeMultipart;
  * @author Paul Soiya II
  * @version April 7, 2015
  */
-public class EmailProvider {
+public final class EmailProvider {
 	
 	private static EmailProvider instance = null;
 
 	public final static String STMP_USER = "sports.comparison@gmail.com";
-	private final String STMP_HOST = "smtp.gmail.com";
-	private final String STMP_PORT = "587";
-	private final String STMP_PASSWORD = "sportsComp";
+	private final static String STMP_HOST = "smtp.gmail.com";
+	private final static String STMP_PORT = "587";
+	private final static String STMP_PASSWORD = "sportsComp";
 	
 	private EmailProvider() { }
 	
