@@ -110,6 +110,9 @@ public class QuickCompareController implements Initializable {
             float average = (att/1000)+(yds/100)+(tds*10);
             int proStatsId = compareDao.playerComparison(average, positionCB.getValue(),
                                                      favTeamCB.getValue());
+            session.setUserYds(yds);
+            session.setUserAtt(att);
+            session.setUserTds(tds);
             session.setProStatsId(proStatsId);
             MainNavigator.loadScreen(QCOMPARESCREEN_FXML);
         }

@@ -14,6 +14,9 @@ public class UserSession {
     private int gameId;
     private int proStatsId;
     private String screenshotPath;
+    private int userYds;
+    private int userAtt;
+    private int userTds;
 	private boolean sessionValid;
 	public static final int INVALID_VALUE = -1;
 	
@@ -81,6 +84,28 @@ public class UserSession {
 	public void setScreenshotPath(String screenshotPath) {
 		this.screenshotPath = screenshotPath;
 	}
+    
+    public int getUserYds() {
+        return userYds;
+    }
+    
+    public void setUserYds(int userYds) {
+        this.userYds = userYds;
+    }
+    
+    public int getUserAtt() {
+        return userAtt;
+    }
 	
+    public void setUserAtt(int userAtt) {
+        this.userAtt = userAtt;
+    }
 	
+    public int getUserTds() {
+        return userTds;
+    }
+    
+    public void setUserTds(int userTds) {
+        this.userTds = userTds;
+    }
 }
