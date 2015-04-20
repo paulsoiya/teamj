@@ -7,14 +7,18 @@
 package controller;
 
 import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.LOGIN_FXML;
+import static view.MainNavigator.QCOMPARESCREEN_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import session.UserSession;
@@ -27,16 +31,17 @@ public class ShareStatController implements Initializable {
     private UserSession session = UserSession.getInstance();
     
     @FXML
-    private Label errorLbl; 
-    
+    private Label errorLbl;
     @FXML
     private Label successLbl;
-    
     @FXML
     private TextField friendEmailTxt;
-    
     @FXML
     private TextArea messageTxt;
+    @FXML
+    private Button topButton;
+    @FXML
+    private Button secondButton;
 	
 	public ShareStatController() {
 		
@@ -44,7 +49,24 @@ public class ShareStatController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+        if(session.getUserId() == -1) {
+            topButton.setText("Login");
+            secondButton.setText("Compare");
+            topButton.setOnAction(new EventHandler<ActionEvent>() {
+                
+                @Override
+                public void handle(ActionEvent event) {
+                    MainNavigator.loadScreen(LOGIN_FXML);
+                }
+            });
+            secondButton.setOnAction(new EventHandler<ActionEvent>() {
+                
+                @Override
+                public void handle(ActionEvent event) {
+                    MainNavigator.loadScreen(QCOMPARESCREEN_FXML);
+                }
+            });
+        }
 	}
 	
 	/**

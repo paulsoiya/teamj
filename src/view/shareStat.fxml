@@ -16,8 +16,8 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
+            <Button fx:id="topButton" alignment="CENTER" mnemonicParsing="false" onAction="#changeToHome" styleClass="navigation-button" text="Home" />
+            <Button fx:id="secondButton" mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
          </children>
       </VBox>
    </left>
@@ -46,16 +46,16 @@
         
          <children>
          	<Label fx:id="errorLbl" style="-fx-font-weight: bold; -fx-text-fill: red" GridPane.columnIndex="0" GridPane.columnSpan="2" />
-         	<Label fx:id="successLbl" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+         	<Label fx:id="successLbl" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
          	
             <Label prefWidth="148.0" text="Friend's email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="friendEmailTxt" prefWidth="198.0"  prefHeight="125.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="friendEmailTxt" prefHeight="125.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
             <Label text="Message:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <TextArea fx:id="messageTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             
             
-            <Button onAction="#shareStats" mnemonicParsing="false"  style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#shareStats" style="-fx-background-color: orange;" text="Share" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             
          </children>
          <columnConstraints>
