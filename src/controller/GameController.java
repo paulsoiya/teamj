@@ -64,37 +64,42 @@ public class GameController implements Initializable {
 		games = gameDao.findGames(session.getUserId());
 		weekCol.setCellValueFactory(new PropertyValueFactory<Game, Integer>("week"));
 		dateCol.setCellValueFactory(new PropertyValueFactory<Game, String>("date"));
-		opponentCol.setCellValueFactory(new PropertyValueFactory<Game, String>("opponent"));
+		opponentCol
+				.setCellValueFactory(new PropertyValueFactory<Game, String>("opponent"));
 		scoreCol.setCellValueFactory(new PropertyValueFactory<Game, String>("score"));
 		ObservableList<Game> data = FXCollections.observableArrayList();
 		
-        for (int i = 0; i < games.size(); i++) {
-            data.add(games.get(i));
-        }
-        
-        table.setItems(data);
-        
-        table.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @SuppressWarnings("unchecked")
+		for (int i = 0; i < games.size(); i++) {
+			data.add(games.get(i));
+		}
+		
+		table.setItems(data);
+		
+		table.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@SuppressWarnings("unchecked")
 			@Override
-            public void handle(MouseEvent event) {
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    Node node = ((Node) event.getTarget()).getParent();
-                    TableRow<Game> row;
-                    if (node instanceof TableRow) {
-                        row = (TableRow<Game>) node;
-                    } else {
-                        row = (TableRow<Game>) node.getParent();
-                    }
-                    Game game = new Game();
-                    game = (Game)row.getItem();
-                    game.setUserID(session.getUserId());
-                    int gameId = gameDao.findGameID(game);
-                    session.setGameId(gameId);
-                    MainNavigator.loadScreen(COMPARE_FXML);
-                }
-            }
-        });
+			public void handle(MouseEvent event) {
+				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+					Node node = ((Node) event.getTarget()).getParent();
+					TableRow<Game> row;
+					if (node instanceof TableRow) {
+						row = (TableRow<Game>) node;
+					}
+					else {
+						row = (TableRow<Game>) node.getParent();
+					}
+					Game game = new Game();
+					game = (Game) row.getItem();
+					
+					if (game != null) {
+						game.setUserID(session.getUserId());
+						int gameId = gameDao.findGameID(game);
+						session.setGameId(gameId);
+						MainNavigator.loadScreen(COMPARE_FXML);
+					}
+				}
+			}
+		});
 	}
 	
 	/**
