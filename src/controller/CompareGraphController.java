@@ -11,21 +11,40 @@ import static view.MainNavigator.HOME_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
 import static view.MainNavigator.GRAPH_FXML;
 import static view.MainNavigator.DISPLAY_VIDEO_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import model.Compare;
 import model.ProInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import service.DaoFactory;
 import service.CompareDao;
 import service.ProInfoDao;
 import session.UserSession;
 import view.MainNavigator;
-import model.ProInfo;
 
 public class CompareGraphController implements Initializable {
+	
+    final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    
+    @FXML
+    private BarChart<String,Number> barGraph =
+    new BarChart<String,Number>(xAxis, yAxis);
+    
+    final static String att = "Your Attempts";
+    final static String yds = "Your Yards";
+    final static String tds = "Your Touchdowns";
+    final static String proAtt = "Pro Attempts";
+    final static String proYds = "Pro Yards";
+    final static String proTds = "Pro Touchdowns";
 	
 	view.MainNavigator controller;
     
@@ -39,15 +58,40 @@ public class CompareGraphController implements Initializable {
     DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
     CompareDao compareDao = daoFact.getCompareDao();
     ProInfoDao proInfoDao = daoFact.getProInfoDao();
-    
+	ProInfo info = new ProInfo();
+    Compare comp = new Compare();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		int proStat = compareDao.findStatsId(session.getGameId());
-        ProInfo player = proInfoDao.findProInfo(proStat);
-		// get stuff to populate graph?
+		
+		int statsId = compareDao.findStatsId(session.getGameId());
+		
+		info = proInfoDao.findProInfo(statsId);
+		comp = compareDao.inputStats(session.getGameId(), statsId);
+        //Setup Graph
+        barGraph.setTitle("Comparison Summary");
         
-        player.getName(); // just to stop error
+        xAxis.setLabel("Value");
+        yAxis.setLabel("Stat");
+        
+        //Add data
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Attempts");
+        series1.getData().add(new XYChart.Data(att, comp.getUserAttempts()));
+        series1.getData().add(new XYChart.Data(proAtt, comp.getProAttempts()));
+        
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("Yards");
+        series2.getData().add(new XYChart.Data(yds, comp.getUserYards()));
+        series2.getData().add(new XYChart.Data(proYds, comp.getProYards()));
+        
+        XYChart.Series series3 = new XYChart.Series();
+        series3.setName("Touchdowns");
+        series3.getData().add(new XYChart.Data(tds, comp.getUserTouchdowns()));
+        series3.getData().add(new XYChart.Data(proTds, comp.getProTouchdowns()));
+        
+        barGraph.getData().addAll(series1, series2, series3);
+        
 		
 	}
 	
@@ -58,6 +102,10 @@ public class CompareGraphController implements Initializable {
 	 */
 	@FXML
 	private void changeToHome(ActionEvent e) {
+		MainNavigator.loadScreen(HOME_FXML);
+	}
+	@FXML
+	private void changeToLogin(ActionEvent e) {
 		MainNavigator.loadScreen(HOME_FXML);
 	}
 	
