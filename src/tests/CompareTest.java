@@ -46,7 +46,7 @@ public class CompareTest {
 	}
     
     @Test
-    public void InsertTest() {
+    public void insertTest() {
         assertTrue(dao.insertStat(1,1));
     }
     
