@@ -26,10 +26,10 @@ public final class EmailProvider {
 	
 	private static EmailProvider instance = null;
 
-	public final static String STMP_USER = "sports.comparison@gmail.com";
-	private final static String STMP_HOST = "smtp.gmail.com";
-	private final static String STMP_PORT = "587";
-	private final static String STMP_PASSWORD = "sportsComp";
+	public final static String SMTP_USER = "sports.comparison@gmail.com";
+	private final static String SMTP_HOST = "smtp.gmail.com";
+	private final static String SMTP_PORT = "587";
+	private final static String SMTP_PASSWORD = "sportsComp";
 	
 	private EmailProvider() { }
 	
@@ -52,21 +52,20 @@ public final class EmailProvider {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", STMP_HOST);
-		props.put("mail.smtp.port", STMP_PORT);
+		props.put("mail.smtp.host", SMTP_HOST);
+		props.put("mail.smtp.port", SMTP_PORT);
 
 		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(STMP_USER,
-								STMP_PASSWORD);
+						return new PasswordAuthentication(SMTP_USER,
+								SMTP_PASSWORD);
 					}
 				});
 
 		//check if there is an attachment and branch accordingly 
 		if (email.getAttachmentPath() == null || email.getAttachmentPath().equals("") ) {
 			sent = sendBasicEmail(session, email);
-			System.out.println("ATTACHMENT IS NULL");
 		} else { 
 			sent = sendMultiPartEmail(session, email);
 		}

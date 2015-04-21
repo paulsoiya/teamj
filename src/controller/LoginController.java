@@ -78,7 +78,7 @@ public class LoginController implements Initializable {
 		// successfully
 		
 		User user = usrDao.findUser(destination);
-		String sender = EmailProvider.STMP_USER;
+		String sender = EmailProvider.SMTP_USER;
 		final Email email = new Email(destination, sender, null, null);
 		
 		if (user.equals(User.NULL_USER)) {

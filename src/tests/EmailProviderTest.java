@@ -26,7 +26,7 @@ public class EmailProviderTest {
 	public void setUp() throws Exception {
 		emailProvider = EmailProvider.getInstance();
 		// String to, String from, String subject, String body
-		email = new Email("psoiya@asu.edu", emailProvider.STMP_USER,
+		email = new Email("psoiya@asu.edu", emailProvider.SMTP_USER,
 				"Test Email", "This is a test Email.");
 
 	}

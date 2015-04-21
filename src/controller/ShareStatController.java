@@ -82,7 +82,7 @@ public class ShareStatController implements Initializable {
 	@FXML
 	private void shareStats(ActionEvent e){
 		
-		Email email = new Email(friendEmailTxt.getText(), EmailProvider.STMP_USER,
+		Email email = new Email(friendEmailTxt.getText(), EmailProvider.SMTP_USER,
 								"Sports Compare Comparison",  messageTxt.getText(), session.getScreenshotPath());
 		
 		System.out.println("screenshot path inside controller = " + email.getAttachmentPath());
