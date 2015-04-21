@@ -36,12 +36,12 @@ public class QuickCompareGraphController implements Initializable {
     private BarChart<String,Number> barGraph =
     new BarChart<String,Number>(xAxis, yAxis);
     
-    final static String att = "Your Attempts";
-    final static String yds = "Your Yards";
-    final static String tds = "Your Touchdowns";
-    final static String proAtt = "Pro Attempts";
-    final static String proYds = "Pro Yards";
-    final static String proTds = "Pro Touchdowns";
+    final static String ATT = "Your Attempts";
+    final static String YDS = "Your Yards";
+    final static String TDS = "Your Touchdowns";
+    final static String PRO_ATT = "Pro Attempts";
+    final static String PRO_YDS = "Pro Yards";
+    final static String PRO_TDS = "Pro Touchdowns";
     
     view.MainNavigator controller;
     
@@ -70,20 +70,20 @@ public class QuickCompareGraphController implements Initializable {
         //Add data
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("Attempts");
-        series1.getData().add(new XYChart.Data(att, session.getUserAtt()));
-        series1.getData().add(new XYChart.Data(proAtt, proStats.getProAttempts()));
-        
+        series1.getData().add(new XYChart.Data(ATT, session.getUserAtt()));
+        series1.getData().add(new XYChart.Data(PRO_ATT, proStats.getProAttempts()));
+
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("Yards");
-        series2.getData().add(new XYChart.Data(yds, session.getUserYds()));
-        series2.getData().add(new XYChart.Data(proYds, proStats.getProYards()));
-        
+        series2.getData().add(new XYChart.Data(YDS, session.getUserYds()));
+        series2.getData().add(new XYChart.Data(PRO_YDS, proStats.getProYards()));
+
         XYChart.Series series3 = new XYChart.Series();
         series3.setName("Touchdowns");
-        series3.getData().add(new XYChart.Data(tds, session.getUserTds()));
-        series3.getData().add(new XYChart.Data(proTds, proStats.getProTouchdowns()));
+        series3.getData().add(new XYChart.Data(TDS, session.getUserTds()));
+        series3.getData().add(new XYChart.Data(PRO_TDS, proStats.getProTouchdowns()));
         
-        barGraph.getData().addAll(series1, series2, series3);
+         barGraph.getData().addAll(series1, series2, series3);
     }
     
     /**
