@@ -48,7 +48,7 @@
             <RowConstraints maxHeight="349.0" minHeight="10.0" prefHeight="349.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#changeToQuickCompare" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <Button alignment="BOTTOM_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#changeToQuickCompare" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="6" GridPane.rowIndex="8" />
             <Label text="Stats" GridPane.columnIndex="5">
                <font>
                   <Font size="36.0" />

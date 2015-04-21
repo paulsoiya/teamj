@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Compare;
 import model.ProInfo;
 import model.TeamInfo;
@@ -78,6 +79,8 @@ public class CompareController implements Initializable {
     private Button graphBtn;
     @FXML
     private Button videoBtn;
+    @FXML
+    private HBox topBar;
 	
 	view.MainNavigator controller;
 	
@@ -129,6 +132,7 @@ public class CompareController implements Initializable {
                           "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
         videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
                           "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+        topBar.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() + ";");
 	}
 	
 	/**

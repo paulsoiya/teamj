@@ -48,7 +48,7 @@
           <RowConstraints maxHeight="199.0" minHeight="10.0" prefHeight="167.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#changeToCompare" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <Button alignment="BOTTOM_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#changeToCompare" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="6" GridPane.rowIndex="9" />
             <Label prefHeight="96.0" prefWidth="302.0" text="Game Details" GridPane.columnIndex="3">
                <font>
                   <Font size="36.0" />

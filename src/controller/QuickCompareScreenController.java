@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Compare;
 import model.ProInfo;
 import model.TeamInfo;
@@ -78,6 +79,10 @@ public class QuickCompareScreenController implements Initializable {
 	private Button graphBtn;
 	@FXML
 	private Button videoBtn;
+	@FXML
+	private HBox topBar;
+	@FXML
+	private GridPane displayGrid;
 
 	view.MainNavigator controller;
 
@@ -128,6 +133,9 @@ public class QuickCompareScreenController implements Initializable {
 		graphBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
 				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 		videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+		topBar.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() + ";");
+		displayGrid.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
 				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 	}
 

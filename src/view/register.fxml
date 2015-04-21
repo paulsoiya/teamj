@@ -36,7 +36,7 @@
             
             <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
             <PasswordField fx:id="confirmPasswordTxt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" onAction="#changeToHome" style="-fx-background-color: orange;" text="Sign Up" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#changeToHome" style="-fx-background-color: orange;" text="Sign Up" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             
          </children>
          <columnConstraints>

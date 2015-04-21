@@ -124,6 +124,6 @@
     <URL value="@MainTheme.css" />
   </stylesheets>
   <top>
-    <HBox prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
+    <HBox fx:id="topBar" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #03a9f4;" BorderPane.alignment="CENTER" />
   </top>
 </BorderPane>
