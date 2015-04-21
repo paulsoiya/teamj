@@ -7,10 +7,6 @@
 package controller;
 
 import static view.MainNavigator.COMPARE_FXML;
-import static view.MainNavigator.HOME_FXML;
-import static view.MainNavigator.SHARE_STAT_FXML;
-import static view.MainNavigator.GRAPH_FXML;
-import static view.MainNavigator.DISPLAY_VIDEO_FXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -91,22 +87,6 @@ public class CompareGraphController implements Initializable {
         series3.getData().add(new XYChart.Data(proTds, comp.getProTouchdowns()));
         
         barGraph.getData().addAll(series1, series2, series3);
-        
-		
-	}
-	
-	/**
-	 * Changes the current FXML page to the home.fxml
-	 * 
-	 * @param e
-	 */
-	@FXML
-	private void changeToHome(ActionEvent e) {
-		MainNavigator.loadScreen(HOME_FXML);
-	}
-	@FXML
-	private void changeToLogin(ActionEvent e) {
-		MainNavigator.loadScreen(HOME_FXML);
 	}
 	
 	/**
