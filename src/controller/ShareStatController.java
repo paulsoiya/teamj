@@ -25,6 +25,7 @@ import session.UserSession;
 import view.MainNavigator;
 import model.Email;
 import model.EmailProvider;
+import java.io.File;
 
 public class ShareStatController implements Initializable {
     
@@ -92,6 +93,8 @@ public class ShareStatController implements Initializable {
 		
 		if ( res ) {
 			successLbl.setText("The email was sent successfully.");
+            File image = new File(session.getScreenshotPath());
+            image.delete();
 		} else {
 			errorLbl.setText("Unable to send the email. Please try again.");
 		}
