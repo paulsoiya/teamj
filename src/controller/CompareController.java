@@ -126,13 +126,20 @@ public class CompareController implements Initializable {
 		gameTeam1Txt.setText(comp.getGameTeam1());
 		gameTeam2Txt.setText(comp.getGameTeam2());
 		scoreTxt.setText(comp.getGameScore());
-        shareBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
-                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
-        graphBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
-                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
-        videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() +
-                          "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
-        topBar.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() + ";");
+		shareBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + "; "
+				+ "-fx-border-color: " + teamInfo.getSecondaryColor() + ";"
+				+ " -fx-border-width: 3px;");
+		graphBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";"
+				+ "-fx-border-color: " + teamInfo.getSecondaryColor() + ";"
+				+ " -fx-border-width: 3px;");
+		videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";"
+				+ "-fx-border-color: " + teamInfo.getSecondaryColor() + ";"
+				+ " -fx-border-width: 3px;");
+		topBar.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ ";");
 	}
 	
 	/**
