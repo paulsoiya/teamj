@@ -12,13 +12,13 @@ import static view.MainNavigator.REG_FXML;
 import static view.MainNavigator.SHARE_STAT_FXML;
 import static view.MainNavigator.QC_GRAPH_FXML;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,7 +35,7 @@ import view.Main;
 import view.MainNavigator;
 
 public class QuickCompareScreenController implements Initializable {
-	
+
 	@FXML
 	private GridPane quickCompGP;
 	@FXML
@@ -72,29 +72,34 @@ public class QuickCompareScreenController implements Initializable {
 	private ImageView playerPicture;
 	@FXML
 	private ImageView teamPicture;
-	
-	
+	@FXML
+	private Button shareBtn;
+	@FXML
+	private Button graphBtn;
+	@FXML
+	private Button videoBtn;
+
 	view.MainNavigator controller;
-	
+
 	private UserSession session = UserSession.getInstance();
-	
+
 	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
 	ProInfoDao infoDao = daoFact.getProInfoDao();
 	CompareDao compareDao = daoFact.getCompareDao();
-    TeamDao teamDao = daoFact.getTeamDao();
-	
+	TeamDao teamDao = daoFact.getTeamDao();
+
 	ProInfo info = new ProInfo();
 	TeamInfo teamInfo = new TeamInfo();
 	Compare comp = new Compare();
-	
+
 	public QuickCompareScreenController() {
 		controller = new view.MainNavigator();
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		int statsId = session.getProStatsId();
-		
+
 		info = infoDao.findProInfo(statsId);
 		teamInfo = teamDao.findTeamInfo(info.getTeam());
 		comp = compareDao.qcInputStats(statsId);
@@ -114,12 +119,18 @@ public class QuickCompareScreenController implements Initializable {
 		yardsTxt.setText(Integer.toString(comp.getProYards()));
 		touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
 		String date = comp.getGameDate();
-		dateTxt.setText(date.substring(0,10));
+		dateTxt.setText(date.substring(0, 10));
 		gameTeam1Txt.setText(comp.getGameTeam1());
 		gameTeam2Txt.setText(comp.getGameTeam2());
 		scoreTxt.setText(comp.getGameScore());
+		shareBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+		graphBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
+		videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
+				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 	}
-	
+
 	/**
 	 * Changes the current FXML page to the login.fxml
 	 * 
@@ -129,7 +140,7 @@ public class QuickCompareScreenController implements Initializable {
 	private void changeToLogin(ActionEvent e) {
 		MainNavigator.loadScreen(LOGIN_FXML);
 	}
-	
+
 	/**
 	 * Changes the current FXML page to the register.fxml
 	 *
@@ -139,12 +150,12 @@ public class QuickCompareScreenController implements Initializable {
 	private void changeToRegister(ActionEvent e) {
 		MainNavigator.loadScreen(REG_FXML);
 	}
-	
+
 	@FXML
 	public void changeToVideoDisplay(ActionEvent e) {
 		MainNavigator.loadScreen(QCDISPLAY_VIDEO_FXML);
 	}
-	
+
 	@FXML
 	public void changeToShareStat(ActionEvent e) {
 		System.out.println("ABOUT TO SHARE STAT");
@@ -152,9 +163,9 @@ public class QuickCompareScreenController implements Initializable {
 		session.setScreenshotPath(screenshotPath);
 		MainNavigator.loadScreen(SHARE_STAT_FXML);
 	}
-	
+
 	@FXML
 	public void changeToGraph(ActionEvent e) {
 		MainNavigator.loadScreen(QC_GRAPH_FXML);
-		}
+	}
 }
