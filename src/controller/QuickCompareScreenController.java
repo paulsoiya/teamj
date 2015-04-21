@@ -81,8 +81,6 @@ public class QuickCompareScreenController implements Initializable {
 	private Button videoBtn;
 	@FXML
 	private HBox topBar;
-	@FXML
-	private GridPane displayGrid;
 
 	view.MainNavigator controller;
 
@@ -135,8 +133,6 @@ public class QuickCompareScreenController implements Initializable {
 		videoBtn.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
 				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 		topBar.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor() + ";");
-		displayGrid.setStyle("-fx-background-color: " + teamInfo.getPrimaryColor()
-				+ "; -fx-text-fill: " + teamInfo.getSecondaryColor() + ";");
 	}
 
 	/**
