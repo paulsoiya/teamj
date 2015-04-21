@@ -81,34 +81,20 @@ public class LoginController implements Initializable {
 		String sender = EmailProvider.SMTP_USER;
 		final Email email = new Email(destination, sender, null, null);
 		
-		if (user.equals(User.NULL_USER)) {
-			DateFormat format = new SimpleDateFormat("dd MMM yyyy"); // 1 Jan 2015
-			Calendar calendar = Calendar.getInstance();
-			String date = format.format(calendar.getTime());
+        String newPassword = PasswordGenerator.getInstance().generatePassword(7, 36);
+		String subject = "Password Reset";
+		String body = "The password for "
+				+ user.getEmail()
+				+ " has been temporarily reset to \""
+				+ newPassword
+				+ "\" (no quotes). If this request was not made by you, simply ignore this message. Otherwise,you can change your password by logging in via the SportsCompare client.";
+		email.setSubject(subject);
+		email.setBody(body);
 			
-			String subject = "Password Reset";
-			String body = "An attempt to change the password associated with this email address for SportsCompare was made on "
-					+ date
-					+ ". However, there is no account registered for "
-					+ user.getEmail()
-					+ ". If this request was not made by you, simply ignore this message. Otherwise, you can register for a new account using the SportsCompare client.";
-			email.setSubject(subject);
-			email.setBody(body);
-		}
-		else {
-			String newPassword = PasswordGenerator.getInstance().generatePassword(7, 36);
-			String subject = "Password Reset";
-			String body = "The password for "
-					+ user.getEmail()
-					+ " has been temporarily reset to \""
-					+ newPassword
-					+ "\" (no quotes). If this request was not made by you, simply ignore this message. Otherwise, you can change your password by logging in via the SportsCompare client.";
-			email.setSubject(subject);
-			email.setBody(body);
-			
-			user.setPassword(newPassword);
-			usrDao.updateUser(user);
-		}
+		user.setPassword(newPassword);
+        user.setPasswordConfirm(newPassword);
+		usrDao.updateUser(user);
+        
         EmailProvider.getInstance().sendEmail(email);
 	}
 	
