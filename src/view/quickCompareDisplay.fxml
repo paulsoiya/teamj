@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -120,9 +122,18 @@
             </GridPane>
             <HBox prefHeight="26.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="shareBtn" mnemonicParsing="false" onAction="#changeToShareStat" prefHeight="26.0" prefWidth="210.0" text="Share" />
-                  <Button fx:id="graphBtn" mnemonicParsing="false" onAction="#changeToGraph" prefHeight="26.0" prefWidth="210.0" text="Graph" />
-                  <Button fx:id="videoBtn" mnemonicParsing="false" onAction="#changeToVideoDisplay" prefHeight="26.0" prefWidth="217.0" text="Videos" />
+                  <Button fx:id="shareBtn" mnemonicParsing="false" onAction="#changeToShareStat" prefHeight="26.0" prefWidth="210.0" text="Share">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="graphBtn" mnemonicParsing="false" onAction="#changeToGraph" prefHeight="26.0" prefWidth="210.0" text="Graph">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="videoBtn" mnemonicParsing="false" onAction="#changeToVideoDisplay" prefHeight="26.0" prefWidth="217.0" text="Videos">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </HBox>
          </children>
