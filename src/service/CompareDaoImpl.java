@@ -23,7 +23,7 @@ public class CompareDaoImpl implements CompareDao {
         PreparedStatement stmt = null;
         ResultSet resultSet;
         int result = -1;
-        float averageDifference = 0.05f;
+        float averageDifference = 0.005f;
         try {
             String sql = "SELECT StatsID " +
             "FROM Stats " +
@@ -39,7 +39,6 @@ public class CompareDaoImpl implements CompareDao {
             stmt.setString(2, favTeam);
             stmt.setFloat(3, average-0.1f);
             stmt.setFloat(4, average+0.1f);
-            stmt.executeQuery();
             
             resultSet = stmt.executeQuery();
             if(resultSet.next())
@@ -56,12 +55,11 @@ public class CompareDaoImpl implements CompareDao {
                     stmt.setString(1, position);
                     stmt.setFloat(2, average-averageDifference);
                     stmt.setFloat(3, average+averageDifference);
-                    stmt.executeQuery();
                 
                     resultSet = stmt.executeQuery();
                     if(resultSet.next())
                         result = resultSet.getInt("StatsID");
-                    averageDifference += 0.05f;
+                    averageDifference += 0.005f;
                 }
             }
             
