@@ -33,7 +33,7 @@
         <Label fx:id="teamTxt" alignment="CENTER" font="$x1" prefHeight="35.0" prefWidth="630.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
           <children>
-            <Label alignment="CENTER" prefHeight="16.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
+            <Label alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
               <font>
                 <Font size="18.0" fx:id="x2" />
               </font>
