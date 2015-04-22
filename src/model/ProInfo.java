@@ -22,21 +22,6 @@ public class ProInfo {
 	public ProInfo() {
 	}
 	
-	public ProInfo(String playerId, String name, String team, String position,
-                   String picture, int height, int weight, String dob,
-                   String college, int number) {
-        this.playerId = playerId;
-        this.name = name;
-        this.team = team;
-        this.position = position;
-        this.picture = picture;
-        this.height = height;
-        this.weight = weight;
-        this.dob = dob;
-        this.college = college;
-        this.number = number;
-    }
-	
 	public String getPlayerId() {
 		return playerId;
 	}
