@@ -17,7 +17,7 @@ import java.security.SecureRandom;
  * @author Moore, Zachary (zcmoore@asu.edu)
  *
  */
-public class PasswordGenerator {
+public final class PasswordGenerator {
 	private static PasswordGenerator instance;
 	private SecureRandom random;
 	

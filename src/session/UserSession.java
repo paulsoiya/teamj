@@ -6,7 +6,7 @@ package session;
  * @author Paul Soiya II
  * @version March 28, 2015
  */
-public class UserSession {
+public final class UserSession {
 	
 	private static UserSession instance = null;
 	private int userId;
