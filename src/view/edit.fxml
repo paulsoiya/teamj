@@ -17,17 +17,17 @@
         <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
         
          <children>
-            <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="firstNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="emailTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
             
-            <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="lastNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="firstNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             
-            <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dobPicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="lastNameTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
-            <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <TextField fx:id="emailTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Date of Birth:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <DatePicker fx:id="dobPicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             
             <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <PasswordField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -35,6 +35,7 @@
             <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
             <PasswordField fx:id="confirmPasswordTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#changeToHome" style="-fx-background-color: green;" text="Done" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Label fx:id="wrongLabel" prefHeight="16.0" prefWidth="189.0" textFill="#cd0808" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             
          </children>
          <columnConstraints>
@@ -60,10 +61,8 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="150.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" styleClass="navigation-button" text="Home" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Recent Games" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Friends" />
-            <Button mnemonicParsing="false" styleClass="navigation-button" text="Quick Compare" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeToHomeQuick" styleClass="navigation-button" text="Home" />
+            <Button fx:id="recentGamesButton" mnemonicParsing="false" onAction="#changeToGames" styleClass="navigation-button" text="Recent Games" />
          </children>
       </VBox>
    </left>

@@ -6,51 +6,74 @@
  */
 package controller;
 
+import static view.MainNavigator.EDIT_FXML;
+import static view.MainNavigator.GAME_FXML;
+import static view.MainNavigator.SPORT_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import service.DaoFactory;
+import service.SportDao;
+import session.UserSession;
+import view.MainNavigator;
 
 public class HomeController implements Initializable {
-
+	
 	view.MainNavigator controller;
 	
-	public HomeController(){
+	private UserSession session = UserSession.getInstance();
+	
+	@FXML
+	private Button footballButton;
+	@FXML
+	private Button recentGamesButton;
+	
+	DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+	SportDao sportDao = daoFact.getSportDao();
+	
+	public HomeController() {
 		controller = new view.MainNavigator();
 	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		boolean validSport = sportDao.validSport(session.getUserId());
+		footballButton.setVisible(validSport);
+		recentGamesButton.setVisible(validSport);
 	}
 	
 	/**
 	 * Changes the current FXML page to games.fxml
+	 * 
 	 * @param e
 	 */
 	@FXML
-	private void changeToGames(ActionEvent e){
-		controller.loadScreen(controller.GAME_FXML);
+	private void changeToGames(ActionEvent e) {
+		MainNavigator.loadScreen(GAME_FXML);
 	}
-                    
-    /**
-     * Changes the current FXML page to sport.fxml
-     * @param e
-     */
-    @FXML
-    private void changeToSport(ActionEvent e){
-         controller.loadScreen(controller.SPORT_FXML);
-    }
-                    
-    /**
-     * Changes the current FXML page to edit.fxml
-     * @param e
-     */
-    @FXML
-    private void changeToEdit(ActionEvent e){
-         controller.loadScreen(controller.EDIT_FXML);
-    }
+	
+	/**
+	 * Changes the current FXML page to sport.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToSport(ActionEvent e) {
+		MainNavigator.loadScreen(SPORT_FXML);
+	}
+	
+	/**
+	 * Changes the current FXML page to edit.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToEdit(ActionEvent e) {
+		MainNavigator.loadScreen(EDIT_FXML);
+	}
 }
-
