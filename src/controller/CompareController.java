@@ -58,9 +58,15 @@ public class CompareController implements Initializable {
 	@FXML
 	private Label attemptsTxt;
 	@FXML
+	private Label userAttemptsTxt;
+	@FXML
 	private Label yardsTxt;
 	@FXML
+	private Label userYardsTxt;
+	@FXML
 	private Label touchdownTxt;
+	@FXML
+	private Label userTouchdownTxt;
 	@FXML
 	private Label dateTxt;
 	@FXML
@@ -121,6 +127,9 @@ public class CompareController implements Initializable {
 		attemptsTxt.setText(Integer.toString(comp.getProAttempts()));
 		yardsTxt.setText(Integer.toString(comp.getProYards()));
 		touchdownTxt.setText(Integer.toString(comp.getProTouchdowns()));
+		userAttemptsTxt.setText(Integer.toString(comp.getUserAttempts()));
+		userYardsTxt.setText(Integer.toString(comp.getUserYards()));
+		userTouchdownTxt.setText(Integer.toString(comp.getUserTouchdowns()));
 		String date = comp.getGameDate();
 		dateTxt.setText(date.substring(0,10));
 		gameTeam1Txt.setText(comp.getGameTeam1());

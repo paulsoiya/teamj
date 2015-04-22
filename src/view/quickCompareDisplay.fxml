@@ -78,15 +78,16 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="149.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="42.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="629.0" text="Player Info" GridPane.columnSpan="6">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -104,20 +105,26 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="195.0" text="Attempts: " GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="195.0" text="Pro's Attempts: " GridPane.rowIndex="4" />
                   <Label fx:id="attemptsTxt" prefHeight="16.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="75.0" text="Yards: " GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="75.0" text="Pro's Yards: " GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <Label text="Touchdowns: " GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <Label fx:id="touchdownTxt" prefHeight="16.0" prefWidth="160.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="101.0" text="Date:" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="55.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                  <Label fx:id="dateTxt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="73.0" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                  <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="51.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="18.0" text="at" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label text="Pro's Touchdowns: " GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                  <Label fx:id="touchdownTxt" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="101.0" text="Date:" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="55.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="70.0" text="Score:" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                  <Label fx:id="dateTxt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="73.0" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Label fx:id="gameTeam2Txt" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                  <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="51.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="18.0" text="at" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="190.0" text="Your Attempts:" GridPane.rowIndex="5" />
+                  <Label fx:id="userAttemptsTxt" prefHeight="17.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="71.0" text="Your Yards:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="userYardsTxt" prefHeight="17.0" prefWidth="40.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="99.0" text="Your Touchdowns:" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                  <Label fx:id="userTouchdownTxt" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <HBox prefHeight="26.0" prefWidth="639.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
