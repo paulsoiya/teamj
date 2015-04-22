@@ -23,16 +23,6 @@ public class Compare {
 	public Compare() {
 	}
 	
-	public Compare(int userYards, int userTouchdowns, int userAttempts, int proYards,
-			int proTouchdowns, int proAttempts) {
-		this.userYards = userYards;
-		this.userTouchdowns = userTouchdowns;
-		this.userAttempts = userAttempts;
-		this.proYards = proYards;
-		this.proTouchdowns = proTouchdowns;
-		this.proAttempts = proAttempts;
-	}
-	
 	public int getUserYards() {
 		return userYards;
 	}
