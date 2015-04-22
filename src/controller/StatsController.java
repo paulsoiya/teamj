@@ -6,93 +6,120 @@
  */
 package controller;
 
-import model.Game;
-import model.User;
-import model.Stats;
+import static view.MainNavigator.COMPARE_FXML;
+import static view.MainNavigator.HOME_FXML;
+import static view.MainNavigator.GAME_FXML;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.collections.*;
-import javafx.event.ActionEvent;
-import service.*;
+import model.Game;
+import model.Stats;
+import service.CompareDao;
+import service.DaoFactory;
+import service.GameDao;
+import service.SportDao;
+import service.StatsDao;
+import service.UserDao;
+import session.UserSession;
+import view.MainNavigator;
 
 public class StatsController implements Initializable {
-
-	view.MainNavigator controller;
-                    
-    @FXML
-    private TextField weekTxt;
-    @FXML
-    private DatePicker datePicker;
-    @FXML
-    private TextField opponentTxt;
-    @FXML
-    private TextField yourScore;
-    @FXML
-    private TextField theirScore;
-    @FXML
-    private TextField attemptsTxt;
-    @FXML
-    private TextField yardsTxt;
-    @FXML
-    private TextField touchdownTxt;
 	
-	public StatsController(){
+	view.MainNavigator controller;
+	
+	@FXML
+	private TextField weekTxt;
+	@FXML
+	private DatePicker datePicker;
+	@FXML
+	private TextField opponentTxt;
+	@FXML
+	private TextField yourScore;
+	@FXML
+	private TextField theirScore;
+	@FXML
+	private TextField attemptsTxt;
+	@FXML
+	private TextField yardsTxt;
+	@FXML
+	private TextField touchdownTxt;
+    
+    private UserSession session = UserSession.getInstance();
+	
+	public StatsController() {
 		controller = new view.MainNavigator();
 	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 	}
-                    
+	
+	/**
+	 * Changes the current FXML page to compare.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToCompare() {
+		DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
+		UserDao usrDao = daoFact.getUserDao();
+		GameDao gameDao = daoFact.getGameDao();
+		StatsDao statsDao = daoFact.getStatsDao();
+		SportDao sportDao = daoFact.getSportDao();
+		CompareDao compareDao = daoFact.getCompareDao();
+		try {
+			// Load Game info
+			int week = Integer.parseInt(weekTxt.getText());
+			Game game = new Game(controller.getSessionUserId(), week,
+					opponentTxt.getText(), yourScore.getText() + "-"
+							+ theirScore.getText(), datePicker.getValue().toString());
+			gameDao.addGame(game);
+			
+			// Load Stats
+			int gameId = gameDao.findGameID(game);
+            session.setGameId(gameId);
+			int yards = Integer.parseInt(yardsTxt.getText());
+			int touchdown = Integer.parseInt(touchdownTxt.getText());
+			int attempts = Integer.parseInt(attemptsTxt.getText());
+			Stats stats = new Stats(gameId, controller.getSessionUserId(), yards,
+					touchdown, attempts);
+			
+            String position = sportDao.findPositionFootball(controller.getSessionUserId());
+            String team = sportDao.findTeamFootball(controller.getSessionUserId());
+            statsDao.addStats(stats);
+            int proStat = compareDao.playerComparison(statsDao.findCompareAverage(gameId),
+                                                      position, team);
+            compareDao.insertStat(proStat, gameId);
+            MainNavigator.loadScreen(COMPARE_FXML);
+		}
+		catch (NumberFormatException e) {
+			System.out.println(this.getClass().getName() + " error: " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * Changes the current FXML page to home.fxml
+	 * 
+	 * @param e
+	 */
+	@FXML
+	private void changeToHome() {
+		MainNavigator.loadScreen(HOME_FXML);
+	}
+    
     /**
-     * Changes the current FXML page to home.fxml
+     * Changes the current FXML page to games.fxml
+     *
      * @param e
      */
     @FXML
-    private void changeToCompare() {
-        DaoFactory daoFact = (DaoFactory) DaoFactory.getDaoFactory();
-        UserDao usrDao = daoFact.getUserDao();
-        GameDao gameDao = daoFact.getGameDao();
-        StatsDao statsDao = daoFact.getStatsDao();
-        SportDao sportDao = daoFact.getSportDao();
-        CompareDao compareDao = daoFact.getCompareDao();
-        try {
-            //Load Game info
-            int week = Integer.parseInt(weekTxt.getText());
-            Game game = new Game(controller.getSessionUserId(), week,
-                                 opponentTxt.getText(),
-                                 yourScore.getText() + "-" + theirScore.getText(),
-                                 datePicker.getValue());
-            gameDao.addGame(game);
-            
-            //Load Stats
-            int gameId = gameDao.findGameID(game);
-            int yards = Integer.parseInt(yardsTxt.getText());
-            int touchdown = Integer.parseInt(touchdownTxt.getText());
-            int attempts = Integer.parseInt(attemptsTxt.getText());
-            Stats stats = new Stats(gameId, controller.getSessionUserId(),
-                                    yards, touchdown, attempts);
-            
-            if (statsDao.addStats(stats))
-                controller.loadScreen(controller.COMPARE);
-            
-            compareDao.playerComparison(stats);
-        }
-        catch (NumberFormatException e) {
-            System.out.println(this.getClass().getName() + " error: " + e.getMessage());
-        }
+    private void changeToGames() {
+        MainNavigator.loadScreen(GAME_FXML);
     }
-        
-        @FXML
-        private void changeToHome() {
-            controller.loadScreen(controller.HOME_FXML);
-        }
 }
-

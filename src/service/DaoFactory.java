@@ -2,7 +2,6 @@ package service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * Dao factory for the SQLite database
@@ -11,43 +10,61 @@ import java.sql.SQLException;
  * @version March 17, 2015
  */
 public class DaoFactory extends AbstractDaoFactory {
-
-	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static String conUrlInd = "jdbc:mysql://localhost:3306/individual?user=root&password=password";
-    public static final String CON_URL_PRO = "jdbc:mysql://localhost:3306/professional?user=root&password=password";
-
-	public static Connection createConnectionIndividual(){
+	
+	public static final String DRIVER = "org.sqlite.JDBC";
+	public static final String CON_URL_IND = "jdbc:sqlite:individual.db";
+	public static final String CON_URL_PRO = "jdbc:sqlite:professional.db";
+	
+	public static Connection createConnection(String database) {
 		Connection con = null;
 		
 		try {
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection(DaoFactory.conUrlInd);
+			con = DriverManager.getConnection(database);
 			
-		}catch(Exception e){
+		}
+		catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
 		
 		return con;
 	}
-    
-    public static Connection createConnectionProfessional(){
-        Connection con = null;
-        
-        try {
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(DaoFactory.CON_URL_PRO);
-            
-        }catch(Exception e){
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        
-        return con;
-    }
 	
-	public static void closeConnection(Connection con){
-		try{
+	public static Connection createConnectionIndividual() {
+		Connection con = null;
+		
+		try {
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(DaoFactory.CON_URL_IND);
+			
+		}
+		catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+		
+		return con;
+	}
+	
+	public static Connection createConnectionProfessional() {
+		Connection con = null;
+		
+		try {
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(DaoFactory.CON_URL_PRO);
+			
+		}
+		catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		}
+		
+		return con;
+	}
+	
+	public static void closeConnection(Connection con) {
+		try {
 			con.close();
-		}catch(Exception e){
+		}
+		catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
 	}
@@ -57,23 +74,34 @@ public class DaoFactory extends AbstractDaoFactory {
 		return new UserDaoImpl();
 	}
 	
-    @Override
-    public GameDao getGameDao() {
-        return new GameDaoImpl();
-    }
+	@Override
+	public GameDao getGameDao() {
+		return new GameDaoImpl();
+	}
 	
-    @Override
+	@Override
 	public SportDao getSportDao() {
 		return new SportDaoImpl();
 	}
+	
+	@Override
+	public StatsDao getStatsDao() {
+		return new StatsDaoImpl();
+	}
+	
+	@Override
+	public CompareDao getCompareDao() {
+		return new CompareDaoImpl();
+	}
+
+	@Override
+	public TeamDao getTeamDao() {
+		return new TeamDaoImpl();
+	}
     
     @Override
-    public StatsDao getStatsDao() {
-        return new StatsDaoImpl();
+    public ProInfoDao getProInfoDao() {
+        return new ProInfoDaoImpl();
     }
-    
-    @Override
-    public CompareDao getCompareDao() {
-        return new CompareDaoImpl();
-    }
+	
 }

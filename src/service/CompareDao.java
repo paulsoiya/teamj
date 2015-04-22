@@ -7,14 +7,40 @@
 package service;
 
 import model.Compare;
-import model.Stats;
 
 public interface CompareDao {
-
     /**
      * Pulls down stats for both the User and Pro
-     * @param
-     * @return
+     * @param average, position, favTeam
+     * @return int of StatsID for pro player
      */
-    public int playerComparison(Stats stats);
+    public int playerComparison(float average, String position, String favTeam);
+    
+    /**
+     * Inserts proStatsId into individual db
+     * @param proStatsId, gameId
+     * @return true if sucessful
+     */
+    public boolean insertStat(int proStatsId, int gameId);
+    
+    /**
+     * Returns Position and Favorite Team for user
+     * @param userId
+     * @return String array of Position FavoriteTeam
+     */
+    public String[] userPositionTeam(int userId);
+    
+    /**
+     * Finds statsID given a gameID
+     * @param gameId
+     * @return int StatsID
+     */
+    public int findStatsId(int gameId);
+    
+    /**
+     * Creates a compare object
+     * @param gameId, statsId
+     * @return Compare
+     */
+    public Compare inputStats(int gameId, int statsId);
 }
