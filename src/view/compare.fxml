@@ -49,9 +49,9 @@
             <Label alignment="CENTER" font="$x2" prefHeight="23.0" prefWidth="659.0" text="Game Info" GridPane.columnSpan="6" GridPane.rowIndex="3" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="195.0" text="Pro's Attempts: " GridPane.rowIndex="4" />
             <Label fx:id="attemptsTxt" prefHeight="16.0" prefWidth="53.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label prefHeight="17.0" prefWidth="65.0" text="Pro's Yards: " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="95.0" text="Pro's Yards: " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <Label fx:id="yardsTxt" prefHeight="1.0" prefWidth="83.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label text="Pro's Touchdowns: " GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+            <Label alignment="CENTER_RIGHT" text="Pro's Touchdowns: " GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
             <Label fx:id="touchdownTxt" prefHeight="17.0" prefWidth="132.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="111.0" text="Date:" GridPane.rowIndex="6" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="58.0" text="Teams:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -61,20 +61,20 @@
                   <Label fx:id="scoreTxt" prefHeight="17.0" prefWidth="55.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
                   <Label fx:id="dateTxt" prefHeight="17.0" prefWidth="77.0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
                   <Label fx:id="gameTeam1Txt" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="53.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Label prefHeight="17.0" prefWidth="86.0" text="Your Attempts:" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                  <Label prefHeight="17.0" prefWidth="91.0" text="Your Attempts:" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                   <Label fx:id="userAttemptsTxt" prefHeight="17.0" prefWidth="29.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label prefHeight="17.0" prefWidth="66.0" text="Your Yards:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="85.0" text="Your Yards:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Label fx:id="userYardsTxt" prefHeight="17.0" prefWidth="36.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <Label text="Your Touchdowns: " GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Your Touchdowns: " GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="5" />
                   <Label fx:id="userTouchdownTxt" prefHeight="17.0" prefWidth="132.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.0" minWidth="10.0" prefWidth="195.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="63.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="76.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="45.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="92.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="62.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="88.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="149.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="118.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="119.0" />
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
