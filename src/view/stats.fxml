@@ -57,9 +57,9 @@
                <font>
                   <Font size="36.0" />
                </font></Label>
-            <Label prefHeight="16.0" prefWidth="59.0" text="Week:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label prefHeight="16.0" prefWidth="64.0" text="Date:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label prefHeight="16.0" prefWidth="68.0" text="Opponent:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="175.0" text="Week:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="176.0" text="Date:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="174.0" text="Opponent:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Score" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="124.0" text="Opponent" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="97.0" text="Your Score" GridPane.columnIndex="1" GridPane.rowIndex="6" />
