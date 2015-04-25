@@ -8,6 +8,7 @@
     <property name="classes.dir"        value="${build.dir}/classes"/>
     <property name="junit.classes.dir"  value="${classes.dir}"/>
     <property name="jar.dir"            value="${build.dir}/dist"/>
+    <property name="deploy.dir"         value="${build.dir}/deploy"/>
     <property name="lib.dir"            value="lib"/>
     <property name="tests.dir"          value="${build.dir}/tests"/>
     <property name="tests.junit.dir"    value="${tests.dir}/junit"/>
@@ -260,5 +261,19 @@
             <sourcePath path="${src.dir}" />
             <class location="${classes.dir}" />
         </findbugs>
+    </target>
+    
+    <target name="run-deploy" depends="fx-deploy">
+        <copy todir="build/dist">
+            <fileset dir=".">
+                <include name="professional.db"/>
+                <include name="individual.db"/>
+            </fileset>
+        </copy>
+        
+        <zip destfile="${deploy.dir}/CST316_TeamJ.zip"
+        basedir="${jar.dir}"
+        update="true"
+        />
     </target>
 </project>
