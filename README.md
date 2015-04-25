@@ -5,3 +5,5 @@ Create database: ant run-server
 //Creates individual database
 Run Tests: ant run-tests
 //Runs all tests after compiling
+Deploy zipfile: ant run-deploy
+//Builds zip file for deployment in build/deploy
