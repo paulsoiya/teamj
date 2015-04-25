@@ -53,7 +53,8 @@
         <echo message="Run UI: ant run-ui"/>
         <echo message="Create databases: ant run-server"/>
         <echo message="Run Tests: ant run-tests"/>
-        <echo message="Build Professional DB: and run-buildDB"/>
+        <echo message="Build Professional DB: ant run-buildDB"/>
+        <echo message="Deploy zipfile: ant run-deploy"/>
     </target>
     
     <target name="clean">
