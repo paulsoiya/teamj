@@ -19,17 +19,6 @@ public class Stats {
 	public Stats() {
 	}
 	
-	public Stats(int statsID, int gameID, int userID, int yards, int touchdowns,
-			int attempts) {
-		this.statsID = statsID;
-		this.gameID = gameID;
-		this.userID = userID;
-		this.yards = yards;
-		this.touchdowns = touchdowns;
-		this.attempts = attempts;
-		average = compareAlgorithm(yards, touchdowns, attempts);
-	}
-	
 	public Stats(int gameID, int userID, int yards, int touchdowns, int attempts) {
 		this.gameID = gameID;
 		this.userID = userID;
