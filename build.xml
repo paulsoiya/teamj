@@ -264,7 +264,7 @@
         </findbugs>
     </target>
     
-    <target name="run-deploy" depends="fx-deploy">
+    <target name="run-deploy" depends="run-server, fx-deploy">
         <copy todir="build/dist">
             <fileset dir=".">
                 <include name="professional.db"/>
