@@ -264,11 +264,11 @@ public class BuildProfessionalDB {
 					insertPlayerStatsFrom(rushAway, game);
 					
 					// Away Team Passing Stats
-					JSONObject passAway = statsHome.getJSONObject("passing");
+					JSONObject passAway = statsAway.getJSONObject("passing");
 					insertPlayerStatsFrom(passAway, game);
 					
 					// Away Team Receiving Stats
-					JSONObject recAway = statsHome.getJSONObject("receiving");
+					JSONObject recAway = statsAway.getJSONObject("receiving");
 					insertPlayerStatsFrom(recAway, game);
 				}
 			}
