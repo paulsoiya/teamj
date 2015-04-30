@@ -256,7 +256,7 @@ public class BuildProfessionalDB {
 					insertPlayerStatsFrom(passHome, game);
 					
 					// Home Team Receiving Stats
-					JSONObject recHome = statsHome.getJSONObject("passing");
+					JSONObject recHome = statsHome.getJSONObject("receiving");
 					insertPlayerStatsFrom(recHome, game);
 					
 					// Away Team Rushing Stats
@@ -268,7 +268,7 @@ public class BuildProfessionalDB {
 					insertPlayerStatsFrom(passAway, game);
 					
 					// Away Team Receiving Stats
-					JSONObject recAway = statsHome.getJSONObject("passing");
+					JSONObject recAway = statsHome.getJSONObject("receiving");
 					insertPlayerStatsFrom(recAway, game);
 				}
 			}
