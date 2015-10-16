@@ -43,7 +43,7 @@ public class GameController implements Initializable {
 	@FXML
 	private TableColumn<Game, String> opponentCol;
 	@FXML
-	private TableColumn<Game, String> scoreCol;
+	private TableColumn<Game, String> scor
 	@FXML
 	private TableView<Game> table;
 	
